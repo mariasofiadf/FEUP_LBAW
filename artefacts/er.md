@@ -27,7 +27,7 @@
 
 
 | Identifier        | Description |
-|      :---:        |    :---:    |
+|      :---        |    :---    |
 | User              | Generic user that has access to public information, such as available auctions.|
 | Non-authenticated | Unauthenticated user that can register itself (sign-up) or sign-in in the system to participate in bidding or to create auctions.|
 |   Authenticated   | Authenticated user that can search available auctions and manage their list of interests.|
