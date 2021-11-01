@@ -22,21 +22,19 @@
 
 > For the Online Auctions system, the actors are represented in Figure 1 and described in Table 1.
 
-![plot](./figure1.png)
-<center> Figure 1: Online Auction Actors. </center>
-
-
+![plot](./Actors.jpg)
+<center> Figure 1: Hand Of Midas Actors. </center>
 
 
 | Identifier        | Description |
 |      :---:        |    :---:    |
 | User              | Generic user that has access to public information, such as available auctions.|
-| Non-authenticated | Unauthenticated user that can register itself or sign-in the system to participate in bidding or creating an auction.|
-|   Authenticated   | Authenticated user that can search available auctions and manage his list of interests.|
-|      Bidder       | Authenticated user able to bid in one or more auctions.|
-|   Auction owner   | Authenticated user who is able to create an auction of his own.|
+| Non-authenticated | Unauthenticated user that can register itself (sign-up) or sign-in in the system to participate in bidding or to create auctions.|
+|   Authenticated   | Authenticated user that can search available auctions and manage their list of interests.|
+|      Bidder       | Authenticated user that is able to bid in auctions.|
+|   Auction owner   | Authenticated user that is able to create auctions of their own.|
 
-<center> Table 1: Online Auction actors description </center>
+<center> Table 1: Hand Of Midas actors description </center>
 
 
 
