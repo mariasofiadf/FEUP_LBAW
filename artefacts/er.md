@@ -70,6 +70,13 @@
 |   FR.301   |      Rate Seller     |   medium   | As a bidder, I want to classify a seller, by leaving a 1 to 5 rating and/or a comment on their profile|
 |   FR.302   |     View Auction Bidding History  |  high  | As a bidder, I want to access all the auctions I've bid on
 
+#### 2.N. Auction Owner
+| Identifier |               Name              | Priority | Description |
+|   :---:    |              :---:              |   :---:  |:---    |
+|   FR.401   |     Edit Auction    |   high   | As an auction owner, I want to change the information of one of my auctions|
+|   FR.402   |     Manage Auction Status |  medium  | (Not Sure)
+|   FR.403   |     Cancel Auction  |  high  | As an auction owner, I want to completly remove an auction from the platform, so no one is able to see it
+
 ### 3. Supplementary Requirements
 
 > Section including business rules, technical requirements, and restrictions.  
