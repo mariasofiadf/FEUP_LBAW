@@ -37,7 +37,17 @@
 
 <center> Table 2: Non-authenticated user user stories </center>
 
-#### 2.2. Actor 2
+#### 2.2. Administrator
+| Identifier |               Name              | Priority | Description |
+|   :---:    |              :---:              |   :---:  |    :---:    |
+|   FR.041   |      Administrator accounts     |   high   | There must be accounts with special privileges in the system. |
+|   FR.042   |     Administer user accounts    |  medium  | The Admin must be able to search, view, edit and create user accounts.
+|   FR.043   | Block and unblock user accounts |   high   | The Admin must have the privilege to block or unblock accounts through his judgement of the user's activity.
+|   FR.044   |       Delete user account       |   low    | The Admin must be able to delete accounts at will.
+|   FR.601   |          Manage auction         |   high   | The Admin must be able to view, edit and supervise any auction ocurring at any time.
+|   FR.602   |          Cancel auction         |   high   | The Admin must be able to cancel any auction on his own.
+
+<center> Table 3: Administrator user stories </center>
 
 #### 2.N. Actor n
 
