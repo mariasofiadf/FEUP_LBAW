@@ -35,11 +35,11 @@
 |   FR.101   |       View active auctions      |   high   | As a User, I must be able to view all active auctions, so that I'm able to find the ones that interest me. |
 |   FR.102   |        View user profiles       |  medium  | As a User, I want to be able to see other user's profiles. |
 |   FR.103   |   Browse auctions by category   |   high   | As a User, I must be able to search auctions by their specific categories. |
-|   FR.104   |         Search auctions         |   high   | The user must be able to search an active auction at any given time. |
-|   FR.031   |        Exact match search       |  medium  | The user must be able to do an exact match search. |
-|   FR.032   |         Full-text search        |   high   | The user must be able to do a full-text search. |
-|   FR.033   | Search over multiple attributes |  medium  | The user must be able to have attributes to help with his search. |
-|   FR.034   |          Search filters         |   high   | The user must have category filters to efficiently help with his search. |
+|   FR.104   |         Search auctions         |   high   | As a User, I must be able to search an active auction at any given time. |
+|   FR.031   |        Exact match search       |  medium  | As a User, I must be able to do an exact match search. |
+|   FR.032   |         Full-text search        |   high   | As a User, I must be able to do a full-text search. |
+|   FR.033   | Search over multiple attributes |  medium  | As a User, I must be able to have attributes to help with my search. |
+|   FR.034   |          Search filters         |   high   | As a User, I must have category filters to efficiently help with his search. |
 |     |         See Home          |   high   | As a User, I want to access the home page, so that I can see a brief presentation of the website. |
 |     |         See About         |   high   | As a User, I want to access the about page, so that I can see a complete description of the website and its creators. |
 |     |         Consult Services  |   high   | As a User, I want to access the services information, so that I can see the website's services.|
@@ -52,9 +52,9 @@ Table 2: User user stories
 #### 2.2. Non-Authenticated
 | Identifier |       Name       | Priority | Description |
 |   :---     |       :---       |   :---   |    :---     |
-|   FR.011   |   Login/Logout   |   high   | As an unauthenticated user, I want to login into the system, so that I may access information.|
-|   FR.012   |   Registration   |   high   | As an unauthenticated user, I want to be able to register into the system, so that I may access information.|
-|   FR.013   | Recover password |  high  | As an unauthenticated user, I want to be able to recover my password by the registered email, so that I don't lose my account permanently.|
+|   FR.011   |   Login/Logout   |   high   | As an Unauthenticated user, I want to login into the system, so that I may access information.|
+|   FR.012   |   Registration   |   high   | As an Unauthenticated user, I want to be able to register into the system, so that I may access information.|
+|   FR.013   | Recover password |  high  | As an Unauthenticated user, I want to be able to recover my password by the registered email, so that I don't lose my account permanently.|
 
 Table 3: Non-authenticated user stories.
 
