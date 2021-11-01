@@ -15,13 +15,30 @@
 
 ## A2: Actors and User stories
 
-> Brief presentation of the artefact goals.
+> This artifact contains the specification of the actors involved and their user stories. This serves as agile documentation of the projects requirements.
 
 
 ### 1. Actors
 
-> Diagram identifying actors and their relationships.  
-> Table identifying actors, including a brief description.
+> For the Online Auctions system, the actors are represented in Figure 1 and described in Table 1.
+
+![plot](./figure1.png)
+<center> Figure 1: Online Auction Actors. </center>
+
+
+
+
+| Identifier        | Description |
+|      :---:        |    :---:    |
+| User              | Generic user that has access to public information, such as available auctions.|
+| Non-authenticated | Unauthenticated user that can register itself or sign-in the system to participate in bidding or creating an auction.|
+|   Authenticated   | Authenticated user that can search available auctions and manage his list of interests.|
+|      Bidder       | Authenticated user able to bid in one or more auctions.|
+|   Auction owner   | Authenticated user who is able to create an auction of his own.|
+
+<center> Table 1: Online Auction actors description </center>
+
+
 
 
 ### 2. User Stories
@@ -37,15 +54,14 @@
 
 | Identifier |               Name              | Priority | Description |
 |   :---:    |              :---:              |   :---:  |    :---:    |
-|   FR.201   |      Create Auction      |   high   | As an authenticated user i want to auction a new item
-|
-|   FR.202   |     Follow Auction  |  medium  | The Admin must be able to search, view, edit and create user accounts.
-|   FR.203   |     Report Auction  |  low  | The Admin must be able to search, view, edit and create user accounts.
-|   FR.204   | View Followed Auctions |   medium   | The Admin must have the privilege to block or unblock accounts through his judgement of the user's activity.
-|   FR.205   |          View My Bidding History         |   medium   | The Admin must be able to view, edit and supervise any auction ocurring at any time.
-|   FR.206   |          View My Auctions         |   high   | The Admin must be able to cancel any auction on his own.
-|   FR.207   |          Add Credit to Account        |   medium   | The Admin must be able to cancel any auction on his own.
-|   FR.208   |          Bid on Auction        |   high   | The Admin must be able to cancel any auction on his own.
+|   FR.201   |      Create Auction      |   high   | As an authenticated user i want to auction a new item|
+|   FR.202   |     Follow Auction  |  medium  | As an authenticated user
+|   FR.203   |     Report Auction  |  low  | As an authenticated user
+|   FR.204   | View Followed Auctions |   medium   | As an authenticated user
+|   FR.205   |          View My Bidding History         |   medium   | As an authenticated user
+|   FR.206   |          View My Auctions         |   high   | As an authenticated user
+|   FR.207   |          Add Credit to Account        |   medium   |As an authenticated user
+|   FR.208   |          Bid on Auction        |   high   | As an authenticated user
 <center> Table 3: Authenticated user stories </center>
 
 
