@@ -33,7 +33,20 @@
 
 #### 2.2. Actor 2
 
-#### 2.N. Actor n
+#### 2.N. Authenticated user
+
+| Identifier |               Name              | Priority | Description |
+|   :---:    |              :---:              |   :---:  |    :---:    |
+|   FR.201   |      Create Auction      |   high   | As an authenticated user i want to auction a new item
+|
+|   FR.202   |     Follow Auction  |  medium  | The Admin must be able to search, view, edit and create user accounts.
+|   FR.203   |     Report Auction  |  low  | The Admin must be able to search, view, edit and create user accounts.
+|   FR.204   | View Followed Auctions |   medium   | The Admin must have the privilege to block or unblock accounts through his judgement of the user's activity.
+|   FR.205   |          View My Bidding History         |   medium   | The Admin must be able to view, edit and supervise any auction ocurring at any time.
+|   FR.206   |          View My Auctions         |   high   | The Admin must be able to cancel any auction on his own.
+|   FR.207   |          Add Credit to Account        |   medium   | The Admin must be able to cancel any auction on his own.
+|   FR.208   |          Bid on Auction        |   high   | The Admin must be able to cancel any auction on his own.
+<center> Table 3: Authenticated user stories </center>
 
 
 ### 3. Supplementary Requirements
