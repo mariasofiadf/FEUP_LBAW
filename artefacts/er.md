@@ -43,12 +43,51 @@
 
 ### 2. User Stories
 
-> User stories organized by actor.  
-> For each actor, a table containing a line for each user story, and for each user story: an identifier, a name, a priority, and a description (following the recommended pattern).
+> For the Online Auction system, please refer to the user stories presented below:
 
-#### 2.1. Actor 1
 
-#### 2.2. Actor 2
+#### 2.1. User
+| Identifier |               Name              | Priority | Description |
+|   :---     |              :---               |   :---   |    :---     |
+|   FR.101   |       View active auctions      |   high   | As a User, I must be able to view all active auctions, so that I'm able to find the ones that interest me. |
+|   FR.102   |        View user profiles       |  medium  | As a User, I want to be able to see other user's profiles. |
+|   FR.103   |   Browse auctions by category   |   high   | As a User, I must be able to search auctions by their specific categories. |
+|   FR.104   |         Search auctions         |   high   | As a User, I must be able to search an active auction at any given time. |
+|   FR.031   |        Exact match search       |  medium  | As a User, I must be able to do an exact match search. |
+|   FR.032   |         Full-text search        |   high   | As a User, I must be able to do a full-text search. |
+|   FR.033   | Search over multiple attributes |  medium  | As a User, I must be able to have attributes to help with my search. |
+|   FR.034   |          Search filters         |   high   | As a User, I must have category filters to efficiently help with his search. |
+|     |         See Home          |   high   | As a User, I want to access the home page, so that I can see a brief presentation of the website. |
+|     |         See About         |   high   | As a User, I want to access the about page, so that I can see a complete description of the website and its creators. |
+|     |         Consult Services  |   high   | As a User, I want to access the services information, so that I can see the website's services.|
+|     |         Consult FAQ       |   high   | As a User, I want to access the FAQ, so that I can get quick answers to common questions.|
+|     |         Consult Contacts      |   high   | As a User, I want to access contacts, so that I can come in touch with the platform creators.|
+
+Table 2: User user stories
+
+
+#### 2.2. Non-Authenticated
+| Identifier |       Name       | Priority | Description |
+|   :---     |       :---       |   :---   |    :---     |
+|   FR.011   |   Login/Logout   |   high   | As an Unauthenticated user, I want to login into the system, so that I may access information.|
+|   FR.012   |   Registration   |   high   | As an Unauthenticated user, I want to be able to register into the system, so that I may access information.|
+|   FR.013   | Recover password |  high  | As an Unauthenticated user, I want to be able to recover my password by the registered email, so that I don't lose my account permanently.|
+
+Table 3: Non-authenticated user stories.
+
+
+#### 2.3. Administrator
+| Identifier |               Name              | Priority | Description |
+|   :---     |              :---               |   :---   |    :---     |
+|   FR.041   |      Administrator accounts TIRAR DAQUI (TODO)   |   high   | There must be accounts with special privileges in the system. |
+|   FR.042   |     Administer user accounts    |  high  | As an Admin, I must to be able to search, view, edit and create user accounts.|
+|   FR.043   | Block and unblock user accounts |   high   | As an Admin, I must have the ability to block and unblock accounts, so that I can manage the type of users on the website.|
+|   FR.044   |       Delete user account       |   low    | As an Admin, I want to be able to delete accounts at will, so that I can remove unwanted users from the website.|
+|   FR.601   |          Manage auction         |   high   | As an Admin, I must be able to view, edit and supervise any auction occurring at any time, so that I can make sure things run smoothly.
+|   FR.602   |          Cancel auction         |   high   | As an Admin, I must be able to cancel any auction, so that I can manage the type of auctions occurring on the website.
+
+Table 4: Administrator user stories.
+
 
 #### 2.N. Authenticated user
 
