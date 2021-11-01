@@ -28,16 +28,30 @@
 
 > For the Online Auction system, please refer to the user stories presented below:
 
-#### 2.1. Non-Authenticated
+#### 2.1. User
+| Identifier |               Name              | Priority | Description |
+|   :---:    |              :---:              |   :---:  |    :---:    |
+|   FR.101   |       View active auctions      |   high   | The User must be able to view all active auctions. 
+|   FR.102   |        View user profiles       |  medium  | The user must be able to see other user's profiles. 
+|   FR.103   |   Browse auctions by category   |   high   | The user must be able to search auctions by their specific categories. 
+|   FR.104   |         Search auctions         |   high   | The user must be able to search an active auction at any given time.
+|   FR.031   |        Exact match search       |  medium  | The user must be able to do an exact match search.
+|   FR.032   |         Full-text search        |   high   | The user must be able to do a full-text search.
+|   FR.033   | Search over multiple attributes |  medium  | The user must be able to have attributes to help with his search.
+|   FR.034   |          Search filters         |   high   | The user must have category filters to efficiently help with his search.
+
+<center> Table 2: User user stories </center>
+
+#### 2.2. Non-Authenticated
 | Identifier |       Name       | Priority | Description |
 |   :---:    |       :---:      |   :---:  |    :---:    |
 |   FR.011   |   Login/Logout   |   high   | As a non-authenticated user, I want to login the system, so that I mat access information.
 |   FR.012   |   Registration   |   high   | As a non-authenticated user, I want to be able to register into the system, so that I may access information.
 |   FR.013   | Recover password |  medium  | As a non-authenticated user, I want to be able to recover my password by the registered email.
 
-<center> Table 2: Non-authenticated user user stories </center>
+<center> Table 3: Non-authenticated user user stories </center>
 
-#### 2.2. Administrator
+#### 2.3. Administrator
 | Identifier |               Name              | Priority | Description |
 |   :---:    |              :---:              |   :---:  |    :---:    |
 |   FR.041   |      Administrator accounts     |   high   | There must be accounts with special privileges in the system. |
@@ -47,9 +61,7 @@
 |   FR.601   |          Manage auction         |   high   | The Admin must be able to view, edit and supervise any auction ocurring at any time.
 |   FR.602   |          Cancel auction         |   high   | The Admin must be able to cancel any auction on his own.
 
-<center> Table 3: Administrator user stories </center>
-
-#### 2.N. Actor n
+<center> Table 4: Administrator user stories </center>
 
 
 ### 3. Supplementary Requirements
