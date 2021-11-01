@@ -54,16 +54,21 @@
 
 | Identifier |               Name              | Priority | Description |
 |   :---:    |              :---:              |   :---:  |:---    |
-|   FR.201   |      Create Auction      |   high   | As an authenticated user, i want to auction a new item|
-|   FR.202   |     Follow Auction  |  medium  | As an authenticated, user i want to have a quicker access and receive notifications from an auction
-|   FR.203   |     Report Auction  |  low  | As an authenticated user, i want to signal inappropriate content in an auction, so that administrators can review and deal with the problem as they see fit
-|   FR.204   | View Followed Auctions |   medium   | As an authenticated user, i want to access my followed auctions
-|   FR.205   |          View My Bidding History         |   medium   | As an authenticated user, i want to see all
-|   FR.206   |          View My Auctions         |   high   | As an authenticated user, i want to access the auctions that I own
-|   FR.207   |          Add Credit to Account        |   medium   |As an authenticated user
-|   FR.208   |          Bid on Auction        |   high   | As an authenticated user
+|   FR.201   |      Create Auction      |   high   | As an authenticated user, I want to auction a new item|
+|   FR.202   |     Follow Auction  |  medium  | As an authenticated, user I want to have a quicker access and receive notifications from an auction
+|   FR.203   |     Report Auction  |  low  | As an authenticated user, I want to signal inappropriate content in an auction, so that administrators can review and deal with the problem as they see fit
+|   FR.204   | View Followed Auctions |   medium   | As an authenticated user, I want to access my followed auctions
+|   FR.205   |          View My Bidding History         |   medium   | As an authenticated user, I want to see all the bids I made, their value and to what auction they refer to
+|   FR.206   |          View My Auctions         |   high   | As an authenticated user, I want to access the auctions I own, and all the information attacthed to them
+|   FR.207   |          Add Credit to Account        |   medium   |As an authenticated user, I want to be able to transfer money into my account wallet
+|   FR.208   |          Bid on Auction        |   high   | As an authenticated user, I want to  bid on an item, by choosing the amount of money to be placed
 <center> Table 3: Authenticated user stories </center>
 
+#### 2.N. Bidder
+| Identifier |               Name              | Priority | Description |
+|   :---:    |              :---:              |   :---:  |:---    |
+|   FR.301   |      Rate Seller     |   medium   | As a bidder, I want to classify a seller, by leaving a 1 to 5 rating and/or a comment on their profile|
+|   FR.302   |     View Auction Bidding History  |  high  | As a bidder, I want to access all the auctions I've bid on
 
 ### 3. Supplementary Requirements
 
