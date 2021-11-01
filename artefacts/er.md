@@ -25,8 +25,15 @@
 ![plot](./figure1.png)
 <center> Figure 1: Online Auction Actors. </center>
 
+| Identifier        | Description |
+|      :---:        |    :---:    |
+| User              | Generic user that has access to public information, such as available auctions.|
+| Non-authenticated | Unauthenticated user that can register itself or sign-in the system to participate in bidding or creating an auction.|
+|   Authenticated   | Authenticated user that can search available auctions and manage his list of interests.|
+|      Bidder       | Authenticated user able to bid in one or more auctions.|
+|   Auction owner   | Authenticated user who is able to create an auction of his own.|
 
-
+<center> Table 1: Online Auction actors description </center>
 
 ### 2. User Stories
 
