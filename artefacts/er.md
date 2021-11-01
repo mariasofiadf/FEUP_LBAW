@@ -15,13 +15,28 @@
 
 ## A2: Actors and User stories
 
-> Brief presentation of the artefact goals.
+> This artifact contains the specification of the actors involved and their user stories. This serves as agile documentation of the projects requirements.
 
 
 ### 1. Actors
 
-> Diagram identifying actors and their relationships.  
-> Table identifying actors, including a brief description.
+> For the Online Auctions system, the actors are represented in Figure 1 and described in Table 1.
+
+![plot](./Actors.jpg)
+<center> Figure 1: Hand Of Midas Actors. </center>
+
+
+| Identifier        | Description |
+|      :---        |    :---    |
+| User              | Generic user that has access to public information, such as available auctions.|
+| Non-authenticated | Unauthenticated user that can register itself (sign-up) or sign-in in the system to participate in bidding or to create auctions.|
+|   Authenticated   | Authenticated user that can search available auctions and manage their list of interests.|
+|      Bidder       | Authenticated user that is able to bid in auctions.|
+|   Auction owner   | Authenticated user that is able to create auctions of their own.|
+
+<center> Table 1: Hand Of Midas actors description </center>
+
+
 
 
 ### 2. User Stories
