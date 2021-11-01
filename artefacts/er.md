@@ -15,7 +15,7 @@
 
 ## A2: Actors and User stories
 
-> Brief presentation of the artefact goals.
+> This artifact contains the specification of the actors involved and their user stories. This serves as agile documentation of the projects requirements.
 
 
 ### 1. Actors
