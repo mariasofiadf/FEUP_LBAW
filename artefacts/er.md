@@ -23,7 +23,7 @@
 > For the Online Auctions system, the actors are represented in Figure 1 and described in Table 1.
 
 ![plot](./Actors.jpg)
-<center> Figure 1: Hand Of Midas Actors. </center>
+Figure 1: Hand Of Midas Actors.
 
 
 | Identifier        | Description |
@@ -34,7 +34,7 @@
 |      Bidder       | Authenticated user that is able to bid in auctions.|
 |   Auction owner   | Authenticated user that is able to create auctions of their own.|
 
-<center> Table 1: Hand Of Midas actors description </center>
+Table 1: Hand Of Midas actors description.
 
 
 
