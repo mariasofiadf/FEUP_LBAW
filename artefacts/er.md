@@ -20,8 +20,12 @@
 
 ### 1. Actors
 
-> Diagram identifying actors and their relationships.  
-> Table identifying actors, including a brief description.
+> For the Online Auctions system, the actors are represented in Figure 1 and described in Table 1.
+
+![plot](./figure1.png)
+<center> Figure 1: Online Auction Actors. </center>
+
+
 
 
 ### 2. User Stories
