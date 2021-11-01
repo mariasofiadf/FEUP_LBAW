@@ -26,10 +26,16 @@
 
 ### 2. User Stories
 
-> User stories organized by actor.  
-> For each actor, a table containing a line for each user story, and for each user story: an identifier, a name, a priority, and a description (following the recommended pattern).
+> For the Online Auction system, please refer to the user stories presented below:
 
-#### 2.1. Actor 1
+#### 2.1. Non-Authenticated
+| Identifier |       Name       | Priority | Description |
+|   :---:    |       :---:      |   :---:  |    :---:    |
+|   FR.011   |   Login/Logout   |   high   | As a non-authenticated user, I want to login the system, so that I mat access information.
+|   FR.012   |   Registration   |   high   | As a non-authenticated user, I want to be able to register into the system, so that I may access information.
+|   FR.013   | Recover password |  medium  | As a non-authenticated user, I want to be able to recover my password by the registered email.
+
+<center> Table 2: Non-authenticated user user stories </center>
 
 #### 2.2. Actor 2
 
