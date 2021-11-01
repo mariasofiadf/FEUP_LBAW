@@ -32,14 +32,14 @@
 #### 2.1. User
 | Identifier |               Name              | Priority | Description |
 |   :---     |              :---               |   :---   |    :---     |
-|   FR.101   |       View active auctions      |   high   | The User must be able to view all active auctions. 
-|   FR.102   |        View user profiles       |  medium  | The user must be able to see other user's profiles. 
-|   FR.103   |   Browse auctions by category   |   high   | The user must be able to search auctions by their specific categories. 
-|   FR.104   |         Search auctions         |   high   | The user must be able to search an active auction at any given time.
-|   FR.031   |        Exact match search       |  medium  | The user must be able to do an exact match search.
-|   FR.032   |         Full-text search        |   high   | The user must be able to do a full-text search.
-|   FR.033   | Search over multiple attributes |  medium  | The user must be able to have attributes to help with his search.
-|   FR.034   |          Search filters         |   high   | The user must have category filters to efficiently help with his search.
+|   FR.101   |       View active auctions      |   high   | The User must be able to view all active auctions. |
+|   FR.102   |        View user profiles       |  medium  | The user must be able to see other user's profiles. |
+|   FR.103   |   Browse auctions by category   |   high   | The user must be able to search auctions by their specific categories. |
+|   FR.104   |         Search auctions         |   high   | The user must be able to search an active auction at any given time. |
+|   FR.031   |        Exact match search       |  medium  | The user must be able to do an exact match search. |
+|   FR.032   |         Full-text search        |   high   | The user must be able to do a full-text search. |
+|   FR.033   | Search over multiple attributes |  medium  | The user must be able to have attributes to help with his search. |
+|   FR.034   |          Search filters         |   high   | The user must have category filters to efficiently help with his search. |
 
 Table 2: User user stories
 
@@ -47,9 +47,9 @@ Table 2: User user stories
 #### 2.2. Non-Authenticated
 | Identifier |       Name       | Priority | Description |
 |   :---     |       :---       |   :---   |    :---     |
-|   FR.011   |   Login/Logout   |   high   | As a unauthenticated user, I want to login into the system, so that I may access information.|
-|   FR.012   |   Registration   |   high   | As a unauthenticated user, I want to be able to register into the system, so that I may access information.|
-|   FR.013   | Recover password |  medium  | As a unauthenticated user, I want to be able to recover my password by the registered email.|
+|   FR.011   |   Login/Logout   |   high   | As an unauthenticated user, I want to login into the system, so that I may access information.|
+|   FR.012   |   Registration   |   high   | As an unauthenticated user, I want to be able to register into the system, so that I may access information.|
+|   FR.013   | Recover password |  high  | As an unauthenticated user, I want to be able to recover my password by the registered email, so that I don't lose my account permanently.|
 
 Table 3: Non-authenticated user stories.
 
@@ -57,12 +57,12 @@ Table 3: Non-authenticated user stories.
 #### 2.3. Administrator
 | Identifier |               Name              | Priority | Description |
 |   :---     |              :---               |   :---   |    :---     |
-|   FR.041   |      Administrator accounts     |   high   | There must be accounts with special privileges in the system. |
-|   FR.042   |     Administer user accounts    |  medium  | The Admin must be able to search, view, edit and create user accounts.|
-|   FR.043   | Block and unblock user accounts |   high   | The Admin must have the ability to block and unblock accounts based off of their judgement of the user's activity.|
-|   FR.044   |       Delete user account       |   low    | The Admin must be able to delete accounts at will.
-|   FR.601   |          Manage auction         |   high   | The Admin must be able to view, edit and supervise any auction occurring at any time.
-|   FR.602   |          Cancel auction         |   high   | The Admin must be able to cancel any auction on their own.
+|   FR.041   |      Administrator accounts TIRAR DAQUI (TODO)   |   high   | There must be accounts with special privileges in the system. |
+|   FR.042   |     Administer user accounts    |  high  | As an Admin, I must to be able to search, view, edit and create user accounts.|
+|   FR.043   | Block and unblock user accounts |   high   | As an Admin, I must have the ability to block and unblock accounts, so that I can manage the type of users on the website.|
+|   FR.044   |       Delete user account       |   low    | As an Admin, I want to be able to delete accounts at will, so that I can remove unwanted users from the website.|
+|   FR.601   |          Manage auction         |   high   | As an Admin, I must be able to view, edit and supervise any auction occurring at any time, so that I can make sure things run smoothly.
+|   FR.602   |          Cancel auction         |   high   | As an Admin, I must be able to cancel any auction, so that I can manage the type of auctions occurring on the website.
 
 Table 4: Administrator user stories.
 
