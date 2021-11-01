@@ -54,26 +54,26 @@
 
 | Identifier |               Name              | Priority | Description |
 |   :---:    |              :---:              |   :---:  |:---    |
-|   FR.201   |      Create Auction      |   high   | As an authenticated user, I want to auction a new item|
-|   FR.202   |     Follow Auction  |  medium  | As an authenticated, user I want to have a quicker access and receive notifications from an auction
+|   FR.201   |      Create Auction      |   high   | As an authenticated user, I want to auction a new item, so that other users can bid on it and eventually buy it|
+|   FR.202   |     Follow Auction  |  medium  | As an authenticated user, I want to follow an auction, so that I have a quicker access to the auctions I'm most interested in
 |   FR.203   |     Report Auction  |  low  | As an authenticated user, I want to signal inappropriate content in an auction, so that administrators can review and deal with the problem as they see fit
-|   FR.204   | View Followed Auctions |   medium   | As an authenticated user, I want to access my followed auctions
-|   FR.205   |          View My Bidding History         |   medium   | As an authenticated user, I want to see all the bids I made, their value and to what auction they refer to
+|   FR.204   | View Followed Auctions |   medium   | As an authenticated user, I want to access my followed auctions, so that I can unfollowed them, or visit them more easily
+|   FR.205   |          View My Bidding History         |   medium   | As an authenticated user, I want to see all the bids I made, so that I can see their value and to what auction they refer to
 |   FR.206   |          View My Auctions         |   high   | As an authenticated user, I want to access the auctions I own, and all the information attacthed to them
-|   FR.207   |          Add Credit to Account        |   medium   |As an authenticated user, I want to be able to transfer money into my account wallet
+|   FR.207   |          Add Credit to Account        |   medium   |As an authenticated user, I want to be able to transfer money into my account wallet, so that I can place bids on auctions
 |   FR.208   |          Bid on Auction        |   high   | As an authenticated user, I want to  bid on an item, by choosing the amount of money to be placed
 <center> Table 3: Authenticated user stories </center>
 
 #### 2.N. Bidder
 | Identifier |               Name              | Priority | Description |
 |   :---:    |              :---:              |   :---:  |:---    |
-|   FR.301   |      Rate Seller     |   medium   | As a bidder, I want to classify a seller, by leaving a 1 to 5 rating and/or a comment on their profile|
-|   FR.302   |     View Auction Bidding History  |  high  | As a bidder, I want to access all the auctions I've bid on
+|   FR.301   |      Rate Seller     |   medium   | As a bidder, I want to classify a seller, by leaving a 1 to 5 rating and/or a comment on their profile, so that other users have a better idea of that seller's reliability|
+|   FR.302   |     View Auction Bidding History  |  high  | As a bidder, I want to access all the auctions I've bid on, so that I can keep track of all the items I've lost and won, and also auctions I'm still in the run for
 
 #### 2.N. Auction Owner
 | Identifier |               Name              | Priority | Description |
 |   :---:    |              :---:              |   :---:  |:---    |
-|   FR.401   |     Edit Auction    |   high   | As an auction owner, I want to change the information of one of my auctions|
+|   FR.401   |     Edit Auction    |   high   | As an auction owner, I want to change the information of one of my auctions, so that it's up-to-date|
 |   FR.402   |     Manage Auction Status |  medium  | (Not Sure)
 |   FR.403   |     Cancel Auction  |  high  | As an auction owner, I want to completly remove an auction from the platform, so no one is able to see it
 
