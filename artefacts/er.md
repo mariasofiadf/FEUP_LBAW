@@ -53,13 +53,13 @@
 #### 2.N. Authenticated user
 
 | Identifier |               Name              | Priority | Description |
-|   :---:    |              :---:              |   :---:  |    :---:    |
-|   FR.201   |      Create Auction      |   high   | As an authenticated user i want to auction a new item|
-|   FR.202   |     Follow Auction  |  medium  | As an authenticated user
-|   FR.203   |     Report Auction  |  low  | As an authenticated user
-|   FR.204   | View Followed Auctions |   medium   | As an authenticated user
-|   FR.205   |          View My Bidding History         |   medium   | As an authenticated user
-|   FR.206   |          View My Auctions         |   high   | As an authenticated user
+|   :---:    |              :---:              |   :---:  |:---    |
+|   FR.201   |      Create Auction      |   high   | As an authenticated user, i want to auction a new item|
+|   FR.202   |     Follow Auction  |  medium  | As an authenticated, user i want to have a quicker access and receive notifications from an auction
+|   FR.203   |     Report Auction  |  low  | As an authenticated user, i want to signal inappropriate content in an auction, so that administrators can review and deal with the problem as they see fit
+|   FR.204   | View Followed Auctions |   medium   | As an authenticated user, i want to access my followed auctions
+|   FR.205   |          View My Bidding History         |   medium   | As an authenticated user, i want to see all
+|   FR.206   |          View My Auctions         |   high   | As an authenticated user, i want to access the auctions that I own
 |   FR.207   |          Add Credit to Account        |   medium   |As an authenticated user
 |   FR.208   |          Bid on Auction        |   high   | As an authenticated user
 <center> Table 3: Authenticated user stories </center>
