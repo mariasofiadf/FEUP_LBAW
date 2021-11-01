@@ -25,6 +25,9 @@
 ![plot](./figure1.png)
 <center> Figure 1: Online Auction Actors. </center>
 
+
+
+
 | Identifier        | Description |
 |      :---:        |    :---:    |
 | User              | Generic user that has access to public information, such as available auctions.|
@@ -34,6 +37,9 @@
 |   Auction owner   | Authenticated user who is able to create an auction of his own.|
 
 <center> Table 1: Online Auction actors description </center>
+
+
+
 
 ### 2. User Stories
 
