@@ -125,15 +125,45 @@ Table 5: Auction owner user stories.
 
 ### 3. Supplementary Requirements
 
-> Section including business rules, technical requirements, and restrictions.  
-> For each subsection, a table containing identifiers, names, and descriptions for each requirement.
-
 #### 3.1. Business rules
+
+| Identifier | Name                         | Description   |
+| :---       | :---                         | :---          |
+| BR011      | Private Data Storage         | Upon account deletion (FR.014) shared user data is kept but is made anonymous |
+| BR101      | Independent Accounts         | Administrator accounts are independent of the user accounts, i.e. they cannot create or participate in auctions. |
+| BR102      | Auction Cancellation         | An auction can only be canceled if there are no bids. |
+| BR103      | Valid Bidding                | A user cannot bid if his bid is the current highest. |
+| BR104      | Auction (Deadline) Extension | When a bid is made in the last 15 minutes of the auction, the auction deadline is extended by 30 minutes. |
+
+Table 6: Hand Of Midas business rules.
+
 
 #### 3.2. Technical requirements
 
+| Identifier | Name          | Description   |
+| :---       | :---          | :---          |
+| TR01       | Availability  | The system must be available at all times. |
+| TR02       | Accessibility | The system must ensure that everyone can access the pages, regardless of whether they have any handicap or not, or the Web browser they use. |
+| TR03       | Usability     | The system should be simple and easy to use. The Hand Of Midas system is designed to be used by collectors and enthusiasts with or without technical experience, so good usability is an important requirement.  |
+| TR04       | Performance   | The system should have response times shorter than 2s to ensure the user's attention. |
+| TR05       | Web application    | The system should be implemented as a web application with dynamic pages (HTML5, JavaScript, CSS3 and PHP). It is critical that the Hand Of Midas system is easily accessible from anywhere without the need to install specific applications or software, adopting standard web technologies. |
+| TR05       | Security    | The system shall protect information from unauthorized access through the use of an authentication and verification system. |
+| TR03       | Robustness    | The system must be prepared to handle and continue operating when runtime errors occur. |
+| TR04       | Scalability   | The system must be prepared to deal with the growth in the number of users and their actions. |
+| TR04       | Ethics   | The system must respect the ethical principles in software development (for example, personal user details, or usage data, should not be collected nor shared without full acknowledgement and authorization from its owner). |
+
+Table 7: Hand Of Midas technical requirements.
+
+
 #### 3.3. Restrictions
 
+A restriction on the design limits the degree of freedom in the search for a solution
+
+| Identifier | Name          | Description   |
+| :---       | :---          | :---          |
+| C01        | ??????????? TODO   |               |
+
+Table 8: Hand Of Midas project restrictions.
 
 ---
 
