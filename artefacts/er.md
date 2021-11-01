@@ -2,7 +2,7 @@
 
 > Project vision.
 
-## A1: Project Name
+## A1: Hand Of Midas
 
 > Goals, business context and environment.  
 > Motivation.  
@@ -23,6 +23,7 @@
 > For the Online Auctions system, the actors are represented in Figure 1 and described in Table 1.
 
 ![plot](./Actors.jpg)
+
 Figure 1: Hand Of Midas Actors.
 
 
