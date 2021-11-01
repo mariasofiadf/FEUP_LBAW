@@ -50,10 +50,6 @@ Table 1: Hand Of Midas actors description.
 |   FR.102   |        View user profiles       |  medium  | As a User, I want to be able to see other user's profiles. |
 |   FR.103   |   Browse auctions by category   |   high   | As a User, I must be able to search auctions by their specific categories. |
 |   FR.104   |         Search auctions         |   high   | As a User, I must be able to search an active auction at any given time. |
-|   FR.031   |        Exact match search       |  medium  | As a User, I must be able to do an exact match search. |
-|   FR.032   |         Full-text search        |   high   | As a User, I must be able to do a full-text search. |
-|   FR.033   | Search over multiple attributes |  medium  | As a User, I must be able to have attributes to help with my search. |
-|   FR.034   |          Search filters         |   high   | As a User, I must have category filters to efficiently help with his search. |
 |     |         See Home          |   high   | As a User, I want to access the home page, so that I can see a brief presentation of the website. |
 |     |         See About         |   high   | As a User, I want to access the about page, so that I can see a complete description of the website and its creators. |
 |     |         Consult Services  |   high   | As a User, I want to access the services information, so that I can see the website's services.|
