@@ -32,14 +32,19 @@
 #### 2.1. User
 | Identifier |               Name              | Priority | Description |
 |   :---     |              :---               |   :---   |    :---     |
-|   FR.101   |       View active auctions      |   high   | The User must be able to view all active auctions. |
-|   FR.102   |        View user profiles       |  medium  | The user must be able to see other user's profiles. |
-|   FR.103   |   Browse auctions by category   |   high   | The user must be able to search auctions by their specific categories. |
+|   FR.101   |       View active auctions      |   high   | As a User, I must be able to view all active auctions, so that I'm able to find the ones that interest me. |
+|   FR.102   |        View user profiles       |  medium  | As a User, I want to be able to see other user's profiles. |
+|   FR.103   |   Browse auctions by category   |   high   | As a User, I must be able to search auctions by their specific categories. |
 |   FR.104   |         Search auctions         |   high   | The user must be able to search an active auction at any given time. |
 |   FR.031   |        Exact match search       |  medium  | The user must be able to do an exact match search. |
 |   FR.032   |         Full-text search        |   high   | The user must be able to do a full-text search. |
 |   FR.033   | Search over multiple attributes |  medium  | The user must be able to have attributes to help with his search. |
 |   FR.034   |          Search filters         |   high   | The user must have category filters to efficiently help with his search. |
+|     |         See Home          |   high   | As a User, I want to access the home page, so that I can see a brief presentation of the website. |
+|     |         See About         |   high   | As a User, I want to access the about page, so that I can see a complete description of the website and its creators. |
+|     |         Consult Services  |   high   | As a User, I want to access the services information, so that I can see the website's services.|
+|     |         Consult FAQ       |   high   | As a User, I want to access the FAQ, so that I can get quick answers to common questions.|
+|     |         Consult Contacts      |   high   | As a User, I want to access contacts, so that I can come in touch with the platform creators.|
 
 Table 2: User user stories
 
