@@ -30,24 +30,24 @@
 
 #### 2.1. Non-Authenticated
 | Identifier |       Name       | Priority | Description |
-|   :---:    |       :---:      |   :---:  |    :---:    |
-|   FR.011   |   Login/Logout   |   high   | As a non-authenticated user, I want to login the system, so that I mat access information.
-|   FR.012   |   Registration   |   high   | As a non-authenticated user, I want to be able to register into the system, so that I may access information.
-|   FR.013   | Recover password |  medium  | As a non-authenticated user, I want to be able to recover my password by the registered email.
+|   :---     |       :---       |   :---   |    :---     |
+|   FR.011   |   Login/Logout   |   high   | As a unauthenticated user, I want to login into the system, so that I may access information.|
+|   FR.012   |   Registration   |   high   | As a unauthenticated user, I want to be able to register into the system, so that I may access information.|
+|   FR.013   | Recover password |  medium  | As a unauthenticated user, I want to be able to recover my password by the registered email.|
 
-<center> Table 2: Non-authenticated user user stories </center>
+Table 2: Non-authenticated user stories.
 
 #### 2.2. Administrator
 | Identifier |               Name              | Priority | Description |
-|   :---:    |              :---:              |   :---:  |    :---:    |
+|   :---     |              :---               |   :---   |    :---     |
 |   FR.041   |      Administrator accounts     |   high   | There must be accounts with special privileges in the system. |
-|   FR.042   |     Administer user accounts    |  medium  | The Admin must be able to search, view, edit and create user accounts.
-|   FR.043   | Block and unblock user accounts |   high   | The Admin must have the privilege to block or unblock accounts through his judgement of the user's activity.
+|   FR.042   |     Administer user accounts    |  medium  | The Admin must be able to search, view, edit and create user accounts.|
+|   FR.043   | Block and unblock user accounts |   high   | The Admin must have the ability to block and unblock accounts based off of their judgement of the user's activity.|
 |   FR.044   |       Delete user account       |   low    | The Admin must be able to delete accounts at will.
-|   FR.601   |          Manage auction         |   high   | The Admin must be able to view, edit and supervise any auction ocurring at any time.
-|   FR.602   |          Cancel auction         |   high   | The Admin must be able to cancel any auction on his own.
+|   FR.601   |          Manage auction         |   high   | The Admin must be able to view, edit and supervise any auction occurring at any time.
+|   FR.602   |          Cancel auction         |   high   | The Admin must be able to cancel any auction on their own.
 
-<center> Table 3: Administrator user stories </center>
+Table 3: Administrator user stories.
 
 #### 2.N. Actor n
 
