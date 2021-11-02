@@ -102,7 +102,7 @@ Table 5: Authenticated user stories.
 | Identifier |               Name              | Priority | Description |
 |   :---     |              :---               |   :---   |:---    |
 |   FR.301   |      Rate Seller     |   medium   | As a bidder, I want to classify a seller, by leaving a 1 to 5 rating and/or a comment on their profile, so that other users have a better idea of that seller's reliability.|
-|   FR.302   |     View Auction Bidding History  |  high  | As a bidder, I want to access all the auctions I've bid on, so that I can keep track of all the items I've lost and won, and also auctions I'm still in the run for.|
+|   FR.302   |     View Auction Bidding History  |  high  | As a bidder, I want to access all the bids placed on an auction, so that I can keep track of everyone who has placed bids (add more TODO)|
 
 Table 5: Bidder user stories.
 
