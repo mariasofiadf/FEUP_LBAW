@@ -11,7 +11,7 @@
 
 The main goal of the Hand of Midas project is to provide a web based service, where its users are able to buy and/or sell a variety of items of rare characteristics, through online auctions, namely art pieces, decór items, books and jewelry. As the name states, this website encourages the community to increase the added value of such items. The market of rare artifacts is not usually easy to enter, you must know how each community works and lose a lot of time searching for the right item or the right seller, and sometimes the auctions can be private or invitation-only. Hand of Midas seeks to create a more democratic process for interested parties, allowing them to bid on and sell in online auctions for exclusive artifacts in an easy, simple way. 
 
-This website can be used by collectors, enthusiasts and sellers to find and sell unique items. The users need to be authenticated in order to bid on an existing auction, put up an item for sale and manage its auction or even follow auctions they are interested in. An Authenticated User has access to a private dashboard, where they are able to see their bidding and selling history. There’s also an Administrator user group with broader permissions so they can manage all auctions and reports but also edit the categories in which the items are divided in. However, any Non-Authenticated User is able to see the active auctions, view other user profiles and search products by category, starting price, auction ending time and others.
+This website can be used by collectors, enthusiasts and sellers to find and sell unique items. The users need to be authenticated in order to bid on an existing auction, put up an item for sale and manage its auction or even follow auctions they are interested in. An Authenticated User has access to a private dashboard, where they are able to see their bidding and selling history. There’s also an Administrator user group with broader permissions so they can manage all auctions and reports but also edit the categories in which the items are divided in. However, any Non-Authenticated User is able to see the active auctions, view other user profiles and search products by category, starting price, auction ending time and others. Visitors are able to login into the system, register themselves into the system and recover their password, if necessary.
 
 The website will have a responsive design, which allows users to access it from a different range of devices such as smartphones, computers and tablets. Its main goal is to provide an easy and enjoyable experience for both bidders or sellers, and especially regarding browsing auctions and products. 
 
@@ -33,9 +33,9 @@ Figure 1: Hand Of Midas Actors.
 
 
 | Identifier        | Description |
-|      :---        |    :---    |
+|      :---         |    :---    |
 | User              | Generic user that has access to public information, such as available auctions.|
-| Non-authenticated | Unauthenticated user that can register itself (sign-up) or sign-in in the system to participate in bidding or to create auctions.|
+| Visitor           | Unauthenticated user that can register itself (sign-up) or sign-in in the system to participate in bidding or to create auctions.|
 |   Authenticated   | Authenticated user that can search available auctions and manage their list of interests.|
 |      Bidder       | Authenticated user that is able to bid in auctions.|
 |   Auction owner   | Authenticated user that is able to create auctions of their own.|
@@ -67,11 +67,11 @@ Table 2: User user stories.
 #### 2.2. Visitor
 | Identifier |       Name       | Priority | Description |
 |   :---     |       :---       |   :---   |    :---     |
-|   US11     |   Login/Logout   |   high   | As a Visitor, I want to login into the system, so that I may access information.|
+|   US11     |   Login          |   high   | As a Visitor, I want to login into the system, so that I may access information.|
 |   US12     |   Registration   |   high   | As a Visitor, I want to be able to register into the system, so that I may access information.|
 |   US13     | Recover password |   high   | As a Visitor, I want to be able to recover my password by the registered email, so that I don't lose my account permanently.|
 
-Table 3: Non-authenticated user stories.
+Table 3: Visitor stories.
 
 
 #### 2.3. Administrator
@@ -91,14 +91,16 @@ Table 4: Administrator user stories.
 
 | Identifier |               Name              | Priority | Description |
 |   :---     |              :---               |   :---   |:---    |
-|   US31     |      Create Auction             |   high   | As an authenticated user, I want to auction a new item, so that other users can bid on it and eventually buy it. |
-|   US32     |          View My Auctions       |   high   | As an authenticated user, I want to access the auctions I own, and all the information attacthed to them
-|   US33     |          Bid on Auction         |   high   | As an authenticated user, I want to  bid on an item, by choosing the amount of money to be placed
-|   US34     |     Follow Auction              |  medium  | As an authenticated user, I want to follow an auction, so that I have a quicker access to the auctions I'm most interested in.|
-|   US35     | View Followed Auctions          |  medium  | As an authenticated user, I want to access my followed auctions, so that I can unfollowed them, or visit them more easily.|
-|   US36     |     View My Bidding History     |  medium  | As an authenticated user, I want to see all the bids I made, so that I can see their value and to what auction they refer to.|
-|   US37     |          Add Credit to Account  |  medium  | As an authenticated user, I want to be able to transfer money into my account wallet, so that I can place bids on auctions
-|   US38     |     Report Auction              |    low   | As an authenticated user, I want to signal inappropriate content in an auction, so that administrators can review and deal with the problem as they see fit.|
+|   US31     |      View/Edit Profile          |   high   | As an authenticated user, I want to be able to view and edit my own profile, so that I can present myself in a way that I identify with. |
+|   US32     |      Create Auction             |   high   | As an authenticated user, I want to auction a new item, so that other users can bid on it and eventually buy it. |
+|   US33     |          View My Auctions       |   high   | As an authenticated user, I want to access the auctions I own, and all the information attacthed to them. |
+|   US34     |          Bid on Auction         |   high   | As an authenticated user, I want to  bid on an item, by choosing the amount of money to be placed. |
+|   US35     |         Logout                  |   high   | As an authenticated user, I want to logout of the system.|
+|   US36     |     Follow Auction              |  medium  | As an authenticated user, I want to follow an auction, so that I have a quicker access to the auctions I'm most interested in.|
+|   US37     | View Followed Auctions          |  medium  | As an authenticated user, I want to access my followed auctions, so that I can unfollowed them, or visit them more easily.|
+|   US38     |     View My Bidding History     |  medium  | As an authenticated user, I want to see all the bids I made, so that I can see their value and to what auction they refer to.|
+|   US39     |          Add Credit to Account  |  medium  | As an authenticated user, I want to be able to transfer money into my account wallet, so that I can place bids on auctions
+|   US310     |     Report Auction              |    low   | As an authenticated user, I want to signal inappropriate content in an auction, so that administrators can review and deal with the problem as they see fit.|
 
 Table 5: Authenticated user stories.
 
