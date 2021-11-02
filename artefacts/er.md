@@ -120,7 +120,7 @@ Table 5: Bidder user stories.
 | Identifier |               Name              | Priority | Description |
 |   :---     |              :---               |   :---   |:---    |
 |   US51     |     Edit Auction                |   high   | As an auction owner, I want to change the information of one of my auctions, so that it's up-to-date.|
-|   US52     |     Cancel Auction              |   high   | As an auction owner, I want to completly remove an auction from the platform, so no one is able to see it.|
+|   US52     |     Cancel Auction              |   high   | As an auction owner, I want to completely remove an auction from the platform, so no one is able to see it.|
 |   US53     |     Manage Auction Status       |  medium  | (Not Sure)
 
 Table 5: Auction owner user stories.
@@ -129,13 +129,14 @@ Table 5: Auction owner user stories.
 
 #### 3.1. Business rules
 
-| Identifier | Name                         | Description   |
-| :---       | :---                         | :---          |
-| BR01       | Private Data Storage         | Upon account deletion (FR.014) shared user data is kept but is made anonymous |
-| BR02       | Independent Accounts         | Administrator accounts are independent of the user accounts, i.e. they cannot create or participate in auctions. |
-| BR03       | Auction Cancellation         | An auction can only be canceled if there are no bids. |
-| BR04       | Valid Bidding                | A user cannot bid if his bid is the current highest. |
-| BR05       | Auction (Deadline) Extension | When a bid is made in the last 15 minutes of the auction, the auction deadline is extended by 30 minutes. |
+| Identifier | Name                           | Description   |
+| :---       | :---                           | :---          |
+| BR01       | Private Data Storage           | Upon account deletion, shared user data is kept but is made anonymous |
+| BR02       | Independent Accounts           | Administrator accounts are independent of the user accounts, i.e. they cannot create or participate in auctions. |
+| BR03       | Auction Cancellation           | An auction can only be canceled if there are no bids. |
+| BR04       | Valid Bidding                  | A user cannot bid if his bid is the current highest. |
+| BR05       | Auction (Deadline) Extension   | When a bid is made in the last 15 minutes of the auction, the auction deadline is extended by 30 minutes. |
+| BR06       |vote/comment/review own auctions| A user cannot vote, comment nor review their own auctions.|
 
 Table 6: Hand Of Midas business rules.
 
