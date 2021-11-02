@@ -51,25 +51,25 @@ Table 1: Hand Of Midas actors description.
 #### 2.1. User
 | Identifier |               Name              | Priority | Description |
 |   :---     |              :---               |   :---   |    :---     |
-|   FR.101   |       View active auctions      |   high   | As a User, I must be able to view all active auctions, so that I'm able to find the ones that interest me. |
-|   FR.102   |        View user profiles       |  medium  | As a User, I want to be able to see other user's profiles. |
-|   FR.103   |   Browse auctions by category   |   high   | As a User, I must be able to search auctions by their specific categories. |
-|   FR.104   |         Search auctions         |   high   | As a User, I must be able to search an active auction at any given time. |
-|     |         See Home          |   high   | As a User, I want to access the home page, so that I can see a brief presentation of the website. |
-|     |         See About         |   high   | As a User, I want to access the about page, so that I can see a complete description of the website and its creators. |
-|     |         Consult Services  |   high   | As a User, I want to access the services information, so that I can see the website's services.|
-|     |         Consult FAQ       |   high   | As a User, I want to access the FAQ, so that I can get quick answers to common questions.|
-|     |         Consult Contacts      |   high   | As a User, I want to access contacts, so that I can come in touch with the platform creators.|
+|   US01     |       View active auctions      |   high   | As a User, I must be able to view all active auctions, so that I'm able to find the ones that interest me. |
+|   US02     |   Browse auctions by category   |   high   | As a User, I must be able to search auctions by their specific categories. |
+|   US03     |         Search auctions         |   high   | As a User, I must be able to search an active auction at any given time. |
+|   US04     |   See Home                      |   high   | As a User, I want to access the home page, so that I can see a brief presentation of the website. |
+|   US05     |   See About                     |   high   | As a User, I want to access the about page, so that I can see a complete description of the website and its creators. |
+|   US06     |   Consult Services              |   high   | As a User, I want to access the services information, so that I can see the website's services.|
+|   US07     |   Consult FAQ                   |   high   | As a User, I want to access the FAQ, so that I can get quick answers to common questions.|
+|   US08     |   Consult Contacts              |   high   | As a User, I want to access contacts, so that I can come in touch with the platform creators.|
+|   US09     |        View user profiles       |  medium  | As a User, I want to be able to see other user's profiles. |
 
 Table 2: User user stories.
 
 
-#### 2.2. Non-Authenticated
+#### 2.2. Visitor
 | Identifier |       Name       | Priority | Description |
 |   :---     |       :---       |   :---   |    :---     |
-|   FR.011   |   Login/Logout   |   high   | As an Unauthenticated user, I want to login into the system, so that I may access information.|
-|   FR.012   |   Registration   |   high   | As an Unauthenticated user, I want to be able to register into the system, so that I may access information.|
-|   FR.013   | Recover password |  high  | As an Unauthenticated user, I want to be able to recover my password by the registered email, so that I don't lose my account permanently.|
+|   US11     |   Login/Logout   |   high   | As a Visitor, I want to login into the system, so that I may access information.|
+|   US12     |   Registration   |   high   | As a Visitor, I want to be able to register into the system, so that I may access information.|
+|   US13     | Recover password |   high   | As a Visitor, I want to be able to recover my password by the registered email, so that I don't lose my account permanently.|
 
 Table 3: Non-authenticated user stories.
 
@@ -77,12 +77,12 @@ Table 3: Non-authenticated user stories.
 #### 2.3. Administrator
 | Identifier |               Name              | Priority | Description |
 |   :---     |              :---               |   :---   |    :---     |
-|   FR.041   |      Administrator accounts TIRAR DAQUI (TODO)   |   high   | There must be accounts with special privileges in the system. |
-|   FR.042   |     Administer user accounts    |  high  | As an Admin, I must to be able to search, view, edit and create user accounts.|
-|   FR.043   | Block and unblock user accounts |   high   | As an Admin, I must have the ability to block and unblock accounts, so that I can manage the type of users on the website.|
-|   FR.044   |       Delete user account       |   low    | As an Admin, I want to be able to delete accounts at will, so that I can remove unwanted users from the website.|
-|   FR.601   |          Manage auction         |   high   | As an Admin, I must be able to view, edit and supervise any auction occurring at any time, so that I can make sure things run smoothly.|
-|   FR.602   |          Cancel auction         |   high   | As an Admin, I must be able to cancel any auction, so that I can manage the type of auctions occurring on the website.|
+|   US21     |      Administrator accounts     |   high   | There must be accounts with special privileges in the system. |
+|   US22     |     Administer user accounts    |   high   | As an Admin, I must to be able to search, view, edit and create user accounts.|
+|   US23     | Block and unblock user accounts |   high   | As an Admin, I must have the ability to block and unblock accounts, so that I can manage the type of users on the website.|
+|   US24     |          Manage auction         |   high   | As an Admin, I must be able to view, edit and supervise any auction occurring at any time, so that I can make sure things run smoothly.|
+|   US25     |          Cancel auction         |   high   | As an Admin, I must be able to cancel any auction, so that I can manage the type of auctions occurring on the website.|
+|   US26     |       Delete user account       |   low    | As an Admin, I want to be able to delete accounts at will, so that I can remove unwanted users from the website.|
 
 Table 4: Administrator user stories. 
 
@@ -91,23 +91,23 @@ Table 4: Administrator user stories.
 
 | Identifier |               Name              | Priority | Description |
 |   :---     |              :---               |   :---   |:---    |
-|   FR.201   |      Create Auction      |   high   | As an authenticated user, I want to auction a new item, so that other users can bid on it and eventually buy it. |
-|   FR.202   |     Follow Auction  |  medium  | As an authenticated user, I want to follow an auction, so that I have a quicker access to the auctions I'm most interested in.|
-|   FR.203   |     Report Auction  |  low  | As an authenticated user, I want to signal inappropriate content in an auction, so that administrators can review and deal with the problem as they see fit.|
-|   FR.204   | View Followed Auctions |   medium   | As an authenticated user, I want to access my followed auctions, so that I can unfollowed them, or visit them more easily.|
-|   FR.205   |          View My Bidding History         |   medium   | As an authenticated user, I want to see all the bids I made, so that I can see their value and to what auction they refer to.|
-|   FR.206   |          View My Auctions         |   high   | As an authenticated user, I want to access the auctions I own, and all the information attacthed to them
-|   FR.207   |          Add Credit to Account        |   medium   |As an authenticated user, I want to be able to transfer money into my account wallet, so that I can place bids on auctions
-|   FR.208   |          Bid on Auction        |   high   | As an authenticated user, I want to  bid on an item, by choosing the amount of money to be placed
+|   US31     |      Create Auction             |   high   | As an authenticated user, I want to auction a new item, so that other users can bid on it and eventually buy it. |
+|   US32     |          View My Auctions       |   high   | As an authenticated user, I want to access the auctions I own, and all the information attacthed to them
+|   US33     |          Bid on Auction         |   high   | As an authenticated user, I want to  bid on an item, by choosing the amount of money to be placed
+|   US34     |     Follow Auction              |  medium  | As an authenticated user, I want to follow an auction, so that I have a quicker access to the auctions I'm most interested in.|
+|   US35     | View Followed Auctions          |  medium  | As an authenticated user, I want to access my followed auctions, so that I can unfollowed them, or visit them more easily.|
+|   US36     |     View My Bidding History     |  medium  | As an authenticated user, I want to see all the bids I made, so that I can see their value and to what auction they refer to.|
+|   US37     |          Add Credit to Account  |  medium  | As an authenticated user, I want to be able to transfer money into my account wallet, so that I can place bids on auctions
+|   US38     |     Report Auction              |    low   | As an authenticated user, I want to signal inappropriate content in an auction, so that administrators can review and deal with the problem as they see fit.|
 
 Table 5: Authenticated user stories.
 
 
 #### 2.5. Bidder
-| Identifier |               Name              | Priority | Description |
-|   :---     |              :---               |   :---   |:---    |
-|   FR.301   |      Rate Seller     |   medium   | As a bidder, I want to classify a seller, by leaving a 1 to 5 rating and/or a comment on their profile, so that other users have a better idea of that seller's reliability.|
-|   FR.302   |     View Auction Bidding History  |  high  | As a bidder, I want to access all the bids placed on an auction, so that I can keep track of everyone who has placed bids (add more TODO)|
+| Identifier |               Name             | Priority | Description |
+|   :---     |              :---              |   :---   |:---    |
+|   US41     |  View Auction Bidding History  |  high    | As a bidder, I want to access all the bids placed on an auction, so that I can keep track of everyone who has placed bids (add more TODO)|
+|   US42     |      Rate Seller               |   medium | As a bidder, I want to classify a seller, by leaving a 1 to 5 rating and/or a comment on their profile, so that other users have a better idea of that seller's reliability.|
 
 Table 5: Bidder user stories.
 
@@ -115,9 +115,9 @@ Table 5: Bidder user stories.
 #### 2.6. Auction Owner
 | Identifier |               Name              | Priority | Description |
 |   :---     |              :---               |   :---   |:---    |
-|   FR.401   |     Edit Auction    |   high   | As an auction owner, I want to change the information of one of my auctions, so that it's up-to-date.|
-|   FR.402   |     Manage Auction Status |  medium  | (Not Sure)
-|   FR.403   |     Cancel Auction  |  high  | As an auction owner, I want to completly remove an auction from the platform, so no one is able to see it.|
+|   US51     |     Edit Auction                |   high   | As an auction owner, I want to change the information of one of my auctions, so that it's up-to-date.|
+|   US52     |     Cancel Auction              |   high   | As an auction owner, I want to completly remove an auction from the platform, so no one is able to see it.|
+|   US53     |     Manage Auction Status       |  medium  | (Not Sure)
 
 Table 5: Auction owner user stories.
 
@@ -127,11 +127,11 @@ Table 5: Auction owner user stories.
 
 | Identifier | Name                         | Description   |
 | :---       | :---                         | :---          |
-| BR011      | Private Data Storage         | Upon account deletion (FR.014) shared user data is kept but is made anonymous |
-| BR101      | Independent Accounts         | Administrator accounts are independent of the user accounts, i.e. they cannot create or participate in auctions. |
-| BR102      | Auction Cancellation         | An auction can only be canceled if there are no bids. |
-| BR103      | Valid Bidding                | A user cannot bid if his bid is the current highest. |
-| BR104      | Auction (Deadline) Extension | When a bid is made in the last 15 minutes of the auction, the auction deadline is extended by 30 minutes. |
+| BR01       | Private Data Storage         | Upon account deletion (FR.014) shared user data is kept but is made anonymous |
+| BR02       | Independent Accounts         | Administrator accounts are independent of the user accounts, i.e. they cannot create or participate in auctions. |
+| BR03       | Auction Cancellation         | An auction can only be canceled if there are no bids. |
+| BR04       | Valid Bidding                | A user cannot bid if his bid is the current highest. |
+| BR05       | Auction (Deadline) Extension | When a bid is made in the last 15 minutes of the auction, the auction deadline is extended by 30 minutes. |
 
 Table 6: Hand Of Midas business rules.
 
@@ -145,10 +145,10 @@ Table 6: Hand Of Midas business rules.
 | TR03       | Usability     | The system should be simple and easy to use. The Hand Of Midas system is designed to be used by collectors and enthusiasts with or without technical experience, so good usability is an important requirement.  |
 | TR04       | Performance   | The system should have response times shorter than 2s to ensure the user's attention. |
 | TR05       | Web application    | The system should be implemented as a web application with dynamic pages (HTML5, JavaScript, CSS3 and PHP). It is critical that the Hand Of Midas system is easily accessible from anywhere without the need to install specific applications or software, adopting standard web technologies. |
-| TR05       | Security    | The system shall protect information from unauthorized access through the use of an authentication and verification system. |
-| TR03       | Robustness    | The system must be prepared to handle and continue operating when runtime errors occur. |
-| TR04       | Scalability   | The system must be prepared to deal with the growth in the number of users and their actions. |
-| TR04       | Ethics   | The system must respect the ethical principles in software development (for example, personal user details, or usage data, should not be collected nor shared without full acknowledgement and authorization from its owner). |
+| TR06       | Security      | The system shall protect information from unauthorized access through the use of an authentication and verification system. |
+| TR07       | Robustness    | The system must be prepared to handle and continue operating when runtime errors occur. |
+| TR08       | Scalability   | The system must be prepared to deal with the growth in the number of users and their actions. |
+| TR09       | Ethics   | The system must respect the ethical principles in software development (for example, personal user details, or usage data, should not be collected nor shared without full acknowledgement and authorization from its owner). |
 
 Table 7: Hand Of Midas technical requirements.
 
