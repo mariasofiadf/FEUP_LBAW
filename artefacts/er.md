@@ -93,7 +93,9 @@ Table 4: Administrator user stories.
 |   :---     |              :---               |   :---   |:---    |
 |   US31     |      View/Edit Profile          |   high   | As an authenticated user, I want to be able to view and edit my own profile, so that I can present myself in a way that I identify with. |
 |   US32     |      Create Auction             |   high   | As an authenticated user, I want to auction a new item, so that other users can bid on it and eventually buy it. |
-|   US33     |          View My Auctions       |   high   | As an authenticated user, I want to access the auctions I own, and all the information attacthed to them. |
+|   US32     |      Edit/Delete Auction        |   high   | As an authenticated user, I want to be able to edit and/or delete any of my auctions, so that I can decide exactly what my auctions say and if I want them on the platform.|
+|   US32     |      Edit/Delete Post           |   high   | As an authenticated user, I want to be able to edit and/or delete any of my post on other user's auctions, so that my comments are not permanent.|
+|   US33     |          View My Auctions       |   high   | As an authenticated user, I want to access the auctions I own, and all the information attached to them. |
 |   US34     |          Bid on Auction         |   high   | As an authenticated user, I want to  bid on an item, by choosing the amount of money to be placed. |
 |   US35     |         Logout                  |   high   | As an authenticated user, I want to logout of the system.|
 |   US36     |     Follow Auction              |  medium  | As an authenticated user, I want to follow an auction, so that I have a quicker access to the auctions I'm most interested in.|
