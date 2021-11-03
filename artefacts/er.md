@@ -4,10 +4,6 @@
 
 ## A1: Hand Of Midas
 
-> Goals, business context and environment.  
-> Motivation.  
-> Main features.  
-> User profiles.
 
 The main goal of the Hand of Midas project is to provide a web based service, where its users are able to buy and/or sell a variety of items of rare characteristics, through online auctions, namely art pieces, decór items, books and jewelry. As the name states, this website encourages the community to increase the added value of such items. The market of rare artifacts is not usually easy to enter, you must know how each community works and lose a lot of time searching for the right item or the right seller, and sometimes the auctions can be private or invitation-only. Hand of Midas seeks to create a more democratic process for interested parties, allowing them to bid on and sell in online auctions for exclusive artifacts in an easy, simple way. 
 
@@ -20,7 +16,7 @@ The website will have a responsive design, which allows users to access it from 
 
 ## A2: Actors and User stories
 
-> This artifact contains the specification of the actors involved and their user stories. This serves as agile documentation of the projects requirements.
+This artifact contains the specification of the actors involved and their user stories, serving as agile documentation of the projects requirements. 
 
 
 ### 1. Actors
