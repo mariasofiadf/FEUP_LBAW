@@ -133,7 +133,8 @@ Table 5: Auction owner user stories.
 | BR03       | Auction Cancellation           | An auction can only be canceled if there are no bids. |
 | BR04       | Valid Bidding                  | A user cannot bid if his bid is the current highest. |
 | BR05       | Auction (Deadline) Extension   | When a bid is made in the last 15 minutes of the auction, the auction deadline is extended by 30 minutes. |
-| BR06       |vote/comment/review own auctions| A user cannot vote, comment nor review their own auctions.|
+| BR06       |Vote/comment/review own auctions| A user cannot vote, comment nor review their own auctions.|
+| BR07       |Auction Dates| The sale date must be greater than the auction start date.|
 
 Table 6: Hand Of Midas business rules.
 
