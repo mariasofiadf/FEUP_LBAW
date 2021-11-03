@@ -55,7 +55,8 @@ Table 1: Hand Of Midas actors description.
 |   US06     |   Consult Services              |   high   | As a User, I want to access the services information, so that I can see the website's services.|
 |   US07     |   Consult FAQ                   |   high   | As a User, I want to access the FAQ, so that I can get quick answers to common questions.|
 |   US08     |   Consult Contacts              |   high   | As a User, I want to access contacts, so that I can come in touch with the platform creators.|
-|   US09     |        View user profiles       |  medium  | As a User, I want to be able to see other user's profiles. |
+|   US09     |        View/Search user profiles       |  medium  | As a User, I want to be able to search and see other user's profiles. |
+
 
 Table 2: User user stories.
 
@@ -90,7 +91,7 @@ Table 4: Administrator user stories.
 |   US31     |      View/Edit Profile          |   high   | As an authenticated user, I want to be able to view and edit my own profile, so that I can present myself in a way that I identify with. |
 |   US32     |      Create Auction             |   high   | As an authenticated user, I want to auction a new item, so that other users can bid on it and eventually buy it. |
 |   US32     |      Edit/Delete Auction        |   high   | As an authenticated user, I want to be able to edit and/or delete any of my auctions, so that I can decide exactly what my auctions say and if I want them on the platform.|
-|   US32     |      Edit/Delete Post           |   high   | As an authenticated user, I want to be able to edit and/or delete any of my post on other user's auctions, so that my comments are not permanent.|
+|   US32     |      Edit/Delete Comment          |   high   | As an authenticated user, I want to be able to edit and/or delete any of my post on other user's auctions, so that my comments are not permanent.|
 |   US33     |          View My Auctions       |   high   | As an authenticated user, I want to access the auctions I own, and all the information attached to them. |
 |   US34     |          Bid on Auction         |   high   | As an authenticated user, I want to  bid on an item, by choosing the amount of money to be placed. |
 |   US35     |         Logout                  |   high   | As an authenticated user, I want to logout of the system.|
@@ -169,7 +170,19 @@ Table 8: Hand Of Midas project restrictions.
 
 ## A3: Information Architecture
 
-> Brief presentation of the artefact goals.
+ The Information Architecture artefact presents a brief overview of the information architecture of the system to be developed. It has the following goals: 
+
+* Help to identify and describe the user requirements, and raise new ones; 
+* Preview and empirically test the user interface of the product to be developed; 
+* Enable quick and multiple iterations on the design of the user interface. 
+
+It includes two elements: 
+ 	
+1. Overview of the information architecture from the viewpoint of the users (sitemap)
+2. Description and prioritization of the functionally and content of, at least two, main individual screens (wireframes):
+   * Homepage
+   * Auction Details
+
 
 
 ### 1. Sitemap
