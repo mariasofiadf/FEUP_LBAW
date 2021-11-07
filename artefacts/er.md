@@ -110,7 +110,7 @@ Table 5: Authenticated user stories.
 |   US41     |  View Auction Bidding History  |  high    | As a bidder, I want to access all the bids placed on an auction, so that I can keep track of everyone who has placed bids (add more TODO)|
 |   US42     |      Rate Seller               |   medium | As a bidder, I want to classify a seller, by leaving a 1 to 5 rating and/or a comment on their profile, so that other users have a better idea of that seller's reliability.|
 
-Table 5: Bidder user stories.
+Table 6: Bidder user stories.
 
 
 #### 2.6. Auction Owner
@@ -120,7 +120,7 @@ Table 5: Bidder user stories.
 |   US52     |     Cancel Auction              |   high   | As an auction owner, I want to completely remove an auction from the platform, so no one is able to see it.|
 |   US53     |     Manage Auction Status       |  medium  | (Not Sure)
 
-Table 5: Auction owner user stories.
+Table 7: Auction owner user stories.
 
 ### 3. Supplementary Requirements
 
@@ -136,7 +136,7 @@ Table 5: Auction owner user stories.
 | BR06       |Vote/comment/review own auctions| A user cannot vote, comment nor review their own auctions.|
 | BR07       |Auction Dates| The sale date must be greater than the auction start date.|
 
-Table 6: Hand Of Midas business rules.
+Table 8: Hand Of Midas business rules.
 
 
 #### 3.2. Technical requirements
@@ -153,18 +153,20 @@ Table 6: Hand Of Midas business rules.
 | TR08       | Scalability   | The system must be prepared to deal with the growth in the number of users and their actions. |
 | TR09       | Ethics   | The system must respect the ethical principles in software development (for example, personal user details, or usage data, should not be collected nor shared without full acknowledgement and authorization from its owner). |
 
-Table 7: Hand Of Midas technical requirements.
+Table 9: Hand Of Midas technical requirements.
 
 
 #### 3.3. Restrictions
 
 A restriction on the design limits the degree of freedom in the search for a solution
 
-| Identifier | Name          | Description   |
-| :---       | :---          | :---          |
-| C01        | ??????????? TODO   |               |
+| Identifier | Name                  | Description   |
+| :---       | :---                  | :---          |
+| C01        | Deadline              | The project should be ready to be delivered by the end of the first half of the month of January, limiting creativity and the site's usability.|
+| C02        | Technological Barrier | The project must be developed under a strict technology stack.|
+| C03        | Vertical prototype    | The project's vertical prototype must be based on the example provided.|
 
-Table 8: Hand Of Midas project restrictions.
+Table 10: Hand Of Midas project restrictions.
 
 ---
 
