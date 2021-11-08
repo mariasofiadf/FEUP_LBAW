@@ -27,7 +27,7 @@ This artifact contains the specification of the actors involved and their user s
 
 For the Hand Of Midas system, the actors are represented in Figure 1 and described in Table 1.
 
-![Actors](./Actors.jpg)
+![Actors](./images/Actors.jpg)
 
 Figure 1: Hand Of Midas Actors.
 
@@ -81,7 +81,7 @@ Table 3: Visitor stories.
 | Identifier |               Name              | Priority | Description |
 |   :---     |              :---               |   :---   |    :---     |
 |   US21     |     Administer user accounts    |   high   | As an Admin, I must to be able to search, view, edit and create user accounts.|
-|   US22     | Block and unblock user accounts |   high   | As an Admin, I must have the ability to block and unblock accounts, so that I can manage the type of users on the website.|
+|   US22     | Block and unblock user accounts |   high   | As an Admin, I must have the ability to block and unblock accounts, so that I can manage the type of users on the website.|{ width=250px }
 |   US23     |          Manage auction         |   high   | As an Admin, I must be able to view, edit and supervise any auction occurring at any time, so that I can make sure things run smoothly.|
 |   US24     |          Cancel auction         |   high   | As an Admin, I must be able to cancel any auction, so that I can manage the type of auctions occurring on the website.|
 |   US25     |       Delete user account       |   low    | As an Admin, I want to be able to delete accounts at will, so that I can remove unwanted users from the website.|
@@ -203,7 +203,7 @@ It includes two elements:
 
 The User will be able to view categories and tags by using the Homepage search bar.
 
-![Sitemap](./Sitemap.png)
+![Sitemap](./images/Sitemap.png)
 
 Figure 2: Hand Of Midas Sitemap.
 
@@ -213,14 +213,16 @@ Figure 2: Hand Of Midas Sitemap.
 > Wireframes for, at least, two main pages of the web application.
 > Do not include trivial use cases.
 
-![Homepage](./Homepage.png)
+
+#### UI01: Homepage
+
+![Homepage](./images/Homepage_1.jpg)
+![Homepage](./images/Homepage_2.jpg)
+![Homepage](./images/Homepage_3.jpg)
 
 Figure 3: Hand Of Midas Homepage.
 
 #### UIxx: Page Name
-
-#### UIxx: Page Name
-
 
 ---
 
