@@ -234,8 +234,8 @@ Changes made to the first submission:
 1. ...
 
 ***
-GROUP21gg, DD/MM/2021
-
-* Group member 1 name, email (Editor)
-* Group member 2 name, email
-* ...
+GROUP2123, 02/11/2021
+* Afonso Duarte de Carvalho Monteiro up201907284
+* Ana Rita Antunes Ramada up201904565
+* Deborah Marques Lago up201806102
+* Maria Sofia Diogo Figueiredo up201904675 (Editor)
