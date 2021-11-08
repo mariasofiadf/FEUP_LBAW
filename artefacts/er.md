@@ -51,15 +51,15 @@ For the Online Auction system, please refer to the user stories presented below:
 #### 2.1. User
 | Identifier |               Name              | Priority | Description |
 |   :---     |              :---               |   :---   |    :---     |
-|   US01     |       View active auctions      |   high   | As a User, I must be able to view all active auctions, so that I'm able to find the ones that interest me. |
-|   US02     |   Browse auctions by category   |   high   | As a User, I must be able to search auctions by their specific categories. |
-|   US03     |         Search auctions         |   high   | As a User, I must be able to search an active auction at any given time. |
-|   US04     |   See Home                      |   high   | As a User, I want to access the home page, so that I can see a brief presentation of the website. |
-|   US05     |   See About                     |   high   | As a User, I want to access the about page, so that I can see a complete description of the website and its creators. |
-|   US06     |   Consult Services              |   high   | As a User, I want to access the services information, so that I can see the website's services.|
-|   US07     |   Consult FAQ                   |   high   | As a User, I want to access the FAQ, so that I can get quick answers to common questions.|
-|   US08     |   Consult Contacts              |   high   | As a User, I want to access contacts, so that I can come in touch with the platform creators.|
-|   US09     |        View/Search user profiles       |  medium  | As a User, I want to be able to search and see other user's profiles. |
+|   US01     |       View active auctions      |   high   | As an User, I must be able to view all active auctions, so that I'm able to find the ones that interest me. |
+|   US02     |   Browse auctions by category   |   high   | As an User, I must be able to search auctions by their specific categories, so that it's easier to find items I'm interested in. |
+|   US03    |         Search auctions         |   high   | As an User, I must be able to search an active auction, so that I can access a chosen auction at any given time. |
+|   US04     |   See Home                      |   high   | As an User, I want to access the home page, so that I can see a brief presentation of the website. |
+|   US05     |   See About                     |   high   | As an User, I want to access the about page, so that I can see a complete description of the website and its creators. |
+|   US06     |   Consult Services              |   high   | As an User, I want to access the services information, so that I can see the website's services.|
+|   US07     |   Consult FAQ                   |   high   | As an User, I want to access the FAQ, so that I can get quick answers to common questions.|
+|   US08     |   Consult Contacts              |   high   | As an User, I want to access contacts, so that I can come in touch with the platform creators.|
+|   US09     |        View/Search user profiles       |  medium  | As an User, I want to be able to search and see other user's profiles, so that i can access information that might interest me. |
 
 
 Table 2: User user stories.
@@ -68,7 +68,7 @@ Table 2: User user stories.
 #### 2.2. Visitor
 | Identifier |       Name       | Priority | Description |
 |   :---     |       :---       |   :---   |    :---     |
-|   US11     |   Login          |   high   | As a Visitor, I want to login into the system, so that I may access information.|
+|   US11     |   Login          |   high   | As a Visitor, I want to login into the system, so that I may access more information.|
 |   US12     |   Registration   |   high   | As a Visitor, I want to be able to register into the system, so that I may access information.|
 |   US13     | Recover password |   high   | As a Visitor, I want to be able to recover my password by the registered email, so that I don't lose my account permanently.|
 
@@ -78,12 +78,11 @@ Table 3: Visitor stories.
 #### 2.3. Administrator
 | Identifier |               Name              | Priority | Description |
 |   :---     |              :---               |   :---   |    :---     |
-|   US21     |      Administrator accounts     |   high   | There must be accounts with special privileges in the system. |
-|   US22     |     Administer user accounts    |   high   | As an Admin, I must to be able to search, view, edit and create user accounts.|
-|   US23     | Block and unblock user accounts |   high   | As an Admin, I must have the ability to block and unblock accounts, so that I can manage the type of users on the website.|
-|   US24     |          Manage auction         |   high   | As an Admin, I must be able to view, edit and supervise any auction occurring at any time, so that I can make sure things run smoothly.|
-|   US25     |          Cancel auction         |   high   | As an Admin, I must be able to cancel any auction, so that I can manage the type of auctions occurring on the website.|
-|   US26     |       Delete user account       |   low    | As an Admin, I want to be able to delete accounts at will, so that I can remove unwanted users from the website.|
+|   US21     |     Administer user accounts    |   high   | As an Admin, I must to be able to search, view, edit and create user accounts.|
+|   US22     | Block and unblock user accounts |   high   | As an Admin, I must have the ability to block and unblock accounts, so that I can manage the type of users on the website.|
+|   US23     |          Manage auction         |   high   | As an Admin, I must be able to view, edit and supervise any auction occurring at any time, so that I can make sure things run smoothly.|
+|   US24     |          Cancel auction         |   high   | As an Admin, I must be able to cancel any auction, so that I can manage the type of auctions occurring on the website.|
+|   US25     |       Delete user account       |   low    | As an Admin, I want to be able to delete accounts at will, so that I can remove unwanted users from the website.|
 
 Table 4: Administrator user stories. 
 
@@ -96,9 +95,9 @@ Table 4: Administrator user stories.
 |   US32     |      Create Auction             |   high   | As an authenticated user, I want to auction a new item, so that other users can bid on it and eventually buy it. |
 |   US32     |      Edit/Delete Auction        |   high   | As an authenticated user, I want to be able to edit and/or delete any of my auctions, so that I can decide exactly what my auctions say and if I want them on the platform.|
 |   US32     |      Edit/Delete Comment          |   high   | As an authenticated user, I want to be able to edit and/or delete any of my post on other user's auctions, so that my comments are not permanent.|
-|   US33     |          View My Auctions       |   high   | As an authenticated user, I want to access the auctions I own, and all the information attached to them. |
-|   US34     |          Bid on Auction         |   high   | As an authenticated user, I want to  bid on an item, by choosing the amount of money to be placed. |
-|   US35     |         Logout                  |   high   | As an authenticated user, I want to logout of the system.|
+|   US33     |          View My Auctions       |   high   | As an authenticated user, I want to access the auctions I own, and all the information attached to them, so that it's easier to run those auctions. |
+|   US34     |          Bid on Auction         |   high   | As an authenticated user, I want to choose the amount of money to be placed, so that I can bid on an item. |
+|   US35     |         Logout                  |   high   | As an authenticated user, I want to logout of the system, so that the next person using the browser doesn't see my info.|
 |   US36     |     Follow Auction              |  medium  | As an authenticated user, I want to follow an auction, so that I have a quicker access to the auctions I'm most interested in.|
 |   US37     | View Followed Auctions          |  medium  | As an authenticated user, I want to access my followed auctions, so that I can unfollowed them, or visit them more easily.|
 |   US38     |     View My Bidding History     |  medium  | As an authenticated user, I want to see all the bids I made, so that I can see their value and to what auction they refer to.|
@@ -122,7 +121,7 @@ Table 6: Bidder user stories.
 |   :---     |              :---               |   :---   |:---    |
 |   US51     |     Edit Auction                |   high   | As an auction owner, I want to change the information of one of my auctions, so that it's up-to-date.|
 |   US52     |     Cancel Auction              |   high   | As an auction owner, I want to completely remove an auction from the platform, so no one is able to see it.|
-|   US53     |     Manage Auction Status       |  medium  | (Not Sure)
+|   US53     |     Manage Auction Status       |  medium  |  As an auction owner, I want to be able to change the auction status, so that it's visible (or not) to all users.|
 
 Table 7: Auction owner user stories.
 
