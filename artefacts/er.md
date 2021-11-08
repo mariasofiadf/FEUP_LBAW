@@ -53,15 +53,15 @@ For the Hand Of Midas system, please refer to the user stories presented below:
 #### 2.1. User
 | Identifier |               Name              | Priority | Description |
 |   :---     |              :---               |   :---   |    :---     |
-|   US01     |       View active auctions      |   high   | As an User, I must be able to view all active auctions, so that I'm able to find the ones that interest me. |
-|   US02     |   Browse auctions by category   |   high   | As an User, I must be able to search auctions by their specific categories, so that it's easier to find items I'm interested in. |
-|   US03    |         Search auctions         |   high   | As an User, I must be able to search an active auction, so that I can access a chosen auction at any given time. |
-|   US04     |   See Home                      |   high   | As an User, I want to access the home page, so that I can see a brief presentation of the website. |
-|   US05     |   See About                     |   high   | As an User, I want to access the about page, so that I can see a complete description of the website and its creators. |
-|   US06     |   Consult Services              |   high   | As an User, I want to access the services information, so that I can see the website's services.|
-|   US07     |   Consult FAQ                   |   high   | As an User, I want to access the FAQ, so that I can get quick answers to common questions.|
-|   US08     |   Consult Contacts              |   high   | As an User, I want to access contacts, so that I can come in touch with the platform creators.|
-|   US09     |        View/Search user profiles       |  medium  | As an User, I want to be able to search and see other user's profiles, so that i can access information that might interest me. |
+|   US01     |       View active auctions      |   high   | As a User, I must be able to view all active auctions, so that I'm able to find the ones that interest me. |
+|   US02     |   Browse auctions by category   |   high   | As a User, I must be able to search auctions by their specific categories, so that it's easier to find items I'm interested in. |
+|   US03    |         Search auctions         |   high   | As a User, I must be able to search an active auction, so that I can access a chosen auction at any given time. |
+|   US04     |   See Home                      |   high   | As a User, I want to access the home page, so that I can see a brief presentation of the website. |
+|   US05     |   See About                     |   high   | As a User, I want to access the about page, so that I can see a complete description of the website and its creators. |
+|   US06     |   Consult Services              |   high   | As a User, I want to access the services information, so that I can see the website's services.|
+|   US07     |   Consult FAQ                   |   high   | As a User, I want to access the FAQ, so that I can get quick answers to common questions.|
+|   US08     |   Consult Contacts              |   high   | As a User, I want to access contacts, so that I can come in touch with the platform creators.|
+|   US09     |        View/Search user profiles       |  medium  | As a User, I want to be able to search and see other user's profiles, so that i can access information that might interest me. |
 
 
 Table 2: User user stories.
