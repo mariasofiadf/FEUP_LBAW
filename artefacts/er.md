@@ -192,6 +192,8 @@ It includes two elements:
 
 ### 1. Sitemap
 
+The User will be able to view categories and tags by using the Homepage search bar.
+
 ![Sitemap](./Sitemap.png)
 
 Figure 2: Hand Of Midas Sitemap.
