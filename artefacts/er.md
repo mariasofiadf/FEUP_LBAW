@@ -5,7 +5,7 @@
 ## A1: Hand Of Midas
 
 
-The main goal of the Hand of Midas project is to provide a web based service, where its users are able to buy and/or sell a variety of items of rare characteristics, through online auctions, namely art pieces, decór items, books and jewelry. As the name states, this website encourages the community to increase the added value of such items. The market of rare artifacts is not usually easy to enter, you must know how each community works and lose a lot of time searching for the right item or the right seller, and sometimes the auctions can be private or invitation-only. Hand of Midas seeks to create a more democratic process for interested parties, allowing them to bid on and sell in online auctions for exclusive artifacts in an easy, simple way. 
+The main goal of the Hand of Midas project is to provide a web based service, where its users are able to buy and/or sell a variety of items of rare characteristics, through online auctions, namely art pieces, decór items, books and jewelry. As the name states, this website encourages the community to increase the added value of such items. The market of rare artifacts is not usually easy to enter, you must know how each community works and lose a lot of time searching for the right item or the right seller, and sometimes the auctions can be private or invitation-only. Hand of Midas seeks to create a more democratic process for interested parties, allowing them to bid on and sell in online auctions for exclusive artifacts in an easy and simple way. 
 
 This website can be used by collectors, enthusiasts and sellers to find and sell unique items. The users need to be authenticated in order to bid on an existing auction, put up an item for sale and manage its auction or even follow auctions they are interested in. An Authenticated User has access to a private dashboard, where they are able to see their bidding and selling history. Authenticated users can be bidders and also sellers. The bidder bids on the seller's item and buys it, if their bid is the highest.
 
@@ -25,7 +25,7 @@ This artifact contains the specification of the actors involved and their user s
 
 ### 1. Actors
 
-For the Online Auctions system, the actors are represented in Figure 1 and described in Table 1.
+For the Hand Of Midas system, the actors are represented in Figure 1 and described in Table 1.
 
 ![Actors](./Actors.jpg)
 
@@ -39,13 +39,15 @@ Figure 1: Hand Of Midas Actors.
 |   Authenticated   | Authenticated user that can search available auctions and manage their list of interests.|
 |      Bidder       | Authenticated user that is able to bid in auctions.|
 |   Auction owner   | Authenticated user that is able to create auctions of their own.|
+|   Administrator   | Authenticated user that is responsible for the management of users and for some specific supervisory and moderation functions .|
+
 
 Table 1: Hand Of Midas actors description.
 
 
 ### 2. User Stories
 
-For the Online Auction system, please refer to the user stories presented below:
+For the Hand Of Midas system, please refer to the user stories presented below:
 
 
 #### 2.1. User
