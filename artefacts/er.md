@@ -25,7 +25,7 @@ The Administrator is someone with special privileges, above all the average user
 
 > For the Online Auctions system, the actors are represented in Figure 1 and described in Table 1.
 
-![plot](./Actors.jpg)
+![Actors](./Actors.jpg)
 
 Figure 1: Hand Of Midas Actors.
 
@@ -192,9 +192,9 @@ It includes two elements:
 
 ### 1. Sitemap
 
-> Sitemap presenting the overall structure of the web application.  
-> Each page must be identified in the sitemap.  
-> Multiple instances of the same page (e.g. student profile in SIGARRA) are presented as page stacks.
+![Sitemap](./Sitemap.png)
+
+Figure 2: Hand Of Midas Sitemap.
 
 
 ### 2. Wireframes
@@ -202,6 +202,9 @@ It includes two elements:
 > Wireframes for, at least, two main pages of the web application.
 > Do not include trivial use cases.
 
+![Homepage](./Homepage.png)
+
+Figure 3: Hand Of Midas Homepage.
 
 #### UIxx: Page Name
 
