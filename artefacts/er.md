@@ -127,6 +127,8 @@ Table 7: Auction owner user stories.
 
 ### 3. Supplementary Requirements
 
+This section contains business rules, technical requirements and other restrictions on the project.
+
 #### 3.1. Business rules
 
 | Identifier | Name                           | Description   |
