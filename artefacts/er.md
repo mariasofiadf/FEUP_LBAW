@@ -131,6 +131,8 @@ This section contains business rules, technical requirements and other restricti
 
 #### 3.1. Business rules
 
+A business rule defines or constrains one aspect of the business, with the intention of asserting business structure or influencing business behaviour. Business rules often supplement usage or user interface requirements.
+
 | Identifier | Name                           | Description   |
 | :---       | :---                           | :---          |
 | BR01       | Private Data Storage           | Upon account deletion, shared user data is kept but is made anonymous |
@@ -145,6 +147,8 @@ Table 8: Hand Of Midas business rules.
 
 
 #### 3.2. Technical requirements
+
+Technical requirements are concerned with the technical aspects that the system must meet, such as performance-related issues, reliability issues and availability issues.
 
 | Identifier | Name          | Description   |
 | :---       | :---          | :---          |
@@ -163,7 +167,7 @@ Table 9: Hand Of Midas technical requirements.
 
 #### 3.3. Restrictions
 
-A restriction on the design limits the degree of freedom in the search for a solution
+A restriction on the design limits the degree of freedom in the search for a solution.
 
 | Identifier | Name                  | Description   |
 | :---       | :---                  | :---          |
