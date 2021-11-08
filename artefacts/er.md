@@ -17,6 +17,8 @@ The website will have a responsive design, which allows users to access it from 
 ## A2: Actors and User stories
 
 This artifact contains the specification of the actors involved and their user stories, serving as agile documentation of the projects requirements. 
+An User can be authenticated or just a visitor. Only the authenticated user can interact more profoundly within the site, either by placing bids or putting an item up for auction as its owner. The bidder bids on the auction owner's item and buys it, if his bid is the highest.
+The Administrator is someone with special privileges, above all the average users.
 
 
 ### 1. Actors
