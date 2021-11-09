@@ -216,13 +216,13 @@ Figure 2: Hand Of Midas Sitemap.
 
 #### UI01: Homepage
 
-![Homepage](./images/Homepage_1.jpg)
-![Homepage](./images/Homepage_2.jpg)
-![Homepage](./images/Homepage_3.jpg)
+![Homepage](./images/HomePage.png)
 
 Figure 3: Hand Of Midas Homepage.
 
-#### UIxx: Page Name
+#### UIxx: Auction Page
+
+![Auction Page](images/AuctionPage.png)
 
 ---
 
@@ -234,7 +234,7 @@ Changes made to the first submission:
 1. ...
 
 ***
-GROUP2123, 02/11/2021
+1. GROUP2123, 02/11/2021:
 * Afonso Duarte de Carvalho Monteiro up201907284
 * Ana Rita Antunes Ramada up201904565
 * Deborah Marques Lago up201806102
