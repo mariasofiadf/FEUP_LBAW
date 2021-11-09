@@ -112,7 +112,7 @@ Table 5: Authenticated user stories.
 #### 2.5. Bidder
 | Identifier |               Name             | Priority | Description |
 |   :---     |              :---              |   :---   |:---    |
-|   US41     |  View Auction Bidding History  |  high    | As a bidder, I want to access all the bids placed on an auction, so that I can keep track of everyone who has placed bids (add more TODO)|
+|   US41     |  View Auction Bidding History  |  high    | As a bidder, I want to access all the bids placed on an auction, so that I can keep track of everyone who has placed bids |
 |   US42     |      Rate Seller               |   medium | As a bidder, I want to classify a seller, by leaving a 1 to 5 rating and/or a comment on their profile, so that other users have a better idea of that seller's reliability.|
 
 Table 6: Bidder user stories.
@@ -144,6 +144,7 @@ A business rule defines or constrains one aspect of the business, with the inten
 | BR05       | Auction (Deadline) Extension   | When a bid is made in the last 15 minutes of the auction, the auction deadline is extended by 30 minutes. |
 | BR06       |Vote/comment/review own auctions| A user cannot vote, comment nor review their own auctions.|
 | BR07       |Auction Dates| The sale date must be greater than the auction start date.|
+| BR08       |Minimum opening bid and raise | An auction owner has to set a minimum opening bid and minimum raise to their auction. |
 
 Table 8: Hand Of Midas business rules.
 
@@ -225,13 +226,6 @@ Figure 3: Hand Of Midas Homepage.
 ![Auction Page](images/AuctionPage.png)
 
 ---
-
-
-## Revision history
-
-Changes made to the first submission:
-1. Item 1
-1. ...
 
 ***
 1. GROUP2123, 02/11/2021:
