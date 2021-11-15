@@ -122,7 +122,7 @@ Table 6: Bidder user stories.
 | Identifier |               Name              | Priority | Description |
 |   :---     |              :---               |   :---   |:---    |
 |   US51     |     Edit Auction                |   high   | As an auction owner, I want to change the information of one of my auctions, so that it's up-to-date.|
-|   US52     |     Cancel Auction              |   high   | As an auction owner, I want to completely remove an auction from the platform, so no one is able to see it.|
+|   US52     |     Cancel AuctioFigure 4: Hand Of Midas Auction Page.n              |   high   | As an auction owner, I want to completely remove an auction from the platform, so no one is able to see it.|
 |   US53     |     Manage Auction Status       |  medium  |  As an auction owner, I want to be able to change the auction status, so that it's visible (or not) to all users.|
 
 Table 7: Auction owner user stories.
@@ -221,9 +221,11 @@ Figure 2: Hand Of Midas Sitemap.
 
 Figure 3: Hand Of Midas Homepage.
 
-#### UIxx: Auction Page
+#### UI10: Auction Details Page
 
 ![Auction Page](images/AuctionPage.png)
+
+Figure 4: Hand Of Midas Auction Details Page.
 
 ---
 
