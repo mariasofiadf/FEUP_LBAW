@@ -15,7 +15,7 @@
  
 | Business rules | Description |
 | :---           |  :---       |
-| BR01           | A user cannot put an item for auction if he cannot prove the ownership of said item.
+| BR01           | A user cannot put an item for auction if he cannot prove the ownership of said item.|
  
 
 
