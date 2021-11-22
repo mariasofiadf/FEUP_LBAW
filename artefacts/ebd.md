@@ -42,7 +42,12 @@
 | Domain Name | Domain Specification           |
 | ----------- | ------------------------------ |
 | Today	      | DATE DEFAULT CURRENT_DATE      |
-| Priority    | ENUM ('High', 'Medium', 'Low') |
+| BookGenres    | ENUM ('Romance', 'Poetry', 'Fantasy', 'Science Fiction', 'Mystery', 'Biography', 'Drama', 'Non Fiction', 'Other') |
+|ArtType       |'Painting', 'Sculpture', 'Photography', 'Mixed Media', 'Craftsmanship'|
+|AuctionNotification       |'Opened', 'Closed', 'New Bid', 'New Message', 'Other'|
+|AuctionStatus       |'Active', 'Hidden', 'Canceled', 'Closed'|
+|AuctionCategory       |'ArtPiece', 'Book', 'Jewlery', 'Decor', 'Other'|
+
 
 ### 3. Schema validation
 
