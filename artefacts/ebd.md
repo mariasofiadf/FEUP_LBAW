@@ -42,20 +42,81 @@
 | Domain Name | Domain Specification           |
 | ----------- | ------------------------------ |
 | Today	      | DATE DEFAULT CURRENT_DATE      |
-| Priority    | ENUM ('High', 'Medium', 'Low') |
+|AuctionNotification       |'Opened', 'Closed', 'New Bid', 'New Message', 'Other'|
+|AuctionStatus       |'Active', 'Hidden', 'Canceled', 'Closed'|
+|AuctionCategory       |'ArtPiece', 'Book', 'Jewlery', 'Decor', 'Other'|
+
 
 ### 3. Schema validation
 
 > To validate the Relational Schema obtained from the Conceptual Model, all functional dependencies are identified and the normalization of all relation schemas is accomplished. Should it be necessary, in case the scheme is not in the Boyce–Codd Normal Form (BCNF), the relational schema is refined using normalization.  
 
-| **TABLE R01**   | User               |
-| --------------  | ---                |
-| **Keys**        | { id }, { email }  |
-| **Functional Dependencies:** |       |
-| FD0101          | id → {email, name} |
-| FD0102          | email → {id, name} |
-| ...             | ...                |
-| **NORMAL FORM** | BCNF               |
+| **TABLE R01**                | User                            |
+| --------------               | ---                             |
+| **Keys**                     | { id }, { email }               |
+| **Functional Dependencies:** |                                 |
+| FD0101                       | id → {email, name}              |
+| FD0102                       | email → {id, name}              |
+| ...                          | ...                             |
+| **NORMAL FORM**              | BCNF                            |
+
+| **TABLE R08**                | Notification                    |
+| --------------               | ---                             |
+| **Keys**                     | { id }                          |
+| **Functional Dependencies:** |                                 |
+| FD0801                       | id → {time}                     |
+| ...                          | ...                             |
+| **NORMAL FORM**              | BCNF                            |
+
+| **TABLE R09**                | AuctionReport                   |
+| --------------               | ---                             |
+| **Keys**                     | { id }                          |
+| **Functional Dependencies:** |                                 |
+| FD0901                       | id → {description}              |
+| ...                          | ...                             |
+| **NORMAL FORM**              | BCNF                            |
+
+| **TABLE R10**                | Rating                          |
+| --------------               | ---                             |
+| **Keys**                     | { id_rated }, { id_rates }      |
+| **Functional Dependencies:** |                                 |
+| FD1001                       | {id_rated, id_rates} → {value, date, description}|
+| ...                          | ...                             |
+| **NORMAL FORM**              | BCNF                            |
+
+| **TABLE R11**                | UserFollow                      |
+| --------------               | ---                             |
+| **Keys**                     | { id_followed }, { id_follower }|
+| **Functional Dependencies:** |                                 |
+| FD1101                       | id_followed → {id_follower}     |
+| FD1102                       | id_follower → {id_followed}     |
+| ...                          | ...                             |
+| **NORMAL FORM**              | BCNF                            |
+
+| **TABLE R12**                | AuctionFollow                   |
+| --------------               | ---                             |
+| **Keys**                     | { id_followed }, {id_follower}  |
+| **Functional Dependencies:** |                                 |
+| FD1201                       | id_followed → {id_follower}     |
+| FD1202                       | id_follower → {id_followed}     |
+| ...                          | ...                             |
+| **NORMAL FORM**              | BCNF                            |
+
+| **TABLE R13**                | UserNotification                |
+| --------------               | ---                             |
+| **Keys**                     | { id }                          |
+| **Functional Dependencies:** |                                 |
+| FD1301                       | { id } → {time, category}       |
+| ...                          | ...                             |
+| **NORMAL FORM**              | BCNF                            |
+
+| **TABLE R14**                | AuctionNotification             |
+| --------------               | ---                             |
+| **Keys**                     | { id }                          |
+| **Functional Dependencies:** |                                 |
+| FD1401                       | { id } → {time, category}       |
+| ...                          | ...                             |
+| **NORMAL FORM**              | BCNF                            |
 
 > If necessary, description of the changes necessary to convert the schema to BCNF.  
 > Justification of the BCNF.  
