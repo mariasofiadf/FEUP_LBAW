@@ -39,6 +39,3 @@ CREATE TABLE auction(
 
 SELECT * FROM Auction;
 
-
-
-
