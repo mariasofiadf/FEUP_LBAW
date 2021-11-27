@@ -3,9 +3,8 @@ SET search_path TO lbaw2123;
 --DROP
 DROP TYPE IF EXISTS auction_category CASCADE;
 DROP TYPE IF EXISTS auction_status CASCADE;
-DROP TYPE IF EXISTS auction_notification CASCADE;
+DROP TYPE IF EXISTS auction_notification_type CASCADE;
 DROP TYPE IF EXISTS user_notification_type CASCADE;
-
 
 DROP TABLE IF EXISTS auction CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
@@ -24,7 +23,7 @@ DROP TABLE IF EXISTS image CASCADE;
 --TYPES
 CREATE TYPE auction_status AS ENUM ('Active', 'Hidden', 'Canceled', 'Closed');
 CREATE TYPE auction_category AS ENUM ('ArtPiece', 'Book', 'Jewlery', 'Decor', 'Other');
-CREATE TYPE auction_notification AS ENUM ('Opened', 'Closed', 'New Bid', 'New Message', 'Other');
+CREATE TYPE auction_notification_type AS ENUM ('Opened', 'Closed', 'New Bid', 'New Message', 'Other');
 CREATE TYPE user_notification_type AS ENUM ('Rating', 'Follow', 'Other');
 
 CREATE TABLE users(
@@ -126,7 +125,7 @@ CREATE TABLE auction_follow(
 
 CREATE TABLE user_notification(
     notif_id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES auction(user_id) NOT NULL,
+    user_id INTEGER REFERENCES users(user_id) NOT NULL,
     notif_read BOOLEAN DEFAULT FALSE,  --change name
     --notif_time TIME DEFAULT NOW, --change name
     notif_category user_notification_type NOT NULL  --change name
@@ -134,8 +133,8 @@ CREATE TABLE user_notification(
 
 CREATE TABLE auction_notification(
     notif_id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES auction(user_id) NOT NULL,
+    auction_id INTEGER REFERENCES auction(auction_id) NOT NULL,
     anotif_read BOOLEAN DEFAULT FALSE,  --change name
-    anotif_time TIME DEFAULT NOW, --change name
-    anotif_category auction_notification NOT NULL  --change name
+    --anotif_time TIME DEFAULT NOW, --change name
+    anotif_category auction_notification_type NOT NULL  --change name
 );
