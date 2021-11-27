@@ -1,6 +1,12 @@
 SET search_path TO lbaw2123;
 
 --DROP
+DROP TYPE IF EXISTS auction_category CASCADE;
+DROP TYPE IF EXISTS auction_status CASCADE;
+DROP TYPE IF EXISTS auction_notification CASCADE;
+DROP TYPE IF EXISTS user_notification_type CASCADE;
+
+
 DROP TABLE IF EXISTS auction CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS bid CASCADE;
