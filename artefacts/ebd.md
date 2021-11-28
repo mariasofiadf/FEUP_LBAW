@@ -57,15 +57,14 @@
 | **Functional Dependencies:** |                                 |
 | FD0101                       | id → {email, name}              |
 | FD0102                       | email → {id, name}              |
-| ...                          | ...                             |
 | **NORMAL FORM**              | BCNF                            |
+
 
 | **TABLE R02**                | Auction                         |
 | --------------               | ---                             |
 | **Keys**                     | { id }                          |
 | **Functional Dependencies:** |                                 |
 | FD0201                       | { id } → {title, description, category, start_date, predicted_end, close_date, min_opening_bid, status, seller_id, image_id}|
-| ...                          | ...                             |
 | **NORMAL FORM**              | BCNF                            |
 
 
@@ -74,7 +73,6 @@
 | **Keys**                     | { id }                          |
 | **Functional Dependencies:** |                                 |
 | FD0301                       | { id } → {value, date, auction_id, bidder_id}|
-| ...                          | ...                             |
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R04**                | Admin                           |
@@ -82,7 +80,6 @@
 | **Keys**                     | { id }                          |
 | **Functional Dependencies:** |                                 |
 | FD0401                       | { id } → {name, username, email}|
-| ...                          | ...                             |
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R05**                | Message                         |
@@ -90,7 +87,6 @@
 | **Keys**                     | { id }                          |
 | **Functional Dependencies:** |                                 |
 | FD0501                       | { id } → {content, date, user_id, chat_id}|
-| ...                          | ...                             |
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R07**                | Image                           |
@@ -98,11 +94,9 @@
 | **Keys**                     | { id }                          |
 | **Functional Dependencies:** |                                 |
 | FD0701                       | { id } → {content, label}       |
-| ...                          | ...                             |
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R08**                | AuctionReport                   |
-| --------------               | ---                             |
 | **Keys**                     | { auction_id, user_id }         |
 | **Functional Dependencies:** |                                 |
 | FD0901                       | { auction_id, user_id } → {description}|
@@ -114,7 +108,6 @@
 | **Keys**                     | { id_rated }, { id_rates }      |
 | **Functional Dependencies:** |                                 |
 | FD1001                       | {id_rated, id_rates} → {value, date, description}|
-| ...                          | ...                             |
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R10**                | UserFollow                      |
@@ -123,7 +116,6 @@
 | **Functional Dependencies:** |                                 |
 | FD1101                       | id_followed → {id_follower}     |
 | FD1102                       | id_follower → {id_followed}     |
-| ...                          | ...                             |
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R11**                | AuctionFollow                   |
@@ -132,7 +124,6 @@
 | **Functional Dependencies:** |                                 |
 | FD1201                       | id_followed → {id_follower}     |
 | FD1202                       | id_follower → {id_followed}     |
-| ...                          | ...                             |
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R12**                | UserNotification                |
@@ -148,7 +139,6 @@
 | **Keys**                     | { id }                          |
 | **Functional Dependencies:** |                                 |
 | FD1401                       | { id } → {read, time, category} |
-| ...                          | ...                             |
 | **NORMAL FORM**              | BCNF                            |
 
 > If necessary, description of the changes necessary to convert the schema to BCNF.  
