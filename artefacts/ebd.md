@@ -49,7 +49,7 @@
 
 ### 3. Schema validation
 
-> To validate the Relational Schema obtained from the Conceptual Model, all functional dependencies are identified and the normalization of all relation schemas is accomplished. Should it be necessary, in case the scheme is not in the Boyce–Codd Normal Form (BCNF), the relational schema is refined using normalization.  
+ To validate the Relational Schema obtained from the Conceptual Model, all functional dependencies are identified and the normalization of all relation schemas is accomplished. 
 
 | **TABLE R01**                | User                            |
 | --------------               | ---                             |
@@ -97,6 +97,7 @@
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R08**                | AuctionReport                   |
+| --------------               | ---                             |
 | **Keys**                     | { auction_id, user_id }         |
 | **Functional Dependencies:** |                                 |
 | FD0901                       | { auction_id, user_id } → {description}|
@@ -144,7 +145,6 @@
 As all relations schemas are in the Boyce–Codd Normal Form (BCNF), the relational schema is also in the BCNF and therefore there is no need to be refined using normalisation.
 
 
----
 
 
 ## A6: Indexes, triggers, transactions and database population
