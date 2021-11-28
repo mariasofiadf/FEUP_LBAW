@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS image CASCADE;
 
 --TYPES
 CREATE TYPE auction_status AS ENUM ('Active', 'Hidden', 'Canceled', 'Closed');
-CREATE TYPE auction_category AS ENUM ('ArtPiece', 'Book', 'Jewlery', 'Decor', 'Other');
+CREATE TYPE auction_category AS ENUM ('ArtPiece', 'Book', 'Jewelry', 'Decor', 'Other');
 CREATE TYPE auction_notification_type AS ENUM ('Opened', 'Closed', 'New Bid', 'New Message', 'Other');
 CREATE TYPE user_notification_type AS ENUM ('Rating', 'Follow', 'Other');
 
@@ -44,7 +44,8 @@ CREATE TABLE auction(
     title TEXT NOT NULL,
     description TEXT,
 
-    min_opening_bid INTEGER NOT NULL CHECK (min_opening_bid > 0),   min_raise INTEGER NOT NULL,
+    min_opening_bid INTEGER NOT NULL CHECK (min_opening_bid > 0),   
+    min_raise INTEGER NOT NULL,
     start_date DATE NOT NULL, --CK predictedEnd >= startDate
     predicted_end DATE NOT NULL,
     close_date DATE NOT NULL, --CK close_date >= predictedEnd
@@ -55,7 +56,7 @@ CREATE TABLE auction(
     
     auction_notif BOOLEAN DEFAULT TRUE NOT NULL,
     user_notif BOOLEAN DEFAULT TRUE NOT NULL,
-    auction_image INTEGER REFERENCES image(image_id),
+    auction_image INTEGER REFERENCES image(img_id),
     seller_id INTEGER REFERENCES users(user_id) NOT NULL
 );
 
