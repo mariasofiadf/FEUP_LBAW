@@ -105,7 +105,7 @@ CREATE TABLE auction_report(
 CREATE TABLE rating(
     id_rated INTEGER REFERENCES users(user_id) NOT NULL,
     id_rates INTEGER REFERENCES users(user_id) NOT NULL,
-    rate_value INTEGER NOT NULL CHECK (rate_value > 0),  --change name, < 5 ??
+    rate_value INTEGER NOT NULL CHECK (rate_value >= 0 AND rate_value <= 5),  --change name, < 5 ??
     rate_date DATE NOT NULL,    --change name
     PRIMARY KEY(id_rated, id_rates)
 );
