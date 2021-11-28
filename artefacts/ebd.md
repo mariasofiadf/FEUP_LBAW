@@ -141,8 +141,7 @@
 | FD1401                       | { id } → {read, time, category} |
 | **NORMAL FORM**              | BCNF                            |
 
-> If necessary, description of the changes necessary to convert the schema to BCNF.  
-> Justification of the BCNF.  
+As all relations schemas are in the Boyce–Codd Normal Form (BCNF), the relational schema is also in the BCNF and therefore there is no need to be refined using normalisation.
 
 
 ---
