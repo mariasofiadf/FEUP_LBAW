@@ -130,7 +130,7 @@
 
 | **Trigger**      | TRIGGER01                              |
 | ---              | ---                                    |
-| **Description**  | Trigger description, including reference to the business rules involved |
+| **Description**  | An Admin must not have the same username or email as a User |
 | `SQL code`                                             ||
 
 ### 4. Transactions
