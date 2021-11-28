@@ -85,29 +85,31 @@
 
 #### 2.1. Performance Indices
  
-> Indices proposed to improve performance of the identified queries.
+Indices proposed to improve performance of the identified queries.
+
 
 | **Index**           | IDX01                                  |
 | ---                 | ---                                    |
-| **Relation**        | Relation where the index is applied    |
-| **Attribute**       | Attribute where the index is applied   |
-| **Type**            | B-tree, Hash, GiST or GIN              |
-| **Cardinality**     | Attribute cardinality: low/medium/high |
-| **Clustering**      | Clustering of the index                |
-| **Justification**   | Justification for the proposed index   |
-| `SQL code`                                                  ||
+| **Relation**        | Bid  |
+| **Attribute**       | auction_id  |
+| **Type**            | Hash             |
+| **Cardinality**     |high |
+| **Clustering**      |Yes             |
+| **Justification**   | Every time a auction page is opened we'll need to see the highest bid, and also for the auction history we'll need to have access to every bid made. Each auction has multiple bids, so cardinality is high. It's a good candidate for clustering. |
+| `CREATE INDEX auction_bid_index on bid USING hash(auction_id);`|
 
-> Analysis of the impact of the performance indices on specific queries.
-> Include the execution plan before and after the use of indices.
 
-| **Query**       | SELECT01                               |
-| ---             | ---                                    |
-| **Description** | One sentence describing the query goal |
-| `SQL code`                                              ||
-| **Execution Plan without indices**                      ||
-| `Execution plan`                                        ||
-| **Execution Plan with indices**                         ||
-| `Execution plan`                                        ||
+| **Index**           | IDX02                                  |
+| ---                 | ---                                    |
+| **Relation**        | Bid  |
+| **Attribute**       | bidder_id  |
+| **Type**            | Hash             |
+| **Cardinality**     |high |
+| **Clustering**      |Yes             |
+| **Justification**   | Every time a auction page is opened we'll need to see the highest bid, and also for the auction history we'll need to have access to every bid made. Each auction has multiple bids, so cardinality is high. It's a good candidate for clustering. |
+| `CREATE INDEX user_bid_index on bid USING hash(bidder_id);`|
+
+
 
 
 #### 2.2. Full-text Search Indices 
