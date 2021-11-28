@@ -52,8 +52,10 @@ CREATE TABLE auction(
     status auction_status NOT NULL,
     category auction_category NOT NULL,
 
+    
     auction_notif BOOLEAN DEFAULT TRUE NOT NULL,
     user_notif BOOLEAN DEFAULT TRUE NOT NULL,
+    auction_image INTEGER REFERENCES image(image_id),
     seller_id INTEGER REFERENCES users(user_id) NOT NULL
 );
 
