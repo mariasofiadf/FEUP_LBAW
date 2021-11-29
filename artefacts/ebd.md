@@ -257,26 +257,40 @@ Thus, the fields where full-text search will be available and the associated set
 
 | **Index**           | IDX05                                  |
 | -                   | ------                                 |            
-| **Relation**        | auction, member                        |
-| **Attribute**       | {title, description, username, name}   |
+| **Relation**        | auction, bid                           |
+| **Attribute**       | {title}                                |
 | **Type**            | GIN                                    |
 | **Clustering**      | No                                     |
 | **Justification**   | To better the performance and results on FTS for auctions. Using GIN type because it will be accessed very frequently and rarely updated.|
 | **SQL Code** 
 
 ```sql
-    SELECT auction.id, ts_auction(auction.ts_search, plainto_tsquery('english', $search_text));
-    FROM auction
-            INNER JOIN auction_follow ON auction_follow.id_followed = auction.id AND auction_follow.follower_id = users.id
-            INNER JOIN bid ON bid.auction_id = auction.id 
-        WHERE
-            auction.category IN ($category1, $category2, ...) AND
-            auction.status IN ($status1, $status2) AND
-            bid.value >= min_opening_bid::money AND
-            auction.ts_search @@ plainto_tsquery('english', $text_search)
-        ORDER BY ts_auction DESC;
+    DROP MATERIALIZED VIEW IF EXISTS fts_view_auctions;
 
-    CREATE INDEX auction_search_idx USING GIN (ts_auction);||
+CREATE MATERIALIZED VIEW fts_view_auctions AS
+SELECT auction.id, (setweight(to_tsvector('simple', auction.title), 'A')) as ts_auction
+FROM auction
+    JOIN bid ON bid.auction_id = auction.id
+WHERE
+    bid.value >= min_opening_bid::money AND
+    auction.category IN ('ArtPiece', 'Book', 'Jewelry', 'Decor', 'Other') AND
+    auction.status IN ('Active', 'Hidden', 'Canceled', 'Closed')
+ORDER BY auction.id;
+
+DROP FUNCTION IF EXISTS auction_search_update CASCADE;
+CREATE FUNCTION auction_search_update() RETURNS TRIGGER AS $$
+BEGIN
+    REFRESH MATERIALIZED VIEW fts_view_auctions;
+    RETURN NULL;
+END $$
+LANGUAGE plpgsql
+
+CREATE TRIGGER a_search_update
+    AFTER INSERT OR UPDATE ON auction
+    FOR EACH ROW
+    EXECUTE PROCEDURE auction_search_update();
+
+CREATE INDEX auction_search_idx USING GIN (ts_auction);||
 ```
 
 | **Index**           | IDX06                                  |
