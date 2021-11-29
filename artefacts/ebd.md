@@ -69,47 +69,48 @@ Specification of additional domains:
 
 | **TABLE R01**                | User                            |
 | --------------               | ---                             |
-| **Keys**                     | { id }, { email }               |
+| **Keys**                     | { user_id }, { email }, {username}|
 | **Functional Dependencies:** |                                 |
-| FD0101                       | id → {email, name}              |
-| FD0102                       | email → {id, name}              |
+| FD0101                       | {id} → {email, name, username, password, image, nif, phone_number, credit, profile_image, rating, blocked, auction_notif, user_notif}|
+| FD0102                       | {email} → {user_id, name, username, password, image, nif, phone_number, credit, profile_image, rating, blocked, auction_notif, user_notif}|
+| FD0103                       | {username} → {user_id, email, name, password, image, nif, phone_number, credit, profile_image, rating, blocked, auction_notif, user_notif}|
 | **NORMAL FORM**              | BCNF                            |
 
 
 | **TABLE R02**                | Auction                         |
 | --------------               | ---                             |
-| **Keys**                     | { id }                          |
+| **Keys**                     | { auction_id }                  |
 | **Functional Dependencies:** |                                 |
-| FD0201                       | { id } → {title, description, category, start_date, predicted_end, close_date, min_opening_bid, status, seller_id, image_id}|
+| FD0201                       | { auction_id } → {title, description, category, start_date, predicted_end, close_date, min_opening_bid, min_raise, status, seller_id, auction_image}|
 | **NORMAL FORM**              | BCNF                            |
 
 
 | **TABLE R03**                | Bid                             |
 | --------------               | ---                             |
-| **Keys**                     | { id }                          |
+| **Keys**                     | { bid_id }                      |
 | **Functional Dependencies:** |                                 |
-| FD0301                       | { id } → {value, date, auction_id, bidder_id}|
+| FD0301                       | { bid_id } → {bid_value, bid_date, auction_id, bidder_id}|
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R04**                | Admin                           |
 | --------------               | ---                             |
-| **Keys**                     | { id }                          |
+| **Keys**                     | { admin_id }                    |
 | **Functional Dependencies:** |                                 |
-| FD0401                       | { id } → {name, username, email}|
+| FD0401                       | { admin_id } → {admin_name, username, email, admin_password}|
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R05**                | Message                         |
 | --------------               | ---                             |
-| **Keys**                     | { id }                          |
+| **Keys**                     | { msg_id }                      |
 | **Functional Dependencies:** |                                 |
-| FD0501                       | { id } → {content, date, user_id, chat_id}|
+| FD0501                       | { msg_id } → {msg_content, msg_date, user_id, chat_id}|
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R07**                | Image                           |
 | --------------               | ---                             |
-| **Keys**                     | { id }                          |
+| **Keys**                     | { img_id }                      |
 | **Functional Dependencies:** |                                 |
-| FD0701                       | { id } → {content, label}       |
+| FD0701                       | { img_id } → {content, label}   |
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R08**                | AuctionReport                   |
@@ -124,7 +125,7 @@ Specification of additional domains:
 | --------------               | ---                             |
 | **Keys**                     | { id_rated }, { id_rates }      |
 | **Functional Dependencies:** |                                 |
-| FD1001                       | {id_rated, id_rates} → {value, date, description}|
+| FD1001                       | {id_rated, id_rates} → {rate_value, rate_date, description}|
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R10**                | UserFollow                      |
@@ -145,17 +146,17 @@ Specification of additional domains:
 
 | **TABLE R12**                | UserNotification                |
 | --------------               | ---                             |
-| **Keys**                     | { id }                          |
+| **Keys**                     | { notif_id }                    |
 | **Functional Dependencies:** |                                 |
-| FD1301                       | { id } → {read, time, category} |
+| FD1301                       | { notif_id } → {notified_id, notifier_id, notif_read, notif_time, category}|
 | ...                          | ...                             |
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R13**                | AuctionNotification             |
 | --------------               | ---                             |
-| **Keys**                     | { id }                          |
+| **Keys**                     | { notif_id }                    |
 | **Functional Dependencies:** |                                 |
-| FD1401                       | { id } → {read, time, category} |
+| FD1401                       | { notif_id } → {notified_id, auction_id, anotif_read, anotif_time, anotif_category}|
 | **NORMAL FORM**              | BCNF                            |
 
 As all relations schemas are in the Boyce–Codd Normal Form (BCNF), the relational schema is also in the BCNF and therefore there is no need to be refined using normalisation.
