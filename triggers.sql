@@ -247,3 +247,25 @@ CREATE TRIGGER new_rating_notif
     AFTER INSERT ON rating 
     FOR EACH ROW 
     EXECUTE PROCEDURE new_rating_notif();
+
+--TRIGGER 12
+--When a User follows an Auction, it's User gets a notification
+DROP FUNCTION IF EXISTS new_auction_follow_notif CASCADE;
+CREATE FUNCTION new_auction_follow_notif() RETURNS TRIGGER AS 
+$BODY$
+DECLARE
+    seller_id INTEGER;
+BEGIN
+    SELECT auction.seller_id INTO seller_id FROM auction 
+    WHERE auction.id = NEW.id_folllowed;
+    INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
+    VALUES (seller_id, NEW.id_folllowed,'Follow');
+END
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS new_auction_follow_notif on bid CASCADE;
+CREATE TRIGGER new_auction_follow_notif
+    AFTER INSERT ON auction_follow 
+    FOR EACH ROW 
+    EXECUTE PROCEDURE new_auction_follow_notif();

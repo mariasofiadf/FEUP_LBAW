@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS image CASCADE;
 --TYPES
 CREATE TYPE auction_status AS ENUM ('Active', 'Hidden', 'Canceled', 'Closed');
 CREATE TYPE auction_category AS ENUM ('ArtPiece', 'Book', 'Jewlery', 'Decor', 'Other');
-CREATE TYPE auction_notification_type AS ENUM ('Opened', 'Closed', 'New Bid', 'New Message', 'Other');
+CREATE TYPE auction_notification_type AS ENUM ('Opened', 'Closed', 'New Bid', 'New Message', 'Other', 'Follow');
 CREATE TYPE user_notification_type AS ENUM ('Rating', 'Follow', 'Other');
 
 CREATE TABLE users(
@@ -134,6 +134,7 @@ CREATE TABLE user_notification(
 
 CREATE TABLE auction_notification(
     notif_id SERIAL PRIMARY KEY,
+    notified_id INTEGER REFERENCES users(user_id) NOT NULL,
     auction_id INTEGER REFERENCES auction(auction_id) NOT NULL,
     anotif_read BOOLEAN DEFAULT FALSE,  --change name
     --anotif_time TIME DEFAULT NOW, --change name
