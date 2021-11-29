@@ -13,7 +13,10 @@
 
 ### 2. Additional Business Rules
  
-> Business rules can be included in the UML diagram as UML notes or in a table in this section.
+| Business rules | Description |
+| :---           |  :---       |
+| BR01           | A user cannot put an item for auction if he cannot prove the ownership of said item.|
+ 
 
 
 ---
