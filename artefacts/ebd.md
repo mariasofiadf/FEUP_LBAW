@@ -1,15 +1,17 @@
 # EBD: Database Specification Component
 
-> Project vision.
+The project Hand of Midas is an online auction system available over the Web for users to buy and sell a variety of items .
 
 ## A4: Conceptual Data Model
 
-> Brief presentation of the artefact goals.
+The Conceptual Domain Model contains the identification and description of the entities of the domain and the relationships between them in an UML class diagram.
 
 ### 1. Class diagram
 
-> UML class diagram containing the classes, associations, multiplicity and roles.  
-> For each class, the attributes, associations and constraints are included in the class diagram.
+UML class diagram containing the classes, associations, multiplicity and roles.  
+ For each class, the attributes, associations and constraints are included in the class diagram.
+
+![UML_HoM](images/Copy_of_ClassDiagram7.jpg)
 
 ### 2. Additional Business Rules
  
@@ -24,30 +26,41 @@
 
 ## A5: Relational Schema, validation and schema refinement
 
-> Brief presentation of the artefact goals.
+This artifact contains the Relational Schema obtained by mapping from the Conceptual Data Model.
 
 ### 1. Relational Schema
 
-> The Relational Schema includes the relation schemas, attributes, domains, primary keys, foreign keys and other integrity rules: UNIQUE, DEFAULT, NOT NULL, CHECK.  
-> Relation schemas are specified in the compact notation:  
+
+The Relational Schema includes the relation schemas, attributes, domains, primary keys, foreign keys and other integrity rules: UNIQUE, DEFAULT, NOT NULL, CHECK.  
+Relation schemas are specified in the compact notation:  
 
 | Relation reference | Relation Compact Notation                        |
 | ------------------ | ------------------------------------------------ |
-| R01                | Table1(__id__, attribute NN)                     |
-| R02                | Table2(__id__, attribute → Table1 NN)            |
-| R03                | Table3(__id1__, id2 → Table2, attribute UK NN)   |
-| R04                | Table4((__id1__, __id2__) → Table3, id3, attribute CK attribute > 0) |
+| R01                | user(__id__, email UK NN, name NN, username NN UK, password NN, image, nif UK, phone_number UK, credit NN DF 0 CK credit > 0, rating, blocked)                     |
+| R02                | auction(__id__, title NN, description, category, start_date NN, predicted_end NN CK predicted_end >= start_date, close_date CK close_date >= predicted_end, min_opening_bid ck NN min_opening_bid > 0, , status NN, seller_id → user, image_id → image, win_bid_id -> bid) |
+| R03                | bid(__id__, value NN ck value > 0,  date NN CK date > auction.start_date, auction_id → auction, bidder_id → user) |
+| R04                | admin(__id__, name NN, username NN, email NN, password NN) |
+| R05                | message(__id__, content, date, user_id → user, chat_id  → chat) |
+| R06                | chat(__id__) |
+| R07                | image(__id__, content NN, label) |
+| R08                | auction_report(description, __user_id → user__, __auction_id → auction__) |
+| R09                | rating(__id_rated__ → user,__id_rates__ → user NN, value NN CK value > 0 && value < 5, date NN CK date == today, description) |
+| R10                | user_follow(__id_followed__ → user NN,__id_follower__ → user NN CK id_followed != id_follower) |
+| R11                | action_follow(__id_followed__ → auction NN,__id_follower__ → user NN) |
+| R12                | user_notification(__id__,userId → User, read DF false, time DF now, category) |
+| R13                | auction_notification(__id__,auctionId → Auction, read DF false, time DF now, category) |
+
 
 ### 2. Domains
 
-> The specification of additional domains can also be made in a compact form, using the notation:  
+Specification of additional domains:
 
 | Domain Name | Domain Specification           |
 | ----------- | ------------------------------ |
 | Today	      | DATE DEFAULT CURRENT_DATE      |
 |AuctionNotification       |'Opened', 'Closed', 'New Bid', 'New Message', 'Other'|
 |AuctionStatus       |'Active', 'Hidden', 'Canceled', 'Closed'|
-|AuctionCategory       |'ArtPiece', 'Book', 'Jewelry', 'Decor', 'Other'|
+|AuctionCategory       |'ArtPiece', 'Book', 'Jewelery', 'Decor', 'Other'|
 
 
 ### 3. Schema validation
@@ -152,7 +165,9 @@ As all relations schemas are in the Boyce–Codd Normal Form (BCNF), the relatio
 
 ## A6: Indexes, triggers, transactions and database population
 
-> Brief presentation of the artefact goals.
+This artefact contains the physical schema of the database, the identification and characterisation of the indexes, the support of data integrity rules with triggers and the definition of the database user-defined functions.
+
+This artefact also contains the database's workload as well as the complete database creation script, including all SQL necessary to define all integrity constraints, indexes and triggers.
 
 ### 1. Database Workload
  
@@ -174,26 +189,43 @@ As all relations schemas are in the Boyce–Codd Normal Form (BCNF), the relatio
 Indices proposed to improve performance of the identified queries.
 
 
-| **Index**           | IDX01                                  |
-| ---                 | ---                                    |
-| **Relation**        | Bid  |
-| **Attribute**       | auction_id  |
-| **Type**            | Hash             |
-| **Cardinality**     |high |
+| **Index**           | IDX01          |
+| ---                 | ---            |
+| **Relation**        | Bid            |
+| **Attribute**       | auction_id     |
+| **Type**            | Hash           |
+| **Cardinality**     |High            |
 | **Clustering**      |Yes             |
 | **Justification**   | Every time a auction page is opened we'll need to see the highest bid, and also for the auction history we'll need to have access to every bid made. Each auction has multiple bids, so cardinality is high. It's a good candidate for clustering. |
-| `CREATE INDEX auction_bid_index on bid USING hash(auction_id);`|
+|**SQL Code** 
+    CREATE INDEX auction_bid_index on bid USING hash(auction_id); 
 
 
-| **Index**           | IDX02                                  |
-| ---                 | ---                                    |
-| **Relation**        | Bid  |
-| **Attribute**       | bidder_id  |
-| **Type**            | Hash             |
-| **Cardinality**     |high |
-| **Clustering**      |Yes             |
+
+
+
+| **Index**           | IDX02           |
+| ---                 | ---             |
+| **Relation**        | Bid             |
+| **Attribute**       | bidder_id       |
+| **Type**            | Hash            |
+| **Cardinality**     | High            |
+| **Clustering**      | Yes             |
 | **Justification**   | Every time a auction page is opened we'll need to see the highest bid, and also for the auction history we'll need to have access to every bid made. Each auction has multiple bids, so cardinality is high. It's a good candidate for clustering. |
-| `CREATE INDEX user_bid_index on bid USING hash(bidder_id);`|
+|**SQL Code** 
+    CREATE INDEX user_bid_index on bid USING hash(bidder_id); 
+
+
+| **Index**           | IDX03            |
+| ---                 | ---              |
+| **Relation**        | Auction          |
+| **Attribute**       | start_date       |
+| **Type**            | B-tree           |
+| **Cardinality**     | Medium           |
+| **Clustering**      | No               |
+| **Justification**   | Table auction is frequently accessed when a item is searched. The auctions search reasults could be filtered by date. A b-tree index allows for faster date range queries based on the start date.|
+|**SQL Code** 
+    CREATE INDEX auction_by_date ON auction USING btree (start_date);
 
 
 
@@ -211,7 +243,7 @@ Thus, the fields where full-text search will be available and the associated set
 | **Type**            | GIN                                    |
 | **Clustering**      | No                                     |
 | **Justification**   | To better the performance and results on FTS for auctions. Using GIN type because it will be accessed very frequently and rarely updated.|
-| `SQL code`
+| **SQL Code** 
     SELECT auction.id, ts_auction(auction.ts_search, plainto_tsquery('english', $search_text));
     FROM auction
             INNER JOIN auction_follow ON auction_follow.id_followed = auction.id AND auction_follow.follower_id = users.id
@@ -232,7 +264,7 @@ Thus, the fields where full-text search will be available and the associated set
 | **Type**            | GIN                                    |
 | **Clustering**      | No                                     |
 | **Justification**   | To better the performance and results on FTS for users. Using GIN type because it will be accessed very frequently and rarely updated.|
-| `SQL code`
+| **SQL Code** 
     ALTER TABLE users ADD COLUMN tsvectors TSVECTOR;
     CREATE FUNCTION u_search_update() RETURNS TRIGGER AS $$
     BEGIN
@@ -264,7 +296,7 @@ Thus, the fields where full-text search will be available and the associated set
 
 ### 3. Triggers
  
-> User-defined functions and trigger procedures that add control structures to the SQL language or perform complex computations, are identified and described to be trusted by the database server. Every kind of function (SQL functions, Stored procedures, Trigger procedures) can take base types, composite types, or combinations of these as arguments (parameters). In addition, every kind of function can return a base type or a composite type. Functions can also be defined to return sets of base or composite values.  
+User-defined functions and trigger procedures that add control structures to the SQL language or perform complex computations, are identified and described to be trusted by the database server.
 
 | **Trigger**      | TRIGGER01                              |
 | ---              | ---                                    |
