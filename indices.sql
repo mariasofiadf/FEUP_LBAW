@@ -1,14 +1,14 @@
 DROP MATERIALIZED VIEW IF EXISTS fts_view_auctions;
 
 CREATE MATERIALIZED VIEW fts_view_auctions AS
-SELECT auction.id, (setweight(to_tsvector('simple', auction.title), 'A')) as ts_auction
+SELECT auction.auction_id, (setweight(to_tsvector('simple', auction.title), 'A')) as ts_auction
 FROM auction
-    JOIN bid ON bid.auction_id = auction.id
+    JOIN bid ON bid.auction_id = auction.auction_id
 WHERE
-    bid.value >= min_opening_bid::money AND
+    bid.bid_value >= min_opening_bid AND
     auction.category IN ('ArtPiece', 'Book', 'Jewelry', 'Decor', 'Other') AND
     auction.status IN ('Active', 'Hidden', 'Canceled', 'Closed')
-ORDER BY auction.id;
+ORDER BY auction.auction_id;
 
 DROP FUNCTION IF EXISTS auction_search_update CASCADE;
 CREATE FUNCTION auction_search_update() RETURNS TRIGGER AS $$
@@ -16,12 +16,13 @@ BEGIN
     REFRESH MATERIALIZED VIEW fts_view_auctions;
     RETURN NULL;
 END $$
-LANGUAGE plpgsql
+LANGUAGE plpgsql;
 
 CREATE TRIGGER a_search_update
     AFTER INSERT OR UPDATE ON auction
     FOR EACH ROW
     EXECUTE PROCEDURE auction_search_update();
+
 
 -- SELECT auction.id, ts_auction(auction.ts_search, plainto_tsquery('english', $text_search))
 --     FROM auction
