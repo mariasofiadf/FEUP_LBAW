@@ -1,10 +1,10 @@
 -- images
-INSERT INTO images (img_id,content,label) VALUES (50,'victorianchair.jpg','chair');
-INSERT INTO images (img_id,content,label) VALUES (51,'coffeetable.jpg','coffeetable');
-INSERT INTO images (img_id,content,label) VALUES (52,'egyptiannecklace.jpg','egyptiannecklace');
-INSERT INTO images (img_id,content,label) VALUES (53,'sherlockholmes.jpg','sherlockholmes');
-INSERT INTO images (img_id,content,label) VALUES (54,'agathachristie.jpg','agathachristie');
-INSERT INTO images (img_id,content,label) VALUES (55,'impressionistpainting.jpg','impressionistpainting');
+INSERT INTO image (img_id,content,label) VALUES (50,'victorianchair.jpg','chair');
+INSERT INTO image (img_id,content,label) VALUES (51,'coffeetable.jpg','coffeetable');
+INSERT INTO image (img_id,content,label) VALUES (52,'egyptiannecklace.jpg','egyptiannecklace');
+INSERT INTO image (img_id,content,label) VALUES (53,'sherlockholmes.jpg','sherlockholmes');
+INSERT INTO image (img_id,content,label) VALUES (54,'agathachristie.jpg','agathachristie');
+INSERT INTO image (img_id,content,label) VALUES (55,'impressionistpainting.jpg','impressionistpainting');
 
 -- users
 INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked) VALUES (1,'Bruno Silva','bsilva','$2y$10$mp6HMsGu4VcblGpki0HdR.4LwB2qHR8c9oOpU6Jlbt4RTdIQpkG1W','bsilva@hotmail.com',169335936,10000,'bsilva.jpg',4,False);
