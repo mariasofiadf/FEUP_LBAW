@@ -49,7 +49,7 @@
 
 ### 3. Schema validation
 
-> To validate the Relational Schema obtained from the Conceptual Model, all functional dependencies are identified and the normalization of all relation schemas is accomplished. Should it be necessary, in case the scheme is not in the Boyce–Codd Normal Form (BCNF), the relational schema is refined using normalization.  
+ To validate the Relational Schema obtained from the Conceptual Model, all functional dependencies are identified and the normalization of all relation schemas is accomplished. 
 
 | **TABLE R01**                | User                            |
 | --------------               | ---                             |
@@ -97,6 +97,7 @@
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R08**                | AuctionReport                   |
+| --------------               | ---                             |
 | **Keys**                     | { auction_id, user_id }         |
 | **Functional Dependencies:** |                                 |
 | FD0901                       | { auction_id, user_id } → {description}|
@@ -144,7 +145,6 @@
 As all relations schemas are in the Boyce–Codd Normal Form (BCNF), the relational schema is also in the BCNF and therefore there is no need to be refined using normalisation.
 
 
----
 
 
 ## A6: Indexes, triggers, transactions and database population
@@ -195,7 +195,9 @@ As all relations schemas are in the Boyce–Codd Normal Form (BCNF), the relatio
 
 #### 2.2. Full-text Search Indices 
 
-> The system being developed must provide full-text search features supported by PostgreSQL. Thus, it is necessary to specify the fields where full-text search will be available and the associated setup, namely all necessary configurations, indexes definitions and other relevant details.  
+The developed system will provide full-text search features supported by PostgreSQL.
+
+Thus, the fields where full-text search will be available and the associated setup (all necessary configurations, indexes definitions and other relevant details) are here specified.
 
 | **Index**           | IDX01                                  |
 | ---                 | ---                                    |
@@ -205,7 +207,7 @@ As all relations schemas are in the Boyce–Codd Normal Form (BCNF), the relatio
 | **Clustering**      | No                                     |
 | **Justification**   | To better the performance and results on FTS for auctions. Using GIN type because it will be accessed very frequently and rarely updated.|
 | `SQL code`
-SELECT auction.id, ts_auction(auction.ts_search, plainto_tsquery('english', $search_text))
+    SELECT auction.id, ts_auction(auction.ts_search, plainto_tsquery('english', $search_text));
     FROM auction
             INNER JOIN auction_follow ON auction_follow.id_followed = auction.id AND auction_follow.follower_id = users.id
             INNER JOIN bid ON bid.auction_id = auction.id 
@@ -216,7 +218,7 @@ SELECT auction.id, ts_auction(auction.ts_search, plainto_tsquery('english', $sea
             auction.ts_search @@ plainto_tsquery('english', $text_search)
         ORDER BY ts_auction DESC;
 
-CREATE INDEX auction_search_idx USING GIN (ts_auction);||
+    CREATE INDEX auction_search_idx USING GIN (ts_auction);||
 
 | **Index**           | IDX01                                  |
 | ---                 | ---                                    |
@@ -226,10 +228,9 @@ CREATE INDEX auction_search_idx USING GIN (ts_auction);||
 | **Clustering**      | No                                     |
 | **Justification**   | To better the performance and results on FTS for users. Using GIN type because it will be accessed very frequently and rarely updated.|
 | `SQL code`
-ALTER TABLE users ADD COLUMN tsvectors TSVECTOR;
-
-CREATE FUNCTION u_search_update() RETURNS TRIGGER AS $$
-BEGIN
+    ALTER TABLE users ADD COLUMN tsvectors TSVECTOR;
+    CREATE FUNCTION u_search_update() RETURNS TRIGGER AS $$
+    BEGIN
     IF TG_OP = 'INSERT' THEN
         NEW.tsvectors = (
             setweight(to_tsvector('english', NEW.username), 'A') ||
@@ -245,15 +246,15 @@ BEGIN
         END IF;
     END IF;
     RETURN NEW;
-END $$
-LANGUAGE plpgsql;
+    END $$
+    LANGUAGE plpgsql;
 
-CREATE TRIGGER u_search_update
-    BEFORE INSERT OR UPDATE ON users
-    FOR EACH ROW
-    EXECUTE PROCEDURE u_search_update();
+    CREATE TRIGGER u_search_update
+        BEFORE INSERT OR UPDATE ON users
+        FOR EACH ROW
+        EXECUTE PROCEDURE u_search_update();
 
-CREATE INDEX users_search_idx USING GIN (tsvectors);||
+    CREATE INDEX users_search_idx USING GIN (tsvectors);||
 
 
 ### 3. Triggers
