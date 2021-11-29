@@ -39,6 +39,13 @@ CREATE TABLE users(
     blocked BOOLEAN DEFAULT FALSE NOT NULL --BANNED
 );
 
+
+CREATE TABLE image(--change name
+    img_id SERIAL PRIMARY KEY,
+    content TEXT NOT NULL,
+    label TEXT --NOT NULL??
+);
+
 CREATE TABLE auction(
     auction_id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
@@ -91,11 +98,6 @@ CREATE TABLE message( --change name
 
 
 
-CREATE TABLE image(--change name
-    img_id SERIAL PRIMARY KEY,
-    content TEXT NOT NULL,
-    label TEXT --NOT NULL??
-);
 
 
 CREATE TABLE auction_report(
