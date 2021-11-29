@@ -726,13 +726,30 @@ User-defined functions and trigger procedures that add control structures to the
 
 ### 4. Transactions
  
-> Transactions needed to assure the integrity of the data.  
+Transactions are used to assure the integrity of the data when multiple operations are necessary.
 
-| SQL Reference   | Transaction Name                    |
+| T01  | Get highest bid and bid history                   |
 | --------------- | ----------------------------------- |
-| Justification   | Justification for the transaction.  |
-| Isolation level | Isolation level of the transaction. |
-| `Complete SQL Code`                                   ||
+| Justification   | During this transaction, if a new bid is placed, the bid history and the highest bid might not match. This transaction only uses SELECT so, the isolation level is SERIALIZABLE READ ONLY. |
+| Isolation level | SERIALIZABLE READ ONLY|
+| **SQL Code**                                |
+    BEGIN TRANSACTION;
+    SET TRANSACTION ISOLATION LEVEL SERIALIZABLE READ ONLY;
+
+    -- get bid history
+    SELECT member.username as username, bid.bid_value as value, bid.bid_date as "date"
+        FROM bid 
+        INNER JOIN users
+        ON users.user_id = bid.bidder_id AND bid.auction_id = $auction_id
+        ORDER BY value DESC;
+
+    -- get highest bid
+    SELECT bid.bid_value as value
+        FROM bid
+        WHERE auction.auction_id = bid.auction_id
+        ORDER BY value DESC LIMIT 1;
+
+    COMMIT;
 
 
 ## Annex A. SQL Code
