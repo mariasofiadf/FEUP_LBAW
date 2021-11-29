@@ -12,7 +12,7 @@
 --
 
 BEGIN TRANSACTION;
-SET TRANSACTION SERIALIZED READ ONLY;
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE READ ONLY;
 
 -- get bid history
 SELECT member.username as username, bid.bid_value as value, bid.bid_date as "date"

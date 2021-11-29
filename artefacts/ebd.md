@@ -730,11 +730,11 @@ Transactions are used to assure the integrity of the data when multiple operatio
 
 | T01  | Get highest bid and bid history                   |
 | --------------- | ----------------------------------- |
-| Justification   | During this transaction, if a new bid is placed, the bid history and the highest bid might not match. This transaction only uses SELECT so, the isolation level is SERIALIZED READ ONLY. |
-| Isolation level | SERIALIZED READ ONLY|
+| Justification   | During this transaction, if a new bid is placed, the bid history and the highest bid might not match. This transaction only uses SELECT so, the isolation level is SERIALIZABLE READ ONLY. |
+| Isolation level | SERIALIZABLE READ ONLY|
 | **SQL Code**                                |
     BEGIN TRANSACTION;
-    SET TRANSACTION SERIALIZED READ ONLY;
+    SET TRANSACTION ISOLATION LEVEL SERIALIZABLE READ ONLY;
 
     -- get bid history
     SELECT member.username as username, bid.bid_value as value, bid.bid_date as "date"
