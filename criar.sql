@@ -23,22 +23,28 @@ DROP TABLE IF EXISTS image CASCADE;
 --TYPES
 CREATE TYPE auction_status AS ENUM ('Active', 'Hidden', 'Canceled', 'Closed');
 CREATE TYPE auction_category AS ENUM ('ArtPiece', 'Book', 'Jewlery', 'Decor', 'Other');
-CREATE TYPE auction_notification_type AS ENUM ('Opened', 'Closed', 'New Bid', 'New Message', 'Other', 'Follow');
+CREATE TYPE auction_notification_type AS ENUM ('Opened', 'Closed', 'New Bid', 'New Message', 'Other', 'Auction Follow');
 CREATE TYPE user_notification_type AS ENUM ('Rating', 'Follow', 'Other');
 
 CREATE TABLE users(
     user_id SERIAL PRIMARY KEY,
-    name text NOT NULL,
-    username text NOT NULL UNIQUE,
+    name TEXT NOT NULL,
+    username TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
-    email text not null UNIQUE,
-    phone_number INTEGER NOT NULL UNIQUE,
-    credit MONEY NOT NULL CONSTRAINT credit_ck CHECK (credit >= 0::MONEY),
+    email TEXT UNIQUE,
+    phone_number INTEGER UNIQUE,
+    credit MONEY DEFAULT 0 NOT NULL CONSTRAINT credit_ck CHECK (credit >= 0::MONEY),
     profile_image TEXT, -- check type (VARBINARY())
     rating INTEGER DEFAULT 0 NOT NULL, --dif
-    blocked BOOLEAN DEFAULT FALSE NOT NULL --BANNED
+    blocked BOOLEAN DEFAULT FALSE NOT NULL, --BANNED
+    auction_notif BOOLEAN DEFAULT TRUE NOT NULL,
+    user_notif BOOLEAN DEFAULT TRUE NOT NULL
 );
 
+
+CREATE TABLE bid(
+    bid_id SERIAL PRIMARY KEY
+);
 CREATE TABLE auction(
     auction_id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
@@ -51,13 +57,12 @@ CREATE TABLE auction(
 
     status auction_status NOT NULL,
     category auction_category NOT NULL,
-
-    auction_notif BOOLEAN DEFAULT TRUE NOT NULL,
-    user_notif BOOLEAN DEFAULT TRUE NOT NULL,
     seller_id INTEGER REFERENCES users(user_id) NOT NULL,
     win_bid INTEGER REFERENCES bid(bid_id)
 );
 
+
+DROP TABLE IF EXISTS bid CASCADE;
 CREATE TABLE bid(
     bid_id SERIAL PRIMARY KEY,
     bid_value INTEGER NOT NULL CHECK (bid_value > 0),
@@ -82,6 +87,7 @@ CREATE TABLE chat(
 
 CREATE TABLE message( --change name
     msg_id SERIAL PRIMARY KEY,
+    msg_content TEXT NOT NULL,
     msg_date DATE NOT NULL, --ck >auction.date
     --"date" TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
     user_id INTEGER REFERENCES users(user_id) NOT NULL,
@@ -113,15 +119,15 @@ CREATE TABLE rating(
 );
 
 CREATE TABLE user_follow(
-    id_folllowed INTEGER REFERENCES users(user_id) NOT NULL,
-    id_folllower INTEGER REFERENCES users(user_id) NOT NULL CHECK (id_folllowed != id_folllower), 
-    PRIMARY KEY(id_folllowed, id_folllower)
+    id_followed INTEGER REFERENCES users(user_id) NOT NULL,
+    id_follower INTEGER REFERENCES users(user_id) NOT NULL CHECK (id_followed != id_follower), 
+    PRIMARY KEY(id_followed, id_follower)
 );
 
 CREATE TABLE auction_follow(
-    id_folllowed INTEGER REFERENCES auction(auction_id) NOT NULL,
-    id_folllower INTEGER REFERENCES users(user_id) NOT NULL CHECK (id_folllowed != id_folllower), 
-    PRIMARY KEY(id_folllowed, id_folllower)
+    id_followed INTEGER REFERENCES auction(auction_id) NOT NULL,
+    id_follower INTEGER REFERENCES users(user_id) NOT NULL CHECK (id_followed != id_follower), 
+    PRIMARY KEY(id_followed, id_follower)
 );
 
 

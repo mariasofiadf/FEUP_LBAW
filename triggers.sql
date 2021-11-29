@@ -27,10 +27,10 @@ DROP FUNCTION IF EXISTS user_diff_admin CASCADE;
 CREATE FUNCTION user_diff_admin() RETURNS TRIGGER AS 
 $BODY$
 BEGIN
-    IF EXISTS (SELECT * FROM users WHERE NEW.username = admin.username) THEN
+    IF EXISTS (SELECT * FROM admin WHERE NEW.username = admin.username) THEN
         RAISE EXCEPTION 'A User must not have the same username as an Admin.';
 	END IF;
-    IF EXISTS (SELECT * FROM users WHERE NEW.email = admin.email) THEN
+    IF EXISTS (SELECT * FROM admin WHERE NEW.email = admin.email) THEN
         RAISE EXCEPTION 'A User must not have the same email as an Admin';
     END IF;
     RETURN NEW;
@@ -50,8 +50,8 @@ DROP FUNCTION IF EXISTS user_bid CASCADE;
 CREATE FUNCTION user_bid() RETURNS TRIGGER AS 
 $BODY$
 BEGIN
-    IF EXISTS (SELECT * FROM auction WHERE NEW.bidder_id = auction.seller_id AND NEW.auction_id = auction.id ) THEN
-        RAISE EXCEPTION 'A member cannot bid on their own auction.';
+    IF EXISTS (SELECT * FROM auction WHERE NEW.bidder_id = auction.seller_id AND NEW.auction_id = auction.auction_id ) THEN
+        RAISE EXCEPTION 'A user cannot bid on their own auction.';
     END IF;
     RETURN NEW;
 END
@@ -71,12 +71,12 @@ CREATE FUNCTION win_bid() RETURNS TRIGGER AS
 $BODY$
 DECLARE 
 	max_bid INTEGER;
+    bid_idd INTEGER;
 BEGIN
-	SELECT max(bid_value) INTO max_bid FROM bid WHERE bid.auction_id = NEW.id;
-    IF (NEW.auction_status = 'Closed') THEN
-        UPDATE auction
-            SET win_bid = max_bid
-            WHERE NEW.id = auction.id;
+	SELECT max(bid_value) INTO max_bid FROM bid WHERE bid.auction_id = NEW.auction_id;
+	SELECT bid_id INTO bid_idd FROM bid WHERE bid.bid_value = max_bid AND bid.auction_id = NEW.auction_id;
+    IF (NEW.status = 'Closed') THEN
+        NEW.win_bid = bid_idd;
     END IF;
     RETURN NEW;
 END
@@ -85,7 +85,7 @@ LANGUAGE plpgsql;
 
 DROP TRIGGER IF EXISTS win_bid on bid CASCADE;
 CREATE TRIGGER win_bid
-    AFTER UPDATE ON auction 
+    BEFORE UPDATE ON auction 
     FOR EACH ROW 
     EXECUTE PROCEDURE win_bid();
 
@@ -97,12 +97,18 @@ $BODY$
 DECLARE 
 	max_bid INTEGER;
     min_inc INTEGER;
+    min_bid INTEGER;
 BEGIN
 	SELECT max(bid_value) INTO max_bid FROM bid WHERE bid.auction_id = NEW.auction_id;
-    SELECT min_raise INTO min_inc FROM auction WHERE NEW.auction_id = auction.id;
-    IF (max_bid + min_raise > NEW.bid_value) THEN
+    SELECT min_raise INTO min_inc FROM auction WHERE NEW.auction_id = auction.auction_id;
+    SELECT min_opening_bid INTO min_bid FROM auction WHERE NEW.auction_id = auction.auction_id;
+    IF (min_bid > NEW.bid_value) THEN
+        RAISE EXCEPTION 'New bid must be higher than the mininum opening bid';
+    END IF;
+    IF (max_bid + min_inc > NEW.bid_value) THEN
         RAISE EXCEPTION 'New bid must be higher than all the previous bids plus the minimum raise';
     END IF;
+    
     RETURN NEW;
 END
 $BODY$
@@ -110,7 +116,7 @@ LANGUAGE plpgsql;
 
 DROP TRIGGER IF EXISTS min_bid on bid CASCADE;
 CREATE TRIGGER min_bid
-    BEFORE UPDATE ON bid 
+    BEFORE INSERT ON bid 
     FOR EACH ROW 
     EXECUTE PROCEDURE min_bid();
 
@@ -122,8 +128,8 @@ CREATE FUNCTION extend_auction() RETURNS TRIGGER AS
 $BODY$
 BEGIN
     UPDATE auction
-    SET close_date = close_date + 1 --mudar?
-    WHERE NEW.auction_id = auction.id;
+    SET close_date = close_date + integer '1' --mudar?
+    WHERE auction_id = NEW.auction_id;
     RETURN NEW;
 END
 $BODY$
@@ -131,7 +137,7 @@ LANGUAGE plpgsql;
 
 DROP TRIGGER IF EXISTS extend_auction on bid CASCADE;
 CREATE TRIGGER extend_auction
-    BEFORE UPDATE ON bid 
+    BEFORE INSERT ON bid 
     FOR EACH ROW 
     EXECUTE PROCEDURE extend_auction();
 
@@ -149,7 +155,7 @@ BEGIN
 
     UPDATE users
         SET rating = ((users.rating * rate_count)+NEW.rate_value)/(rate_count+1)
-        WHERE users.id = NEW.id_rated;
+        WHERE users.user_id = NEW.id_rated;
     RETURN NEW;
 END
 $BODY$
@@ -174,7 +180,7 @@ BEGIN
 
     UPDATE users
         SET rating = ((users.rating * rate_count) - OLD.rate_value + NEW.rate_value)/(rate_count)
-        WHERE users.id = NEW.id_rated;
+        WHERE users.user_id = NEW.id_rated;
     RETURN NEW;
 END
 $BODY$
@@ -197,10 +203,15 @@ DECLARE
 BEGIN
     SELECT COUNT(*) INTO rate_count FROM rating 
     WHERE rating.id_rated = NEW.id_rated;
-
-    UPDATE users
+    IF rate_count > 0 THEN
+        UPDATE users
         SET rating = ((users.rating * rate_count) - OLD.rate_value)/(rate_count-1)
-        WHERE users.id = NEW.id_rated;
+        WHERE users.user_id = NEW.id_rated;
+    ELSE 
+        UPDATE users
+        SET rating = 0
+        WHERE users.user_id = NEW.id_rated;
+    END IF;
     RETURN NEW;
 END
 $BODY$
@@ -208,7 +219,7 @@ LANGUAGE plpgsql;
 
 DROP TRIGGER IF EXISTS delete_rating on bid CASCADE;
 CREATE TRIGGER delete_rating
-    BEFORE DELETE ON rating 
+    AFTER DELETE ON rating 
     FOR EACH ROW 
     EXECUTE PROCEDURE delete_rating();
 
@@ -219,7 +230,8 @@ CREATE FUNCTION new_follow_notif() RETURNS TRIGGER AS
 $BODY$
 BEGIN
     INSERT INTO user_notification(notified_id, notifier_id, notif_category)
-    VALUES (NEW.id_folllowed, NEW.id_folllower,'Follow');
+    VALUES (NEW.id_followed, NEW.id_follower,'Follow');
+    RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
@@ -238,6 +250,7 @@ $BODY$
 BEGIN
     INSERT INTO user_notification(notified_id, notifier_id, notif_category)
     VALUES (NEW.id_rated, NEW.id_rates,'Rating');
+    RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
@@ -249,7 +262,7 @@ CREATE TRIGGER new_rating_notif
     EXECUTE PROCEDURE new_rating_notif();
 
 --TRIGGER 12
---When a User follows an Auction, it's User gets a notification
+--When a User follows an Auction, it's owner gets a notification
 DROP FUNCTION IF EXISTS new_auction_follow_notif CASCADE;
 CREATE FUNCTION new_auction_follow_notif() RETURNS TRIGGER AS 
 $BODY$
@@ -257,9 +270,10 @@ DECLARE
     seller_id INTEGER;
 BEGIN
     SELECT auction.seller_id INTO seller_id FROM auction 
-    WHERE auction.id = NEW.id_folllowed;
+    WHERE auction.auction_id = NEW.id_followed;
     INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
-    VALUES (seller_id, NEW.id_folllowed,'Follow');
+    VALUES (seller_id, NEW.id_followed,'Auction Follow');
+    RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
@@ -278,11 +292,11 @@ $BODY$
 DECLARE
     rec RECORD;
 BEGIN
-    FOR rec IN SELECT id_folllower FROM user_follow
-    WHERE id_folllowed = NEW.seller_id
+    FOR rec IN SELECT id_follower FROM user_follow
+    WHERE id_followed = NEW.seller_id
     LOOP
         INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
-        VALUES(rec.id_folllower,NEW.auction_id,'Opened');
+        VALUES(rec.id_follower,NEW.auction_id,'Opened');
     END LOOP;
     RETURN NEW;
 END
@@ -303,12 +317,12 @@ $BODY$
 DECLARE
     rec RECORD;
 BEGIN
-    FOR rec IN SELECT id_folllower FROM user_follow
-    WHERE id_folllowed = NEW.seller_id
+    FOR rec IN SELECT id_follower FROM user_follow
+    WHERE id_followed = NEW.seller_id
     LOOP
-        IF NEW.auction_status = "Closed" AND OLD.auction_status = "Active" THEN
+        IF NEW.status = 'Closed' AND OLD.status = 'Active' THEN
             INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
-            VALUES(rec.id_folllower,NEW.auction_id,'Closed');
+            VALUES(rec.id_follower,NEW.auction_id,'Closed');
         END IF;
     END LOOP;
     RETURN NEW;
@@ -332,11 +346,11 @@ DECLARE
     auction_id INTEGER;
 BEGIN
     SELECT chat.auction_id INTO auction_id FROM chat WHERE chat.chat_id = NEW.chat_id;
-    FOR rec IN SELECT id_folllower FROM auction_follow
-    WHERE id_folllowed = auction_id
+    FOR rec IN SELECT id_follower FROM auction_follow
+    WHERE id_followed = auction_id
     LOOP
         INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
-        VALUES(rec.id_folllower,auction_id,'New Message');
+        VALUES(rec.id_follower,auction_id,'New Message');
     END LOOP;
     RETURN NEW;
 END
@@ -357,11 +371,11 @@ $BODY$
 DECLARE
     rec RECORD;
 BEGIN
-    FOR rec IN SELECT id_bidder FROM bid
+    FOR rec IN SELECT bidder_id FROM bid
     WHERE bid.auction_id = NEW.auction_id 
     LOOP
         INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
-        VALUES(rec.id_bidder,NEW.auction_id,'New Bid');
+        VALUES(rec.bidder_id,NEW.auction_id,'New Bid');
     END LOOP;
     RETURN NEW;
 END
