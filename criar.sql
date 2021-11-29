@@ -104,7 +104,7 @@ CREATE TABLE auction_report(
 
 CREATE TABLE rating(
     id_rated INTEGER REFERENCES users(user_id) NOT NULL,
-    id_rates INTEGER REFERENCES users(user_id) NOT NULL,
+    id_rates INTEGER REFERENCES users(user_id) NOT NULL CHECK (id_rated != id_rates),
     rate_value INTEGER NOT NULL CHECK (rate_value > 0),  --change name, < 5 ??
     rate_date DATE NOT NULL,    --change name
     PRIMARY KEY(id_rated, id_rates)
@@ -125,7 +125,8 @@ CREATE TABLE auction_follow(
 
 CREATE TABLE user_notification(
     notif_id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users(user_id) NOT NULL,
+    notified_id INTEGER REFERENCES users(user_id) NOT NULL,
+    notifier_id INTEGER REFERENCES users(user_id) NOT NULL,
     notif_read BOOLEAN DEFAULT FALSE,  --change name
     --notif_time TIME DEFAULT NOW, --change name
     notif_category user_notification_type NOT NULL  --change name
