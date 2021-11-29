@@ -202,8 +202,9 @@ Indices proposed to improve performance of the identified queries.
 | **Justification**   | Every time a auction page is opened we'll need to see the highest bid, and also for the auction history we'll need to have access to every bid made. Each auction has multiple bids, so cardinality is high. It's a good candidate for clustering. |
 |**SQL Code** 
 
+```sql
     CREATE INDEX auction_bid_index on bid USING hash(auction_id); 
-
+```
 
 | **Index**           | IDX02           |
 | -                   | ------          |
@@ -215,8 +216,9 @@ Indices proposed to improve performance of the identified queries.
 | **Justification**   | Every time a auction page is opened we'll need to see the highest bid, and also for the auction history we'll need to have access to every bid made. Each auction has multiple bids, so cardinality is high. It's a good candidate for clustering. |
 |**SQL Code** 
 
+```sql
     CREATE INDEX user_bid_index on bid USING hash(bidder_id); 
-
+```
 
 | **Index**           | IDX03            |
 | -                   | ------           |
@@ -228,9 +230,23 @@ Indices proposed to improve performance of the identified queries.
 | **Justification**   | Table auction is frequently accessed when a item is searched. The auctions search reasults could be filtered by date. A b-tree index allows for faster date range queries based on the start date.|
 |**SQL Code** 
 
+```sql
     CREATE INDEX auction_by_date ON auction USING btree (start_date);
+```
 
+| Index           | IDX04            |
+| -                   | ------           |
+| Relation        | Auction          |
+| Attribute       | predicted_end    |
+| Type            | B-tree           |
+| Cardinality     | Medium           |
+| Clustering      | No               |
+| Justification   | Table auction is frequently accessed when a item is searched. The auctions search reasults could be filtered by the end date. A b-tree index allows for faster date range queries based on the end date.|
+|SQL Code 
 
+```sql
+    CREATE INDEX auction_by_end_date ON auction USING btree (predicted_end);
+```
 
 
 #### 2.2. Full-text Search Indices 
@@ -239,7 +255,7 @@ The developed system will provide full-text search features supported by Postgre
 
 Thus, the fields where full-text search will be available and the associated setup (all necessary configurations, indexes definitions and other relevant details) are here specified.
 
-| **Index**           | IDX01                                  |
+| **Index**           | IDX05                                  |
 | -                   | ------                                 |            
 | **Relation**        | auction, member                        |
 | **Attribute**       | {title, description, username, name}   |
@@ -248,6 +264,7 @@ Thus, the fields where full-text search will be available and the associated set
 | **Justification**   | To better the performance and results on FTS for auctions. Using GIN type because it will be accessed very frequently and rarely updated.|
 | **SQL Code** 
 
+```sql
     SELECT auction.id, ts_auction(auction.ts_search, plainto_tsquery('english', $search_text));
     FROM auction
             INNER JOIN auction_follow ON auction_follow.id_followed = auction.id AND auction_follow.follower_id = users.id
@@ -260,8 +277,9 @@ Thus, the fields where full-text search will be available and the associated set
         ORDER BY ts_auction DESC;
 
     CREATE INDEX auction_search_idx USING GIN (ts_auction);||
+```
 
-| **Index**           | IDX01                                  |
+| **Index**           | IDX06                                  |
 | -                   | ------                                 |
 | **Relation**        | member                                 |
 | **Attribute**       | {username, name}                       |
@@ -270,6 +288,7 @@ Thus, the fields where full-text search will be available and the associated set
 | **Justification**   | To better the performance and results on FTS for users. Using GIN type because it will be accessed very frequently and rarely updated.|
 | **SQL Code** 
 
+```sql
     ALTER TABLE users ADD COLUMN tsvectors TSVECTOR;
     CREATE FUNCTION u_search_update() RETURNS TRIGGER AS $$
     BEGIN
@@ -297,7 +316,7 @@ Thus, the fields where full-text search will be available and the associated set
         EXECUTE PROCEDURE u_search_update();
 
     CREATE INDEX users_search_idx USING GIN (tsvectors);||
-
+```
 
 ### 3. Triggers
  
@@ -307,6 +326,7 @@ User-defined functions and trigger procedures that add control structures to the
 | -                | ------                                 |
 | **Description**  | An Admin must not have the same username or email as a User |
 
+```sql
     DROP FUNCTION IF EXISTS admin_diff_user CASCADE;
     CREATE FUNCTION admin_diff_user() RETURNS TRIGGER AS 
     $BODY$
@@ -327,11 +347,13 @@ User-defined functions and trigger procedures that add control structures to the
         BEFORE INSERT OR UPDATE ON admin 
         FOR EACH ROW 
         EXECUTE PROCEDURE admin_diff_user();
+```
 
 | **Trigger**      | TRIGGER02                              |
 | -                | ------                                 |
 | **Description**  | A User must not have the same username nor email as an Admin |
 
+```sql
     DROP FUNCTION IF EXISTS user_diff_admin CASCADE;
     CREATE FUNCTION user_diff_admin() RETURNS TRIGGER AS 
     $BODY$
@@ -352,11 +374,13 @@ User-defined functions and trigger procedures that add control structures to the
         BEFORE INSERT OR UPDATE ON users 
         FOR EACH ROW 
         EXECUTE PROCEDURE user_diff_admin();    
+```
 
 | **Trigger**      | TRIGGER03                              |
 | -                | ------                                 |
 | **Description**  | A User cannot bid on one of their own auctions |
 
+```sql
     DROP FUNCTION IF EXISTS user_bid CASCADE;
     CREATE FUNCTION user_bid() RETURNS TRIGGER AS 
     $BODY$
@@ -374,11 +398,13 @@ User-defined functions and trigger procedures that add control structures to the
         BEFORE INSERT OR UPDATE ON bid 
         FOR EACH ROW 
         EXECUTE PROCEDURE user_bid();
+```
 
 | **Trigger**      | TRIGGER04                              |
 | -                | ------                                 |
 | **Description**  | When an auction closes, the winning bid is set |
 
+```sql
     DROP FUNCTION IF EXISTS win_bid CASCADE;
     CREATE FUNCTION win_bid() RETURNS TRIGGER AS
     $BODY$
@@ -401,11 +427,13 @@ User-defined functions and trigger procedures that add control structures to the
         BEFORE UPDATE ON auction 
         FOR EACH ROW 
         EXECUTE PROCEDURE win_bid();
+```
 
 | **Trigger**      | TRIGGER05                              |
 | -                | ------                                 |
 | **Description**  | A User bid on an auction must be higher than the current highest |
 
+```sql
     DROP FUNCTION IF EXISTS min_bid CASCADE;
     CREATE FUNCTION min_bid() RETURNS TRIGGER AS
     $BODY$
@@ -434,13 +462,14 @@ User-defined functions and trigger procedures that add control structures to the
         BEFORE INSERT ON bid 
         FOR EACH ROW 
         EXECUTE PROCEDURE min_bid();
-
+```
 
 
 | **Trigger**      | TRIGGER06                              |
 | -                | ------                                 |
 | **Description**  | When an auction gets a new bid, the close_date gets increased |
 
+```sql
     DROP FUNCTION IF EXISTS extend_auction CASCADE;
     CREATE FUNCTION extend_auction() RETURNS TRIGGER AS
     $BODY$
@@ -458,11 +487,13 @@ User-defined functions and trigger procedures that add control structures to the
         BEFORE INSERT ON bid 
         FOR EACH ROW 
         EXECUTE PROCEDURE extend_auction();
+```
 
 | **Trigger**      | TRIGGER07                              |
 | -                | ------                                 |
 | **Description**  | When User receives rating, their rating is updated |
 
+```sql
     DROP FUNCTION IF EXISTS new_rating CASCADE;
     CREATE FUNCTION new_rating() RETURNS TRIGGER AS 
     $BODY$
@@ -485,12 +516,13 @@ User-defined functions and trigger procedures that add control structures to the
         BEFORE INSERT ON rating 
         FOR EACH ROW 
         EXECUTE PROCEDURE new_rating();
-
+```
 
 | **Trigger**      | TRIGGER08                              |
 | -                | ------                                 |
 | **Description**  | When a User changes their rating of another User, the rating of the rated user is updated |
 
+```sql
     DROP FUNCTION IF EXISTS update_rating CASCADE;
     CREATE FUNCTION update_rating() RETURNS TRIGGER AS 
     $BODY$
@@ -513,11 +545,14 @@ User-defined functions and trigger procedures that add control structures to the
         BEFORE UPDATE ON rating 
         FOR EACH ROW 
         EXECUTE PROCEDURE update_rating();
+```
+
 
 | **Trigger**      | TRIGGER09                              |
 | -                | ------                                 |
 | **Description**  | When a User removes their rating of another User, the rating of the previously rated user is updated |
 
+```sql
     DROP FUNCTION IF EXISTS delete_rating CASCADE;
     CREATE FUNCTION delete_rating() RETURNS TRIGGER AS 
     $BODY$
@@ -545,11 +580,13 @@ User-defined functions and trigger procedures that add control structures to the
         AFTER DELETE ON rating 
         FOR EACH ROW 
         EXECUTE PROCEDURE delete_rating();
+```
 
 | **Trigger**      | TRIGGER10                              |
 | -                | ------                                 |
 | **Description**  | When a User is followed they must get a "Follow" user_notification |
 
+```sql
     DROP FUNCTION IF EXISTS new_follow_notif CASCADE;
     CREATE FUNCTION new_follow_notif() RETURNS TRIGGER AS 
     $BODY$
@@ -566,11 +603,13 @@ User-defined functions and trigger procedures that add control structures to the
         AFTER INSERT ON user_follow 
         FOR EACH ROW 
         EXECUTE PROCEDURE new_follow_notif();
+```
 
 | **Trigger**      | TRIGGER11                              |
 | -                | ------                                 |
 | **Description**  | When a User receives a rating they must get a "Rating" user_notification |
 
+```sql
     DROP FUNCTION IF EXISTS new_rating_notif CASCADE;
     CREATE FUNCTION new_rating_notif() RETURNS TRIGGER AS 
     $BODY$
@@ -587,11 +626,13 @@ User-defined functions and trigger procedures that add control structures to the
         AFTER INSERT ON rating 
         FOR EACH ROW 
         EXECUTE PROCEDURE new_rating_notif();
+```
 
 | **Trigger**      | TRIGGER12                              |
 | -                | ------                                 |
 | **Description**  | When a User follows an Auction, it's User gets a notification |
 
+```sql
     DROP FUNCTION IF EXISTS new_auction_follow_notif CASCADE;
     CREATE FUNCTION new_auction_follow_notif() RETURNS TRIGGER AS 
     $BODY$
@@ -612,12 +653,13 @@ User-defined functions and trigger procedures that add control structures to the
         AFTER INSERT ON auction_follow 
         FOR EACH ROW 
         EXECUTE PROCEDURE new_auction_follow_notif();
-
+```
 
 | **Trigger**      | TRIGGER13                              |
 | -                | ------                                 |
 | **Description**  | When an auction is created, all of the creater's followers get notified |
 
+```sql
     DROP FUNCTION IF EXISTS new_auction_notif CASCADE;
     CREATE FUNCTION new_auction_notif() RETURNS TRIGGER AS 
     $BODY$
@@ -640,12 +682,13 @@ User-defined functions and trigger procedures that add control structures to the
         AFTER INSERT ON auction 
         FOR EACH ROW 
         EXECUTE PROCEDURE new_auction_notif();
-
+```
 
 | **Trigger**      | TRIGGER14                              |
 | -                | ------                                 |
 | **Description**  | When an auction is closed, all of the creator's followers get notified |
 
+```sql
     DROP FUNCTION IF EXISTS auction_closed_notif CASCADE;
     CREATE FUNCTION auction_closed_notif() RETURNS TRIGGER AS 
     $BODY$
@@ -670,11 +713,13 @@ User-defined functions and trigger procedures that add control structures to the
         AFTER UPDATE ON auction 
         FOR EACH ROW 
         EXECUTE PROCEDURE auction_closed_notif();
+```
 
 | **Trigger**      | TRIGGER15                              |
 | -                | ------                                 |
 | **Description**  | When an auction's chat gets new message, all of that auction's followers get notified |
 
+```sql
     DROP FUNCTION IF EXISTS new_message_notif CASCADE;
     CREATE FUNCTION new_message_notif() RETURNS TRIGGER AS 
     $BODY$
@@ -699,11 +744,13 @@ User-defined functions and trigger procedures that add control structures to the
         AFTER INSERT ON message 
         FOR EACH ROW 
         EXECUTE PROCEDURE new_message_notif();
+```
 
 | **Trigger**      | TRIGGER16                              |
 | -                | ------                                 |
 | **Description**  | When an auction gets a new bid, all of that auction's bidders get notified |
 
+```sql
     DROP FUNCTION IF EXISTS new_bid_notif CASCADE;
     CREATE FUNCTION new_bid_notif() RETURNS TRIGGER AS 
     $BODY$
@@ -726,7 +773,7 @@ User-defined functions and trigger procedures that add control structures to the
         AFTER INSERT ON bid 
         FOR EACH ROW 
         EXECUTE PROCEDURE new_bid_notif();
-
+```
 
 
 ### 4. Transactions
@@ -739,6 +786,7 @@ Transactions are used to assure the integrity of the data when multiple operatio
 | Isolation level | SERIALIZABLE READ ONLY|
 | **SQL Code**                                |
 
+```sql
     BEGIN TRANSACTION;
     SET TRANSACTION ISOLATION LEVEL SERIALIZABLE READ ONLY;
 
@@ -756,7 +804,7 @@ Transactions are used to assure the integrity of the data when multiple operatio
         ORDER BY value DESC LIMIT 1;
 
     END TRANSACTION;
-
+```
 
 ## Annex A. SQL Code
 
@@ -770,6 +818,7 @@ Transactions are used to assure the integrity of the data when multiple operatio
 
 ### A.1. Database schema
 
+```sql
     --CREATE
 
     SET search_path TO lbaw2123;
@@ -1387,6 +1436,7 @@ Transactions are used to assure the integrity of the data when multiple operatio
         FOR EACH ROW 
         EXECUTE PROCEDURE new_bid_notif();
 
+```
 
 ### A.2. Database population
 
