@@ -106,6 +106,13 @@ Specification of additional domains:
 | FD0501                       | { msg_id } → {msg_content, msg_date, user_id, chat_id}|
 | **NORMAL FORM**              | BCNF                            |
 
+| **TABLE R06**                | Chat                            |
+| --------------               | ---                             |
+| **Keys**                     | { chat_id }                     |
+| **Functional Dependencies:** |                                 |
+| FD0601                       | { chat_id } → {auction_id}      |
+| **NORMAL FORM**              | BCNF                            |
+
 | **TABLE R07**                | Image                           |
 | --------------               | ---                             |
 | **Keys**                     | { img_id }                      |
@@ -117,7 +124,7 @@ Specification of additional domains:
 | --------------               | ---                             |
 | **Keys**                     | { auction_id, user_id }         |
 | **Functional Dependencies:** |                                 |
-| FD0901                       | { auction_id, user_id } → {description}|
+| FD0801                       | { auction_id, user_id } → {description}|
 | ...                          | ...                             |
 | **NORMAL FORM**              | BCNF                            |
 
@@ -125,30 +132,30 @@ Specification of additional domains:
 | --------------               | ---                             |
 | **Keys**                     | { id_rated }, { id_rates }      |
 | **Functional Dependencies:** |                                 |
-| FD1001                       | {id_rated, id_rates} → {rate_value, rate_date, description}|
+| FD0901                       | {id_rated, id_rates} → {rate_value, rate_date, description}|
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R10**                | UserFollow                      |
 | --------------               | ---                             |
 | **Keys**                     | { id_followed }, { id_follower }|
 | **Functional Dependencies:** |                                 |
-| FD1101                       | id_followed → {id_follower}     |
-| FD1102                       | id_follower → {id_followed}     |
+| FD1001                       | id_followed → {id_follower}     |
+| FD1002                       | id_follower → {id_followed}     |
 | **NORMAL FORM**              | BCNF                            |
 
-| **TABLE R11**                | AuctionFollow                   |
+| **TABLE R11**                | ActionFollow                    |
 | --------------               | ---                             |
 | **Keys**                     | { id_followed }, {id_follower}  |
 | **Functional Dependencies:** |                                 |
-| FD1201                       | id_followed → {id_follower}     |
-| FD1202                       | id_follower → {id_followed}     |
+| FD1101                       | id_followed → {id_follower}     |
+| FD1102                       | id_follower → {id_followed}     |
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R12**                | UserNotification                |
 | --------------               | ---                             |
 | **Keys**                     | { notif_id }                    |
 | **Functional Dependencies:** |                                 |
-| FD1301                       | { notif_id } → {notified_id, notifier_id, notif_read, notif_time, category}|
+| FD1201                       | { notif_id } → {notified_id, notifier_id, notif_read, notif_time, category}|
 | ...                          | ...                             |
 | **NORMAL FORM**              | BCNF                            |
 
@@ -156,7 +163,7 @@ Specification of additional domains:
 | --------------               | ---                             |
 | **Keys**                     | { notif_id }                    |
 | **Functional Dependencies:** |                                 |
-| FD1401                       | { notif_id } → {notified_id, auction_id, anotif_read, anotif_time, anotif_category}|
+| FD1301                       | { notif_id } → {notified_id, auction_id, anotif_read, anotif_time, anotif_category}|
 | **NORMAL FORM**              | BCNF                            |
 
 As all relations schemas are in the Boyce–Codd Normal Form (BCNF), the relational schema is also in the BCNF and therefore there is no need to be refined using normalisation.
