@@ -16,7 +16,7 @@ UML class diagram containing the classes, associations, multiplicity and roles.
 ### 2. Additional Business Rules
  
 | Business rules | Description |
-| :---           |  :---       |
+| :-             |  :-------   |
 | BR01           | A user cannot put an item for auction if he cannot prove the ownership of said item.|
  
 
@@ -35,7 +35,7 @@ The Relational Schema includes the relation schemas, attributes, domains, primar
 Relation schemas are specified in the compact notation:  
 
 | Relation reference | Relation Compact Notation                        |
-| ------------------ | ------------------------------------------------ |
+| ------ | ------------------------------------------------ |
 | R01                | user(__user_id__, email UK NN, name NN, username NN UK, password NN, image, nif UK, phone_number UK, credit NN DF 0 CK credit > 0, profile_image, rating, blocked, auction_notif, user_notif)                     |
 | R02                | auction(__auction_id__, title NN, description, category, start_date NN, predicted_end NN CK predicted_end >= start_date, close_date CK close_date >= predicted_end, min_opening_bid NN CK min_opening_bid > 0, min_raise NN CK min_raise > 0, status NN, seller_id → user, auction_image → image, win_bid -> bid) |
 | R03                | bid(__bid_id__, bid_value NN ck value > 0,  bid_date NN CK date > auction.start_date, auction_id → auction, bidder_id → user) |
@@ -79,7 +79,7 @@ Specification of additional domains:
 
 
 | **TABLE R02**                | Auction                         |
-| --------------               | ---                             |
+| -               | ---                             |
 | **Keys**                     | { auction_id }                  |
 | **Functional Dependencies:** |                                 |
 | FD0201                       | { auction_id } → {title, description, category, start_date, predicted_end, close_date, min_opening_bid, min_raise, status, seller_id, auction_image}|
@@ -87,42 +87,42 @@ Specification of additional domains:
 
 
 | **TABLE R03**                | Bid                             |
-| --------------               | ---                             |
+| -  | ---                             |
 | **Keys**                     | { bid_id }                      |
 | **Functional Dependencies:** |                                 |
-| FD0301                       | { bid_id } → {bid_value, bid_date, auction_id, bidder_id}|
+| FD0301                       | { bid_id } → {bid_value, bid_date, auction_id, bidder_id}          |
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R04**                | Admin                           |
-| --------------               | ---                             |
+| -               | ---                             |
 | **Keys**                     | { admin_id }                    |
 | **Functional Dependencies:** |                                 |
 | FD0401                       | { admin_id } → {admin_name, username, email, admin_password}|
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R05**                | Message                         |
-| --------------               | ---                             |
+| -               | ---                             |
 | **Keys**                     | { msg_id }                      |
 | **Functional Dependencies:** |                                 |
 | FD0501                       | { msg_id } → {msg_content, msg_date, user_id, chat_id}|
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R06**                | Chat                            |
-| --------------               | ---                             |
+| -               | ---                             |
 | **Keys**                     | { chat_id }                     |
 | **Functional Dependencies:** |                                 |
 | FD0601                       | { chat_id } → {auction_id}      |
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R07**                | Image                           |
-| --------------               | ---                             |
+| -               | ---                             |
 | **Keys**                     | { img_id }                      |
 | **Functional Dependencies:** |                                 |
 | FD0701                       | { img_id } → {content, label}   |
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R08**                | AuctionReport                   |
-| --------------               | ---                             |
+| -               | ---                             |
 | **Keys**                     | { auction_id, user_id }         |
 | **Functional Dependencies:** |                                 |
 | FD0801                       | { auction_id, user_id } → {description}|
@@ -130,24 +130,24 @@ Specification of additional domains:
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R09**                | Rating                          |
-| --------------               | ---                             |
+| -               | ---                             |
 | **Keys**                     | { id_rated , id_rates }      |
 | **Functional Dependencies:** |                                 |
 | FD0901                       | {id_rated, id_rates} → {rate_value, rate_date, description}|
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R10**                | UserFollow                      |
-| --------------               | ---                             |
+| -               | ---                             |
 | **Keys**                     | { id_follower , id_followed }|
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R11**                | ActionFollow                    |
-| --------------               | ---                             |
+| -               | ---                             |
 | **Keys**                     | { id_follower , id_followed }|
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R12**                | UserNotification                |
-| --------------               | ---                             |
+| -               | ---                             |
 | **Keys**                     | { notif_id }                    |
 | **Functional Dependencies:** |                                 |
 | FD1201                       | { notif_id } → {notified_id, notifier_id, notif_read, notif_time, category}|
@@ -155,7 +155,7 @@ Specification of additional domains:
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R13**                | AuctionNotification             |
-| --------------               | ---                             |
+| -               | ---                             |
 | **Keys**                     | { notif_id }                    |
 | **Functional Dependencies:** |                                 |
 | FD1301                       | { notif_id } → {notified_id, auction_id, anotif_read, anotif_time, anotif_category}|
@@ -193,7 +193,7 @@ Indices proposed to improve performance of the identified queries.
 
 
 | **Index**           | IDX01          |
-| ---                 | ---            |
+| -                   | ------         |
 | **Relation**        | Bid            |
 | **Attribute**       | auction_id     |
 | **Type**            | Hash           |
@@ -209,7 +209,7 @@ Indices proposed to improve performance of the identified queries.
 
 
 | **Index**           | IDX02           |
-| ---                 | ---             |
+| -                   | ------          |
 | **Relation**        | Bid             |
 | **Attribute**       | bidder_id       |
 | **Type**            | Hash            |
@@ -222,7 +222,7 @@ Indices proposed to improve performance of the identified queries.
 
 
 | **Index**           | IDX03            |
-| ---                 | ---              |
+| -                   | ------           |
 | **Relation**        | Auction          |
 | **Attribute**       | start_date       |
 | **Type**            | B-tree           |
@@ -243,7 +243,7 @@ The developed system will provide full-text search features supported by Postgre
 Thus, the fields where full-text search will be available and the associated setup (all necessary configurations, indexes definitions and other relevant details) are here specified.
 
 | **Index**           | IDX01                                  |
-| ---                 | ---                                    |
+| -                   | ------                                 |            
 | **Relation**        | auction, member                        |
 | **Attribute**       | {title, description, username, name}   |
 | **Type**            | GIN                                    |
@@ -265,7 +265,7 @@ Thus, the fields where full-text search will be available and the associated set
     CREATE INDEX auction_search_idx USING GIN (ts_auction);||
 
 | **Index**           | IDX01                                  |
-| ---                 | ---                                    |
+| -                   | ------                                 |
 | **Relation**        | member                                 |
 | **Attribute**       | {username, name}                       |
 | **Type**            | GIN                                    |
@@ -307,7 +307,7 @@ Thus, the fields where full-text search will be available and the associated set
 User-defined functions and trigger procedures that add control structures to the SQL language or perform complex computations, are identified and described to be trusted by the database server.
 
 | **Trigger**      | TRIGGER01                              |
-| ---              | ---                                    |
+| -                | ------                                 |
 | **Description**  | An Admin must not have the same username or email as a User |
 
     DROP FUNCTION IF EXISTS admin_diff_user CASCADE;
@@ -332,7 +332,7 @@ User-defined functions and trigger procedures that add control structures to the
         EXECUTE PROCEDURE admin_diff_user();
 
 | **Trigger**      | TRIGGER02                              |
-| ---              | ---                                    |
+| -                | ------                                 |
 | **Description**  | A User must not have the same username nor email as an Admin |
 
     DROP FUNCTION IF EXISTS user_diff_admin CASCADE;
@@ -357,7 +357,7 @@ User-defined functions and trigger procedures that add control structures to the
         EXECUTE PROCEDURE user_diff_admin();    
 
 | **Trigger**      | TRIGGER03                              |
-| ---              | ---                                    |
+| -                | ------                                 |
 | **Description**  | A User cannot bid on one of their own auctions |
 
     DROP FUNCTION IF EXISTS user_bid CASCADE;
@@ -379,7 +379,7 @@ User-defined functions and trigger procedures that add control structures to the
         EXECUTE PROCEDURE user_bid();
 
 | **Trigger**      | TRIGGER04                              |
-| ---              | ---                                    |
+| -                | ------                                 |
 | **Description**  | When an auction closes, the winning bid is set |
 
     DROP FUNCTION IF EXISTS win_bid CASCADE;
@@ -406,7 +406,7 @@ User-defined functions and trigger procedures that add control structures to the
         EXECUTE PROCEDURE win_bid();
 
 | **Trigger**      | TRIGGER05                              |
-| ---              | ---                                    |
+| -                | ------                                 |
 | **Description**  | A User bid on an auction must be higher than the current highest |
 
     DROP FUNCTION IF EXISTS min_bid CASCADE;
@@ -441,7 +441,7 @@ User-defined functions and trigger procedures that add control structures to the
 
 
 | **Trigger**      | TRIGGER06                              |
-| ---              | ---                                    |
+| -                | ------                                 |
 | **Description**  | When an auction gets a new bid, the close_date gets increased |
 
     DROP FUNCTION IF EXISTS extend_auction CASCADE;
@@ -463,7 +463,7 @@ User-defined functions and trigger procedures that add control structures to the
         EXECUTE PROCEDURE extend_auction();
 
 | **Trigger**      | TRIGGER07                              |
-| ---              | ---                                    |
+| -                | ------                                 |
 | **Description**  | When User receives rating, their rating is updated |
 
     DROP FUNCTION IF EXISTS new_rating CASCADE;
@@ -491,7 +491,7 @@ User-defined functions and trigger procedures that add control structures to the
 
 
 | **Trigger**      | TRIGGER08                              |
-| ---              | ---                                    |
+| -                | ------                                 |
 | **Description**  | When a User changes their rating of another User, the rating of the rated user is updated |
 
     DROP FUNCTION IF EXISTS update_rating CASCADE;
@@ -518,7 +518,7 @@ User-defined functions and trigger procedures that add control structures to the
         EXECUTE PROCEDURE update_rating();
 
 | **Trigger**      | TRIGGER09                              |
-| ---              | ---                                    |
+| -                | ------                                 |
 | **Description**  | When a User removes their rating of another User, the rating of the previously rated user is updated |
 
     DROP FUNCTION IF EXISTS delete_rating CASCADE;
@@ -550,7 +550,7 @@ User-defined functions and trigger procedures that add control structures to the
         EXECUTE PROCEDURE delete_rating();
 
 | **Trigger**      | TRIGGER10                              |
-| ---              | ---                                    |
+| -                | ------                                 |
 | **Description**  | When a User is followed they must get a "Follow" user_notification |
 
     DROP FUNCTION IF EXISTS new_follow_notif CASCADE;
@@ -571,7 +571,7 @@ User-defined functions and trigger procedures that add control structures to the
         EXECUTE PROCEDURE new_follow_notif();
 
 | **Trigger**      | TRIGGER11                              |
-| ---              | ---                                    |
+| -                | ------                                 |
 | **Description**  | When a User receives a rating they must get a "Rating" user_notification |
 
     DROP FUNCTION IF EXISTS new_rating_notif CASCADE;
@@ -592,7 +592,7 @@ User-defined functions and trigger procedures that add control structures to the
         EXECUTE PROCEDURE new_rating_notif();
 
 | **Trigger**      | TRIGGER12                              |
-| ---              | ---                                    |
+| -                | ------                                 |
 | **Description**  | When a User follows an Auction, it's User gets a notification |
 
     DROP FUNCTION IF EXISTS new_auction_follow_notif CASCADE;
@@ -618,7 +618,7 @@ User-defined functions and trigger procedures that add control structures to the
 
 
 | **Trigger**      | TRIGGER13                              |
-| ---              | ---                                    |
+| -                | ------                                 |
 | **Description**  | When an auction is created, all of the creater's followers get notified |
 
     DROP FUNCTION IF EXISTS new_auction_notif CASCADE;
@@ -646,8 +646,8 @@ User-defined functions and trigger procedures that add control structures to the
 
 
 | **Trigger**      | TRIGGER14                              |
-| ---              | ---                                    |
-| **Description**  | When an auction is closed, all of the creater's followers get notified |
+| -                | ------                                 |
+| **Description**  | When an auction is closed, all of the creator's followers get notified |
 
     DROP FUNCTION IF EXISTS auction_closed_notif CASCADE;
     CREATE FUNCTION auction_closed_notif() RETURNS TRIGGER AS 
@@ -675,7 +675,7 @@ User-defined functions and trigger procedures that add control structures to the
         EXECUTE PROCEDURE auction_closed_notif();
 
 | **Trigger**      | TRIGGER15                              |
-| ---              | ---                                    |
+| -                | ------                                 |
 | **Description**  | When an auction's chat gets new message, all of that auction's followers get notified |
 
     DROP FUNCTION IF EXISTS new_message_notif CASCADE;
@@ -704,7 +704,7 @@ User-defined functions and trigger procedures that add control structures to the
         EXECUTE PROCEDURE new_message_notif();
 
 | **Trigger**      | TRIGGER16                              |
-| ---              | ---                                    |
+| -                | ------                                 |
 | **Description**  | When an auction gets a new bid, all of that auction's bidders get notified |
 
     DROP FUNCTION IF EXISTS new_bid_notif CASCADE;
@@ -737,7 +737,7 @@ User-defined functions and trigger procedures that add control structures to the
 Transactions are used to assure the integrity of the data when multiple operations are necessary.
 
 | T01  | Get highest bid and bid history                   |
-| --------------- | ----------------------------------- |
+| ------- | ----------------------------------- |
 | Justification   | During this transaction, if a new bid is placed, the bid history and the highest bid might not match. This transaction only uses SELECT so, the isolation level is SERIALIZABLE READ ONLY. |
 | Isolation level | SERIALIZABLE READ ONLY|
 | **SQL Code**                                |
