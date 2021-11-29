@@ -34,9 +34,9 @@ CREATE TABLE users(
     email TEXT UNIQUE,
     phone_number INTEGER UNIQUE,
     credit MONEY DEFAULT 0 NOT NULL CONSTRAINT credit_ck CHECK (credit >= 0::MONEY),
-    profile_image TEXT, -- check type (VARBINARY())
-    rating INTEGER DEFAULT 0 NOT NULL, --dif
-    blocked BOOLEAN DEFAULT FALSE NOT NULL, --BANNED
+    profile_image TEXT, 
+    rating INTEGER DEFAULT 0 NOT NULL,
+    blocked BOOLEAN DEFAULT FALSE NOT NULL,
     auction_notif BOOLEAN DEFAULT TRUE NOT NULL,
     user_notif BOOLEAN DEFAULT TRUE NOT NULL
 );
@@ -45,10 +45,10 @@ CREATE TABLE users(
 CREATE TABLE bid(
     bid_id SERIAL PRIMARY KEY
 );
-CREATE TABLE image(--change name
+CREATE TABLE image(
     img_id SERIAL PRIMARY KEY,
     content TEXT NOT NULL,
-    label TEXT --NOT NULL??
+    label TEXT
 );
 
 CREATE TABLE auction(
@@ -93,11 +93,10 @@ CREATE TABLE chat(
     auction_id INTEGER REFERENCES auction(auction_id) NOT NULL
 );
 
-CREATE TABLE message( --change name
+CREATE TABLE message(
     msg_id SERIAL PRIMARY KEY,
     msg_content TEXT NOT NULL,
     msg_date DATE NOT NULL, --ck >auction.date
-    --"date" TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
     user_id INTEGER REFERENCES users(user_id) NOT NULL,
     chat_id INTEGER REFERENCES chat(chat_id) NOT NULL
 );
@@ -107,7 +106,7 @@ CREATE TABLE message( --change name
 
 
 CREATE TABLE auction_report(
-    description TEXT, --change name
+    description TEXT, 
     auction_id INTEGER REFERENCES auction(auction_id) NOT NULL,
     user_id INTEGER REFERENCES users(user_id) NOT NULL,
     PRIMARY KEY(auction_id, user_id)
@@ -117,7 +116,7 @@ CREATE TABLE rating(
     id_rated INTEGER REFERENCES users(user_id) NOT NULL,
     id_rates INTEGER REFERENCES users(user_id) NOT NULL CHECK (id_rated != id_rates),
     rate_value INTEGER NOT NULL CHECK (rate_value >= 0 AND rate_value <= 5),  --change name, < 5 ??
-    rate_date DATE NOT NULL,    --change name
+    rate_date DATE NOT NULL,    
     PRIMARY KEY(id_rated, id_rates)
 );
 
@@ -138,16 +137,16 @@ CREATE TABLE user_notification(
     notif_id SERIAL PRIMARY KEY,
     notified_id INTEGER REFERENCES users(user_id) NOT NULL,
     notifier_id INTEGER REFERENCES users(user_id) NOT NULL,
-    notif_read BOOLEAN DEFAULT FALSE,  --change name
+    notif_read BOOLEAN DEFAULT FALSE,  
     --notif_time TIME DEFAULT NOW, --change name
-    notif_category user_notification_type NOT NULL  --change name
+    notif_category user_notification_type NOT NULL  
 );
 
 CREATE TABLE auction_notification(
     notif_id SERIAL PRIMARY KEY,
     notified_id INTEGER REFERENCES users(user_id) NOT NULL,
     auction_id INTEGER REFERENCES auction(auction_id) NOT NULL,
-    anotif_read BOOLEAN DEFAULT FALSE,  --change name
+    anotif_read BOOLEAN DEFAULT FALSE,
     --anotif_time TIME DEFAULT NOW, --change name
-    anotif_category auction_notification_type NOT NULL  --change name
+    anotif_category auction_notification_type NOT NULL
 );
