@@ -69,7 +69,7 @@ Specification of additional domains:
  To validate the Relational Schema obtained from the Conceptual Model, all functional dependencies are identified and the normalization of all relation schemas is accomplished. 
 
 | **TABLE R01**                | User                            |
-| --------------               | ---                             |
+| -               | ---                             |
 | **Keys**                     | { user_id }, { email }, {username}|
 | **Functional Dependencies:** |                                 |
 | FD0101                       | {id} → {email, name, username, password, image, nif, phone_number, credit, profile_image, rating, blocked, auction_notif, user_notif}|
@@ -201,6 +201,7 @@ Indices proposed to improve performance of the identified queries.
 | **Clustering**      |Yes             |
 | **Justification**   | Every time a auction page is opened we'll need to see the highest bid, and also for the auction history we'll need to have access to every bid made. Each auction has multiple bids, so cardinality is high. It's a good candidate for clustering. |
 |**SQL Code** 
+
     CREATE INDEX auction_bid_index on bid USING hash(auction_id); 
 
 
@@ -216,6 +217,7 @@ Indices proposed to improve performance of the identified queries.
 | **Clustering**      | Yes             |
 | **Justification**   | Every time a auction page is opened we'll need to see the highest bid, and also for the auction history we'll need to have access to every bid made. Each auction has multiple bids, so cardinality is high. It's a good candidate for clustering. |
 |**SQL Code** 
+
     CREATE INDEX user_bid_index on bid USING hash(bidder_id); 
 
 
@@ -228,6 +230,7 @@ Indices proposed to improve performance of the identified queries.
 | **Clustering**      | No               |
 | **Justification**   | Table auction is frequently accessed when a item is searched. The auctions search reasults could be filtered by date. A b-tree index allows for faster date range queries based on the start date.|
 |**SQL Code** 
+
     CREATE INDEX auction_by_date ON auction USING btree (start_date);
 
 
@@ -247,6 +250,7 @@ Thus, the fields where full-text search will be available and the associated set
 | **Clustering**      | No                                     |
 | **Justification**   | To better the performance and results on FTS for auctions. Using GIN type because it will be accessed very frequently and rarely updated.|
 | **SQL Code** 
+
     SELECT auction.id, ts_auction(auction.ts_search, plainto_tsquery('english', $search_text));
     FROM auction
             INNER JOIN auction_follow ON auction_follow.id_followed = auction.id AND auction_follow.follower_id = users.id
@@ -268,6 +272,7 @@ Thus, the fields where full-text search will be available and the associated set
 | **Clustering**      | No                                     |
 | **Justification**   | To better the performance and results on FTS for users. Using GIN type because it will be accessed very frequently and rarely updated.|
 | **SQL Code** 
+
     ALTER TABLE users ADD COLUMN tsvectors TSVECTOR;
     CREATE FUNCTION u_search_update() RETURNS TRIGGER AS $$
     BEGIN
@@ -736,6 +741,7 @@ Transactions are used to assure the integrity of the data when multiple operatio
 | Justification   | During this transaction, if a new bid is placed, the bid history and the highest bid might not match. This transaction only uses SELECT so, the isolation level is SERIALIZABLE READ ONLY. |
 | Isolation level | SERIALIZABLE READ ONLY|
 | **SQL Code**                                |
+
     BEGIN TRANSACTION;
     SET TRANSACTION ISOLATION LEVEL SERIALIZABLE READ ONLY;
 
@@ -752,7 +758,7 @@ Transactions are used to assure the integrity of the data when multiple operatio
         WHERE auction.auction_id = bid.auction_id
         ORDER BY value DESC LIMIT 1;
 
-    COMMIT;
+    END TRANSACTION;
 
 
 ## Annex A. SQL Code
