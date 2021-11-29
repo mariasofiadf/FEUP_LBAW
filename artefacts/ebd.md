@@ -199,12 +199,61 @@ As all relations schemas are in the Boyce–Codd Normal Form (BCNF), the relatio
 
 | **Index**           | IDX01                                  |
 | ---                 | ---                                    |
-| **Relation**        | Relation where the index is applied    |
-| **Attribute**       | Attribute where the index is applied   |
-| **Type**            | B-tree, Hash, GiST or GIN              |
-| **Clustering**      | Clustering of the index                |
-| **Justification**   | Justification for the proposed index   |
-| `SQL code`                                                  ||
+| **Relation**        | auction, member                        |
+| **Attribute**       | {title, description, username, name}   |
+| **Type**            | GIN                                    |
+| **Clustering**      | No                                     |
+| **Justification**   | To better the performance and results on FTS for auctions. Using GIN type because it will be accessed very frequently and rarely updated.|
+| `SQL code`
+SELECT auction.id, ts_auction(auction.ts_search, plainto_tsquery('english', $search_text))
+    FROM auction
+            INNER JOIN auction_follow ON auction_follow.id_followed = auction.id AND auction_follow.follower_id = users.id
+            INNER JOIN bid ON bid.auction_id = auction.id 
+        WHERE
+            auction.category IN ($category1, $category2, ...) AND
+            auction.status IN ($status1, $status2) AND
+            bid.value >= min_opening_bid::money AND
+            auction.ts_search @@ plainto_tsquery('english', $text_search)
+        ORDER BY ts_auction DESC;
+
+CREATE INDEX auction_search_idx USING GIN (ts_auction);||
+
+| **Index**           | IDX01                                  |
+| ---                 | ---                                    |
+| **Relation**        | member                                 |
+| **Attribute**       | {username, name}                       |
+| **Type**            | GIN                                    |
+| **Clustering**      | No                                     |
+| **Justification**   | To better the performance and results on FTS for users. Using GIN type because it will be accessed very frequently and rarely updated.|
+| `SQL code`
+ALTER TABLE users ADD COLUMN tsvectors TSVECTOR;
+
+CREATE FUNCTION u_search_update() RETURNS TRIGGER AS $$
+BEGIN
+    IF TG_OP = 'INSERT' THEN
+        NEW.tsvectors = (
+            setweight(to_tsvector('english', NEW.username), 'A') ||
+            setweight(to_tsvector('english', NEW.name), 'B')
+        );
+    END IF;
+    IF TG_OP = 'UPDATE' THEN
+        IF (NEW.username <> OLD.username OR NEW.name <> OLD.name) THEN
+            NEW.tsvectors = (
+            setweight(to_tsvector('english', NEW.username), 'A') ||
+            setweight(to_tsvector('english', NEW.name), 'B')
+            );
+        END IF;
+    END IF;
+    RETURN NEW;
+END $$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER u_search_update
+    BEFORE INSERT OR UPDATE ON users
+    FOR EACH ROW
+    EXECUTE PROCEDURE u_search_update();
+
+CREATE INDEX users_search_idx USING GIN (tsvectors);||
 
 
 ### 3. Triggers
