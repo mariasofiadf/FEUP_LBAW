@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS image CASCADE;
 
 --TYPES
 CREATE TYPE auction_status AS ENUM ('Active', 'Hidden', 'Canceled', 'Closed');
-CREATE TYPE auction_category AS ENUM ('ArtPiece', 'Book', 'Jewlery', 'Decor', 'Other');
+CREATE TYPE auction_category AS ENUM ('ArtPiece', 'Book', 'Jewelry', 'Decor', 'Other');
 CREATE TYPE auction_notification_type AS ENUM ('Opened', 'Closed', 'New Bid', 'New Message', 'Other', 'Auction Follow');
 CREATE TYPE user_notification_type AS ENUM ('Rating', 'Follow', 'Other');
 
@@ -45,12 +45,19 @@ CREATE TABLE users(
 CREATE TABLE bid(
     bid_id SERIAL PRIMARY KEY
 );
+CREATE TABLE image(--change name
+    img_id SERIAL PRIMARY KEY,
+    content TEXT NOT NULL,
+    label TEXT --NOT NULL??
+);
+
 CREATE TABLE auction(
     auction_id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
     description TEXT,
 
-    min_opening_bid INTEGER NOT NULL CHECK (min_opening_bid > 0),   min_raise INTEGER NOT NULL,
+    min_opening_bid INTEGER NOT NULL CHECK (min_opening_bid > 0),   
+    min_raise INTEGER NOT NULL,
     start_date DATE NOT NULL, --CK predictedEnd >= startDate
     predicted_end DATE NOT NULL,
     close_date DATE NOT NULL, --CK close_date >= predictedEnd
@@ -59,6 +66,7 @@ CREATE TABLE auction(
     category auction_category NOT NULL,
     seller_id INTEGER REFERENCES users(user_id) NOT NULL,
     win_bid INTEGER REFERENCES bid(bid_id)
+    auction_image INTEGER REFERENCES image(img_id),
 );
 
 
@@ -96,11 +104,6 @@ CREATE TABLE message( --change name
 
 
 
-CREATE TABLE image(--change name
-    img_id SERIAL PRIMARY KEY,
-    content TEXT NOT NULL,
-    label TEXT --NOT NULL??
-);
 
 
 CREATE TABLE auction_report(
@@ -113,7 +116,7 @@ CREATE TABLE auction_report(
 CREATE TABLE rating(
     id_rated INTEGER REFERENCES users(user_id) NOT NULL,
     id_rates INTEGER REFERENCES users(user_id) NOT NULL CHECK (id_rated != id_rates),
-    rate_value INTEGER NOT NULL CHECK (rate_value > 0),  --change name, < 5 ??
+    rate_value INTEGER NOT NULL CHECK (rate_value >= 0 AND rate_value <= 5),  --change name, < 5 ??
     rate_date DATE NOT NULL,    --change name
     PRIMARY KEY(id_rated, id_rates)
 );

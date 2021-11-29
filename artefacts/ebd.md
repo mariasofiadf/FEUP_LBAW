@@ -42,26 +42,109 @@
 | Domain Name | Domain Specification           |
 | ----------- | ------------------------------ |
 | Today	      | DATE DEFAULT CURRENT_DATE      |
-| Priority    | ENUM ('High', 'Medium', 'Low') |
+|AuctionNotification       |'Opened', 'Closed', 'New Bid', 'New Message', 'Other'|
+|AuctionStatus       |'Active', 'Hidden', 'Canceled', 'Closed'|
+|AuctionCategory       |'ArtPiece', 'Book', 'Jewlery', 'Decor', 'Other'|
+
 
 ### 3. Schema validation
 
-> To validate the Relational Schema obtained from the Conceptual Model, all functional dependencies are identified and the normalization of all relation schemas is accomplished. Should it be necessary, in case the scheme is not in the Boyce–Codd Normal Form (BCNF), the relational schema is refined using normalization.  
+ To validate the Relational Schema obtained from the Conceptual Model, all functional dependencies are identified and the normalization of all relation schemas is accomplished. 
 
-| **TABLE R01**   | User               |
-| --------------  | ---                |
-| **Keys**        | { id }, { email }  |
-| **Functional Dependencies:** |       |
-| FD0101          | id → {email, name} |
-| FD0102          | email → {id, name} |
-| ...             | ...                |
-| **NORMAL FORM** | BCNF               |
-
-> If necessary, description of the changes necessary to convert the schema to BCNF.  
-> Justification of the BCNF.  
+| **TABLE R01**                | User                            |
+| --------------               | ---                             |
+| **Keys**                     | { id }, { email }               |
+| **Functional Dependencies:** |                                 |
+| FD0101                       | id → {email, name}              |
+| FD0102                       | email → {id, name}              |
+| **NORMAL FORM**              | BCNF                            |
 
 
----
+| **TABLE R02**                | Auction                         |
+| --------------               | ---                             |
+| **Keys**                     | { id }                          |
+| **Functional Dependencies:** |                                 |
+| FD0201                       | { id } → {title, description, category, start_date, predicted_end, close_date, min_opening_bid, status, seller_id, image_id}|
+| **NORMAL FORM**              | BCNF                            |
+
+
+| **TABLE R03**                | Bid                             |
+| --------------               | ---                             |
+| **Keys**                     | { id }                          |
+| **Functional Dependencies:** |                                 |
+| FD0301                       | { id } → {value, date, auction_id, bidder_id}|
+| **NORMAL FORM**              | BCNF                            |
+
+| **TABLE R04**                | Admin                           |
+| --------------               | ---                             |
+| **Keys**                     | { id }                          |
+| **Functional Dependencies:** |                                 |
+| FD0401                       | { id } → {name, username, email}|
+| **NORMAL FORM**              | BCNF                            |
+
+| **TABLE R05**                | Message                         |
+| --------------               | ---                             |
+| **Keys**                     | { id }                          |
+| **Functional Dependencies:** |                                 |
+| FD0501                       | { id } → {content, date, user_id, chat_id}|
+| **NORMAL FORM**              | BCNF                            |
+
+| **TABLE R07**                | Image                           |
+| --------------               | ---                             |
+| **Keys**                     | { id }                          |
+| **Functional Dependencies:** |                                 |
+| FD0701                       | { id } → {content, label}       |
+| **NORMAL FORM**              | BCNF                            |
+
+| **TABLE R08**                | AuctionReport                   |
+| --------------               | ---                             |
+| **Keys**                     | { auction_id, user_id }         |
+| **Functional Dependencies:** |                                 |
+| FD0901                       | { auction_id, user_id } → {description}|
+| ...                          | ...                             |
+| **NORMAL FORM**              | BCNF                            |
+
+| **TABLE R09**                | Rating                          |
+| --------------               | ---                             |
+| **Keys**                     | { id_rated }, { id_rates }      |
+| **Functional Dependencies:** |                                 |
+| FD1001                       | {id_rated, id_rates} → {value, date, description}|
+| **NORMAL FORM**              | BCNF                            |
+
+| **TABLE R10**                | UserFollow                      |
+| --------------               | ---                             |
+| **Keys**                     | { id_followed }, { id_follower }|
+| **Functional Dependencies:** |                                 |
+| FD1101                       | id_followed → {id_follower}     |
+| FD1102                       | id_follower → {id_followed}     |
+| **NORMAL FORM**              | BCNF                            |
+
+| **TABLE R11**                | AuctionFollow                   |
+| --------------               | ---                             |
+| **Keys**                     | { id_followed }, {id_follower}  |
+| **Functional Dependencies:** |                                 |
+| FD1201                       | id_followed → {id_follower}     |
+| FD1202                       | id_follower → {id_followed}     |
+| **NORMAL FORM**              | BCNF                            |
+
+| **TABLE R12**                | UserNotification                |
+| --------------               | ---                             |
+| **Keys**                     | { id }                          |
+| **Functional Dependencies:** |                                 |
+| FD1301                       | { id } → {read, time, category} |
+| ...                          | ...                             |
+| **NORMAL FORM**              | BCNF                            |
+
+| **TABLE R13**                | AuctionNotification             |
+| --------------               | ---                             |
+| **Keys**                     | { id }                          |
+| **Functional Dependencies:** |                                 |
+| FD1401                       | { id } → {read, time, category} |
+| **NORMAL FORM**              | BCNF                            |
+
+As all relations schemas are in the Boyce–Codd Normal Form (BCNF), the relational schema is also in the BCNF and therefore there is no need to be refined using normalisation.
+
+
 
 
 ## A6: Indexes, triggers, transactions and database population
@@ -85,43 +168,95 @@
 
 #### 2.1. Performance Indices
  
-> Indices proposed to improve performance of the identified queries.
+Indices proposed to improve performance of the identified queries.
+
 
 | **Index**           | IDX01                                  |
 | ---                 | ---                                    |
-| **Relation**        | Relation where the index is applied    |
-| **Attribute**       | Attribute where the index is applied   |
-| **Type**            | B-tree, Hash, GiST or GIN              |
-| **Cardinality**     | Attribute cardinality: low/medium/high |
-| **Clustering**      | Clustering of the index                |
-| **Justification**   | Justification for the proposed index   |
-| `SQL code`                                                  ||
+| **Relation**        | Bid  |
+| **Attribute**       | auction_id  |
+| **Type**            | Hash             |
+| **Cardinality**     |high |
+| **Clustering**      |Yes             |
+| **Justification**   | Every time a auction page is opened we'll need to see the highest bid, and also for the auction history we'll need to have access to every bid made. Each auction has multiple bids, so cardinality is high. It's a good candidate for clustering. |
+| `CREATE INDEX auction_bid_index on bid USING hash(auction_id);`|
 
-> Analysis of the impact of the performance indices on specific queries.
-> Include the execution plan before and after the use of indices.
 
-| **Query**       | SELECT01                               |
-| ---             | ---                                    |
-| **Description** | One sentence describing the query goal |
-| `SQL code`                                              ||
-| **Execution Plan without indices**                      ||
-| `Execution plan`                                        ||
-| **Execution Plan with indices**                         ||
-| `Execution plan`                                        ||
+| **Index**           | IDX02                                  |
+| ---                 | ---                                    |
+| **Relation**        | Bid  |
+| **Attribute**       | bidder_id  |
+| **Type**            | Hash             |
+| **Cardinality**     |high |
+| **Clustering**      |Yes             |
+| **Justification**   | Every time a auction page is opened we'll need to see the highest bid, and also for the auction history we'll need to have access to every bid made. Each auction has multiple bids, so cardinality is high. It's a good candidate for clustering. |
+| `CREATE INDEX user_bid_index on bid USING hash(bidder_id);`|
+
+
 
 
 #### 2.2. Full-text Search Indices 
 
-> The system being developed must provide full-text search features supported by PostgreSQL. Thus, it is necessary to specify the fields where full-text search will be available and the associated setup, namely all necessary configurations, indexes definitions and other relevant details.  
+The developed system will provide full-text search features supported by PostgreSQL.
+
+Thus, the fields where full-text search will be available and the associated setup (all necessary configurations, indexes definitions and other relevant details) are here specified.
 
 | **Index**           | IDX01                                  |
 | ---                 | ---                                    |
-| **Relation**        | Relation where the index is applied    |
-| **Attribute**       | Attribute where the index is applied   |
-| **Type**            | B-tree, Hash, GiST or GIN              |
-| **Clustering**      | Clustering of the index                |
-| **Justification**   | Justification for the proposed index   |
-| `SQL code`                                                  ||
+| **Relation**        | auction, member                        |
+| **Attribute**       | {title, description, username, name}   |
+| **Type**            | GIN                                    |
+| **Clustering**      | No                                     |
+| **Justification**   | To better the performance and results on FTS for auctions. Using GIN type because it will be accessed very frequently and rarely updated.|
+| `SQL code`
+    SELECT auction.id, ts_auction(auction.ts_search, plainto_tsquery('english', $search_text));
+    FROM auction
+            INNER JOIN auction_follow ON auction_follow.id_followed = auction.id AND auction_follow.follower_id = users.id
+            INNER JOIN bid ON bid.auction_id = auction.id 
+        WHERE
+            auction.category IN ($category1, $category2, ...) AND
+            auction.status IN ($status1, $status2) AND
+            bid.value >= min_opening_bid::money AND
+            auction.ts_search @@ plainto_tsquery('english', $text_search)
+        ORDER BY ts_auction DESC;
+
+    CREATE INDEX auction_search_idx USING GIN (ts_auction);||
+
+| **Index**           | IDX01                                  |
+| ---                 | ---                                    |
+| **Relation**        | member                                 |
+| **Attribute**       | {username, name}                       |
+| **Type**            | GIN                                    |
+| **Clustering**      | No                                     |
+| **Justification**   | To better the performance and results on FTS for users. Using GIN type because it will be accessed very frequently and rarely updated.|
+| `SQL code`
+    ALTER TABLE users ADD COLUMN tsvectors TSVECTOR;
+    CREATE FUNCTION u_search_update() RETURNS TRIGGER AS $$
+    BEGIN
+    IF TG_OP = 'INSERT' THEN
+        NEW.tsvectors = (
+            setweight(to_tsvector('english', NEW.username), 'A') ||
+            setweight(to_tsvector('english', NEW.name), 'B')
+        );
+    END IF;
+    IF TG_OP = 'UPDATE' THEN
+        IF (NEW.username <> OLD.username OR NEW.name <> OLD.name) THEN
+            NEW.tsvectors = (
+            setweight(to_tsvector('english', NEW.username), 'A') ||
+            setweight(to_tsvector('english', NEW.name), 'B')
+            );
+        END IF;
+    END IF;
+    RETURN NEW;
+    END $$
+    LANGUAGE plpgsql;
+
+    CREATE TRIGGER u_search_update
+        BEFORE INSERT OR UPDATE ON users
+        FOR EACH ROW
+        EXECUTE PROCEDURE u_search_update();
+
+    CREATE INDEX users_search_idx USING GIN (tsvectors);||
 
 
 ### 3. Triggers
