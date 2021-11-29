@@ -1446,13 +1446,13 @@ Transactions are used to assure the integrity of the data when multiple operatio
 
 ## Revision history
 
-Changes made to the first submission:
-1. Item 1
-1. ..
+No changes made to the first submission.
+
 
 ***
-GROUP21gg, DD/MM/2021
+GROUP2123, 28/11/2021
  
-* Group member 1 name, email (Editor)
-* Group member 2 name, email
-* ...
+* Afonso Duarte de Carvalho Monteiro up201907284
+* Ana Rita Antunes Ramada up201904565 (Editor)
+* Deborah Marques Lago up201806102
+* Maria Sofia Diogo Figueiredo up201904675 
