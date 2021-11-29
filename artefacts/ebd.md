@@ -131,19 +131,19 @@ Specification of additional domains:
 
 | **TABLE R09**                | Rating                          |
 | --------------               | ---                             |
-| **Keys**                     | { id_rated }, { id_rates }      |
+| **Keys**                     | { id_rated , id_rates }      |
 | **Functional Dependencies:** |                                 |
 | FD0901                       | {id_rated, id_rates} → {rate_value, rate_date, description}|
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R10**                | UserFollow                      |
 | --------------               | ---                             |
-| **Keys**                     | { id_follower }, { id_followed }|
+| **Keys**                     | { id_follower , id_followed }|
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R11**                | ActionFollow                    |
 | --------------               | ---                             |
-| **Keys**                     | { id_follower }, { id_followed }|
+| **Keys**                     | { id_follower , id_followed }|
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R12**                | UserNotification                |
