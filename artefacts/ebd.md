@@ -424,6 +424,121 @@
         EXECUTE PROCEDURE new_auction_follow_notif();
 
 
+| **Trigger**      | TRIGGER13                              |
+| ---              | ---                                    |
+| **Description**  | When an auction is created, all of the creater's followers get notified |
+
+    DROP FUNCTION IF EXISTS new_auction_notif CASCADE;
+    CREATE FUNCTION new_auction_notif() RETURNS TRIGGER AS 
+    $BODY$
+    DECLARE
+        rec RECORD;
+    BEGIN
+        FOR rec IN SELECT id_folllower FROM user_follow
+        WHERE id_folllowed = NEW.seller_id
+        LOOP
+            INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
+            VALUES(rec.id_folllower,NEW.auction_id,'Opened');
+        END LOOP;
+        RETURN NEW;
+    END
+    $BODY$
+    LANGUAGE plpgsql;
+
+    DROP TRIGGER IF EXISTS new_auction_notif on bid CASCADE;
+    CREATE TRIGGER new_auction_notif
+        AFTER INSERT ON auction 
+        FOR EACH ROW 
+        EXECUTE PROCEDURE new_auction_notif();
+
+
+| **Trigger**      | TRIGGER14                              |
+| ---              | ---                                    |
+| **Description**  | When an auction is closed, all of the creater's followers get notified |
+
+    DROP FUNCTION IF EXISTS auction_closed_notif CASCADE;
+    CREATE FUNCTION auction_closed_notif() RETURNS TRIGGER AS 
+    $BODY$
+    DECLARE
+        rec RECORD;
+    BEGIN
+        FOR rec IN SELECT id_folllower FROM user_follow
+        WHERE id_folllowed = NEW.seller_id
+        LOOP
+            IF NEW.auction_status = "Closed" AND OLD.auction_status = "Active" THEN
+                INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
+                VALUES(rec.id_folllower,NEW.auction_id,'Closed');
+            END IF;
+        END LOOP;
+        RETURN NEW;
+    END
+    $BODY$
+    LANGUAGE plpgsql;
+
+    DROP TRIGGER IF EXISTS auction_closed_notif on bid CASCADE;
+    CREATE TRIGGER auction_closed_notif
+        AFTER UPDATE ON auction 
+        FOR EACH ROW 
+        EXECUTE PROCEDURE auction_closed_notif();
+
+| **Trigger**      | TRIGGER15                              |
+| ---              | ---                                    |
+| **Description**  | When an auction's chat gets new message, all of that auction's followers get notified |
+
+    DROP FUNCTION IF EXISTS new_message_notif CASCADE;
+    CREATE FUNCTION new_message_notif() RETURNS TRIGGER AS 
+    $BODY$
+    DECLARE
+        rec RECORD;
+        auction_id INTEGER;
+    BEGIN
+        SELECT chat.auction_id INTO auction_id FROM chat WHERE chat.chat_id = NEW.chat_id;
+        FOR rec IN SELECT id_folllower FROM auction_follow
+        WHERE id_folllowed = auction_id
+        LOOP
+            INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
+            VALUES(rec.id_folllower,auction_id,'New Message');
+        END LOOP;
+        RETURN NEW;
+    END
+    $BODY$
+    LANGUAGE plpgsql;
+
+    DROP TRIGGER IF EXISTS new_message_notif on bid CASCADE;
+    CREATE TRIGGER new_message_notif
+        AFTER INSERT ON message 
+        FOR EACH ROW 
+        EXECUTE PROCEDURE new_message_notif();
+
+| **Trigger**      | TRIGGER16                              |
+| ---              | ---                                    |
+| **Description**  | When an auction gets a new bid, all of that auction's bidders get notified |
+
+DROP FUNCTION IF EXISTS new_bid_notif CASCADE;
+CREATE FUNCTION new_bid_notif() RETURNS TRIGGER AS 
+$BODY$
+DECLARE
+    rec RECORD;
+BEGIN
+    FOR rec IN SELECT id_bidder FROM bid
+    WHERE bid.auction_id = NEW.auction_id 
+    LOOP
+        INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
+        VALUES(rec.id_bidder,NEW.auction_id,'New Bid');
+    END LOOP;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS new_bid_notif on bid CASCADE;
+CREATE TRIGGER new_bid_notif
+    AFTER INSERT ON bid 
+    FOR EACH ROW 
+    EXECUTE PROCEDURE new_bid_notif();
+
+
+
 ### 4. Transactions
  
 > Transactions needed to assure the integrity of the data.  

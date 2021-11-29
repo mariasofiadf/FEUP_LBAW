@@ -54,7 +54,8 @@ CREATE TABLE auction(
 
     auction_notif BOOLEAN DEFAULT TRUE NOT NULL,
     user_notif BOOLEAN DEFAULT TRUE NOT NULL,
-    seller_id INTEGER REFERENCES users(user_id) NOT NULL
+    seller_id INTEGER REFERENCES users(user_id) NOT NULL,
+    win_bid INTEGER REFERENCES bid(bid_id)
 );
 
 CREATE TABLE bid(
@@ -74,8 +75,9 @@ CREATE TABLE admin(
     email TEXT NOT NULL UNIQUE
 );
 
-CREATE TABLE chat( --just a argument??
-    chat_id SERIAL PRIMARY KEY
+CREATE TABLE chat(
+    chat_id SERIAL PRIMARY KEY,
+    auction_id INTEGER REFERENCES auction(auction_id) NOT NULL
 );
 
 CREATE TABLE message( --change name
