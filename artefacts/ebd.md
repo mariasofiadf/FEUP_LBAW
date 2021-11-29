@@ -44,7 +44,7 @@
 | Today	      | DATE DEFAULT CURRENT_DATE      |
 |AuctionNotification       |'Opened', 'Closed', 'New Bid', 'New Message', 'Other'|
 |AuctionStatus       |'Active', 'Hidden', 'Canceled', 'Closed'|
-|AuctionCategory       |'ArtPiece', 'Book', 'Jewlery', 'Decor', 'Other'|
+|AuctionCategory       |'ArtPiece', 'Book', 'Jewelry', 'Decor', 'Other'|
 
 
 ### 3. Schema validation
