@@ -11,7 +11,7 @@ The Conceptual Domain Model contains the identification and description of the e
 UML class diagram containing the classes, associations, multiplicity and roles.  
  For each class, the attributes, associations and constraints are included in the class diagram.
 
-![UML_HoM](images/Copy_of_ClassDiagram7.jpg)
+![UML_HoM](images/ClassDiagram.jpg)
 
 ### 2. Additional Business Rules
  
@@ -36,19 +36,19 @@ Relation schemas are specified in the compact notation:
 
 | Relation reference | Relation Compact Notation                        |
 | ------------------ | ------------------------------------------------ |
-| R01                | user(__id__, email UK NN, name NN, username NN UK, password NN, image, nif UK, phone_number UK, credit NN DF 0 CK credit > 0, rating, blocked)                     |
-| R02                | auction(__id__, title NN, description, category, start_date NN, predicted_end NN CK predicted_end >= start_date, close_date CK close_date >= predicted_end, min_opening_bid ck NN min_opening_bid > 0, , status NN, seller_id → user, image_id → image, win_bid_id -> bid) |
-| R03                | bid(__id__, value NN ck value > 0,  date NN CK date > auction.start_date, auction_id → auction, bidder_id → user) |
-| R04                | admin(__id__, name NN, username NN, email NN, password NN) |
-| R05                | message(__id__, content, date, user_id → user, chat_id  → chat) |
-| R06                | chat(__id__) |
-| R07                | image(__id__, content NN, label) |
+| R01                | user(__user_id__, email UK NN, name NN, username NN UK, password NN, image, nif UK, phone_number UK, credit NN DF 0 CK credit > 0, profile_image, rating, blocked, auction_notif, user_notif)                     |
+| R02                | auction(__auction_id__, title NN, description, category, start_date NN, predicted_end NN CK predicted_end >= start_date, close_date CK close_date >= predicted_end, min_opening_bid NN CK min_opening_bid > 0, min_raise NN CK min_raise > 0, status NN, seller_id → user, auction_image → image, win_bid -> bid) |
+| R03                | bid(__bid_id__, bid_value NN ck value > 0,  bid_date NN CK date > auction.start_date, auction_id → auction, bidder_id → user) |
+| R04                | admin(__admin_id__, admin_name NN, username NN, email NN, admin_password NN) |
+| R05                | message(__msg_id__, msg_content, msg_date, user_id → user, chat_id  → chat) |
+| R06                | chat(__chat_id__, auction_id→auction) |
+| R07                | image(__img_id__, content NN, label) |
 | R08                | auction_report(description, __user_id → user__, __auction_id → auction__) |
-| R09                | rating(__id_rated__ → user,__id_rates__ → user NN, value NN CK value > 0 && value < 5, date NN CK date == today, description) |
+| R09                | rating(__id_rated__ → user,__id_rates__ → user NN, rate_value NN CK value > 0 && value < 5, rate_date NN CK date == today, description) |
 | R10                | user_follow(__id_followed__ → user NN,__id_follower__ → user NN CK id_followed != id_follower) |
 | R11                | action_follow(__id_followed__ → auction NN,__id_follower__ → user NN) |
-| R12                | user_notification(__id__,userId → User, read DF false, time DF now, category) |
-| R13                | auction_notification(__id__,auctionId → Auction, read DF false, time DF now, category) |
+| R12                | user_notification(__notif_id__,notified_id → User,notifier_id → User, notif_read DF false, notif_time DF now, category) |
+| R13                | auction_notification(__notif_id__,notified_id → User,auctionId → Auction, anotif_read DF false, anotif_time DF now, anotif_category NN) |
 
 
 ### 2. Domains
@@ -58,9 +58,10 @@ Specification of additional domains:
 | Domain Name | Domain Specification           |
 | ----------- | ------------------------------ |
 | Today	      | DATE DEFAULT CURRENT_DATE      |
-|AuctionNotification       |'Opened', 'Closed', 'New Bid', 'New Message', 'Other'|
+|AuctionNotification       |'Opened', 'Closed', 'New Bid', 'New Message', 'Auction Follow', 'Other'|
+|UserNotification       |'Rating', 'Follow', 'Other'|
 |AuctionStatus       |'Active', 'Hidden', 'Canceled', 'Closed'|
-|AuctionCategory       |'ArtPiece', 'Book', 'Jewelery', 'Decor', 'Other'|
+|AuctionCategory       |'ArtPiece', 'Book', 'Jewelry', 'Decor', 'Other'|
 
 
 ### 3. Schema validation
