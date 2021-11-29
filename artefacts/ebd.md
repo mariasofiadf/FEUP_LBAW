@@ -137,18 +137,12 @@ Specification of additional domains:
 
 | **TABLE R10**                | UserFollow                      |
 | --------------               | ---                             |
-| **Keys**                     | { id_followed }, { id_follower }|
-| **Functional Dependencies:** |                                 |
-| FD1001                       | id_followed → {id_follower}     |
-| FD1002                       | id_follower → {id_followed}     |
+| **Keys**                     | { id_follower }, { id_followed }|
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R11**                | ActionFollow                    |
 | --------------               | ---                             |
-| **Keys**                     | { id_followed }, {id_follower}  |
-| **Functional Dependencies:** |                                 |
-| FD1101                       | id_followed → {id_follower}     |
-| FD1102                       | id_follower → {id_followed}     |
+| **Keys**                     | { id_follower }, { id_followed }|
 | **NORMAL FORM**              | BCNF                            |
 
 | **TABLE R12**                | UserNotification                |
