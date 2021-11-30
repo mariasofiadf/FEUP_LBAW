@@ -66,7 +66,7 @@ CREATE TABLE auction(
     category auction_category NOT NULL,
     seller_id INTEGER REFERENCES users(user_id) NOT NULL,
     win_bid INTEGER REFERENCES bid(bid_id),
-    auction_image INTEGER REFERENCES image(img_id)
+    auction_image INTEGER REFERENCES images(img_id)
 );
 
 
@@ -138,7 +138,7 @@ CREATE TABLE user_notification(
     notified_id INTEGER REFERENCES users(user_id) NOT NULL,
     notifier_id INTEGER REFERENCES users(user_id) NOT NULL,
     notif_read BOOLEAN DEFAULT FALSE,  
-    --notif_time TIME DEFAULT NOW, --change name
+    notif_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     notif_category user_notification_type NOT NULL  
 );
 
@@ -147,6 +147,6 @@ CREATE TABLE auction_notification(
     notified_id INTEGER REFERENCES users(user_id) NOT NULL,
     auction_id INTEGER REFERENCES auction(auction_id) NOT NULL,
     anotif_read BOOLEAN DEFAULT FALSE,
-    --anotif_time TIME DEFAULT NOW, --change name
+    anotif_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     anotif_category auction_notification_type NOT NULL
 );
