@@ -1066,7 +1066,7 @@ The population script includes an amount of tuples suitable for testing and with
 
     CREATE INDEX auction_by_end_date ON auction USING btree (predicted_end);
 
-    CREATE INDEX auction_search_idx on auction USING GIN(ts_auction);
+    --CREATE INDEX auction_search_idx on auction USING GIN(ts_auction);
 
 
     --TRIGGERS 
