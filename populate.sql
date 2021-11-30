@@ -1,11 +1,11 @@
 -- images
-INSERT INTO images (img_id,content,label) VALUES (500,'victorianchair.jpg','chair');
-INSERT INTO images (img_id,content,label) VALUES (501,'coffeetable.jpg','coffeetable');
-INSERT INTO images (img_id,content,label) VALUES (502,'egyptiannecklace.jpg','egyptiannecklace');
-INSERT INTO images (img_id,content,label) VALUES (503,'sherlockholmes.jpg','sherlockholmes');
-INSERT INTO images (img_id,content,label) VALUES (504,'agathachristie.jpg','agathachristie');
-INSERT INTO images (img_id,content,label) VALUES (505,'impressionistpainting.jpg','impressionistpainting');
-INSERT INTO images (img_id,content,label) VALUES (506,'','');
+INSERT INTO image (img_id,content,label) VALUES (500,'victorianchair.jpg','chair');
+INSERT INTO image (img_id,content,label) VALUES (501,'coffeetable.jpg','coffeetable');
+INSERT INTO image (img_id,content,label) VALUES (502,'egyptiannecklace.jpg','egyptiannecklace');
+INSERT INTO image (img_id,content,label) VALUES (503,'sherlockholmes.jpg','sherlockholmes');
+INSERT INTO image (img_id,content,label) VALUES (504,'agathachristie.jpg','agathachristie');
+INSERT INTO image (img_id,content,label) VALUES (505,'impressionistpainting.jpg','impressionistpainting');
+INSERT INTO image (img_id,content,label) VALUES (506,'','');
 
 -- users
 INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (1,'Bruno Silva','bsilva','$2y$10$mp6HMsGu4VcblGpki0HdR.4LwB2qHR8c9oOpU6Jlbt4RTdIQpkG1W','bsilva@hotmail.com',169335936,10000,'bsilva.jpg',4,False,TRUE,TRUE);
