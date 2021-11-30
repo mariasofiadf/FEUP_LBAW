@@ -193,9 +193,12 @@ This artefact also contains the database's workload as well as the complete data
 | R11                | action_follow        | thousands | thousands per year |
 | R12                | user_notification        | hundreds of thousands | thousands per month |
 | R13                | auction_notification        | hundreds of thousands | thousands per month |
+<<<<<<< HEAD
+=======
 
 
 
+>>>>>>> a71697746b841412d3c67a4d0c54b1f02a5653f6
 
 ### 2. Proposed Indices
 

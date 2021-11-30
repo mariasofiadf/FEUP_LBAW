@@ -140,6 +140,7 @@ CREATE TABLE user_notification(
     notified_id INTEGER REFERENCES users(user_id) NOT NULL,
     notifier_id INTEGER REFERENCES users(user_id) NOT NULL,
     notif_read BOOLEAN DEFAULT FALSE,  
+    notif_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     --notif_time TIME DEFAULT NOW, --change name
     notif_category user_notification_type NOT NULL  
 );
@@ -149,6 +150,7 @@ CREATE TABLE auction_notification(
     notified_id INTEGER REFERENCES users(user_id) NOT NULL,
     auction_id INTEGER REFERENCES auction(auction_id) NOT NULL,
     anotif_read BOOLEAN DEFAULT FALSE,
+    anotif_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     --anotif_time TIME DEFAULT NOW, --change name
     anotif_category auction_notification_type NOT NULL
 );
@@ -222,6 +224,7 @@ CREATE INDEX auction_by_date ON auction USING btree (start_date);
 CREATE INDEX auction_by_end_date ON auction USING btree (predicted_end);
 
 --CREATE INDEX auction_search_idx on auction USING GIN(ts_auction);
+
 
 --TRIGGERS 
 
