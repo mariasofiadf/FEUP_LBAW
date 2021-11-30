@@ -174,15 +174,27 @@ This artefact also contains the database's workload as well as the complete data
 
 ### 1. Database Workload
  
-> A study of the predicted system load (database load).
-> Estimate of tuples at each relation.
+ 
+ A study of the predicted system load (database load).
+ Estimate of tuples at each relation.
 
 | **Relation reference** | **Relation Name** | **Order of magnitude**        | **Estimated growth** |
 | ------------------ | ------------- | ------------------------- | -------- |
-| R01                | Table1        | units|dozens|hundreds|etc | order per time |
-| R02                | Table2        | units|dozens|hundreds|etc | dozens per month |
-| R03                | Table3        | units|dozens|hundreds|etc | hundreds per day |
-| R04                | Table4        | units|dozens|hundreds|etc | no growth |
+| R01                | users        | tens of thousands | hundreds per day |
+| R02                | auction        | thousands | hundreds per year |
+| R03                | bid        | tens of thousands | dozens per day |
+| R04                | admin        | units | no growth |
+| R05                | message        | tens of thousands | dozens per week |
+| R06                | chat        | thousands | hundreds per year |
+| R07                | images        | tens of thousands | thousands per year |
+| R08                | auction_report        | dozens | hundreds per year |
+| R09                | rating        | thousands | hundreds per month |
+| R10                | user_follow        | thousands | thousands per month |
+| R11                | action_follow        | thousands | thousands per year |
+| R12                | user_notification        | hundreds of thousands | thousands per month |
+| R13                | auction_notification        | hundreds of thousands | thousands per month |
+
+
 
 
 ### 2. Proposed Indices
