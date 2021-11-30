@@ -217,11 +217,11 @@ CREATE INDEX auction_bid_index on bid USING hash(auction_id);
 
 CREATE INDEX user_bid_index on bid USING hash(bidder_id);
 
-
 CREATE INDEX auction_by_date ON auction USING btree (start_date);
 
-CREATE INDEX auction_search_idx on auction USING GIN(ts_auction);
+CREATE INDEX auction_by_end_date ON auction USING btree (predicted_end);
 
+CREATE INDEX auction_search_idx on auction USING GIN(ts_auction);
 
 --TRIGGERS 
 
