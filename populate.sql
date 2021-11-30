@@ -33,6 +33,11 @@ INSERT INTO bid (bid_id,bid_value,bid_date,auction_id,bidder_id) VALUES (203,100
 INSERT INTO bid (bid_id,bid_value,bid_date,auction_id,bidder_id) VALUES (204,1150,'2021-12-03',101,4);
 
 
+--admin
+
+INSERT INTO admin(admin_id,admin_name,username,admin_password,email) VALUES (0101,'group07','theadmin07','$2y$10$zGewf6.Cq2kJnQKWidswRuI.kXUAWaRlxbZcdv6am3FfgkzhRmMru','up201806102@fe.up.pt');
+
+
 -- chat(chat_id,auction_id)
 
 INSERT INTO chat (chat_id,auction_id) VALUES (300,100);
