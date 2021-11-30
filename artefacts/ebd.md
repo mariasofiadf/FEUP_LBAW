@@ -834,13 +834,11 @@ Transactions are used to assure the integrity of the data when multiple operatio
 
 ## Annex A. SQL Code
 
-> The database scripts are included in this annex to the EBD component.
-> 
-> The database creation script and the population script should be presented as separate elements.
-> The creation script includes the code necessary to build (and rebuild) the database.
-> The population script includes an amount of tuples suitable for testing and with plausible values for the fields of the database.
->
-> This code should also be included in the group's git repository and links added here.
+The database scripts are included in this annex to the EBD component. 
+
+The creation script includes the code necessary to build (and rebuild) the database.
+The population script includes an amount of tuples suitable for testing and with plausible values for the fields of the database.
+
 
 ### A.1. Database schema
 
@@ -1064,8 +1062,9 @@ Transactions are used to assure the integrity of the data when multiple operatio
 
     CREATE INDEX user_bid_index on bid USING hash(bidder_id);
 
-
     CREATE INDEX auction_by_date ON auction USING btree (start_date);
+
+    CREATE INDEX auction_by_end_date ON auction USING btree (predicted_end);
 
     CREATE INDEX auction_search_idx on auction USING GIN(ts_auction);
 
