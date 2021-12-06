@@ -20,7 +20,14 @@ Identification and brief description of the modules that will be part of the app
 
 ### 2. Permissions
 
-> Define the permissions used by each module, necessary to access its data and features.  
+Permissions used by each module, necessary to access its data and features.
+
+|       |  |      |
+| :---        |    :---   |          --- |
+| PUB      | Public       |  Users without privileges   |
+| USR   | User        | 	Authenticated users       |
+| OWN         | Owner       |  Users that own information (e.g. own auction, own auction)  |
+| ADM   | Administrator        | System administrators     |
 
 ### 3. OpenAPI Specification
 
