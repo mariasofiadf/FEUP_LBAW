@@ -13,11 +13,10 @@ Identification and brief description of the modules that will be part of the app
 | Module | Description           |
 | ----------- | ------------------------------ |
 |**M01: Authentication and Individual Profile**|   Web resources connected with authentication and individual profile management. Includes the features: login/logout, registration, credential recovery, view and edit settings and individual profile details.|
-|**M02: Auction Owner**      |Web resources connected with owning auctions includes the following system features:  create, edit and cancel an auction. Manage auction status. |
-|**M03: Auction**      | Web resources connected with autions. Includes the following system features: bid at an auction, auction listing and search, view, bookmark and report auctions, view auction's bidding history.|
-|**M04: User Actions**      | 	Web resources associated with user. Includes the following system features: user listing and search, view user profile, review user (**follow**).|
-|**M05: Administration**      |Web resources associated with user and auction management, includes the following system features: restrict and ban users, delete user accounts, manage and delete auctions, change user information, and view system access details for each user.|
-|**M06: Static pages and others**      | 	Web resources associated with general content of the website. Web resources with static content are associated with this module: About and FAQ.|
+|**M02: Auction**      | Web resources connected with autions. Includes the following system features: bid at an auction, auction listing and search, view, bookmark and report auctions, view auction's bidding history. Also includes creation, edition and cancelacion of an auction, as well as the management of the auction status. |
+|**M03: User Actions**      | 	Web resources associated with user. Includes the following system features: user listing and search, view user profile, review user (**follow**).|
+|**M04: Administration**      |Web resources associated with user and auction management, includes the following system features: restrict and ban users, delete user accounts, manage and delete auctions, change user information, and view system access details for each user.|
+|**M05: Static pages and others**      | 	Web resources associated with general content of the website. Web resources with static content are associated with this module: About and FAQ.|
 
 ### 2. Permissions
 
