@@ -19,7 +19,7 @@ class Rating extends Model
 
     protected $table = 'rating';
 
-    protected $casts = ['time' => 'datetime'];
+    protected $casts = ['rate_date' => 'datetime'];
 
     protected $dateFormat = 'Y-m-d H:i:sO';
 }
