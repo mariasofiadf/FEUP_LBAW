@@ -18,7 +18,15 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'username','password', 'email', 'phone_number', 'profile_image', 'auction_notif', 'user_notif',
+    ];
+
+    protected $attributes = [
+        'credit' => 0,
+        'rating' => 0,
+        'blocked' => false,
+        'auction_notif' => true,
+        'user_notif' => true,
     ];
 
     /**
@@ -27,13 +35,19 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
     ];
 
     /**
      * The cards this user owns.
      */
-     public function cards() {
+    public function cards() {
       return $this->hasMany('App\Models\Card');
     }
+
+    public function bids(){return $this->hasMany('App\Models\Bid');}
+
+    public function ownedAuctions(){return $this->hasMany('App\Models\Auction');}
+
+    public function followedAuctions(){return $this->hasMany('App\Models\Auction');}
 }
