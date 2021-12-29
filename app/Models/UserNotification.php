@@ -13,7 +13,7 @@ class UserNotification extends Model
 
     protected $primaryKey = 'notif_id';
 
-    protected $fillable = ["notified_id", "notifier_id"];
+    protected $fillable = ["notified_id", "notifier_id",];
 
     public $timestamps = false;
 
@@ -25,11 +25,11 @@ class UserNotification extends Model
 
     public function userNotified()
     {
-        return $this -> hasOne(Users::class, "user_id", "notified_id");
+        return $this -> hasOne(User::class, "notified_id", "user_id");
     }
 
     public function userNotifier()
     {
-        return $this -> hasOne(Users::class, "user_id", "notifier_id");
+        return $this -> hasOne(User::class, "notifier_id", "user_id");
     }
 }

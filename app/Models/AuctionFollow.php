@@ -11,7 +11,7 @@ class AuctionFollow extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ["id_followed", "id_follower"];
+    protected $fillable = ["id_followed", "id_follower",];
 
     protected $table = 'auction_follow';
 }

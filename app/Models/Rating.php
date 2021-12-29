@@ -12,7 +12,7 @@ class Rating extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        "rate_value", "id_rated", "id_rates" //"rate_date"
+        "rate_value", "id_rated", "id_rates", //"rate_date"
     ];
 
     public $incrementing = false;
