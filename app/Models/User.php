@@ -50,7 +50,7 @@ class User extends Authenticatable
 
     public function bids(){return $this->hasMany('App\Models\Bid');}
 
-    public function ownedAuctions(){return $this->hasMany('App\Models\Auction');}
+    public function ownedAuctions(){return $this->hasMany('App\Models\Auction', 'seller_id');}
 
     public function followedAuctions(){return $this->hasMany('App\Models\Auction');}
 }

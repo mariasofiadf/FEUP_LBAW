@@ -20,7 +20,7 @@ Route::get('cards/{id}', 'CardController@show');
 //Auctions
 Route::get('auctions', 'AuctionController@list');
 Route::get('auctions/{id}', 'AuctionController@show');
-Route::put('api/auctions', 'AuctionController@create');
+Route::put('api/auctions', 'AuctionController@create')->name('api/auctions');
 Route::delete('api/auctions/{auction_id}', 'AuctionController@delete');
 
 

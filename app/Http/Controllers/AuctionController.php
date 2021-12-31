@@ -10,6 +10,8 @@ use App\Models\Auction;
 
 class AuctionController extends Controller
 {
+
+    protected $redirectTo = '/auctions';
     /**
      * Shows the auction for a given id.
      *
@@ -43,12 +45,21 @@ class AuctionController extends Controller
      */
     public function create(Request $request)
     {
-      $Auction = new Auction();
+      $auction = new Auction();
 
       $this->authorize('create', $auction);
 
       $auction->title = $request->input('title');
+
+      $auction->min_opening_bid = $request->input('min_opening_bid');
+      $auction->min_raise = $request->input('min_raise');
+      $auction->start_date = date("Y/m/d");
+      $auction->predicted_end = date("Y/m/d");
+      $auction->close_date = date("Y/m/d");
+      $auction->status = 'Active';
+      $auction->category = 'Book';
       $auction->seller_id = Auth::user()->user_id;
+
       $auction->save();
 
       return $auction;
