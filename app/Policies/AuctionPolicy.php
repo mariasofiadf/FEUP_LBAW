@@ -14,14 +14,13 @@ class AuctionPolicy
 
     public function show(User $user, Auction $auction)
     {
-      // Only a card owner can see it
       return true;
     }
 
     public function list(User $user)
     {
       // Any user can list its own cards
-      return Auth::check();
+      return true;
     }
 
     public function create(User $user)

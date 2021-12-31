@@ -61,7 +61,7 @@ class AuctionController extends Controller
       $auction->seller_id = Auth::user()->user_id;
 
       $auction->save();
-
+      return redirect('/auctions');
       return $auction;
     }
 

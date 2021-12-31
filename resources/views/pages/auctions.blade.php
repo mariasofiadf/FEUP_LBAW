@@ -26,22 +26,42 @@
           </span>
         @endif
 
-        <label for="min_raise">Minimum Rais</label>
-        <input id="min_raise" type="min_raise" name="min_raise" value="{{ old('min_raise') }}" required>
+        <label for="min_raise">Minimum Raise</label>
+        <input id="min_raise" type="number" name="min_raise" value="{{ old('min_raise') }}" required>
         @if ($errors->has('min_raise'))
           <span class="error">
               {{ $errors->first('min_raise') }}
           </span>
         @endif
 
-        <label for="password">Password</label>
-        <input id="password" type="password" name="password" required>
-        @if ($errors->has('password'))
+        <label for="auction_category">Category</label>
+        <input list = "auction_categories" id="auction_category" type="text" name="auction_category" required>
+          <datalist id="auction_categories">
+            <option value="ArtPiece">
+            <option value="Book">
+            <option value="Jewelry">
+            <option value="Decor">
+            <option value="Other">
+          </datalist>
+        @if ($errors->has('auction_category'))
           <span class="error">
-              {{ $errors->first('password') }}
+              {{ $errors->first('auction_category') }}
           </span>
         @endif
 
+        <label for="auction_status">Status</label>
+        <input list = "auction_statuss" id="auction_status" type="text" name="auction_status" required>
+          <datalist id="auction_statuss">
+            <option value="Active">
+            <option value="Hidden">
+            <option value="Canceled">
+            <option value="Closed">
+          </datalist>
+        @if ($errors->has('auction_status'))
+          <span class="error">
+              {{ $errors->first('auction_status') }}
+          </span>
+        @endif
         <button type="submit">
           Submit
         </button>
