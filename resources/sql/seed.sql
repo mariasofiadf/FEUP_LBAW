@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS items CASCADE;
 CREATE TABLE cards (
   id SERIAL PRIMARY KEY,
   name VARCHAR NOT NULL,
-  user_id INTEGER REFERENCES users NOT NULL
+  user_user_id INTEGER REFERENCES users NOT NULL
 );
 
 CREATE TABLE items (
@@ -94,7 +94,7 @@ CREATE TABLE auction(
 
     status auction_status NOT NULL,
     category auction_category NOT NULL,
-    seller_id INTEGER REFERENCES users(user_id) NOT NULL,
+    user_user_id INTEGER REFERENCES users(user_id) NOT NULL,
     win_bid INTEGER REFERENCES bid(bid_id),
     auction_image INTEGER REFERENCES image(img_id)
 );

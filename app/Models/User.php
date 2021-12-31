@@ -46,6 +46,7 @@ class User extends Authenticatable
     public function cards() {
       return $this->hasMany('App\Models\Card');
     }
+  
 
     public function bids(){return $this->hasMany('App\Models\Bid');}
 

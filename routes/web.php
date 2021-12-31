@@ -17,6 +17,13 @@ Route::get('/', 'Auth\LoginController@home');
 Route::get('cards', 'CardController@list');
 Route::get('cards/{id}', 'CardController@show');
 
+//Auctions
+Route::get('auctions', 'AuctionController@list');
+Route::get('auctions/{id}', 'AuctionController@show');
+Route::put('api/auctions', 'AuctionController@create');
+Route::delete('api/auctions/{auction_id}', 'AuctionController@delete');
+
+
 // API
 Route::put('api/cards', 'CardController@create');
 Route::delete('api/cards/{card_id}', 'CardController@delete');
