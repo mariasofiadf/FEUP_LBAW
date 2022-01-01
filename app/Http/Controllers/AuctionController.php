@@ -11,7 +11,7 @@ use App\Models\Auction;
 class AuctionController extends Controller
 {
 
-    protected $redirectTo = '/auctions';
+    //protected $redirectTo = '/auctions';
     /**
      * Shows the auction for a given id.
      *
@@ -62,16 +62,23 @@ class AuctionController extends Controller
 
       $auction->save();
       return redirect('/auctions');
-      return $auction;
+      //return $auction;
     }
 
     public function delete(Request $request, $id)
     {
-      $auction = Card::Auction($id);
+      $auction = Auction::find($id);
 
       $this->authorize('delete', $auction);
       $auction->delete();
-
-      return $auction;
+      return redirect('/auctions');
+      //return $auction;
     }
+
+    public function showAuctionCreationForm(){
+      
+      if (!Auth::check()) return redirect('/login');
+      return view('pages.auctionCreate');
+    }
+
 }
