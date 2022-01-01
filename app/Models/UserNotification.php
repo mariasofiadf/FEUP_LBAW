@@ -32,4 +32,19 @@ class UserNotification extends Model
     {
         return $this -> hasOne(User::class, "notifier_id", "user_id");
     }
+
+    public function partial()
+    {
+        switch($this -> notif_category)
+        {
+            case "Rating":
+                $partial_name = "rating";
+                break;
+            case "Follow":
+                $partial_name = "follow";
+                break;
+        }
+
+        return view("partial.notifications." . $partial_name, ["user" => $this->user]);
+    }
 }
