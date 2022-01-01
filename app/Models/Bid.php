@@ -21,6 +21,6 @@ class Bid extends Model
 
     public function bidder(){return $this->hasOne('App\Models\User');}
 
-    public function auction(){return $this->hasOne('App\Models\Auction');}
+    public function auction(){return $this->hasOne('App\Models\Auction', 'auction_id');}
 
 }

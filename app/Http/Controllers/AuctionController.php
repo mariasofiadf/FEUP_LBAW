@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Auction;
+use App\Models\Bid;
 
 class AuctionController extends Controller
 {
@@ -22,7 +23,10 @@ class AuctionController extends Controller
     {
       $auction = Auction::find($id);
       $this->authorize('show', $auction);
-      return view('pages.auction', ['auction' => $auction]);
+      $bids = $auction->bids();
+      if(!empty($bids))
+        $bid = $bids->max('bid_value');
+      return view('pages.auction', ['auction' => $auction, 'bid' => $bid]);
     }
 
     /**
@@ -81,4 +85,19 @@ class AuctionController extends Controller
       return view('pages.auctionCreate');
     }
 
+
+    public function bid(Request $request, $id)
+    {
+      $bid = new Bid();
+
+      $this->authorize('create', $bid);
+
+      $bid->bid_value = $request->input('bid_value');
+      $bid->auction_id = $id;
+      $bid->bidder_id = Auth::user()->user_id;
+      $bid->bid_date = date("Y-m-d H:i:s"); 
+
+      $bid->save();
+      return $bid;
+    }
 }

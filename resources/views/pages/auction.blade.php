@@ -3,5 +3,5 @@
 @section('title', $auction->name)
 
 @section('content')
-  @include('partials.auction', ['auction' => $auction])
+  @include('partials.auction', ['auction' => $auction, 'bid' => $bid])
 @endsection
