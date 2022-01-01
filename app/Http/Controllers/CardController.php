@@ -32,7 +32,7 @@ class CardController extends Controller
     {
       if (!Auth::check()) return redirect('/login');
       $this->authorize('list', Card::class);
-      $cards = Auth::user()->cards()->orderBy('id')->get();
+      $cards = Auth::user()->cards()->get();
       return view('pages.cards', ['cards' => $cards]);
     }
 
