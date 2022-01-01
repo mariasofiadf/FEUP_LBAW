@@ -38,7 +38,7 @@ class AuctionController extends Controller
     {
       if (!Auth::check()) return redirect('/login');
       $this->authorize('list', Auction::class);
-      $auctions = Auth::user()->ownedAuctions()->get();
+      $auctions = Auction::where('status', 'Active')->get();
       return view('pages.auctions', ['auctions' => $auctions]);
     }
 
