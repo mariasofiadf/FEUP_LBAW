@@ -33,7 +33,7 @@
         </li>
 
         <li class="nav-item">
-          <button class="nav-link active" class="rounded" href="{{ url('/logout') }}"> Logout </a> 
+          <a class="nav-link active" class="rounded" href="{{ url('/logout') }}"> Logout </a> 
         </li>
         @endif
       </ul>
