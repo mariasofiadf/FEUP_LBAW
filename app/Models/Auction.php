@@ -25,7 +25,7 @@ class Auction extends Model
 
     public function chat(){return $this->hasOne('App\Models\Chat');}
 
-    public function bids(){return $this->hasMany('App\Models\Bid');}
+    public function bids(){return $this->hasMany('App\Models\Bid', 'auction_id');}
 
     public function images(){return $this->hasMany('App\Models\Image');}
 

@@ -7,22 +7,32 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Auction;
+use App\Models\Bid;
 
 class AuctionController extends Controller
 {
 
-    protected $redirectTo = '/auctions';
+    //protected $redirectTo = '/auctions';
     /**
      * Shows the auction for a given id.
      *
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function showPreview($id)
     {
       $auction = Auction::find($id);
       $this->authorize('show', $auction);
-      return view('pages.auction', ['auction' => $auction]);
+      return view('pages.auctionPreview', ['auction' => $auction]);
+    }
+
+    public function showFull($id)
+    {
+      $auction = Auction::find($id);
+      $this->authorize('show', $auction);
+      $bid = DB::table('bid')->where('auction_id', $id)->orderBy('bid_value', 'desc')->get()->first();
+      $bidder = DB::table('users')->where('user_id', $bid->bidder_id)->get()->first();
+      return view('pages.auctionFull', ['auction' => $auction, 'bid' => $bid, 'bidder' => $bidder]);
     }
 
     /**
@@ -34,7 +44,7 @@ class AuctionController extends Controller
     {
       if (!Auth::check()) return redirect('/login');
       $this->authorize('list', Auction::class);
-      $auctions = Auth::user()->ownedAuctions()->get();
+      $auctions = Auction::where('status', 'Active')->get();
       return view('pages.auctions', ['auctions' => $auctions]);
     }
 
@@ -62,16 +72,39 @@ class AuctionController extends Controller
 
       $auction->save();
       return redirect('/auctions');
-      return $auction;
+      //return $auction;
     }
 
     public function delete(Request $request, $id)
     {
-      $auction = Card::Auction($id);
+      $auction = Auction::find($id);
 
       $this->authorize('delete', $auction);
       $auction->delete();
+      return redirect('/auctions');
+      //return $auction;
+    }
 
-      return $auction;
+    public function showAuctionCreationForm(){
+      
+      if (!Auth::check()) return redirect('/login');
+      return view('pages.auctionCreate');
+    }
+
+
+    public function bid(Request $request, $id)
+    {
+      $bid = new Bid();
+
+      $this->authorize('create', $bid);
+
+      $bid->bid_value = $request->input('bid_value');
+      $bid->auction_id = $id;
+      $bid->bidder_id = Auth::user()->user_id;
+      $bid->bid_date = date("Y-m-d H:i:s"); 
+
+      $bid->save();
+      return redirect()->route('auctions/{id}', $id);
+      return $bid;
     }
 }

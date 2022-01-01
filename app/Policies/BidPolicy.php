@@ -3,36 +3,36 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Auction;
+use App\Models\Bid;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
 
-class AuctionPolicy
+class BidPolicy
 {
     use HandlesAuthorization;
 
-    public function show(User $user, Auction $auction)
+    public function show(User $user, Bid $bid)
     {
-      // Any user can view an auction
+      // Any user can view a bid
       return true;
     }
 
     public function list(User $user)
     {
-      // Any user can list auctions
+      // Any user can list bids
       return true;
     }
 
     public function create(User $user)
     {
-      // Any user can create a new auction
+      // Any user can create a new bid
       return Auth::check();
     }
 
-    public function delete(User $user, Auction $auction)
+    public function delete(User $user, Bid $bid)
     {
       // Only a auction owner can delete it
-      return $user->id == $auction->user_id;
+      return false;
     }
 }

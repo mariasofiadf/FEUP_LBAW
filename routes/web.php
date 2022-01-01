@@ -19,7 +19,10 @@ Route::get('cards/{id}', 'CardController@show');
 
 //Auctions
 Route::get('auctions', 'AuctionController@list');
-Route::get('auctions/{id}', 'AuctionController@show');
+Route::get('auctions/{id}', 'AuctionController@showFull')->name('auctions/{id}');
+Route::get('auctions/{id}/delete', 'AuctionController@delete');
+Route::post('auctions/{id}/bid', 'AuctionController@bid')->name('auctions/{id}/bid');
+Route::get('create', 'AuctionController@showAuctionCreationForm');
 Route::put('api/auctions', 'AuctionController@create')->name('api/auctions');
 Route::delete('api/auctions/{auction_id}', 'AuctionController@delete');
 
