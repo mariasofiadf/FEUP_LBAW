@@ -19,14 +19,20 @@ class AuctionController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function showPreview($id)
     {
       $auction = Auction::find($id);
       $this->authorize('show', $auction);
-      $bids = $auction->bids();
-      if(!empty($bids))
-        $bid = $bids->max('bid_value');
-      return view('pages.auction', ['auction' => $auction, 'bid' => $bid]);
+      return view('pages.auctionPreview', ['auction' => $auction]);
+    }
+
+    public function showFull($id)
+    {
+      $auction = Auction::find($id);
+      $this->authorize('show', $auction);
+      $bid = DB::table('bid')->where('auction_id', $id)->orderBy('bid_value', 'desc')->get()->first();
+      $bidder = DB::table('users')->where('user_id', $bid->bidder_id)->get()->first();
+      return view('pages.auctionFull', ['auction' => $auction, 'bid' => $bid, 'bidder' => $bidder]);
     }
 
     /**
@@ -98,6 +104,7 @@ class AuctionController extends Controller
       $bid->bid_date = date("Y-m-d H:i:s"); 
 
       $bid->save();
+      return redirect()->route('auctions/{id}', $id);
       return $bid;
     }
 }

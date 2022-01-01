@@ -5,7 +5,7 @@
 @section('content')
 
 <section id="auctions">
-  @each('partials.auction', $auctions, 'auction')
+  @each('partials.auctionPreview', $auctions, 'auction')
   <a href="create">
    <button>Create Auction</button>
   </a>
