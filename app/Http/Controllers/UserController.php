@@ -69,10 +69,17 @@ class UserController extends Controller
       return view('pages.userEdit', ['user' => $user]);
     } 
 
-    public function edit($id){
+    public function edit(Request $request,){
       if (!Auth::check()) return redirect('/login');
+      $id = Auth::id();
       $user = User::find($id);
-      return view('pages.userEdit', ['user' => $user]);
+
+      $user->name = $request->input('name');
+      $user->username = $request->input('username');
+      $user->email = $request->input('email');
+
+      $user->save();
+      return redirect()->route('users/{id}', $id);
     } 
       
 
