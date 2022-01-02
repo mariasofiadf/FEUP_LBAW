@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Auction;
 use App\Models\Bid;
+use App\Models\User;
 
 class AuctionController extends Controller
 {
@@ -23,7 +24,8 @@ class AuctionController extends Controller
     {
       $auction = Auction::find($id);
       $this->authorize('show', $auction);
-      return view('pages.auctionPreview', ['auction' => $auction]);
+      $user = User::where('user_id', $auction->seller_id)->first();
+      return view('pages.auctionPreview', ['auction' => $auction, 'user' => $user]);
     }
 
     public function showFull($id)
@@ -35,7 +37,8 @@ class AuctionController extends Controller
         $bidder = DB::table('users')->where('user_id', $bid->bidder_id)->get()->first();
       else
         $bidder = null;
-      return view('pages.auctionFull', ['auction' => $auction, 'bid' => $bid, 'bidder' => $bidder]);
+      $user = User::where('user_id', $auction->seller_id)->first();
+      return view('pages.auctionFull', ['auction' => $auction, 'bid' => $bid, 'bidder' => $bidder,'user' => $user]);
     }
 
     /**

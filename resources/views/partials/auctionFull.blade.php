@@ -1,7 +1,7 @@
 <div class="card">
   <img src="..." class="card-img-top" alt="...">
   <div class="card-body">
-    <h2 class="card-title"><a href="/auctions/{{ $auction->auction_id }}">{{ $auction->title }}</a></h2>
+    <h2 class="card-title"><a href="/auctions/{{ $auction->auction_id }}">{{ $auction->title }}</a> by <a href="/users/{{ $auction->seller_id }}">{{ $user->name }}</a></h2>
     <p class="card-text">{{ $auction->description ?? '' }}</p>
     <p class="card-text">Category: {{ $auction->category }}</p>
     @if ($bid != null)
