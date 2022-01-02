@@ -27,13 +27,17 @@
       </div>
       <div class="col-3">
         <ul class="nav nav-pills  justify-content-end">
-      @if (Auth::check())
+        @if (Auth::check())
         <li class="nav-item">
           <a class = "nav-link" href="/users/{{ Auth::user()->user_id }}">{{ Auth::user()->name }}</a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link active" class="rounded" href="{{ url('/logout') }}"> Logout </a> 
+        </li>
+        @else
+        <li class="nav-item">
+          <a class="nav-link active" class="rounded" href="{{ url('/login') }}"> Login </a> 
         </li>
         @endif
       </ul>
