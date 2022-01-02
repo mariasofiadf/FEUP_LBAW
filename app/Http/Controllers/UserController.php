@@ -63,6 +63,17 @@ class UserController extends Controller
         return view('pages.user_profile', ["user" => Auth::user(), "auctions" => $auctions]);
     }
 
+    public function showEditForm(){
+      if (!Auth::check()) return redirect('/login');
+      $user = User::find(Auth::id());
+      return view('pages.userEdit', ['user' => $user]);
+    } 
+
+    public function edit($id){
+      if (!Auth::check()) return redirect('/login');
+      $user = User::find($id);
+      return view('pages.userEdit', ['user' => $user]);
+    } 
       
 
     public function delete(Request $request, $id)

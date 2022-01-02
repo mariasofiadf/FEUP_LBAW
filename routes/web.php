@@ -47,5 +47,7 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 
 //Users
+Route::get('profile/edit', 'UserController@showEditForm');
+Route::post('profile/edit', 'UserController@edit');
 Route::get('users/{id}', 'UserController@showProfile');
 Route::get('users', 'UserController@list');
