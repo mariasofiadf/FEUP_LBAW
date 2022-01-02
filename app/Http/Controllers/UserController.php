@@ -44,12 +44,13 @@ class UserController extends Controller
      * @param username 
      * @return Response
      */
-    public function showProfile($username ) {
-        $user = User::all()->where('username', '=', $username)->first();
+    public function showProfile($id) {
+        $user = User::all()->where('user_id', $id)->first();
         if ($user == null || $user->deleted)
             return abort(404);
 
-        return view('pages.user_profile', ["user" => $user]);
+        $auctions = Auction::all()->where('seller_id', $id);
+        return view('pages.user_profile', ["user" => $user, "auctions" => $auctions]);
     }
 
      /**
