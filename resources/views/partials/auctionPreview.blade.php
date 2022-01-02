@@ -1,6 +1,6 @@
 
 
-<div class="card" style="width: 18rem; margin-right: 1rem;">
+<div class="col md card" style="width: 14rem; margin: 0.5rem;">
   <img src="..." class="card-img-top" alt="...">
   <div class="card-body">
     <h4 class="card-title"><a href="/auctions/{{ $auction->auction_id }}">{{ $auction->title }}</a></h5>
