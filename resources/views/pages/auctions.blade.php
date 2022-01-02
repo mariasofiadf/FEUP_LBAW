@@ -4,11 +4,6 @@
 
 @section('content')
 
-<section class = "container-fluid">
-  @each('partials.auctionPreview', $auctions, 'auction')
-
-  <a href="create" class="btn btn-primary">Create Auction</a>
-
-</section>
+@include('partials.auctions', ['auctions' => $auctions])
 
 @endsection

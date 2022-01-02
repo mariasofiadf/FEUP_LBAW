@@ -16,7 +16,12 @@
       @endif
     </div>
 </div>
+<div class="card">
+    <div class="card-body">
 
-
+      <h2 class="card-title "> My Auctions</h2>
+      @include('partials.auctions', ['auctions' => $auctions])
+    </div>
+</div>
 
 @endsection

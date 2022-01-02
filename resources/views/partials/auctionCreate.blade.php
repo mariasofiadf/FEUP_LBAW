@@ -1,62 +1,48 @@
 <article class="auction">    
-<form method="POST" action="{{ route('api/auctions') }}">
-        {{ csrf_field() }}
-        {{ method_field('PUT') }}
-        <label for="title">Title</label>
-        <input id="title" type="text" name="title" value="{{ old('title') }}" required autofocus>
-        @if ($errors->has('title'))
-          <span class="error">
-              {{ $errors->first('title') }}
-          </span>
-        @endif
 
-        <label for="min_opening_bid">Minimum Opening Bid</label>
-        <input id="min_opening_bid" type="number" name="min_opening_bid" value="{{ old('min_opening_bid') }}" required autofocus>
-        @if ($errors->has('min_opening_bid'))
-          <span class="error">
-              {{ $errors->first('min_opening_bid') }}
-          </span>
-        @endif
+@if (is_null($auction))
+  <form method="POST" action="{{ route('api/auctions') }}">
+@else
+  <form method="POST" action="{{ route('auctions/{id}/edit', ['id' => $auction->auction_id]) }}">
+@endif
+{{ csrf_field() }}
+{{ method_field('PUT') }}
+<div class="mb-3">
+<label for="title" class="form-label">Title</label>
+<input type="text" name="title" class="form-control" id="title" value="{{ $auction->title ?? old('title') }}" required autofocus>
+</div>
+<div class="mb-3" style>
+<label for="description" class="form-label">Description</label>
+<textarea type="text" name="description" class="form-control" id="description" value="{{ $auction->description ?? old('description') }}" required autofocus>{{ $auction->description ?? '' }}</textarea>
+</div>
+<div class="mb-3">
+<label for="min_opening_bid" class="form-label" >Minimum Opening Bid</label>
+<input type="text" name= "min_opening_bid" class="form-control" id="min_opening_bid" value="{{ $auction->min_opening_bid ?? old('min_opening_bid') }}" required autofocus>
+<div class="mb-3">
+<label for="min_raise" class="form-label">Minimum Raise</label>
+<input type="text" name="min_raise" class="form-control" id="min_raise" value="{{ $auction->min_raise ?? old('min_raise') }}" required>
+</div>
 
-        <label for="min_raise">Minimum Raise</label>
-        <input id="min_raise" type="number" name="min_raise" value="{{ old('min_raise') }}" required>
-        @if ($errors->has('min_raise'))
-          <span class="error">
-              {{ $errors->first('min_raise') }}
-          </span>
-        @endif
+<label for="auction_category" class="form-label">Category</label>
+<select class="form-select" id="auction_categories" aria-label="Default select example" value="{{ $auction->auction_category ?? old('auction_category') }}" name="auction_category" required>
+  <option value="ArtPiece">ArtPiece</option>
+  <option value="Book">Book</option>
+  <option value="Jewelry">Jewelry</option>
+  <option value="Decor">Decor</option>
+  <option value="Other">Other</option>
+</select>
 
-        <label for="auction_category">Category</label>
-        <input list = "auction_categories" id="auction_category" type="text" name="auction_category" required>
-          <datalist id="auction_categories">
-            <option value="ArtPiece">
-            <option value="Book">
-            <option value="Jewelry">
-            <option value="Decor">
-            <option value="Other">
-          </datalist>
-        @if ($errors->has('auction_category'))
-          <span class="error">
-              {{ $errors->first('auction_category') }}
-          </span>
-        @endif
+<label for="auction_status" class="form-label">Status</label>
+<select class="form-select" id="auction_statuss" aria-label="Default select example" value="{{ $auction->auction_status ?? old('auction_status') }}" name="auction_status" required>
+  <option value="Active">Active</option>
+  <option value="Hidden">Hidden</option>
+  <option value="Canceled">Canceled</option>
+  <option value="Closed">Closed</option>
+</select>
 
-        <label for="auction_status">Status</label>
-        <input list = "auction_statuss" id="auction_status" type="text" name="auction_status" required>
-          <datalist id="auction_statuss">
-            <option value="Active">
-            <option value="Hidden">
-            <option value="Canceled">
-            <option value="Closed">
-          </datalist>
-        @if ($errors->has('auction_status'))
-          <span class="error">
-              {{ $errors->first('auction_status') }}
-          </span>
-        @endif
-        <button type="submit">
-          Submit
-        </button>
-    </form>
+<div class="mb-3" style="margin-top:1rem;">
+<button type="submit" class="btn btn-primary form-control" >Submit</button>
+</div>
+</form>
   </article>
 
