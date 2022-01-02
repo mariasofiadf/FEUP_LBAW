@@ -1,28 +1,20 @@
-<article class="auction" data-id="{{ $auction->id }}">
-<header>
-  <h2><a href="/auctions/{{ $auction->auction_id }}">{{ $auction->title }}</a></h2>
+<div class="card">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h2 class="card-title"><a href="/auctions/{{ $auction->auction_id }}">{{ $auction->title }}</a></h2>
+    <p class="card-text">Category: {{ $auction->category }}</p>
+    <p class="card-text">Highest Bid: {{ $bid->bid_value }}€ by {{ $bidder->name}}</p>
+    <form method="POST" action="{{ route('auctions/{id}/bid', $auction->auction_id) }}">
 
-  <h3>{{ $auction->category }}</h3>
-
-  <h3>Highest Bid: {{ $bid->bid_value }}€ by {{ $bidder->name}}</h3>
-  <a href="/auctions/{{ $auction->auction_id }}/delete" class="delete">&#10761;</a>
-
-  <form method="POST" action="{{ route('auctions/{id}/bid', $auction->auction_id) }}">
       {{ csrf_field() }}
-
-      <label for="bid_value">Bid Value</label>
-      <input id="bid_value" type="number" name="bid_value" value="{{ old('bid_value') }}" required>
-      @if ($errors->has('bid_value'))
-        <span class="error">
-            {{ $errors->first('bid_value') }}
-        </span>
-      @endif
-
-      <button type="submit">
-        Bid
-      </button>
+      <div class="mb-3">
+        <label for="bid_value" class="form-label">Bid Value</label>
+        <input type="number" name="bid_value" class="form-control" id="bid_value" aria-describedby="emailHelp">
+      </div>
+      <button type="submit" class="btn btn-primary">Bid</button>
   </form>
-</header>
 
-</article>
+  <a href="/auctions/{{ $auction->auction_id }}/delete" class="delete">Delete</a>
+  </div>
+</div>
 

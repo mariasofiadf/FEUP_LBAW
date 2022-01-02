@@ -1,10 +1,10 @@
-<article class="auction" data-id="{{ $auction->id }}">
-<header>
-  <h2><a href="/auctions/{{ $auction->auction_id }}">{{ $auction->title }}</a></h2>
 
-  <h3>{{ $auction->category }}</h3>
 
-</header>
-
-</article>
-
+<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><a href="/auctions/{{ $auction->auction_id }}">{{ $auction->title }}</a></h5>
+    <p class="card-text">Category: {{ $auction->category }}</p>
+    <a href="/auctions/{{ $auction->auction_id }}" class="btn btn-primary">Go to auction</a>
+  </div>
+</div>
