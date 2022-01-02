@@ -12,6 +12,7 @@
 */
 // Home
 Route::get('/', 'Auth\LoginController@home');
+Route::redirect('cards', 'auctions');
 
 // Cards
 Route::get('cards', 'CardController@list');
@@ -28,6 +29,8 @@ Route::get('create', 'AuctionController@showAuctionCreationForm');
 Route::put('api/auctions', 'AuctionController@create')->name('api/auctions');
 Route::delete('api/auctions/{auction_id}', 'AuctionController@delete');
 
+
+Route::get('mybids', 'BidController@myBids');
 
 // API
 Route::put('api/cards', 'CardController@create');

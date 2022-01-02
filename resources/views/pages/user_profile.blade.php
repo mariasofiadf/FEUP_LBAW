@@ -12,7 +12,10 @@
       <p class="card-text">Description</p>
       <p class="card-text">Joined date</p>
       @if (Auth::check() && Auth::id() != $user->id )
-      <button class="btn btn-primary" href = "/users/{{ Auth::user()->user_id }}/edit">Edit Profile</button> 
+        <button class="btn btn-primary" href = "/users/{{ Auth::user()->user_id }}/edit">Edit Profile</button> 
+      @endif
+      @if (Auth::check() && Auth::id() != $user->id )
+        <button class="btn btn-primary" href = "/mybids">My Bidding History</button> 
       @endif
     </div>
 </div>
