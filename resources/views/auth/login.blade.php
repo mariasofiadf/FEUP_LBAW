@@ -18,6 +18,6 @@
     <label class="form-check-label" for="exampleCheck1">Remember Me</label>
   </div>
   <button type="submit" class="btn btn-primary">Login</button>
-  <button class="btn btn-secondary" href="{{ route('register') }}"> Register </button>
+  <a class="btn btn-secondary" href="{{ route('register') }}"> Register </a>
 </form>
 @endsection
