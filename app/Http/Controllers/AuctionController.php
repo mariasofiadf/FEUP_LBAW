@@ -42,8 +42,6 @@ class AuctionController extends Controller
      */
     public function list()
     {
-      if (!Auth::check()) return redirect('/login');
-      $this->authorize('list', Auction::class);
       $auctions = Auction::where('status', 'Active')->get();
       return view('pages.auctions', ['auctions' => $auctions]);
     }
