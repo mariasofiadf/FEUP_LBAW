@@ -22,7 +22,7 @@ class BidController extends Controller
      */
     public function myBids()
     {
-      $bids = Bid::where('bidder_id', Auth::user()->$user_id)->get();
+      $bids = Bid::where('bidder_id', Auth::user()->user_id)->get();
       return view('pages.bids', ['bids' => $bids]);
     }
 

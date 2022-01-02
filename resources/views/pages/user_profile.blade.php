@@ -15,7 +15,7 @@
         <button class="btn btn-primary" href = "/users/{{ Auth::user()->user_id }}/edit">Edit Profile</button> 
       @endif
       @if (Auth::check() && Auth::id() != $user->id )
-        <button class="btn btn-primary" href = "/mybids">My Bidding History</button> 
+        <a class="btn btn-primary" href = "/mybids">My Bidding History</a> 
       @endif
     </div>
 </div>

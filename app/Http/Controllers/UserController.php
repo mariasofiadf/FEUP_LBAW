@@ -59,6 +59,7 @@ class UserController extends Controller
      * @return Response
      */
     public function showMyProfile() {
+      if (!Auth::check()) return redirect('/login');
         $auctions = Auction::all()->where('seller_id', Auth::user()->user_id);
         return view('pages.user_profile', ["user" => Auth::user(), "auctions" => $auctions]);
     }
