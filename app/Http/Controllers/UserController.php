@@ -31,13 +31,12 @@ class UserController extends Controller
      *
      * @return Response
      */
-   /**public function list()
+    public function list()
     {
-      if (!Auth::check()) return redirect('/login');
       $this->authorize('list', Auction::class);
-      $auctions = Auth::user()->ownedAuctions()->get();
-      return view('pages.auctions', ['auctions' => $auctions]);
-    }*/
+      $users = User::all();
+      return view('pages.users', ['users' => $users]);
+    }
 
     /**
      * Shows user Profile.
@@ -59,7 +58,6 @@ class UserController extends Controller
      * @return Response
      */
     public function showMyProfile() {
-      if (!Auth::check()) return redirect('/login');
         $auctions = Auction::all()->where('seller_id', Auth::user()->user_id);
         return view('pages.user_profile', ["user" => Auth::user(), "auctions" => $auctions]);
     }

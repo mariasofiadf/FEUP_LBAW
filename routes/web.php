@@ -48,3 +48,4 @@ Route::post('register', 'Auth\RegisterController@register');
 
 //Users
 Route::get('users/{id}', 'UserController@showMyProfile');
+Route::get('users', 'UserController@list');
