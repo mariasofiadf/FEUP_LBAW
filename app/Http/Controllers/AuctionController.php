@@ -93,7 +93,6 @@ class AuctionController extends Controller
 
       $auction->status = $request->input('auction_status');
       $auction->category = $request->input('auction_category');
-      $auction->seller_id = Auth::user()->user_id;
 
       $auction->save();
       return redirect()->route('auctions/{id}', $id);
