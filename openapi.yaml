@@ -409,7 +409,7 @@ paths:
           required: true
       responses:
         "200":
-          description: "Ok."
+          description: "Ok. Ok. Show Auction Report Page UI"
 
     post:
       operationId: R210
