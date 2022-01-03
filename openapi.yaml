@@ -437,7 +437,7 @@ paths:
             type: integer
           required: true
 
-      responses:m
+      responses:
         "302":
           description: 'Redirect after processing the report information.'
           headers:
