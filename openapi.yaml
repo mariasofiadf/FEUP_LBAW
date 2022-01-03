@@ -10,18 +10,18 @@ servers:
     description: Deployment Server
 
 tags:
-  - name: 'M01: Authentication and Individual Profile'
+  - name: 'M01: Authentication'
   - name: 'M02: Auction'
-  - name: 'M03: User Actions'
+  - name: 'M03: User'
   - name: 'M04: Administration'
   - name: 'M05: Static Pages and others'
 
 paths:
-  #M01: Authentication and Individual Profile
+  #M01: Authentication
   /login:
     get:
       operationId: R101
-      summary: 'R101: Login Form'
+      summary: 'R101: Login form'
       description: 'Provide login form. Access: PUB'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -142,78 +142,12 @@ paths:
                   description: 'Failed authentication. Redirect to login form.'
                   value: '/register'
 
-  /users/{id}:
-    get:
-      operationId: R106
-      summary: 'R106: View user profile'
-      description: 'Show user profile. Access: USR'
-      tags:
-        - 'M01: Authentication and Individual Profile'
-      parameters:
-        - in: path
-          name: id
-          schema:
-            type: Integer
-          required: true
-      responses:
-        '200':
-          description: 'Ok. Show User Profile UI'
-
-  /users/{id}/edit:
-      get:
-        operationId: R107
-        summary: 'R107: Provide profile edit form'
-        description: 'Provide profile edit form. Access: OWN'
-        tags:
-          - 'M01: Authentication and Individual Profile'
-        parameters:
-          - in: path
-            name: id
-            schema:
-            type: Integer
-            required: true
-        responses:
-          '200':
-            description: 'Ok. Show User Profile UI'
-
-      post:
-        operationId: R108
-        summary: 'R108: Edit Profile Action'
-        description: 'Processes the edit user profile form submission. Access: OWN'
-        tags:
-          - 'M01: Authentication and Individual Profile'
-
-        requestBody:
-          required: true
-          content:
-            application/x-www-form-urlencoded:
-              schema:
-                type: object
-                properties:
-                  name:
-                    type: string
-                  email:
-                    type: string
-                  username:
-                    type: string
-                  password:
-                    type: string
-                  phone_number:
-                    type: phone
-                  profile_image:
-                    type: string
-                    format: binary
-                required:
-                  - email
-                  - username
-                  - password
-
 
   #M02: Auction
   /auction/create_auction:
     get:
       operationId: R201
-      summary: 'R201: Create auction Form'
+      summary: 'R201: Create auction form'
       description: 'Provide a new auction registration form. Access: USR'
       tags:
         - 'M02: Auction'
@@ -743,24 +677,24 @@ paths:
         "200":
           description: "Ok."
   #M03: User Actions
-  /users/{username}:
+  /users/{id}:
     get:
       operationId: R301
       summary: 'R301: User profile'
-      description: "Shows a user profile. Access: PUB"
+      description: 'Show user profile. Access: PUB'
       tags:
         - 'M03: User Actions'
       parameters:
         - in: path
-          name: username
+          name: id
           schema:
-            type: string
+            type: Integer
           required: true
       responses:
         '200':
-          description: 'Ok. Show user profile UI'
+          description: 'Ok. Show User Profile UI'
 
-  /users/{username}/follow:
+  /users/{id}/follow:
     post:
       operationId: R302
       summary: 'R302: Follow user'
@@ -769,9 +703,9 @@ paths:
         - 'M03: User Actions'
       parameters:
         - in: path
-          name: username
+          name: id
           schema:
-            type: string
+            type: integer
           required: true
       responses:
         '200':
@@ -784,14 +718,14 @@ paths:
         - 'M03: User Actions'
       parameters:
         - in: path
-          name: username
+          name: id
           schema:
-            type: string
+            type: integer
           required: true
       responses:
         "200":
           description: "Ok. Success"
-  /users/{username}/rate:
+  /users/{id}/rate:
     post:
       operationId: R304
       summary: 'R304: Rate user'
@@ -800,9 +734,9 @@ paths:
         - 'M03: User Actions'
       parameters:
         - in: path
-          name: username
+          name: id
           schema:
-            type: string
+            type: integer
           required: true
       requestBody:
         required: true
@@ -818,6 +752,58 @@ paths:
       responses:
         '200':
           description: 'Ok. Success'
+
+  /users/{id}/edit:
+      get:
+        operationId: R304
+        summary: 'R304: Provide profile edit form'
+        description: 'Provide profile edit form. Access: OWN'
+        tags:
+          - 'M03: User Actions'
+        parameters:
+          - in: path
+            name: id
+            schema:
+            type: Integer
+            required: true
+        responses:
+          '200':
+            description: 'Ok. Show User Profile UI'
+
+      post:
+        operationId: R108
+        summary: 'R108: Edit Profile Action'
+        description: 'Processes the edit user profile form submission. Access: OWN'
+        tags:
+          - 'M03: User Actions'
+
+        requestBody:
+          required: true
+          content:
+            application/x-www-form-urlencoded:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  username:
+                    type: string
+                  password:
+                    type: string
+                  phone_number:
+                    type: phone
+                  profile_image:
+                    type: string
+                    format: binary
+                required:
+                  - email
+                  - username
+                  - password
+
+
+
   #M04: Administration
   /admin/{id}/auction_management:
     get:
