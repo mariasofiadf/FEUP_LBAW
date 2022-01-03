@@ -24,7 +24,7 @@ Permissions used by each module, necessary to access its data and features.
 | :---        |    :---   |          --- |
 | PUB      | Public       |  Users without privileges   |
 | USR   | User        | 	Authenticated users       |
-| OWN         | Owner       |  Users that own information (e.g. own auction, own auction)  |
+| OWN         | Owner       |  Users that own information (e.g. own auction, own account)  |
 | ADM   | Administrator        | System administrators     |
 
 ### 3. OpenAPI Specification
