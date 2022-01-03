@@ -54,7 +54,24 @@ openapi: 3.0.0
 
 | User Story reference | Name                   | Priority                   | Description                   |
 | -------------------- | ---------------------- | -------------------------- | ----------------------------- |
-| US01                 | Name of the user story | Priority of the user story | Description of the user story |
+|   US01     |       View active auctions      |   high   | As a User, I must be able to view all active auctions, so that I'm able to find the ones that interest me. |
+|   US03    |         Search auctions         |   high   | As a User, I must be able to search an active auction, so that I can access a chosen auction at any given time. |
+|   US09     |        View/Search user profiles       |  medium  | As a User, I want to be able to search and see other user's profiles, so that i can access information that might interest me. |
+|   US11     |   Login          |   high   | As a Visitor, I want to login into the system, so that I may access more information.|
+|   US12     |   Registration   |   high   | As a Visitor, I want to be able to register into the system, so that I may access information.|
+|   US21     |     Administer user accounts    |   high   | As an Admin, I must to be able to search, view, edit and create user accounts.|
+|   US22     | Block and unblock user accounts |   high   | As an Admin, I must have the ability to block and unblock accounts, so that I can manage the type of users on the website.|{ width=250px }
+|   US23     |          Manage auction         |   high   | As an Admin, I must be able to view, edit and supervise any auction occurring at any time, so that I can make sure things run smoothly.|
+|   US24     |          Cancel auction         |   high   | As an Admin, I must be able to cancel any auction, so that I can manage the type of auctions occurring on the website.|
+|   US25     |       Delete user account       |   low    | As an Admin, I want to be able to delete accounts at will, so that I can remove unwanted users from the website.|
+|   US31     |      View/Edit Profile          |   high   | As an authenticated user, I want to be able to view and edit my own profile, so that I can present myself in a way that I identify with. |
+|   US32     |      Create Auction             |   high   | As an authenticated user, I want to auction a new item, so that other users can bid on it and eventually buy it. |
+|   US32     |      Edit/Delete Auction        |   high   | As an authenticated user, I want to be able to edit and/or delete any of my auctions, so that I can decide exactly what my auctions say and if I want them on the platform.|
+|   US33     |          View My Auctions       |   high   | As an authenticated user, I want to access the auctions I own, and all the information attached to them, so that it's easier to run those auctions. |
+|   US34     |          Bid on Auction         |   high   | As an authenticated user, I want to choose the amount of money to be placed, so that I can bid on an item. |
+|   US35     |         Logout                  |   high   | As an authenticated user, I want to logout of the system, so that the next person using the browser doesn't see my info.|
+
+
 
 ...
 
