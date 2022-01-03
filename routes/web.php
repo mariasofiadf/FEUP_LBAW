@@ -33,6 +33,10 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
+//Search
+Route::get('search', 'SearchController@search_auctions')->name('search');
+Route::get('search_users', 'SearchController@search_user')->name('search_users');
+
 //Users
 Route::get('profile/edit', 'UserController@showEditForm');
 Route::post('profile/edit', 'UserController@edit')->name('profile/edit');
