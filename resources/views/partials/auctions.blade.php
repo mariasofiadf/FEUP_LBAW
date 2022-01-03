@@ -5,7 +5,7 @@
     @each('partials.auctionPreview', $chunk, 'auction')
     </div>
 @endforeach
-@if (!Auth::user()->is_admin)
+@if (Auth::check() and !Auth::user()->is_admin)
 <a href="/create" class="btn btn-primary">Create Auction</a>
 @endif
 </div>
