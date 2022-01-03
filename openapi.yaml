@@ -527,8 +527,8 @@ paths:
   /auctions/search:
 
     post:
-      operationId: R213
-      summary: 'R213: Search auctions'
+      operationId: R214
+      summary: 'R214: Search auctions'
       description: 'Searches for auctions. Access: PUB.'
 
       tags:
