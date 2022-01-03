@@ -437,7 +437,7 @@ paths:
             type: integer
           required: true
 
-      responses:
+      responses:m
         "302":
           description: 'Redirect after processing the report information.'
           headers:
@@ -522,7 +522,7 @@ paths:
       - 'M02: Auction'
       responses:
         '200':
-          description: 'Ok. Show Auctions'
+          description: 'Ok. Show Auctions page UI'
   
   /auctions/search:
 
@@ -620,13 +620,13 @@ paths:
   /:
     get:
       operationId: R501
-      summary: "R501: Display Home page"
-      description: "R501: Display Home page"
+      summary: "R501: Redirect to auctions page"
+      description: "Redirect to auctions page. Access: PUB"
       tags:
         - "M05: Static Pages and others"
       responses:
         "200":
-          description: "Ok."
+          description: "Ok.Redirect to /auctions "
 
   /contact_us:
     get:
@@ -637,7 +637,7 @@ paths:
         - "M05: Static Pages and others"
       responses:
         "200":
-          description: "Ok."
+          description: "Ok. Show contact us page UI"
 
   /faq:
     get:
@@ -648,7 +648,7 @@ paths:
         - "M05: Static Pages and others"
       responses:
         "200":
-          description: "Ok."
+          description: "Ok. Show FAQ page UI"
 
 
   /services:
@@ -660,7 +660,7 @@ paths:
         - "M05: Static Pages and others"
       responses:
         "200":
-          description: "Ok."
+          description: "Ok. Show Services page UI"
 
   /about:
     get:
@@ -671,7 +671,7 @@ paths:
         - "M05: Static Pages and others"
       responses:
         "200":
-          description: "Ok."
+          description: "Ok. Show About page UI"
   #M03: User
   /users/{id}:
     get:
@@ -765,7 +765,7 @@ paths:
             required: true
         responses:
           '200':
-            description: 'Ok. Show User Profile UI'
+            description: 'Ok. Show Profile Edit UI'
 
       post:
         operationId: R306
@@ -831,7 +831,7 @@ paths:
           required: true
       responses:
         '200':
-          description: 'Ok. Show User Profile UI'
+          description: 'Ok. Show Users page UI'
 
   #M04: Administration
 
