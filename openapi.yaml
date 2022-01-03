@@ -350,22 +350,6 @@ paths:
           description: "Ok. Show Auction Page UI"
 
   /auctions/{id}/bid:
-    get:
-      operationId: R207
-      summary: "R207: Auction bid form."
-      description: "Provide auction bid form. Access: USR"
-      tags:
-        - 'M02: Auction'
-      parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-      responses:
-        "200":
-          description: "Ok."
-   
     post:
       operationId: R208
       summary: "R208: Auction bid"
