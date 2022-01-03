@@ -802,14 +802,13 @@ paths:
                   - username
                   - password
 
-
-
   #M04: Administration
-  /admin/{id}/auction_management:
-    get:
+
+  /auctions/{id}/delete:
+    delete:
       operationId: R401
-      summary: "R401: Manage auction"
-      description: "Displays all auctions to be managed by an administrator. Access: ADM"
+      summary: "R405: Delete an auction"
+      description: "Remove unwanted auction from the website. Access: ADM"
       tags:
         - "M04: Administration"
       parameters:
@@ -818,105 +817,14 @@ paths:
           schema:
             type: integer
           required: true
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:            
-              type: object
-              properties:
-                title:
-                  type: string
-                description:
-                  type: string
-                min_opening_bid:      
-                  type: number
-                  format: money
-                min_raise:
-                  type: number
-                  format: money
-                start_date:
-                  type: string
-                  format: date
-                predicted_end:
-                  type: string
-                  format: date
-                close_date:      
-                  type: string
-                  format: date
-                auction_status:
-                  type: string
-                  enum: [active, hidden, canceled, closed]
-                auction_category:
-                  type: string
-                  enum: [art_piece, book, jewelry, decor, other]
-                auction_image:
-                  type: array
-                  items:
-                    type: string
-                    format: binary
-              required:
-                  - title
-                  - min_opening_bid
-                  - min_raise
-                  - start_date
-                  - predicted_end
-                  - close_date
-                  - auction_status
-                  - auction_category
       responses:
-        "302":
-          description: 'Redirect after processing the auction management.'
-          headers:
-            Location:
-              schema:
-                type: string
-              examples:
-                302Success:
-                  description: "Auction successfully managed. Redirect to auction page."
-                  value: "/auction/{id}"
-                302Failure:
-                  description: "Auction couldn't be managed. Redirect to auction page."
-                  value: "/auction/{id}"
-    post:
-      operationId: R402
-      summary: "R402: Change auction status"
-      description: "Change auction status. Access: ADM"
-      tags:
-        - "M04: Administration"
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                auction_id:
-                  type: integer
-                status:
-                  type: string
-              required:
-                - auction_id
-                - status
-      responses:
-        "302":
-          description: 'Redirect after processing status.'
-          headers:
-            Location:
-              schema:
-                type: string
-              examples:
-                302Success:
-                  description: "Changed auction status."
-                  value: "/admin/{id}/auction_management"
-                302Failure:
-                  description: "Couldn't change auction status."
-                  value: "/admin/{id}/auction_management"
+        "200":
+          description: "Ok."
 
   /admin/reported_auctions:
     get:
-      operationId: R403
-      summary: "R403: View all reported auctions"
+      operationId: R402
+      summary: "R402: View all reported auctions"
       description: "Displays reported auctions. Access: ADM"
       tags:
         - "M04: Administration"
@@ -934,10 +842,11 @@ paths:
                       type: integer
                     title:
                       type: string
-  /admin/{id}/delete:
+
+  /users/{id}/delete:
     delete:
-      operationId: R404
-      summary: "R405: Delete an user account"
+      operationId: R403
+      summary: "R403: Delete a user account"
       description: "Remove unwanted user from the website. Access: ADM"
       tags:
         - "M04: Administration"
