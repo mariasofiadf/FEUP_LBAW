@@ -642,7 +642,7 @@ INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,star
 INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,start_date,predicted_end,close_date,status,category,seller_id) VALUES (104,'Agatha Christie Collections 1960-1969 and 1970-1979', 'Agatha Christie Best Sellers from the 60s and 70s',1000,100,'2022-01-13','2022-01-15','2022-01-16','Active','Book', 4);
 INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,start_date,predicted_end,close_date,status,category,seller_id) VALUES (105,'Impressionist Lake Painting by Vlaminck', 'Small unknown painting by Maurice Vlaminck from 1896',540000,1000,'2022-01-18','2022-01-19','2022-01-20','Active','ArtPiece', 3);
 INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,start_date,predicted_end,close_date,status,category,seller_id) VALUES (106,'Real Degas', 'From 1999',770000,10000,'2022-01-20','2022-01-29','2022-01-30','Canceled','ArtPiece', 1);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,start_date,predicted_end,close_date,status,category,seller_id) VALUES (106,'LBAW Secrets', 'From 2021',500,100,'2022-01-20','2022-01-29','2022-01-30','Canceled','Book', 6);
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,start_date,predicted_end,close_date,status,category,seller_id) VALUES (107,'LBAW Secrets', 'From 2021',500,100,'2022-01-20','2022-01-29','2022-01-30','Active','Book', 6);
 SELECT setval(pg_get_serial_sequence('auction', 'auction_id'), coalesce(max(auction_id)+1, 1), false) FROM auction;
 
 -- bid

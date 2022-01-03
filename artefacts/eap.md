@@ -92,10 +92,9 @@ openapi: 3.0.0
 ...
 
 ### 2. Prototype
+The prototype is available at http://lbaw2123.lbaw.fe.up.pt
 
-[Prototype](http://lbaw2123.lbaw.fe.up.pt)
-
-[Source Code](https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123)
+The code is available at https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123
 
 User credentials necessary to test all features:<br>
 Normal user Account:
