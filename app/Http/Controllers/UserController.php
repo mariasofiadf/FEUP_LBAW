@@ -31,13 +31,12 @@ class UserController extends Controller
      *
      * @return Response
      */
-   /**public function list()
+    public function list()
     {
-      if (!Auth::check()) return redirect('/login');
       $this->authorize('list', Auction::class);
-      $auctions = Auth::user()->ownedAuctions()->get();
-      return view('pages.auctions', ['auctions' => $auctions]);
-    }*/
+      $users = User::all();
+      return view('pages.users', ['users' => $users]);
+    }
 
     /**
      * Shows user Profile.
@@ -45,12 +44,13 @@ class UserController extends Controller
      * @param username 
      * @return Response
      */
-    public function showProfile($username ) {
-        $user = User::all()->where('username', '=', $username)->first();
+    public function showProfile($id) {
+        $user = User::all()->where('user_id', $id)->first();
         if ($user == null || $user->deleted)
             return abort(404);
 
-        return view('pages.user_profile', ["user" => $user]);
+        $auctions = Auction::all()->where('seller_id', $id);
+        return view('pages.user_profile', ["user" => $user, "auctions" => $auctions]);
     }
 
      /**
@@ -63,6 +63,24 @@ class UserController extends Controller
         return view('pages.user_profile', ["user" => Auth::user(), "auctions" => $auctions]);
     }
 
+    public function showEditForm(){
+      if (!Auth::check()) return redirect('/login');
+      $user = User::find(Auth::id());
+      return view('pages.userEdit', ['user' => $user]);
+    } 
+
+    public function edit(Request $request,){
+      if (!Auth::check()) return redirect('/login');
+      $id = Auth::id();
+      $user = User::find($id);
+
+      $user->name = $request->input('name');
+      $user->username = $request->input('username');
+      $user->email = $request->input('email');
+
+      $user->save();
+      return redirect()->route('users/{id}', $id);
+    } 
       
 
     public function delete(Request $request, $id)

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="card sm align-middle" style="width: auto; margin-right: 1rem;">
+<div class="card-body">
 <form method="POST" action="{{ route('login') }}">
 
     {{ csrf_field() }}
@@ -20,4 +22,6 @@
   <button type="submit" class="btn btn-primary">Login</button>
   <a class="btn btn-secondary" href="{{ route('register') }}"> Register </a>
 </form>
+  </div>
+</div>
 @endsection

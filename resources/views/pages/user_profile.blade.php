@@ -11,8 +11,9 @@
       <p class="card-text">Followers: placeholder</p> 
       <p class="card-text">Description</p>
       <p class="card-text">Joined date</p>
-      @if (Auth::check() && Auth::id() != $user->id )
-      <button class="btn btn-primary" href = "/users/{{ Auth::user()->user_id }}/edit">Edit Profile</button> 
+      @if (Auth::id() == $user->user_id )
+        <a class="btn btn-primary" href = "/profile/edit">Edit Profile</a> 
+        <a class="btn btn-primary" href = "/mybids">My Bidding History</a> 
       @endif
     </div>
 </div>
