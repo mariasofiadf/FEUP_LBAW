@@ -676,14 +676,14 @@ paths:
       responses:
         "200":
           description: "Ok."
-  #M03: User Actions
+  #M03: User
   /users/{id}:
     get:
       operationId: R301
       summary: 'R301: User profile'
       description: 'Show user profile. Access: PUB'
       tags:
-        - 'M03: User Actions'
+        - 'M03: User'
       parameters:
         - in: path
           name: id
@@ -700,7 +700,7 @@ paths:
       summary: 'R302: Follow user'
       description: 'Follow another user. Access: USR'
       tags:
-        - 'M03: User Actions'
+        - 'M03: User'
       parameters:
         - in: path
           name: id
@@ -715,7 +715,7 @@ paths:
       summary: "R303: Unfollow user"
       description: "Unfollow another user. Access: USR"
       tags:
-        - 'M03: User Actions'
+        - 'M03: User'
       parameters:
         - in: path
           name: id
@@ -731,7 +731,7 @@ paths:
       summary: 'R304: Rate user'
       description: "Rate a user. Access: USR"
       tags:
-        - 'M03: User Actions'
+        - 'M03: User'
       parameters:
         - in: path
           name: id
@@ -759,7 +759,7 @@ paths:
         summary: 'R304: Provide profile edit form'
         description: 'Provide profile edit form. Access: OWN'
         tags:
-          - 'M03: User Actions'
+          - 'M03: User'
         parameters:
           - in: path
             name: id
@@ -775,7 +775,7 @@ paths:
         summary: 'R108: Edit Profile Action'
         description: 'Processes the edit user profile form submission. Access: OWN'
         tags:
-          - 'M03: User Actions'
+          - 'M03: User'
 
         requestBody:
           required: true
