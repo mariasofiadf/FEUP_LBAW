@@ -832,6 +832,46 @@ paths:
       responses:
         '200':
           description: 'Ok. Show Users page UI'
+  /search_users:
+    post:
+      operationId: R309
+      summary: 'R309: Search users'
+      description: 'Searches for users. Access: PUB.'
+
+      tags:
+        - 'M03: User'
+      parameters:
+        - in: query
+          name: query
+          description: String to use for search
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: username
+          description: username
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: name
+          description: User's name
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: Success
+  /mybids:
+    get:
+      operationId: R309
+      summary: "R309: View my bidding history"
+      description: "Show user's bidding history Access: USR"
+      tags:
+        - 'M03: User'
+      responses:
+        "200":
+          description: "Ok. Show Bidding History"
 
   #M04: Administration
 
