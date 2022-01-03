@@ -119,8 +119,6 @@ paths:
                   type: string
                 phone_number:
                   type: phone
-                credit:
-                  type: money
                 profile_image:
                   type: string
                   format: binary
@@ -128,7 +126,6 @@ paths:
                 - email
                 - username
                 - password
-                - credit
 
       responses:
         '302':
@@ -166,7 +163,7 @@ paths:
       get:
         operationId: R107
         summary: 'R107: Provide profile edit form'
-        description: 'Provide profile edit form. Access: USR'
+        description: 'Provide profile edit form. Access: OWN'
         tags:
           - 'M01: Authentication and Individual Profile'
         parameters:
@@ -178,6 +175,38 @@ paths:
         responses:
           '200':
             description: 'Ok. Show User Profile UI'
+
+      post:
+        operationId: R108
+        summary: 'R108: Edit Profile Action'
+        description: 'Processes the edit user profile form submission. Access: OWN'
+        tags:
+          - 'M01: Authentication and Individual Profile'
+
+        requestBody:
+          required: true
+          content:
+            application/x-www-form-urlencoded:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  username:
+                    type: string
+                  password:
+                    type: string
+                  phone_number:
+                    type: phone
+                  profile_image:
+                    type: string
+                    format: binary
+                required:
+                  - email
+                  - username
+                  - password
 
 
   #M02: Auction
