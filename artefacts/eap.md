@@ -1,10 +1,8 @@
 # EAP: Architecture Specification and Prototype
 
-> Project vision.
-
 ## A7: High-level architecture. Privileges. Web resources specification
 
-> Brief presentation of the artefact's goals.
+This artefact documents the  architecture of the web application to be developed, indicating the catalogue of resources, the properties of each resource, and the format of JSON responses. This specification adheres to the OpenAPI standard using YAML.
 
 ### 1. Overview
 
@@ -30,6 +28,8 @@ Permissions used by each module, necessary to access its data and features.
 | ADM   | Administrator        | System administrators     |
 
 ### 3. OpenAPI Specification
+
+
 
 OpenAPI specification in YAML format to describe the web application's web resources.
 

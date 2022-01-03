@@ -6,25 +6,25 @@ info:
   description: 'Web Resources Specification (A7) for Hand Of Midas'
 
 servers:
-  - url: http://lbaw.fe.up.pt
-    description: Production server
+  - url: http://lbaw2123.lbaw.fe.up.pt
+    description: Deployment Server
 
 tags:
-  - name: 'M01: Authentication and Individual Profile'
+  - name: 'M01: Authentication'
   - name: 'M02: Auction'
-  - name: 'M03: User Actions'
+  - name: 'M03: User'
   - name: 'M04: Administration'
   - name: 'M05: Static Pages and others'
 
 paths:
-  #M01: Authentication and Individual Profile
+  #M01: Authentication
   /login:
     get:
       operationId: R101
-      summary: 'R101: Login Form'
+      summary: 'R101: Login form'
       description: 'Provide login form. Access: PUB'
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - 'M01: Authentication'
       responses:
         '200':
           description: 'Ok. Show Log-in UI'
@@ -33,7 +33,7 @@ paths:
       summary: 'R102: Login Action'
       description: 'Processes the login form submission. Access: PUB'
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - 'M01: Authentication'
 
       requestBody:
         required: true
@@ -71,7 +71,7 @@ paths:
       summary: 'R103: Logout Action'
       description: 'Logout the current authenticated user. Access: USR, ADM'
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - 'M01: Authentication'
       responses:
         '302':
           description: 'Redirect after processing logout.'
@@ -90,7 +90,7 @@ paths:
       summary: 'R104: Register Form'
       description: 'Provide new user registration form. Access: PUB'
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - 'M01: Authentication'
       responses:
         '200':
           description: 'Ok. Show Sign-Up UI'
@@ -100,7 +100,7 @@ paths:
       summary: 'R105: Register Action'
       description: 'Processes the new user registration form submission. Access: PUB'
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - 'M01: Authentication'
 
       requestBody:
         required: true
@@ -119,8 +119,6 @@ paths:
                   type: string
                 phone_number:
                   type: phone
-                credit:
-                  type: money
                 profile_image:
                   type: string
                   format: binary
@@ -128,7 +126,6 @@ paths:
                 - email
                 - username
                 - password
-                - credit
 
       responses:
         '302':
@@ -145,33 +142,12 @@ paths:
                   description: 'Failed authentication. Redirect to login form.'
                   value: '/register'
 
-  /users/{id}:
-    get:
-      operationId: R106
-      summary: 'R106: View your profile'
-      description: 'Show user profile. Access: USR'
-      tags:
-        - 'M01: Authentication and Individual Profile'
-      parameters:
-        - in: path
-          name: id
-          schema:
-          type: Integer
-          required: true
-      responses:
-        '200':
-          description: 'Ok. Show User Profile UI'
-
-  /users/{id}/edit:
-  /users/{id}/dashboard:
-  /users/{id}/delete:
-
 
   #M02: Auction
-  /auction/create_auction:
+  /create:
     get:
       operationId: R201
-      summary: 'R201: Create auction Form'
+      summary: 'R201: Create auction form'
       description: 'Provide a new auction registration form. Access: USR'
       tags:
         - 'M02: Auction'
@@ -247,7 +223,7 @@ paths:
                   description: 'Auction creation failed. Redirect to auction creation form.'
                   value: '/auction/create_auction'
 
-  /auction/{id}/edit:
+  /auctions/{id}/edit:
     get:
       operationId: R203
       summary: "R203: Edit auction form."
@@ -339,11 +315,11 @@ paths:
                   description: "Auction couldn't be edited. Redirect to auction page."
                   value: "/auction/{id}"
 
-  /auction/{id}/cancel:
+  /auctions/{id}/delete:
     get:
       operationId: R205
       summary: "R205: Delete an auction"
-      description: "Set specified auction as 'Canceled'. Access: OWN"
+      description: "Set specified auction as 'Canceled'. Access: OWN, ADM"
       tags:
         - "M02: Auction"
       parameters:
@@ -356,7 +332,7 @@ paths:
         "200":
           description: "Ok."
 
-  /auction/{id}:
+  /auctions/{id}:
     get:
       operationId: R206
       summary: "R206: View auction page"
@@ -373,7 +349,7 @@ paths:
         "200":
           description: "Ok. Show Auction Page UI"
 
-  /auction/{id}/bid:
+  /auctions/{id}/bid:
     get:
       operationId: R207
       summary: "R207: Auction bid form."
@@ -434,7 +410,7 @@ paths:
                   description: "Couldn't bid on auction. Redirect to auction page."
                   value: "/auction/{id}"
 
-  /auction/{id}/report:
+  /auctions/{id}/report:
     get:
       operationId: R209
       summary: "R209: Report auction form."
@@ -493,7 +469,7 @@ paths:
                   value: "/auction/{id}"
 
 
-  /auction/{id}/follow:
+  /auctions/{id}/follow:
     post:
       operationId: R211
       summary: "R211: Follow Auction"
@@ -552,12 +528,24 @@ paths:
                   description: "Auction unfollow failed. Redirect to auction page."
                   value: "/auction/{id}"
 
-  /auction/search_results:
+  /auctions:
 
     get:
       operationId: R213
-      summary: 'R213: Search Auctions API'
-      description: 'Searches for auctions and returns the results as JSON. Access: PUB.'
+      summary: 'R213: Auctions page'
+      description: 'Displays auctions. Access: PUB.'
+      tags:
+      - 'M02: Auction'
+      responses:
+        '200':
+          description: 'Ok. Show Auctions'
+  
+  /auctions/search:
+
+    post:
+      operationId: R213
+      summary: 'R213: Search auctions'
+      description: 'Searches for auctions. Access: PUB.'
 
       tags:
         - 'M02: Auction'
@@ -700,36 +688,36 @@ paths:
       responses:
         "200":
           description: "Ok."
-  #M03: User Actions
-  /users/{username}:
+  #M03: User
+  /users/{id}:
     get:
       operationId: R301
       summary: 'R301: User profile'
-      description: "Shows a user profile. Access: PUB"
+      description: 'Show user profile. Access: PUB'
       tags:
-        - 'M03: User Actions'
+        - 'M03: User'
       parameters:
         - in: path
-          name: username
+          name: id
           schema:
-            type: string
+            type: Integer
           required: true
       responses:
         '200':
-          description: 'Ok. Show user profile UI'
+          description: 'Ok. Show User Profile UI'
 
-  /users/{username}/follow:
+  /users/{id}/follow:
     post:
       operationId: R302
       summary: 'R302: Follow user'
       description: 'Follow another user. Access: USR'
       tags:
-        - 'M03: User Actions'
+        - 'M03: User'
       parameters:
         - in: path
-          name: username
+          name: id
           schema:
-            type: string
+            type: integer
           required: true
       responses:
         '200':
@@ -739,28 +727,29 @@ paths:
       summary: "R303: Unfollow user"
       description: "Unfollow another user. Access: USR"
       tags:
-        - 'M03: User Actions'
+        - 'M03: User'
       parameters:
         - in: path
-          name: username
+          name: id
           schema:
-            type: string
+            type: integer
           required: true
       responses:
         "200":
           description: "Ok. Success"
-  /users/{username}/rate:
+
+  /users/{id}/rate:
     post:
       operationId: R304
       summary: 'R304: Rate user'
       description: "Rate a user. Access: USR"
       tags:
-        - 'M03: User Actions'
+        - 'M03: User'
       parameters:
         - in: path
-          name: username
+          name: id
           schema:
-            type: string
+            type: integer
           required: true
       requestBody:
         required: true
@@ -776,119 +765,96 @@ paths:
       responses:
         '200':
           description: 'Ok. Success'
-  #M04: Administration
-  /admin/{id}/auction_management:
-    get:
-      operationId: R401
-      summary: "R401: Manage auction"
-      description: "Displays all auctions to be managed by an administrator. Access: ADM"
+
+  /users/{id}/edit:
+      get:
+        operationId: R305
+        summary: 'R305: Provide profile edit form'
+        description: 'Provide profile edit form. Access: OWN'
+        tags:
+          - 'M03: User'
+        parameters:
+          - in: path
+            name: id
+            schema:
+            type: Integer
+            required: true
+        responses:
+          '200':
+            description: 'Ok. Show User Profile UI'
+
+      post:
+        operationId: R306
+        summary: 'R306: Edit Profile Action'
+        description: 'Processes the edit user profile form submission. Access: OWN'
+        tags:
+          - 'M03: User'
+
+        requestBody:
+          required: true
+          content:
+            application/x-www-form-urlencoded:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  username:
+                    type: string
+                  password:
+                    type: string
+                  phone_number:
+                    type: phone
+                  profile_image:
+                    type: string
+                    format: binary
+                required:
+                  - email
+                  - username
+                  - password
+
+  /users/{id}/delete:
+    delete:
+      operationId: R307
+      summary: "R307: Delete a user account"
+      description: "Remove unwanted user from the website. Access: OWN, ADM"
       tags:
-        - "M04: Administration"
+        - "M03: User"
       parameters:
         - in: path
           name: id
           schema:
             type: integer
           required: true
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:            
-              type: object
-              properties:
-                title:
-                  type: string
-                description:
-                  type: string
-                min_opening_bid:      
-                  type: number
-                  format: money
-                min_raise:
-                  type: number
-                  format: money
-                start_date:
-                  type: string
-                  format: date
-                predicted_end:
-                  type: string
-                  format: date
-                close_date:      
-                  type: string
-                  format: date
-                auction_status:
-                  type: string
-                  enum: [active, hidden, canceled, closed]
-                auction_category:
-                  type: string
-                  enum: [art_piece, book, jewelry, decor, other]
-                auction_image:
-                  type: array
-                  items:
-                    type: string
-                    format: binary
-              required:
-                  - title
-                  - min_opening_bid
-                  - min_raise
-                  - start_date
-                  - predicted_end
-                  - close_date
-                  - auction_status
-                  - auction_category
       responses:
-        "302":
-          description: 'Redirect after processing the auction management.'
-          headers:
-            Location:
-              schema:
-                type: string
-              examples:
-                302Success:
-                  description: "Auction successfully managed. Redirect to auction page."
-                  value: "/auction/{id}"
-                302Failure:
-                  description: "Auction couldn't be managed. Redirect to auction page."
-                  value: "/auction/{id}"
-    post:
-      operationId: R402
-      summary: "R402: Change auction status"
-      description: "Change auction status. Access: ADM"
+        "200":
+          description: "Ok."
+  
+  /users:
+    get:
+      operationId: R308
+      summary: 'R308: Users page'
+      description: 'Lists users. Access: PUB'
       tags:
-        - "M04: Administration"
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                auction_id:
-                  type: integer
-                status:
-                  type: string
-              required:
-                - auction_id
-                - status
+        - 'M03: User'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: Integer
+          required: true
       responses:
-        "302":
-          description: 'Redirect after processing status.'
-          headers:
-            Location:
-              schema:
-                type: string
-              examples:
-                302Success:
-                  description: "Changed auction status."
-                  value: "/admin/{id}/auction_management"
-                302Failure:
-                  description: "Couldn't change auction status."
-                  value: "/admin/{id}/auction_management"
+        '200':
+          description: 'Ok. Show User Profile UI'
+
+  #M04: Administration
 
   /admin/reported_auctions:
     get:
-      operationId: R403
-      summary: "R403: View all reported auctions"
+      operationId: R402
+      summary: "R402: View all reported auctions"
       description: "Displays reported auctions. Access: ADM"
       tags:
         - "M04: Administration"
@@ -906,19 +872,4 @@ paths:
                       type: integer
                     title:
                       type: string
-  /admin/{id}/delete:
-    delete:
-      operationId: R404
-      summary: "R405: Delete an user account"
-      description: "Remove unwanted user from the website. Access: ADM"
-      tags:
-        - "M04: Administration"
-      parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-      responses:
-        "200":
-          description: "Ok."
+
