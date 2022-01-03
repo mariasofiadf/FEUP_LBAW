@@ -13,7 +13,7 @@
       <p class="card-text">Joined date</p>
       @if (Auth::id() == $user->user_id or Auth::user()->is_admin)
         <a class="btn btn-primary" href = "/profile/edit">Edit Profile</a> 
-        <a class="btn btn-primary" method='GET' action="{{ route('auctions') }}">Delete Profile</a> 
+        <a class="btn btn-primary" href = "/users/{{$user->user_id}}/del">Delete Profile</a> 
         @if(!$user->is_admin and Auth::id() == $user->user_id)
           <a class="btn btn-primary" href = "/mybids">My Bidding History</a> 
         @endif

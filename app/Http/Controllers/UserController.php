@@ -34,7 +34,7 @@ class UserController extends Controller
     public function list()
     {
       $this->authorize('list', Auction::class);
-      $users = User::all();
+      $users = User::all()->where('deleted', false);
       return view('pages.users', ['users' => $users]);
     }
 
@@ -59,6 +59,7 @@ class UserController extends Controller
      * @return Response
      */
     public function showMyProfile() {
+  
         $auctions = Auction::all()->where('seller_id', Auth::user()->user_id);
         return view('pages.user_profile', ["user" => Auth::user(), "auctions" => $auctions]);
     }
@@ -86,8 +87,8 @@ class UserController extends Controller
     public function delete(Request $request, $id)
     {
 
-      $user = User::User($id);
-      $user->name = "Deleted";
+      $user = User::find($id);
+      $user->deleted = True;
 
       //$this->authorize('delete', $user);
       $user->save();

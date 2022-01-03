@@ -37,6 +37,6 @@ Route::post('register', 'Auth\RegisterController@register');
 Route::get('profile/edit', 'UserController@showEditForm');
 Route::post('profile/edit', 'UserController@edit')->name('profile/edit');
 Route::get('users/{id}', 'UserController@showProfile')->name('users/{id}');
-Route::get('del', 'UserController@delete')->name('del');
+Route::get('users/{id}/del', 'UserController@delete')->name('del');
 Route::get('users', 'UserController@list');
 Route::get('mybids', 'BidController@myBids');

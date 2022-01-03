@@ -42,7 +42,8 @@ CREATE TABLE users(
     blocked BOOLEAN DEFAULT FALSE NOT NULL,
     auction_notif BOOLEAN DEFAULT TRUE NOT NULL,
     user_notif BOOLEAN DEFAULT TRUE NOT NULL,
-    is_admin BOOLEAN DEFAULT FALSE NOT NULL
+    is_admin BOOLEAN DEFAULT FALSE NOT NULL,
+    deleted BOOLEAN DEFAULT FALSE NOT NULL
 );
 
 
@@ -622,6 +623,7 @@ CREATE TRIGGER new_bid_notif
     EXECUTE PROCEDURE new_bid_notif();
 
 -- images
+
 INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (1,'Bruno Silva','bsilva','$2y$10$mp6HMsGu4VcblGpki0HdR.4LwB2qHR8c9oOpU6Jlbt4RTdIQpkG1W','bsilva@hotmail.com',169335936,10000,'bsilva.jpg',4,False,TRUE,TRUE);
 INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (2,'Laura Rocha','lrocha','$2y$10$LnAa8f4AB0f5Ttrrf3yC0eEjpIJkQoek9thQ033t79IZD3GX7cx8S','lrocha@hotmail.com',934004312,2000,'lrocha.jpg',3,False,TRUE,TRUE);
 INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (3,'Carlos Lima','clima','$2y$10$bdRPzv0rSN3HwH/3Gus8y.7MkV1aPDgRgI.S.2Jly037qRoN7orM6','clima@gmail.com',639376003,32000,'clima.jpg',2,False,TRUE,TRUE);
