@@ -316,7 +316,7 @@ paths:
                   value: "/auction/{id}"
 
   /auctions/{id}/delete:
-    get:
+    delete:
       operationId: R205
       summary: "R205: Delete an auction"
       description: "Set specified auction as 'Canceled'. Access: OWN, ADM"
