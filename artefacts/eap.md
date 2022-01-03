@@ -903,13 +903,15 @@ paths:
 
 ## A8: Vertical prototype
 
-> Brief presentation of the artefact goals.
+The Vertical Prototype includes the implementation of the features marked as necessary in the common and theme requirements documents. This artefact aims to validate the architecture presented, also serving to gain familiarity with the technologies used in the project. 
+
+The implementation is based on the [LBAW Framework](https://git.fe.up.pt/lbaw/template-laravel) and include work on all layers of the architecture of the solution to implement: user interface, business logic and data access. The prototype includes the implementation of pages of visualization, insertion, edition and removal of information; the control of permissions in the access to the implemented pages.
 
 ### 1. Implemented Features
 
 #### 1.1. Implemented User Stories
 
-> Identify the user stories that were implemented in the prototype.  
+User stories that were implemented in the prototype.  
 
 | User Story reference | Name                   | Priority                   | Description                   |
 | -------------------- | ---------------------- | -------------------------- | ----------------------------- |
@@ -929,26 +931,53 @@ paths:
 |   US33     |          View My Auctions       |   high   | As an authenticated user, I want to access the auctions I own, and all the information attached to them, so that it's easier to run those auctions. |
 |   US34     |          Bid on Auction         |   high   | As an authenticated user, I want to choose the amount of money to be placed, so that I can bid on an item. |
 |   US35     |         Logout                  |   high   | As an authenticated user, I want to logout of the system, so that the next person using the browser doesn't see my info.|
+|   US38     |     View My Bidding History     |  medium  | As an authenticated user, I want to see all the bids I made, so that I can see their value and to what auction they refer to.|
 
 
 
-...
 
 #### 1.2. Implemented Web Resources
 
-> Identify the web resources that were implemented in the prototype.  
+Web resources that were implemented in the prototype.  
 
-> Module M01: Module Name  
+Module M01: Authentication
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
-| R01: Web resource name | URL to access the web resource |
+| R101: Login Form| /login |
+| R102: Login Action| /POST/login |
+| R103: Logout| /logout |
+| R104: Register Form| /register |
+| R105: Register Action| /POST/register |
 
-...
+Module M02: Auction
 
-> Module M02: Module Name  
+| Web Resource Reference | URL                            |
+| ---------------------- | ------------------------------ |
+| R201: Create auction form | /create |
+| R202: Create auction | POST/create  |
+| R203: Edit auction form| /auctions/{id}/edit |
+| R204: Edit auction| /POST/auctions/{id}/edit|
+| R205:  Delete an auction| /auctions/{id}/delete |
+| R206: View an auction| /auctions/{id}' |
+| R208: Auction bid| /auctions/{id}/bid' |
+| R213: View all auctions| /auctions |
+| R214: Search auctions| /search |
 
-...
+
+Module M03: User
+
+| Web Resource Reference | URL                            |
+| ---------------------- | ------------------------------ |
+| R301: View user profile | /users/{id} |
+| R205: Profile edit form | /profile/edit |
+| R206: Profile edit Action| POST/profile/edit |
+| R207: Delete a user account| /users/{id}/del |
+| R208: Users page| /users |
+| R209: Search users| /search_users |
+| R210: View bids made| /mybids |
+
+---
 
 ### 2. Prototype
 The prototype is available at http://lbaw2123.lbaw.fe.up.pt
@@ -963,7 +992,7 @@ Normal user Account:
 Admin Account:
 - email: admin@gmail.com<br>
 - password: 1234<br>
-- 
+
 ---
 
 
