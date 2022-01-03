@@ -768,8 +768,8 @@ paths:
 
   /users/{id}/edit:
       get:
-        operationId: R304
-        summary: 'R304: Provide profile edit form'
+        operationId: R305
+        summary: 'R305: Provide profile edit form'
         description: 'Provide profile edit form. Access: OWN'
         tags:
           - 'M03: User'
@@ -784,8 +784,8 @@ paths:
             description: 'Ok. Show User Profile UI'
 
       post:
-        operationId: R108
-        summary: 'R108: Edit Profile Action'
+        operationId: R306
+        summary: 'R306: Edit Profile Action'
         description: 'Processes the edit user profile form submission. Access: OWN'
         tags:
           - 'M03: User'
@@ -817,8 +817,8 @@ paths:
 
   /users/{id}/delete:
     delete:
-      operationId: R403
-      summary: "R403: Delete a user account"
+      operationId: R307
+      summary: "R307: Delete a user account"
       description: "Remove unwanted user from the website. Access: OWN, ADM"
       tags:
         - "M03: User"
@@ -831,6 +831,23 @@ paths:
       responses:
         "200":
           description: "Ok."
+  
+  /users:
+    get:
+      operationId: R308
+      summary: 'R308: Users page'
+      description: 'Lists users. Access: PUB'
+      tags:
+        - 'M03: User'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: Integer
+          required: true
+      responses:
+        '200':
+          description: 'Ok. Show User Profile UI'
 
   #M04: Administration
 
