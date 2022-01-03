@@ -980,6 +980,7 @@ The prototype is available at http://lbaw2123.lbaw.fe.up.pt
 The code is available at https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123
 
 User credentials necessary to test all features:<br>
+
 Normal user Account:
 
 -   email: prof@gmail.com<br>
@@ -990,19 +991,9 @@ Admin Account:
 -   email: admin@gmail.com<br>
 -   password: 1234<br>
 
----
-
-## Revision history
-
-Changes made to the first submission:
-
-1. Item 1
-1. ..
-
----
-
-GROUP21gg, DD/MM/2021
-
--   Group member 1 name, email (Editor)
--   Group member 2 name, email
--   ...
+***
+1. GROUP2123, 04/01/2022:
+* Afonso Duarte de Carvalho Monteiro up201907284
+* Ana Rita Antunes Ramada up201904565
+* Deborah Marques Lago up201806102
+* Maria Sofia Diogo Figueiredo up201904675 (Editor)

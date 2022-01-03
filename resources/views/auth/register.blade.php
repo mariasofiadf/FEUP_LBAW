@@ -30,7 +30,6 @@
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Remember Me</label>
   </div>
-  <a class="btn btn-secondary" href="{{ route('login') }}"> Login </a>
   <button type="submit" class="btn btn-primary" >Register</button>
 </form>
 @endsection
