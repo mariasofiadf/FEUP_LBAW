@@ -984,12 +984,12 @@ User credentials necessary to test all features:<br>
 Normal user Account:
 
 -   email: prof@gmail.com<br>
--   password: 1234<br>
+-   password: JdNtVVVe<br>
 
 Admin Account:
 
 -   email: admin@gmail.com<br>
--   password: 1234<br>
+-   password: JdNtVVVe<br>
 
 ***
 1. GROUP2123, 04/01/2022:
