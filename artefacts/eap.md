@@ -8,8 +8,8 @@ This artefact documents the architecture of the web application to be developed,
 
 Identification and brief description of the modules that will be part of the application.
 
-| Module                           | Description                                                                                                                                                                                                                                                                                                    |
-| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Module                           | Description |
+| - | ---|
 | **M01: Authentication**          | Web resources connected with authentication. Includes the features: login/logout, registration.                                                                                                                                                                                                                |
 | **M02: Auction**                 | Web resources connected with autions. Includes the following system features: bid at an auction, auction listing and search, view, follow and report auctions, view auction's bidding history. Also includes creation, edition and cancelacion of an auction, as well as the management of the auction status. |
 | **M03: User**                    | Web resources associated with user. Includes the following system features: user listing and search, view user profile, edit profile, review user and follow user.                                                                                                                                             |
@@ -244,7 +244,7 @@ paths:
                                 - auction_status
                                 - auction_category
 
-            responses:
+            respo--------------------------------nses:
                 "302":
                     description: "Redirect after processing the auction creation form."
                     headers:
@@ -911,8 +911,8 @@ The implementation is based on the [LBAW Framework](https://git.fe.up.pt/lbaw/te
 
 User stories that were implemented in the prototype.
 
-| User Story reference | Name                            | Priority | Description                                                                                                                                                                 |
-| -------------------- | ------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| User Story reference | Name                            | Priority | Description |
+| - | --- | - |------- |
 | US01                 | View active auctions            | high     | As a User, I must be able to view all active auctions, so that I'm able to find the ones that interest me.                                                                  |
 | US03                 | Search auctions                 | high     | As a User, I must be able to search an active auction, so that I can access a chosen auction at any given time.                                                             |
 | US09                 | View/Search user profiles       | medium   | As a User, I want to be able to search and see other user's profiles, so that i can access information that might interest me.                                              |
@@ -939,37 +939,37 @@ Module M01: Authentication
 
 | Web Resource Reference | URL            |
 | ---------------------- | -------------- |
-| R101: Login Form       | /login         |
-| R102: Login Action     | /POST/login    |
-| R103: Logout           | /logout        |
-| R104: Register Form    | /register      |
-| R105: Register Action  | /POST/register |
+| R101: Login Form       | GET /login         |
+| R102: Login Action     | POST /login    |
+| R103: Logout           | GET /logout        |
+| R104: Register Form    | GET /register      |
+| R105: Register Action  | POST/register |
 
 Module M02: Auction
 
 | Web Resource Reference    | URL                      |
 | ------------------------- | ------------------------ |
-| R201: Create auction form | /create                  |
-| R202: Create auction      | POST/create              |
-| R203: Edit auction form   | /auctions/{id}/edit      |
-| R204: Edit auction        | /POST/auctions/{id}/edit |
-| R205: Delete an auction   | /auctions/{id}/delete    |
-| R206: View an auction     | /auctions/{id}'          |
-| R208: Auction bid         | /auctions/{id}/bid'      |
-| R213: View all auctions   | /auctions                |
-| R214: Search auctions     | /search                  |
+| R201: Create auction form | GET /create                  |
+| R202: Create auction      | POST /create              |
+| R203: Edit auction form   | GET /auctions/{id}/edit      |
+| R204: Edit auction        | POST /auctions/{id}/edit |
+| R205: Delete an auction   | GET /auctions/{id}/delete    |
+| R206: View an auction     | GET /auctions/{id}'          |
+| R208: Auction bid         | GET /auctions/{id}/bid'      |
+| R213: View all auctions   | GET /auctions                |
+| R214: Search auctions     | GET /search                  |
 
 Module M03: User
 
 | Web Resource Reference      | URL               |
 | --------------------------- | ----------------- |
-| R301: View user profile     | /users/{id}       |
-| R205: Profile edit form     | /profile/edit     |
-| R206: Profile edit Action   | POST/profile/edit |
-| R207: Delete a user account | /users/{id}/del   |
-| R208: Users page            | /users            |
-| R209: Search users          | /search_users     |
-| R210: View bids made        | /mybids           |
+| R301: View user profile     | GET /users/{id}       |
+| R205: Profile edit form     | GET /profile/edit     |
+| R206: Profile edit Action   | POST /profile/edit |
+| R207: Delete a user account | GET /users/{id}/del   |
+| R208: Users page            | GET /users            |
+| R209: Search users          | GET /search_users     |
+| R210: View bids made        | GET /mybids           |
 
 ---
 
