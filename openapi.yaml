@@ -144,7 +144,7 @@ paths:
 
 
   #M02: Auction
-  /auctions/create_auction:
+  /create:
     get:
       operationId: R201
       summary: 'R201: Create auction form'
