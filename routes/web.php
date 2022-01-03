@@ -23,7 +23,6 @@ Route::get('auctions/{id}/edit', 'AuctionController@showEditForm');
 Route::put('auctions/{id}/edit', 'AuctionController@edit')->name('auctions/{id}/edit');
 Route::get('create', 'AuctionController@showAuctionCreationForm');
 Route::put('api/auctions', 'AuctionController@create')->name('api/auctions');
-Route::delete('api/auctions/{auction_id}', 'AuctionController@delete');
 
 
 
@@ -38,5 +37,6 @@ Route::post('register', 'Auth\RegisterController@register');
 Route::get('profile/edit', 'UserController@showEditForm');
 Route::post('profile/edit', 'UserController@edit')->name('profile/edit');
 Route::get('users/{id}', 'UserController@showProfile')->name('users/{id}');
+Route::get('del', 'UserController@delete')->name('del');
 Route::get('users', 'UserController@list');
 Route::get('mybids', 'BidController@myBids');

@@ -41,7 +41,8 @@ CREATE TABLE users(
     rating INTEGER DEFAULT 0 NOT NULL,
     blocked BOOLEAN DEFAULT FALSE NOT NULL,
     auction_notif BOOLEAN DEFAULT TRUE NOT NULL,
-    user_notif BOOLEAN DEFAULT TRUE NOT NULL
+    user_notif BOOLEAN DEFAULT TRUE NOT NULL,
+    is_admin BOOLEAN DEFAULT FALSE NOT NULL
 );
 
 
@@ -627,6 +628,7 @@ INSERT INTO users (user_id,name,username,password,email,phone_number,credit,prof
 INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (4,'Diana Sagres','dsagres','$2y$10$Rr3Y4V44M5WT7uVwmjYAdulX2ON5wrUM2pDN6AqafKYKYfYcipaLK','dsagres@yahoo.com.br',948003605,1000,'dsagres.jpg',1,False,TRUE,TRUE);
 INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (5,'Miguel Ferreira','mferreira','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','teste@gmail.com',639230752,200,'mferreira.jpg',5,False,TRUE,TRUE);
 INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (6,'Prof','prof','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','prof@gmail.com',222333444,200,'prof.jpg',5,False,TRUE,TRUE);
+INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif, is_admin) VALUES (7,'Admin','admin','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','admin@gmail.com',111222333,200,'admin.jpg',5,False,TRUE,TRUE, TRUE);
 
 SELECT setval(pg_get_serial_sequence('users', 'user_id'), coalesce(max(user_id)+1, 1), false) FROM users;
 
