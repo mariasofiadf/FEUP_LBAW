@@ -14,10 +14,6 @@
 Route::get('/', 'Auth\LoginController@home');
 Route::redirect('cards', 'auctions');
 
-// Cards
-Route::get('cards', 'CardController@list');
-Route::get('cards/{id}', 'CardController@show');
-
 //Auctions
 Route::get('auctions', 'AuctionController@list');
 Route::get('auctions/{id}', 'AuctionController@showFull')->name('auctions/{id}');
@@ -30,14 +26,6 @@ Route::put('api/auctions', 'AuctionController@create')->name('api/auctions');
 Route::delete('api/auctions/{auction_id}', 'AuctionController@delete');
 
 
-Route::get('mybids', 'BidController@myBids');
-
-// API
-Route::put('api/cards', 'CardController@create');
-Route::delete('api/cards/{card_id}', 'CardController@delete');
-Route::put('api/cards/{card_id}/', 'ItemController@create');
-Route::post('api/item/{id}', 'ItemController@update');
-Route::delete('api/item/{id}', 'ItemController@delete');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -51,3 +39,4 @@ Route::get('profile/edit', 'UserController@showEditForm');
 Route::post('profile/edit', 'UserController@edit')->name('profile/edit');
 Route::get('users/{id}', 'UserController@showProfile')->name('users/{id}');
 Route::get('users', 'UserController@list');
+Route::get('mybids', 'BidController@myBids');
