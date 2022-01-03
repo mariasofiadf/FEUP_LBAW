@@ -23,7 +23,7 @@ Route::get('auctions', 'AuctionController@list');
 Route::get('auctions/{id}', 'AuctionController@showFull')->name('auctions/{id}');
 Route::get('auctions/{id}/delete', 'AuctionController@delete');
 Route::post('auctions/{id}/bid', 'AuctionController@bid')->name('auctions/{id}/bid');
-Route::get('auctions/{id}/edit', 'AuctionController@showEditForm')->name('auctions/{id}/edit');
+Route::get('auctions/{id}/edit', 'AuctionController@showEditForm');
 Route::put('auctions/{id}/edit', 'AuctionController@edit')->name('auctions/{id}/edit');
 Route::get('create', 'AuctionController@showAuctionCreationForm');
 Route::put('api/auctions', 'AuctionController@create')->name('api/auctions');
