@@ -23,7 +23,6 @@ class AuctionController extends Controller
     public function showPreview($id)
     {
       $auction = Auction::find($id);
-      $this->authorize('show', $auction);
       $user = User::where('user_id', $auction->seller_id)->first();
       return view('pages.auctionPreview', ['auction' => $auction, 'user' => $user]);
     }
@@ -31,7 +30,6 @@ class AuctionController extends Controller
     public function showFull($id)
     {
       $auction = Auction::find($id);
-      $this->authorize('show', $auction);
       $bid = DB::table('bid')->where('auction_id', $id)->orderBy('bid_value', 'desc')->get()->first();
       if($bid != null)
         $bidder = DB::table('users')->where('user_id', $bid->bidder_id)->get()->first();
