@@ -6,6 +6,7 @@
     <p class="card-text">Category: {{ $auction->category }}</p>
     @if ($bid != null)
       <p class="card-text">Current highest bid is {{ $bid->bid_value ?? 0}}€ by {{ $bidder->name ?? ''}}</p>
+      <p class="card-text">Minimum raise is  {{ $auction->min_raise ?? 0}}€ </p>
     @else 
       <p class="card-text">This auction has no bids</p>
       <p class="card-text">Minimum opening bid is  {{ $auction->min_opening_bid ?? 0}}€ </p>
@@ -24,7 +25,7 @@
       <div class="col-1">
         <label for="bid_value" class="form-label">Bid Value</label>
       </div>
-      <div class="col-1">
+      <div class="col-3">
         <input type="number" name="bid_value" class="form-control" id="bid_value" aria-describedby="emailHelp">
       </div>
       <div class="col-1">

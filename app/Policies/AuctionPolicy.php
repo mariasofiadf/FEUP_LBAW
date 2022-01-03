@@ -7,7 +7,6 @@ use App\Models\Auction;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
-
 class AuctionPolicy
 {
     use HandlesAuthorization;
@@ -34,5 +33,11 @@ class AuctionPolicy
     {
       // Only a auction owner can delete it
       return $user->id == $auction->user_id;
+    }
+
+    public function bid(Request $request, $id)
+    {
+      return true;
+      return Auth::check() && $id != Auth::user()->user_id;
     }
 }
