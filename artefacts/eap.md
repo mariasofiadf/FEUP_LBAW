@@ -76,10 +76,19 @@ openapi: 3.0.0
 
 ### 2. Prototype
 
-> URL of the prototype plus user credentials necessary to test all features.  
-> Link to the prototype source code in the group's git repository.  
+[Prototype](http://lbaw2123.lbaw.fe.up.pt)
 
+[Source Code](https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123)
 
+User credentials necessary to test all features:<br>
+Normal user Account:
+- email: prof@gmail.com<br>
+- password: 1234<br>
+
+Admin Account:
+- email: admin@gmail.com<br>
+- password: 1234<br>
+- 
 ---
 
 
