@@ -29,13 +29,9 @@ Permissions used by each module, necessary to access its data and features.
 
 ### 3. OpenAPI Specification
 
-
-
 OpenAPI specification in YAML format to describe the web application's web resources.
 
-Link to the `.yaml` file in the group's repository.
-
-Link to the Swagger generated documentation (e.g. `https://app.swaggerhub.com/apis-docs/...`).
+[OpenAPI Link](https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123/-/blob/main/openapi.yaml).
 
 ```yaml
 openapi: 3.0.0
