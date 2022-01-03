@@ -315,11 +315,11 @@ paths:
                   description: "Auction couldn't be edited. Redirect to auction page."
                   value: "/auction/{id}"
 
-  /auction/{id}/cancel:
+  /auction/{id}/delete:
     get:
       operationId: R205
       summary: "R205: Delete an auction"
-      description: "Set specified auction as 'Canceled'. Access: OWN"
+      description: "Set specified auction as 'Canceled'. Access: OWN, ADM"
       tags:
         - "M02: Auction"
       parameters:
@@ -725,6 +725,7 @@ paths:
       responses:
         "200":
           description: "Ok. Success"
+
   /users/{id}/rate:
     post:
       operationId: R304
@@ -802,15 +803,13 @@ paths:
                   - username
                   - password
 
-  #M04: Administration
-
-  /auctions/{id}/delete:
+  /users/{id}/delete:
     delete:
-      operationId: R401
-      summary: "R405: Delete an auction"
-      description: "Remove unwanted auction from the website. Access: ADM"
+      operationId: R403
+      summary: "R403: Delete a user account"
+      description: "Remove unwanted user from the website. Access: OWN, ADM"
       tags:
-        - "M04: Administration"
+        - "M03: User"
       parameters:
         - in: path
           name: id
@@ -820,6 +819,8 @@ paths:
       responses:
         "200":
           description: "Ok."
+
+  #M04: Administration
 
   /admin/reported_auctions:
     get:
@@ -843,19 +844,3 @@ paths:
                     title:
                       type: string
 
-  /users/{id}/delete:
-    delete:
-      operationId: R403
-      summary: "R403: Delete a user account"
-      description: "Remove unwanted user from the website. Access: ADM"
-      tags:
-        - "M04: Administration"
-      parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-      responses:
-        "200":
-          description: "Ok."
