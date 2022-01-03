@@ -16,7 +16,7 @@
     @if ( (Auth::check() && Auth::id() == $auction->seller_id ) or (Auth::check() && Auth::user()->is_admin))
       <a href="/auctions/{{ $auction->auction_id }}/delete" class="btn btn-secondary">Delete</a>
       <a href="/auctions/{{ $auction->auction_id }}/edit" class="btn btn-secondary">Edit</a>
-    @else
+    @elseif (Auth::check())
       <form  method="POST" action="{{ route('auctions/{id}/bid', $auction->auction_id) }}">
       {{ csrf_field() }}
 
@@ -32,6 +32,8 @@
       </div>
       </div>
       </form>
+    @else
+      <a href="/login" class="btn btn-primary">Login to Bid on this Auction</a> 
     @endif
   </div>
 </div>

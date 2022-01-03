@@ -31,13 +31,15 @@
         <li class="nav-item">
           <a class = "nav-link" href="/users/{{ Auth::user()->user_id }}">{{ Auth::user()->name }}</a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link active" class="rounded" href="{{ url('/logout') }}"> Logout </a> 
+          <a class="nav-link active" class="btn btn-primary" href="{{ url('/logout') }}"> Logout </a> 
         </li>
         @else
         <li class="nav-item">
-          <a class="nav-link active" class="rounded" href="{{ url('/login') }}"> Login </a> 
+          <a class="btn btn-primary" style="margin-right: 1rem;" href="{{ url('/login') }}"> Login </a> 
+        </li>
+        <li class="nav-item">
+          <a  class="btn btn-secondary" href="{{ url('/register') }}"> Register </a> 
         </li>
         @endif
       </ul>

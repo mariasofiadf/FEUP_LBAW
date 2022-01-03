@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function list()
     {
-      $this->authorize('list', Auction::class);
+      //$this->authorize('list', Auction::class);
       $users = User::all()->where('deleted', false);
       return view('pages.users', ['users' => $users]);
     }
