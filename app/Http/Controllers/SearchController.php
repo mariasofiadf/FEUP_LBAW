@@ -15,17 +15,30 @@ class SearchController extends Controller {
             'query' => 'exists:orders,id',
         ]);*/
         
-        $query = $request->input('id');
+        $query = $request->input('query');
+        $auctions = DB::table('auction')->where('title','like','%'.$query.'%')
+        ->orWhere('description','like','%'.$query.'%')
+        ->orWhere('category','like','%'.$query.'%')
+        ->get();
 
-        $auctions = Auction::where('auction_id',$query)->get();;
 
+        //$auctions = Auction::all()->where('title','like','E%'); 
 
         // display 15 auctions per page
         //$auctions = $query->paginate(15);
 
         //$request->flash();
 
-        return view('pages.searchAuctions')->with('auctions', $auctions)->with('request', $request);
+        return view('pages.auctions')->with('auctions', $auctions);
+    }
+
+    public function search_user(Request $request) {
+        $query = $request->input('query');
+        $users = DB::table('users')->where('username','like','%'.$query.'%')
+        ->orWhere('name','like','%'.$query.'%')
+        ->get();
+
+        return view('pages.users')->with('users', $users);
     }
 
 

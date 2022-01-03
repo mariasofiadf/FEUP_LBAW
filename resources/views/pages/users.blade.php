@@ -4,6 +4,8 @@
 
 @section('content')
 
+@include('partials.searchUsers')
+
 @include('partials.users', ['users' => $users])
 
 @endsection

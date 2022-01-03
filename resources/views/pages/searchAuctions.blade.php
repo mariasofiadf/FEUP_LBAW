@@ -2,9 +2,9 @@
 
 @section("content")
 
-    @if (count($auctions))
+    @if (true))
         {{-- display auctions --}}
-        @foreach($auctions as $auction)
+        @foreach($auctions->chunk(5) as $chunk)
             <div class="row">
             @each('partials.auctionPreview', $chunk, 'auction')
             </div>

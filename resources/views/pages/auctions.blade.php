@@ -4,6 +4,9 @@
 
 @section('content')
 
+@include('partials.searchAuctions')
+
 @include('partials.auctions', ['auctions' => $auctions])
+
 
 @endsection
