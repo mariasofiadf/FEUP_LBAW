@@ -144,7 +144,7 @@ paths:
 
 
   #M02: Auction
-  /auction/create_auction:
+  /auctions/create_auction:
     get:
       operationId: R201
       summary: 'R201: Create auction form'
@@ -223,7 +223,7 @@ paths:
                   description: 'Auction creation failed. Redirect to auction creation form.'
                   value: '/auction/create_auction'
 
-  /auction/{id}/edit:
+  /auctions/{id}/edit:
     get:
       operationId: R203
       summary: "R203: Edit auction form."
@@ -315,7 +315,7 @@ paths:
                   description: "Auction couldn't be edited. Redirect to auction page."
                   value: "/auction/{id}"
 
-  /auction/{id}/delete:
+  /auctions/{id}/delete:
     get:
       operationId: R205
       summary: "R205: Delete an auction"
@@ -332,7 +332,7 @@ paths:
         "200":
           description: "Ok."
 
-  /auction/{id}:
+  /auctions/{id}:
     get:
       operationId: R206
       summary: "R206: View auction page"
@@ -349,7 +349,7 @@ paths:
         "200":
           description: "Ok. Show Auction Page UI"
 
-  /auction/{id}/bid:
+  /auctions/{id}/bid:
     get:
       operationId: R207
       summary: "R207: Auction bid form."
@@ -410,7 +410,7 @@ paths:
                   description: "Couldn't bid on auction. Redirect to auction page."
                   value: "/auction/{id}"
 
-  /auction/{id}/report:
+  /auctions/{id}/report:
     get:
       operationId: R209
       summary: "R209: Report auction form."
@@ -469,7 +469,7 @@ paths:
                   value: "/auction/{id}"
 
 
-  /auction/{id}/follow:
+  /auctions/{id}/follow:
     post:
       operationId: R211
       summary: "R211: Follow Auction"
@@ -528,12 +528,24 @@ paths:
                   description: "Auction unfollow failed. Redirect to auction page."
                   value: "/auction/{id}"
 
-  /auction/search_results:
+  /auctions:
 
     get:
       operationId: R213
-      summary: 'R213: Search Auctions API'
-      description: 'Searches for auctions and returns the results as JSON. Access: PUB.'
+      summary: 'R213: Auctions page'
+      description: 'Displays auctions. Access: PUB.'
+      tags:
+      - 'M02: Auction'
+      responses:
+        '200':
+          description: 'Ok. Show Auctions'
+  
+  /auctions/search:
+
+    post:
+      operationId: R213
+      summary: 'R213: Search auctions'
+      description: 'Searches for auctions. Access: PUB.'
 
       tags:
         - 'M02: Auction'
