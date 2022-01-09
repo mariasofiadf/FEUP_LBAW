@@ -65,7 +65,9 @@ class AuctionController extends Controller
     public function list()
     {
       $auctions = Auction::where('status', 'Active')->get();
-      $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
+      $notif = null;
+      if(Auth::check())
+        $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
 
       return view('pages.auctions', ['auctions' => $auctions, 'notif' => $notif]);
     }
