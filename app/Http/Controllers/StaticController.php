@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Auction;
 use App\Models\Bid;
 
-class BidController extends Controller
+class StaticController extends Controller
 {
 
     //protected $redirectTo = '/auctions';
