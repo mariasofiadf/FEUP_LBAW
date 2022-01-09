@@ -1,6 +1,6 @@
 <p class="display-2 text-center"> About the website </p>
 
-<p class = "display-4"> General Information </p>
+<p class = "display-6"> General Information </p>
 <div class = "text-md-start lh-base">
     
     <p> This website was created with academic purposes in mind, by the 3rd group in class 2 of the LBAW course, during the 1st semester of
@@ -16,4 +16,4 @@
         following one theme out of a pool of them available. In our group's case, it was decided to create an auction website.</p> 
 </div>
 
-<p class = display-4> Services provided </p>
+<p class = display-6> Services provided </p>
