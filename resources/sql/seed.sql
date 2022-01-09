@@ -59,9 +59,9 @@ CREATE TABLE auction(
 
     min_opening_bid INTEGER NOT NULL CHECK (min_opening_bid > 0),   
     min_raise INTEGER NOT NULL,
-    start_date DATE NOT NULL, --CK predictedEnd >= startDate
-    predicted_end DATE NOT NULL,
-    close_date DATE NOT NULL, --CK close_date >= predictedEnd
+    start_date TIMESTAMP NOT NULL DEFAULT current_timestamp, --CK predictedEnd >= startDate
+    predicted_end TIMESTAMP NOT NULL DEFAULT current_timestamp + interval '1 month',
+    close_date TIMESTAMP NOT NULL DEFAULT current_timestamp + interval '1 month', --CK close_date >= predictedEnd
 
     status auction_status NOT NULL,
     category auction_category NOT NULL,
@@ -80,7 +80,7 @@ DROP TABLE IF EXISTS bid CASCADE;
 CREATE TABLE bid(
     bid_id SERIAL PRIMARY KEY,
     bid_value INTEGER NOT NULL CHECK (bid_value > 0),
-    bid_date DATE NOT NULL, --ck >auction.date
+    bid_date TIMESTAMP NOT NULL, --ck >auction.date
     --"date" TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
     auction_id INTEGER REFERENCES auction(auction_id) ON DELETE CASCADE NOT NULL,
     bidder_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL
@@ -102,7 +102,7 @@ CREATE TABLE chat(
 CREATE TABLE message(
     msg_id SERIAL PRIMARY KEY,
     msg_content TEXT NOT NULL,
-    msg_date DATE NOT NULL, --ck >auction.date
+    msg_date TIMESTAMP NOT NULL, --ck >auction.date
     user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
     chat_id INTEGER REFERENCES chat(chat_id) ON DELETE CASCADE NOT NULL
 );
@@ -122,7 +122,7 @@ CREATE TABLE rating(
     id_rated INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
     id_rates INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL CHECK (id_rated != id_rates),
     rate_value INTEGER NOT NULL CHECK (rate_value >= 0 AND rate_value <= 5),  --change name, < 5 ??
-    rate_date DATE NOT NULL,    
+    rate_date TIMESTAMP NOT NULL,    
     PRIMARY KEY(id_rated, id_rates)
 );
 
@@ -362,7 +362,7 @@ CREATE FUNCTION extend_auction() RETURNS TRIGGER AS
 $BODY$
 BEGIN
     UPDATE auction
-    SET close_date = close_date + integer '1' --mudar?
+    SET close_date = close_date + interval '1 hours' --mudar?
     WHERE auction_id = NEW.auction_id;
     RETURN NEW;
 END
@@ -604,13 +604,18 @@ CREATE FUNCTION new_bid_notif() RETURNS TRIGGER AS
 $BODY$
 DECLARE
     rec RECORD;
+    seller_id INTEGER;
 BEGIN
+    SELECT auction.seller_id INTO seller_id FROM auction WHERE auction.auction_id = NEW.auction_id;
     FOR rec IN SELECT bidder_id FROM bid
     WHERE bid.auction_id = NEW.auction_id 
     LOOP
         INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
         VALUES(rec.bidder_id,NEW.auction_id,'New Bid');
     END LOOP;
+
+    INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
+    VALUES(seller_id,NEW.auction_id,'New Bid');
     RETURN NEW;
 END
 $BODY$
@@ -669,14 +674,14 @@ INSERT INTO users (user_id,name,username,password,email,phone_number,credit,prof
 SELECT setval(pg_get_serial_sequence('users', 'user_id'), coalesce(max(user_id)+1, 1), false) FROM users;
 
 -- auction
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,start_date,predicted_end,close_date,status,category,seller_id) VALUES (100,'Victorian Chair', '19th century velvet red chair, with wooden details',1000,100,'2021-11-28','2021-11-30','2021-11-30','Active','Decor', 3);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,start_date,predicted_end,close_date,status,category,seller_id) VALUES (101,'18th Century Coffee Table', 'Coffee table from the 18th Century in wood with top made of stone',850,150,'2021-12-01','2021-12-07','2021-12-08','Active','Decor', 5);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,start_date,predicted_end,close_date,status,category,seller_id) VALUES (102,'Egyptian Necklace', 'Old Kingdom (circa 2670–2195 B.C.) necklace made of gold',11000,500,'2022-01-01','2022-01-03','2022-01-04','Active','Jewelry', 3);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,start_date,predicted_end,close_date,status,category,seller_id) VALUES (103,'Sherlock Holmes Original 1976 Collection', '15 books with hard cover and golden incrusted letters',550,50,'2022-01-12','2022-01-15','2022-01-16','Active','Book', 4);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,start_date,predicted_end,close_date,status,category,seller_id) VALUES (104,'Agatha Christie Collections 1960-1969 and 1970-1979', 'Agatha Christie Best Sellers from the 60s and 70s',1000,100,'2022-01-13','2022-01-15','2022-01-16','Active','Book', 4);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,start_date,predicted_end,close_date,status,category,seller_id) VALUES (105,'Impressionist Lake Painting by Vlaminck', 'Small unknown painting by Maurice Vlaminck from 1896',540000,1000,'2022-01-18','2022-01-19','2022-01-20','Active','ArtPiece', 3);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,start_date,predicted_end,close_date,status,category,seller_id) VALUES (106,'Real Degas', 'From 1999',770000,10000,'2022-01-20','2022-01-29','2022-01-30','Canceled','ArtPiece', 1);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,start_date,predicted_end,close_date,status,category,seller_id) VALUES (107,'LBAW Secrets', 'From 2021',500,100,'2022-01-20','2022-01-29','2022-01-30','Active','Book', 6);
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (100,'Victorian Chair', '19th century velvet red chair, with wooden details',1000,100,'Active','Decor', 3);
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (101,'18th Century Coffee Table', 'Coffee table from the 18th Century in wood with top made of stone',850,150,'Active','Decor', 5);
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (102,'Egyptian Necklace', 'Old Kingdom (circa 2670–2195 B.C.) necklace made of gold',11000,500,'Active','Jewelry', 3);
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (103,'Sherlock Holmes Original 1976 Collection', '15 books with hard cover and golden incrusted letters',550,50,'Active','Book', 4);
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (104,'Agatha Christie Collections 1960-1969 and 1970-1979', 'Agatha Christie Best Sellers from the 60s and 70s',1000,100,'Active','Book', 4);
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (105,'Impressionist Lake Painting by Vlaminck', 'Small unknown painting by Maurice Vlaminck from 1896',540000,1000,'Active','ArtPiece', 3);
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (106,'Real Degas', 'From 1999',770000,10000,'Canceled','ArtPiece', 1);
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (107,'LBAW Secrets', 'From 2021',500,100,'Active','Book', 6);
 SELECT setval(pg_get_serial_sequence('auction', 'auction_id'), coalesce(max(auction_id)+1, 1), false) FROM auction;
 
 -- bid
@@ -686,6 +691,7 @@ INSERT INTO bid (bid_id,bid_value,bid_date,auction_id,bidder_id) VALUES (201,120
 INSERT INTO bid (bid_id,bid_value,bid_date,auction_id,bidder_id) VALUES (202,1300,'2021-11-28',100,4);
 INSERT INTO bid (bid_id,bid_value,bid_date,auction_id,bidder_id) VALUES (203,1000,'2021-12-02',101,3);
 INSERT INTO bid (bid_id,bid_value,bid_date,auction_id,bidder_id) VALUES (204,1150,'2021-12-03',101,4);
+INSERT INTO bid (bid_id,bid_value,bid_date,auction_id,bidder_id) VALUES (205,600,'2021-12-03',107,8);
 SELECT setval(pg_get_serial_sequence('bid', 'bid_id'), coalesce(max(bid_id)+1, 1), false) FROM bid;
 
 --admin
@@ -810,7 +816,7 @@ SELECT setval(pg_get_serial_sequence('bid', 'bid_id'), coalesce(max(bid_id)+1, 1
 
 -- -- auction_notification (notif_id,notified_id,auction_id,anotif_read,anotif_time,anotif_category)
 
--- INSERT INTO auction_notification (notif_id,notified_id,auction_id,anotif_read,anotif_time,anotif_category) VALUES (701, 2, 100, TRUE, '12/28/2021 07:02:49 AM', 'New Bid');
+-- INSERT INTO auction_notification (notif_id,notified_id,auction_id,anotif_read,anotif_time,anotif_category) VALUES (0, 2, 100, False, '12/28/2021 07:02:49 AM', 'New Bid');
 -- INSERT INTO auction_notification (notif_id,notified_id,auction_id,anotif_read,anotif_time,anotif_category) VALUES (702, 1, 100, TRUE, '12/28/2021 03:12:53 AM', 'New Bid');
 -- INSERT INTO auction_notification (notif_id,notified_id,auction_id,anotif_read,anotif_time,anotif_category) VALUES (703, 4, 100, TRUE, '12/28/2021 02:52:14 AM', 'New Bid');
 -- INSERT INTO auction_notification (notif_id,notified_id,auction_id,anotif_read,anotif_time,anotif_category) VALUES (704, 3, 101, TRUE, '12/02/2021 04:42:45 PM', 'New Bid');

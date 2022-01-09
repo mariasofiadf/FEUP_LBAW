@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
 use App\Models\Auction;
+use App\Models\AuctionNotification;
 
 class UserController extends Controller
 {
@@ -35,7 +36,9 @@ class UserController extends Controller
     {
       //$this->authorize('list', Auction::class);
       $users = User::all()->where('deleted', false);
-      return view('pages.users', ['users' => $users]);
+
+      $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
+      return view('pages.users', ['users' => $users,"notif"=>$notif]);
     }
 
     /**
@@ -50,9 +53,27 @@ class UserController extends Controller
             return abort(404);
 
         $auctions = Auction::all()->where('seller_id', $id);
-        return view('pages.user_profile', ["user" => $user, "auctions" => $auctions]);
+
+        $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
+        return view('pages.user_profile', ["user" => $user, "auctions" => $auctions, "notif"=>$notif]);
     }
 
+    public function showNotifications(){
+      $anotifs = AuctionNotification::all()->where('notified_id', Auth::user()->user_id);
+
+      $notifs = [];
+      foreach($anotifs as $anotif){
+        $auction = Auction::all()->where('auction_id', $anotif->auction_id)->first();
+        $notif['auction_id'] = $auction->auction_id;
+        $notif['name'] = $auction->title;
+        $notif['anotif_category'] = $anotif->anotif_category;
+        $notif['date'] = $anotif->anotif_time;
+        array_push($notifs, $notif);
+      }
+
+      $count = count($anotifs);
+      return view('pages.notifications', ["notif"=> $count, "notifs"=>$notifs]);
+    }
      /**
      * Shows own Profile.
      * 

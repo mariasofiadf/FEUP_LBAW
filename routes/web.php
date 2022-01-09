@@ -44,3 +44,4 @@ Route::get('users/{id}', 'UserController@showProfile')->name('users/{id}');
 Route::get('users/{id}/del', 'UserController@delete')->name('del');
 Route::get('users', 'UserController@list');
 Route::get('mybids', 'BidController@myBids');
+Route::get('notifications', 'UserController@showNotifications')->name('notifications');

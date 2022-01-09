@@ -3,7 +3,14 @@
   <div class "container">
     <div class="row">
       <div class="col-3">
-        <a  class="nav-link" href="{{ url('/auctions') }}">Hand Of Midas</a>
+        <ul class="nav ">
+          <li class="nav-item">
+            <a  class="nav-link" href="{{ url('/auctions') }}">Hand Of Midas</a>
+          </li>
+          <li class="nav-item">
+            <a  class="nav-link" href="{{ url('/notifications') }}">Notifications: {{$notif ?? '0'}}</a>
+          </li>
+
       </div>
       <div class="col-6">
         <ul class="nav justify-content-center">
