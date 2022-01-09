@@ -26,7 +26,7 @@
     <p> Once he is registered and logged in, the user is able to finally bid on the auction, as well as leave a comment or report it to the admin if 
         needed be. Other actions include: </p>
     <ul class = "list-inline">
-        <li class = "list-inline-item">the option to follow an auction so that it is easily accessable;</li>
+        <li class = "list-inline-item">The option to follow an auction so that it is easily accessable;</li>
         <li class = "list-inline-item">rate a seller;</li>
         <li class = "list-inline-item">see own or an auction's bidding history;</li>
         <li class = "list-inline-item">etc.</li> 
