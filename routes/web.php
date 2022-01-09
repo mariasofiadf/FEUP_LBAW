@@ -46,4 +46,4 @@ Route::get('users', 'UserController@list');
 Route::get('mybids', 'BidController@myBids');
 
 //Static pages
-Route::get('about', 'StaticControler@showAbout');
+Route::get('about', 'StaticController@showAbout');
