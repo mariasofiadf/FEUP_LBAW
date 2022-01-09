@@ -18,7 +18,7 @@
             <a class="nav-link" href="/users">Users</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/about">About Us</a>
+            <a class="nav-link" href="{{ url('/about') }}">About Us</a>
           </li>  
           <li class="nav-item">
             <a class="nav-link" href="/contact_us">Contact</a>
