@@ -17,3 +17,15 @@
 </div>
 
 <p class = display-6> Services provided </p>
+<div class = "text-md-start lh-base">
+
+    <p> First and foremost, as a not-registered visitor, you are nonetheless able to surf through the auctions available (including deescriptions) and 
+        see the pages available through the header. </p>
+    <p> Secondly, the website provides you with the option to register yourself in its database, with your name, chosen user-name, email 
+        and password. After which, you are able to do the majority of the critical features, with exception to ones destined to the administrator. </p>
+    <p> Once he is registered and logged in, the user is able to finally bid on the auction, as well as leave a comment or report it to the admin if 
+        needed be. Other actions include: the option to follow an auction so that it is easily accessable; rate a seller; see own or an auction's 
+        bidding history; etc. </p>
+    <p> Further beyond, the administrator is also equiped with more privileges, such as: Block or unblock any account, remove any auction, etc. </p>
+
+</div>
