@@ -53,7 +53,9 @@ class AuctionController extends Controller
         array_push($bidsDetails, $bidd);
       }
 
-      $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
+      $notif = null;
+      if(Auth::check())
+        $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
       return view('pages.auctionFull', ['auction' => $auction, 'bid' => $bid, 'bidder' => $bidder,'user' => $user, 'bids' => $bidsDetails, 'notif' => $notif]);
     }
 
