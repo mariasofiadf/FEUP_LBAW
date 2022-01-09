@@ -48,3 +48,4 @@ Route::get('mybids', 'BidController@myBids');
 //Static pages
 Route::get('about', 'StaticController@showAbout');
 Route::get('contacts', 'StaticController@showContacts');
+Route::get('faq', 'StaticController@showFaq');

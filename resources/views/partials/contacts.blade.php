@@ -1,6 +1,6 @@
 <p class="display-3 text-center"> Contacts </p>
 
-<div class = "text-md-start lh-base fs-4">
+<div class = "text-md-start lh-base fs-5">
     <p>For any questions regarding the "company" and the website, please refer to the following contacts for further information:</p>
 </div>
 

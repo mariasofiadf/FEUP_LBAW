@@ -30,4 +30,9 @@ class StaticController extends Controller
         return view('pages.contacts');
     }
 
+    public function showFaq()
+    {
+        return view('pages.faq');
+    }
+
 }
