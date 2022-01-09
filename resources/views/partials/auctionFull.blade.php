@@ -2,6 +2,7 @@
   <img src="..." class="card-img-top" alt="...">
   <div class="card-body">
     <h2 class="card-title"><a href="/auctions/{{ $auction->auction_id }}">{{ $auction->title }}</a> by <a href="/users/{{ $auction->seller_id }}">{{ $user->name }}</a></h2>
+    <p class="card-text">Auction closes at: {{ $auction->close_date }}</p>
     <p class="card-text">{{ $auction->description ?? '' }}</p>
     <p class="card-text">Category: {{ $auction->category }}</p>
     @if ($bid != null)
@@ -11,8 +12,6 @@
       <p class="card-text">This auction has no bids</p>
       <p class="card-text">Minimum opening bid is  {{ $auction->min_opening_bid ?? 0}}€ </p>
     @endif
-
-
 
     @if ( (Auth::check() && Auth::id() == $auction->seller_id ) or (Auth::check() && Auth::user()->is_admin))
       <a href="/auctions/{{ $auction->auction_id }}/delete" class="btn btn-secondary">Delete</a>
@@ -38,4 +37,7 @@
     @endif
   </div>
 </div>
+
+<h2>Bidding History</h2>
+@include('partials.bids', ['bids' => $bids])
 

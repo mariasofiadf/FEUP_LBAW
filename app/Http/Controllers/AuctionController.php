@@ -37,7 +37,24 @@ class AuctionController extends Controller
       else
         $bidder = null;
       $user = User::where('user_id', $auction->seller_id)->first();
-      return view('pages.auctionFull', ['auction' => $auction, 'bid' => $bid, 'bidder' => $bidder,'user' => $user]);
+
+      $bids = Bid::where('auction_id', $id)->orderBy('bid_value', 'desc')->get();
+
+      $bidsDetails = [];
+      foreach($bids as $bid){
+        $auction = Auction::all()->where('auction_id', $bid->auction_id)->first();
+
+        $bidder = User::where('user_id', $bid->bidder_id)->first();
+        $bidd['auction_id'] = $auction->auction_id;
+        $bidd['name'] = $auction->title;
+        $bidd['bid_value'] = $bid->bid_value;
+        $bidd['bid_date'] = $bid->bid_date;
+        $bidd['bidder'] = $bidder->name;
+        array_push($bidsDetails, $bidd);
+      }
+
+      $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
+      return view('pages.auctionFull', ['auction' => $auction, 'bid' => $bid, 'bidder' => $bidder,'user' => $user, 'bids' => $bidsDetails, 'notif' => $notif]);
     }
 
     /**
@@ -49,6 +66,7 @@ class AuctionController extends Controller
     {
       $auctions = Auction::where('status', 'Active')->get();
       $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
+
       return view('pages.auctions', ['auctions' => $auctions, 'notif' => $notif]);
     }
 

@@ -59,9 +59,20 @@ class UserController extends Controller
     }
 
     public function showNotifications(){
-      $notifs = AuctionNotification::all()->where('notified_id', Auth::user()->user_id);
-      $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
-      return view('pages.notifications', ["notif"=> $notif, "notifs"=>$notifs]);
+      $anotifs = AuctionNotification::all()->where('notified_id', Auth::user()->user_id);
+
+      $notifs = [];
+      foreach($anotifs as $anotif){
+        $auction = Auction::all()->where('auction_id', $anotif->auction_id)->first();
+        $notif['auction_id'] = $auction->auction_id;
+        $notif['name'] = $auction->title;
+        $notif['anotif_category'] = $anotif->anotif_category;
+        $notif['date'] = $anotif->anotif_time;
+        array_push($notifs, $notif);
+      }
+
+      $count = count($anotifs);
+      return view('pages.notifications', ["notif"=> $count, "notifs"=>$notifs]);
     }
      /**
      * Shows own Profile.
