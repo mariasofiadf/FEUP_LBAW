@@ -87,12 +87,11 @@ class UserController extends Controller
     public function delete(Request $request, $id)
     {
 
-      $user = User::find($id);
-      $user->deleted = True;
-
       //$this->authorize('delete', $user);
-      $user->save();
+      $user = User::find($id);
+      $user->delete();
 
-      return redirect('/auctions');
+
+      return redirect('/logout');
     }
 }
