@@ -65,7 +65,7 @@ CREATE TABLE auction(
 
     status auction_status NOT NULL,
     category auction_category NOT NULL,
-    seller_id INTEGER REFERENCES users(user_id) NOT NULL,
+    seller_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
     win_bid INTEGER REFERENCES bid(bid_id)
 );
 
@@ -73,7 +73,7 @@ CREATE TABLE image(
     img_id SERIAL PRIMARY KEY,
     content TEXT NOT NULL,
     label TEXT,
-    auction INTEGER REFERENCES auction(auction_id)
+    auction INTEGER REFERENCES auction(auction_id) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS bid CASCADE;
@@ -82,8 +82,8 @@ CREATE TABLE bid(
     bid_value INTEGER NOT NULL CHECK (bid_value > 0),
     bid_date DATE NOT NULL, --ck >auction.date
     --"date" TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
-    auction_id INTEGER REFERENCES auction(auction_id) NOT NULL,
-    bidder_id INTEGER REFERENCES users(user_id) NOT NULL
+    auction_id INTEGER REFERENCES auction(auction_id) ON DELETE CASCADE NOT NULL,
+    bidder_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL
 );
 
 CREATE TABLE admin(
@@ -96,15 +96,15 @@ CREATE TABLE admin(
 
 CREATE TABLE chat(
     chat_id SERIAL PRIMARY KEY,
-    auction_id INTEGER REFERENCES auction(auction_id) NOT NULL
+    auction_id INTEGER REFERENCES auction(auction_id) ON DELETE CASCADE NOT NULL
 );
 
 CREATE TABLE message(
     msg_id SERIAL PRIMARY KEY,
     msg_content TEXT NOT NULL,
     msg_date DATE NOT NULL, --ck >auction.date
-    user_id INTEGER REFERENCES users(user_id) NOT NULL,
-    chat_id INTEGER REFERENCES chat(chat_id) NOT NULL
+    user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
+    chat_id INTEGER REFERENCES chat(chat_id) ON DELETE CASCADE NOT NULL
 );
 
 
@@ -113,36 +113,36 @@ CREATE TABLE message(
 
 CREATE TABLE auction_report(
     description TEXT, 
-    auction_id INTEGER REFERENCES auction(auction_id) NOT NULL,
-    user_id INTEGER REFERENCES users(user_id) NOT NULL,
+    auction_id INTEGER REFERENCES auction(auction_id) ON DELETE CASCADE NOT NULL,
+    user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
     PRIMARY KEY(auction_id, user_id)
 );
 
 CREATE TABLE rating(
-    id_rated INTEGER REFERENCES users(user_id) NOT NULL,
-    id_rates INTEGER REFERENCES users(user_id) NOT NULL CHECK (id_rated != id_rates),
+    id_rated INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
+    id_rates INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL CHECK (id_rated != id_rates),
     rate_value INTEGER NOT NULL CHECK (rate_value >= 0 AND rate_value <= 5),  --change name, < 5 ??
     rate_date DATE NOT NULL,    
     PRIMARY KEY(id_rated, id_rates)
 );
 
 CREATE TABLE user_follow(
-    id_followed INTEGER REFERENCES users(user_id) NOT NULL,
-    id_follower INTEGER REFERENCES users(user_id) NOT NULL CHECK (id_followed != id_follower), 
+    id_followed INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
+    id_follower INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL CHECK (id_followed != id_follower), 
     PRIMARY KEY(id_followed, id_follower)
 );
 
 CREATE TABLE auction_follow(
-    id_followed INTEGER REFERENCES auction(auction_id) NOT NULL,
-    id_follower INTEGER REFERENCES users(user_id) NOT NULL CHECK (id_followed != id_follower), 
+    id_followed INTEGER REFERENCES auction(auction_id) ON DELETE CASCADE NOT NULL,
+    id_follower INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL CHECK (id_followed != id_follower), 
     PRIMARY KEY(id_followed, id_follower)
 );
 
 
 CREATE TABLE user_notification(
     notif_id SERIAL PRIMARY KEY,
-    notified_id INTEGER REFERENCES users(user_id) NOT NULL,
-    notifier_id INTEGER REFERENCES users(user_id) NOT NULL,
+    notified_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
+    notifier_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
     notif_read BOOLEAN DEFAULT FALSE,  
     notif_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     --notif_time TIME DEFAULT NOW, --change name
@@ -151,8 +151,8 @@ CREATE TABLE user_notification(
 
 CREATE TABLE auction_notification(
     notif_id SERIAL PRIMARY KEY,
-    notified_id INTEGER REFERENCES users(user_id) NOT NULL,
-    auction_id INTEGER REFERENCES auction(auction_id) NOT NULL,
+    notified_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
+    auction_id INTEGER REFERENCES auction(auction_id) ON DELETE CASCADE NOT NULL,
     anotif_read BOOLEAN DEFAULT FALSE,
     anotif_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     --anotif_time TIME DEFAULT NOW, --change name
@@ -622,16 +622,47 @@ CREATE TRIGGER new_bid_notif
     FOR EACH ROW 
     EXECUTE PROCEDURE new_bid_notif();
 
+DROP FUNCTION IF EXISTS delete_user CASCADE;
+CREATE FUNCTION delete_user() RETURNS TRIGGER AS 
+$BODY$
+DECLARE
+    rate_count INTEGER;
+BEGIN
+    update auction
+    set seller_id = 0
+    where auction.seller_id = OLD.user_id;
+
+    update bid
+    set bidder_id = 0
+    where bid.bidder_id = OLD.user_id;
+
+    update message
+    set user_id = 0
+    where message.user_id = OLD.user_id;
+
+    RETURN OLD;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS delete_user on bid CASCADE;
+CREATE TRIGGER delete_user
+    BEFORE DELETE ON users
+    FOR EACH ROW 
+    EXECUTE PROCEDURE delete_user();
+
+
 -- images
 
+INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (0,'Deleted User','deleted','$2y$10$mp6HMsGu4VcblGpki0HdR.4LwB2qHR8c9oOpU6Jlbt4RTdIQpkG1W','deleted',0,0,'',0,False,FALSE,FALSE);
 INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (1,'Bruno Silva','bsilva','$2y$10$mp6HMsGu4VcblGpki0HdR.4LwB2qHR8c9oOpU6Jlbt4RTdIQpkG1W','bsilva@hotmail.com',169335936,10000,'bsilva.jpg',4,False,TRUE,TRUE);
 INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (2,'Laura Rocha','lrocha','$2y$10$LnAa8f4AB0f5Ttrrf3yC0eEjpIJkQoek9thQ033t79IZD3GX7cx8S','lrocha@hotmail.com',934004312,2000,'lrocha.jpg',3,False,TRUE,TRUE);
 INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (3,'Carlos Lima','clima','$2y$10$bdRPzv0rSN3HwH/3Gus8y.7MkV1aPDgRgI.S.2Jly037qRoN7orM6','clima@gmail.com',639376003,32000,'clima.jpg',2,False,TRUE,TRUE);
 INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (4,'Diana Sagres','dsagres','$2y$10$Rr3Y4V44M5WT7uVwmjYAdulX2ON5wrUM2pDN6AqafKYKYfYcipaLK','dsagres@yahoo.com.br',948003605,1000,'dsagres.jpg',1,False,TRUE,TRUE);
-INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (5,'Miguel Ferreira','mferreira','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','teste@gmail.com',639230752,200,'mferreira.jpg',5,False,TRUE,TRUE);
+INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (5,'Miguel Ferreira','mferreira','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','miguel@gmail.com',639230752,200,'mferreira.jpg',5,False,TRUE,TRUE);
 INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (6,'Prof','prof','$2y$10$TfOaUPoQ6PiB4lqVOEQbJuhKvALYIpg.dpF3j12JtnfllI4vJk/u2','prof@gmail.com',222333444,200,'prof.jpg',5,False,TRUE,TRUE);
 INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif, is_admin) VALUES (7,'Admin','admin','$2y$10$TfOaUPoQ6PiB4lqVOEQbJuhKvALYIpg.dpF3j12JtnfllI4vJk/u2','admin@gmail.com',111222333,200,'admin.jpg',5,False,TRUE,TRUE, TRUE);
-INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif, is_admin) VALUES (8,'Maria Figueiredo','mariasofia','$2y$10$Yrf1rchGJSdFdfqk9988Xuqy9ycie/audwgA.RmElpE/0sysnEQwm','mary@gmail.com',0,200,'maria.jpg',5,False,TRUE,TRUE, FALSE);
+INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif, is_admin) VALUES (8,'Maria Figueiredo','mariasofia','$2y$10$Yrf1rchGJSdFdfqk9988Xuqy9ycie/audwgA.RmElpE/0sysnEQwm','mary@gmail.com',1,200,'maria.jpg',5,False,TRUE,TRUE, FALSE);
 
 
 
