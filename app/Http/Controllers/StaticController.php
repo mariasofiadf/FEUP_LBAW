@@ -25,4 +25,9 @@ class StaticController extends Controller
       return view('pages.about');
     }
 
+    public function showContacts()
+    {
+        return view('pages.contacts');
+    }
+
 }

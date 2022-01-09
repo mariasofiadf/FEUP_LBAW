@@ -1,4 +1,4 @@
-<p class="display-2 text-center"> About the website </p>
+<p class="display-3 text-center"> About the website </p>
 
 <p class = "display-6"> General Information </p>
 <div class = "text-md-start lh-base">
@@ -24,8 +24,18 @@
     <p> Secondly, the website provides you with the option to register yourself in its database, with your name, chosen user-name, email 
         and password. After which, you are able to do the majority of the critical features, with exception to ones destined to the administrator. </p>
     <p> Once he is registered and logged in, the user is able to finally bid on the auction, as well as leave a comment or report it to the admin if 
-        needed be. Other actions include: the option to follow an auction so that it is easily accessable; rate a seller; see own or an auction's 
-        bidding history; etc. </p>
-    <p> Further beyond, the administrator is also equiped with more privileges, such as: Block or unblock any account, remove any auction, etc. </p>
+        needed be. Other actions include: </p>
+    <ul class = "list-inline">
+        <li class = "list-inline-item">the option to follow an auction so that it is easily accessable;</li>
+        <li class = "list-inline-item">rate a seller;</li>
+        <li class = "list-inline-item">see own or an auction's bidding history;</li>
+        <li class = "list-inline-item">etc.</li> 
+    </ul>
+    <p> Further beyond, the administrator is also equiped with more privileges, such as:</p>
+    <ul class = "list-inline">
+        <li class = "list-inline-item">Block or unblock any account;</li>
+        <li class = "list-inline-item">remove any auction;</li>
+        <li class = "list-inline-item">etc.</li>
+    </ul>
 
 </div>
