@@ -604,13 +604,18 @@ CREATE FUNCTION new_bid_notif() RETURNS TRIGGER AS
 $BODY$
 DECLARE
     rec RECORD;
+    seller_id INTEGER;
 BEGIN
+    SELECT auction.seller_id INTO seller_id FROM auction WHERE auction.auction_id = NEW.auction_id;
     FOR rec IN SELECT bidder_id FROM bid
     WHERE bid.auction_id = NEW.auction_id 
     LOOP
         INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
         VALUES(rec.bidder_id,NEW.auction_id,'New Bid');
     END LOOP;
+
+    INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
+    VALUES(seller_id,NEW.auction_id,'New Bid');
     RETURN NEW;
 END
 $BODY$
@@ -686,6 +691,7 @@ INSERT INTO bid (bid_id,bid_value,bid_date,auction_id,bidder_id) VALUES (201,120
 INSERT INTO bid (bid_id,bid_value,bid_date,auction_id,bidder_id) VALUES (202,1300,'2021-11-28',100,4);
 INSERT INTO bid (bid_id,bid_value,bid_date,auction_id,bidder_id) VALUES (203,1000,'2021-12-02',101,3);
 INSERT INTO bid (bid_id,bid_value,bid_date,auction_id,bidder_id) VALUES (204,1150,'2021-12-03',101,4);
+INSERT INTO bid (bid_id,bid_value,bid_date,auction_id,bidder_id) VALUES (205,600,'2021-12-03',107,8);
 SELECT setval(pg_get_serial_sequence('bid', 'bid_id'), coalesce(max(bid_id)+1, 1), false) FROM bid;
 
 --admin
@@ -810,7 +816,7 @@ SELECT setval(pg_get_serial_sequence('bid', 'bid_id'), coalesce(max(bid_id)+1, 1
 
 -- -- auction_notification (notif_id,notified_id,auction_id,anotif_read,anotif_time,anotif_category)
 
--- INSERT INTO auction_notification (notif_id,notified_id,auction_id,anotif_read,anotif_time,anotif_category) VALUES (701, 2, 100, TRUE, '12/28/2021 07:02:49 AM', 'New Bid');
+-- INSERT INTO auction_notification (notif_id,notified_id,auction_id,anotif_read,anotif_time,anotif_category) VALUES (0, 2, 100, False, '12/28/2021 07:02:49 AM', 'New Bid');
 -- INSERT INTO auction_notification (notif_id,notified_id,auction_id,anotif_read,anotif_time,anotif_category) VALUES (702, 1, 100, TRUE, '12/28/2021 03:12:53 AM', 'New Bid');
 -- INSERT INTO auction_notification (notif_id,notified_id,auction_id,anotif_read,anotif_time,anotif_category) VALUES (703, 4, 100, TRUE, '12/28/2021 02:52:14 AM', 'New Bid');
 -- INSERT INTO auction_notification (notif_id,notified_id,auction_id,anotif_read,anotif_time,anotif_category) VALUES (704, 3, 101, TRUE, '12/02/2021 04:42:45 PM', 'New Bid');

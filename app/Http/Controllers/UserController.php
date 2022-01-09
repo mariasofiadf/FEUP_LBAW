@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
 use App\Models\Auction;
+use App\Models\AuctionNotification;
 
 class UserController extends Controller
 {
@@ -35,7 +36,9 @@ class UserController extends Controller
     {
       //$this->authorize('list', Auction::class);
       $users = User::all()->where('deleted', false);
-      return view('pages.users', ['users' => $users]);
+
+      $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
+      return view('pages.users', ['users' => $users,"notif"=>$notif]);
     }
 
     /**
@@ -50,9 +53,16 @@ class UserController extends Controller
             return abort(404);
 
         $auctions = Auction::all()->where('seller_id', $id);
-        return view('pages.user_profile', ["user" => $user, "auctions" => $auctions]);
+
+        $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
+        return view('pages.user_profile', ["user" => $user, "auctions" => $auctions, "notif"=>$notif]);
     }
 
+    public function showNotifications(){
+      $notifs = AuctionNotification::all()->where('notified_id', Auth::user()->user_id);
+      $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
+      return view('pages.notifications', ["notif"=> $notif, "notifs"=>$notifs]);
+    }
      /**
      * Shows own Profile.
      * 

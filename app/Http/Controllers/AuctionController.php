@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Auction;
+use App\Models\AuctionNotification;
 use App\Models\Bid;
 use App\Models\User;
 
@@ -47,7 +48,8 @@ class AuctionController extends Controller
     public function list()
     {
       $auctions = Auction::where('status', 'Active')->get();
-      return view('pages.auctions', ['auctions' => $auctions]);
+      $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
+      return view('pages.auctions', ['auctions' => $auctions, 'notif' => $notif]);
     }
 
     /**
