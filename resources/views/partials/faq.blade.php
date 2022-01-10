@@ -7,6 +7,9 @@
             <p>Mainly Art pieces, books, jewelry and decorations, although it supports other items.</p>
         </dd>
 
+        <dt class = "col-sm-6 text-truncate">is it possible to bid in any auction?</dt>
+        <dd class = "col-sm-9">Any user can bid on a ACTIVE auction. Otherwise, the bidding is off-limits or the auction does not eeven appear.</dd>
+
         <dt class = "col-sm-6 text-truncate">Is it possible to bid without registering?</dt>
         <dd class = "col-sm-9">No, the user must have an account to be allowed to bid.</dd>
 
@@ -17,6 +20,6 @@
         <dd class = "col-sm-9">Yes, so you must be carefull about what you say, for the admin watches all...</dd>
 
         <dt class = "col-sm-6 text-truncate">Is the site a scam?</dt>
-        <dd class = "col-sm-9">No, and we are not responsible for any monetary loss from any careless user</dd>
+        <dd class = "col-sm-9">No, and we are not responsible for any monetary loss from any careless user.</dd>
     </dl>
 </div>
