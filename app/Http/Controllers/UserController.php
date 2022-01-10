@@ -37,7 +37,9 @@ class UserController extends Controller
       //$this->authorize('list', Auction::class);
       $users = User::all()->where('deleted', false);
 
-      $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
+      $notif = null;
+      if(Auth::check())
+        $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
       return view('pages.users', ['users' => $users,"notif"=>$notif]);
     }
 
@@ -54,7 +56,9 @@ class UserController extends Controller
 
         $auctions = Auction::all()->where('seller_id', $id);
 
-        $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
+        $notif = null;
+        if(Auth::check())
+          $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
         return view('pages.user_profile', ["user" => $user, "auctions" => $auctions, "notif"=>$notif]);
     }
 

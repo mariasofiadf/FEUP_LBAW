@@ -7,9 +7,11 @@
           <li class="nav-item">
             <a  class="nav-link" href="{{ url('/auctions') }}">Hand Of Midas</a>
           </li>
+          @if (Auth::check())
           <li class="nav-item">
             <a  class="nav-link" href="{{ url('/notifications') }}">Notifications: {{$notif ?? '0'}}</a>
           </li>
+          @endif
 
       </div>
       <div class="col-6">
@@ -28,7 +30,7 @@
             <a class="nav-link" href="/about">About Us</a>
           </li>  
           <li class="nav-item">
-            <a class="nav-link" href="/contact_us">Contact</a>
+            <a class="nav-link" href="/contacts">Contact</a>
           </li>
         </ul>
       </div>

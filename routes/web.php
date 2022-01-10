@@ -45,3 +45,8 @@ Route::get('users/{id}/del', 'UserController@delete')->name('del');
 Route::get('users', 'UserController@list');
 Route::get('mybids', 'BidController@myBids');
 Route::get('notifications', 'UserController@showNotifications')->name('notifications');
+
+//Static pages
+Route::get('about', 'StaticController@showAbout');
+Route::get('contacts', 'StaticController@showContacts');
+Route::get('faq', 'StaticController@showFaq');

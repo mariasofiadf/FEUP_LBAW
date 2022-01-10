@@ -52,9 +52,18 @@ class AuctionController extends Controller
         $bidd['bidder'] = $bidder->name;
         array_push($bidsDetails, $bidd);
       }
+      $winBid = null; $winner = null;
+      if($auction->win_bid != null){
+        $winBid = Bid::find($auction->win_bid);
+        if($winBid != null)
+          $winner = User::find($winBid->bidder_id);
+      }
+      
 
-      $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
-      return view('pages.auctionFull', ['auction' => $auction, 'bid' => $bid, 'bidder' => $bidder,'user' => $user, 'bids' => $bidsDetails, 'notif' => $notif]);
+      $notif = null;
+      if(Auth::check())
+        $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
+      return view('pages.auctionFull', ['auction' => $auction, 'bid' => $bid, 'bidder' => $bidder,'user' => $user, 'bids' => $bidsDetails, 'notif' => $notif, 'winner'=>$winner]);
     }
 
     /**
@@ -64,8 +73,11 @@ class AuctionController extends Controller
      */
     public function list()
     {
-      $auctions = Auction::where('status', 'Active')->get();
-      $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
+      //$auctions = Auction::where('status', 'Active')->get();
+      $auctions = Auction::all();
+      $notif = null;
+      if(Auth::check())
+        $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
 
       return view('pages.auctions', ['auctions' => $auctions, 'notif' => $notif]);
     }
@@ -155,5 +167,23 @@ class AuctionController extends Controller
       $bid->save();
       return redirect()->route('auctions/{id}', $id);
       return $bid;
+    }
+
+    public static function setWinner($auction_id){
+
+      $winBid = Bid::where('auction_id',$auction_id)->orderBy('bid_value','desc')->get()->first();
+      $auction = Auction::find($auction_id);
+      if($winBid != null)
+        $auction->win_bid = $winBid->bid_id;
+      $auction->status = 'Closed';
+      $auction->save();
+    }
+
+    public static function checkAuctionEnd(){
+      $auctions = Auction::where('status', 'Active')->get();
+      foreach($auctions as $a){
+          if($a->close_date < date("Y-m-d H:i:s"))
+            AuctionController::setWinner($a->auction_id);
+      }
     }
 }
