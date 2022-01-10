@@ -8,7 +8,10 @@
         </dd>
 
         <dt class = "col-sm-6 text-truncate">is it possible to bid in any auction?</dt>
-        <dd class = "col-sm-9">Any user can bid on a ACTIVE auction. Otherwise, the bidding is off-limits or the auction does not eeven appear.</dd>
+        <dd class = "col-sm-9">
+            <p>Any user can bid on a ACTIVE auction.</p> 
+            <p>Otherwise, the bidding is off-limits or the auction does not even appear.</p>
+        </dd>
 
         <dt class = "col-sm-6 text-truncate">Is it possible to bid without registering?</dt>
         <dd class = "col-sm-9">No, the user must have an account to be allowed to bid.</dd>
