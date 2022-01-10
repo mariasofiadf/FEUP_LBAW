@@ -4,7 +4,7 @@
   <img src="..." class="card-img-top" alt="...">
   <div class="card-body">
     <h4 class="card-title"><a href="/auctions/{{ $auction->auction_id }}">{{ $auction->title }}</a></h5>
-    <p class="card-text">Category: {{ $auction->category }}</p>
+    <p class="card-text">Category: {{ $auction->category }} Status: {{ $auction->status }} </p>
     <a href="/auctions/{{ $auction->auction_id }}" class="btn btn-primary">Go to auction</a>
 
     @if (Auth::check() && Auth::id() == $auction->seller_id )
