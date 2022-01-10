@@ -6,6 +6,8 @@
 
 
 <h2> My Bidding History</h2>
-@include('partials.bids', ['bids' => $bids])
+<div class="container " style="margin: 1rem;">
+    @each('partials.userBid', $bids, 'bid')
+</div>
 
 @endsection

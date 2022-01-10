@@ -11,18 +11,6 @@ class AuctionPolicy
 {
     use HandlesAuthorization;
 
-    public function show(User $user, Auction $auction)
-    {
-      // Any user can view an auction
-      return true;
-    }
-
-    public function list(User $user)
-    {
-      // Any user can list auctions
-      return true;
-    }
-
     public function create(User $user)
     {
       // Any user can create a new auction

@@ -20,15 +20,9 @@ class AuctionNotification extends Model{
 
     protected $dateFormat = 'Y-m-d H:i:sO';
 
-    public function auction()
-    {
-        return $this->hasOne(Auction::class, "auction_id", "auction_id");
-    }
+    public function auction(){return $this->hasOne('App\Models\Auction','auction_id');}
 
-    public function userNotified()
-    {
-        return $this -> hasOne(User::class, "notified_id", "user_id");
-    }
+    public function userNotified(){return $this->hasOne('App\Models\User','notified_id');}
 
     public function partial()
     {

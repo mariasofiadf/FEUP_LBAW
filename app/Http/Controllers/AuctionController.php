@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Auction;
-use App\Models\AuctionNotification;
 use App\Models\Bid;
 use App\Models\User;
 
@@ -21,24 +20,18 @@ class AuctionController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function showPreview($id)
+    public function show($id)
     {
       $auction = Auction::find($id);
-      $user = User::where('user_id', $auction->seller_id)->first();
-      return view('pages.auctionPreview', ['auction' => $auction, 'user' => $user]);
-    }
+      
+      $user = User::find($auction->seller_id);
 
-    public function showFull($id)
-    {
-      $auction = Auction::find($id);
-      $bid = DB::table('bid')->where('auction_id', $id)->orderBy('bid_value', 'desc')->get()->first();
-      if($bid != null)
-        $bidder = DB::table('users')->where('user_id', $bid->bidder_id)->get()->first();
-      else
-        $bidder = null;
-      $user = User::where('user_id', $auction->seller_id)->first();
+      $bids = $auction->bids()->orderBy('bid_value', 'desc')->get();
+      $highbid = $bids->first();
 
-      $bids = Bid::where('auction_id', $id)->orderBy('bid_value', 'desc')->get();
+      $highbidder = null;
+      if($highbid != null)
+        $highbidder = DB::table('users')->where('user_id', $highbid->bidder_id)->get()->first();
 
       $bidsDetails = [];
       foreach($bids as $bid){
@@ -59,11 +52,7 @@ class AuctionController extends Controller
           $winner = User::find($winBid->bidder_id);
       }
       
-
-      $notif = null;
-      if(Auth::check())
-        $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
-      return view('pages.auctionFull', ['auction' => $auction, 'bid' => $bid, 'bidder' => $bidder,'user' => $user, 'bids' => $bidsDetails, 'notif' => $notif, 'winner'=>$winner]);
+      return view('pages.auctionFull', ['auction' => $auction, 'bid' => $highbid, 'bidder' => $highbidder,'user' => $user, 'bids' => $bidsDetails, 'winner'=>$winner]);
     }
 
     /**
@@ -75,11 +64,7 @@ class AuctionController extends Controller
     {
       //$auctions = Auction::where('status', 'Active')->get();
       $auctions = Auction::all();
-      $notif = null;
-      if(Auth::check())
-        $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
-
-      return view('pages.auctions', ['auctions' => $auctions, 'notif' => $notif]);
+      return view('pages.auctions', ['auctions' => $auctions]);
     }
 
     /**

@@ -52,4 +52,9 @@ class User extends Authenticatable
     public function ownedAuctions(){return $this->hasMany('App\Models\Auction', 'seller_id');}
 
     public function followedAuctions(){return $this->hasMany('App\Models\Auction');}
+
+    public function auctionNotifs(){return $this->hasMany('App\Models\AuctionNotification', 'notified_id');}
+
+    public function userNotifs(){return $this->hasMany('App\Models\UserNotification', 'notified_id');}
+    
 }
