@@ -22,7 +22,7 @@ class AuctionNotification extends Model{
 
     public function auction(){return $this->hasOne('App\Models\Auction','auction_id');}
 
-    public function userNotified(){return $this->hasOne('App\Models\User','notified_id');}
+    public function userNotified(){return $this->hasOne('App\Models\User','user_id');}
 
     public function partial()
     {

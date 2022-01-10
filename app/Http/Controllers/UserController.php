@@ -39,11 +39,14 @@ class UserController extends Controller
             return abort(404);
 
         $auctions = Auction::all()->where('seller_id', $id);
+        $auctions = $user->ownedAuctions();
         return view('pages.userProfile', ["user" => $user, "auctions" => $auctions]);
     }
 
     public function showNotifications(){
-      $anotifs = AuctionNotification::all()->where('notified_id', Auth::user()->user_id);
+      $anotifs = AuctionNotification::all()->where('notified_id', Auth::user()->user_id); 
+      
+      //$anotifs = Auth::user()->auctionNotifs();
 
       $notifs = [];
       foreach($anotifs as $anotif){
@@ -55,8 +58,7 @@ class UserController extends Controller
         array_push($notifs, $notif);
       }
 
-      $count = count($anotifs);
-      return view('pages.notifications', ["notif"=> $count, "notifs"=>$notifs]);
+      return view('pages.notifications', ["notifs"=>$notifs]);
     }
 
     public function showEditForm(){

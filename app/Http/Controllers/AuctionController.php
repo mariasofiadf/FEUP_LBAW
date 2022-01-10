@@ -31,12 +31,11 @@ class AuctionController extends Controller
 
       $highbidder = null;
       if($highbid != null)
-        $highbidder = DB::table('users')->where('user_id', $highbid->bidder_id)->get()->first();
+        $highbidder = $highbid->bidder()->first();
 
       $bidsDetails = [];
       foreach($bids as $bid){
-        $auction = Auction::all()->where('auction_id', $bid->auction_id)->first();
-
+        $auction = $bid->auction()->first();
         $bidder = User::where('user_id', $bid->bidder_id)->first();
         $bidd['auction_id'] = $auction->auction_id;
         $bidd['name'] = $auction->title;
