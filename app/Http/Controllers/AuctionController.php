@@ -36,7 +36,7 @@ class AuctionController extends Controller
       $bidsDetails = [];
       foreach($bids as $bid){
         $auction = $bid->auction()->first();
-        $bidder = User::where('user_id', $bid->bidder_id)->first();
+        $bidder = $bid->bidder()->first();
         $bidd['auction_id'] = $auction->auction_id;
         $bidd['name'] = $auction->title;
         $bidd['bid_value'] = $bid->bid_value;
