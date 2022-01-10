@@ -15,5 +15,8 @@
 
         <dt class = "col-sm-6 text-truncate">Does the admin have absolute power?</dt>
         <dd class = "col-sm-9">Yes, so you must be carefull about what you say, for the admin watches all...</dd>
+
+        <dt class = "col-sm-6 text-truncate">Is the site a scam?</dt>
+        <dd class = "col-sm-9">No, and we are not responsible for any monetary loss from any careless user</dd>
     </dl>
 </div>
