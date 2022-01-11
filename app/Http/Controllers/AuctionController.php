@@ -42,15 +42,7 @@ class AuctionController extends Controller
       return view('pages.auctions', ['auctions' => $auctions]);
     }
 
-    /**
-     * Creates a new auction.
-     *
-     * @return Auction The auction created.
-     */
-    public function create(Request $request)
-    {
-      //$this->authorize('create');
-      
+    public function validated(Request $request){
       $validator = $request->validate([
         'title' => 'required|string|max:255',
         'description' => 'required|string|max:255',
@@ -62,6 +54,18 @@ class AuctionController extends Controller
         'auction_status' => 'required',
         'auction_category' => 'required'
       ]);
+      return $validator;
+    }
+    /**
+     * Creates a new auction.
+     *
+     * @return Auction The auction created.
+     */
+    public function create(Request $request)
+    {
+      $this->authorize('create', Auction::class);
+      
+      $validator = $this->validated($request);
 
       $auction = Auction::create([
         'title' => $validator['title'],
@@ -82,8 +86,11 @@ class AuctionController extends Controller
     public function edit($id, Request $request){
       $auction = Auction::find($id);
 
-      $auction->title = $request->input('title');
+      $this->authorize('edit', $auction);
 
+      $validator = $this->validated($request);
+
+      $auction->title = $request->input('title');
       $auction->description = $request->input('description');
       $auction->min_opening_bid = $request->input('min_opening_bid');
       $auction->min_raise = $request->input('min_raise');
@@ -101,11 +108,10 @@ class AuctionController extends Controller
     public function delete(Request $request, $id)
     {
       $auction = Auction::find($id);
-
+    
       $this->authorize('delete', $auction);
       $auction->delete();
       return redirect('/auctions');
-      //return $auction;
     }
 
     public function showAuctionCreationForm(){
@@ -134,13 +140,12 @@ class AuctionController extends Controller
 
       $bid->save();
       return redirect()->route('auctions/{id}', $id);
-      return $bid;
     }
 
     public static function setWinner($auction_id){
 
-      $winBid = Bid::where('auction_id',$auction_id)->orderBy('bid_value','desc')->get()->first();
       $auction = Auction::find($auction_id);
+      $winBid = $auction->bids()->orderBy('bid_value','desc')->get()->first();
       if($winBid != null)
         $auction->win_bid = $winBid->bid_id;
       $auction->status = 'Closed';

@@ -22,6 +22,15 @@
 <label for="min_raise" class="form-label">Minimum Raise</label>
 <input type="text" name="min_raise" class="form-control" id="min_raise" value="{{ $auction->min_raise ?? old('min_raise') }}" required>
 </div>
+<label for="min_raise" class="form-label">Start Date</label>
+<input type="datetime" name="min_raise" class="form-control" id="min_raise" value="{{ $auction->min_raise ?? old('min_raise') }}" required>
+</div>
+
+<label for="min_raise" class="form-label">Close Date</label>
+<input type="datetime" name="min_raise" class="form-control" id="min_raise" value="{{ $auction->min_raise ?? old('min_raise') }}" required>
+</div>
+
+
 
 <label for="auction_category" class="form-label">Category</label>
 <select class="form-select" id="auction_categories" aria-label="Default select example" value="{{ $auction->auction_category ?? old('auction_category') }}" name="auction_category" required>
