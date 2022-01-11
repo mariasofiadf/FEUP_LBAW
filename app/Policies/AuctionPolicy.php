@@ -11,9 +11,10 @@ class AuctionPolicy
 {
     use HandlesAuthorization;
 
-    public function create(User $user)
+    public function create(User $user, Request $request)
     {
       // Any user can create a new auction
+      return true;
       return Auth::check();
     }
 
