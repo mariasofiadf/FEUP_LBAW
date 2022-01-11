@@ -1,13 +1,13 @@
 <div class="card">
   <img src="..." class="card-img-top" alt="...">
   <div class="card-body">
-    <h2 class="card-title"><a href="/auctions/{{ $auction->auction_id }}">{{ $auction->title }}</a> by <a href="/users/{{ $auction->seller_id }}">{{ $user->name }}</a></h2>
+    <h2 class="card-title"><a href="/auctions/{{ $auction->auction_id }}">{{ $auction->title }}</a> by <a href="/users/{{ $auction->seller_id }}">{{ $auction->owner()->first()->name }}</a></h2>
     <p class="card-text">Auction closes at: {{ $auction->close_date }}</p>
     <p class="card-text">{{ $auction->description ?? '' }}</p>
     <p class="card-text">Category: {{ $auction->category }} {{$auction->win_bid}}</p>
     <p></p>
-    @if ($bid != null && $auction->status == 'Active')
-      <p class="card-text">Current highest bid is {{ $bid->bid_value ?? 0}}€ by {{ $bidder->name ?? ''}}</p>
+    @if ($bids != null && $auction->status == 'Active')
+      <p class="card-text">Current highest bid is {{ $bids->first()->bid_value ?? 0}}€ by {{ $bids->first()->bidder()->first()->name ?? ''}}</p>
       <p class="card-text">Minimum raise is  {{ $auction->min_raise ?? 0}}€ </p>
     @elseif ($auction->status == 'Active')
       <p class="card-text">This auction has no bids</p>

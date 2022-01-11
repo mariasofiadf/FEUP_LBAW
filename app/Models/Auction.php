@@ -21,7 +21,7 @@ class Auction extends Model
         'title', 'description', 'min_opening_bid', 'min_raise', 'start_date', 'predicted_end', 'close_date', 'status', 'category', 'auction_image'
     ];
 
-    public function owner(){return $this->hasOne('App\Models\User');}
+    public function owner(){return $this->belongsTo('App\Models\User','seller_id');}
 
     public function chat(){return $this->hasOne('App\Models\Chat');}
 

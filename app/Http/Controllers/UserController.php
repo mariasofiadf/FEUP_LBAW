@@ -39,7 +39,7 @@ class UserController extends Controller
             return abort(404);
 
         $auctions = Auction::all()->where('seller_id', $id);
-        $auctions = $user->ownedAuctions();
+        
         return view('pages.userProfile', ["user" => $user, "auctions" => $auctions]);
     }
 

@@ -12,29 +12,16 @@ use App\Models\Bid;
 class BidController extends Controller
 {
 
-    //protected $redirectTo = '/auctions';
-
-
     /**
-     * Shows all cards.
+     * Shows all of user's bids.
      *
      * @return Response
      */
     public function myBids()
     {
-      $bids = Bid::where('bidder_id', Auth::user()->user_id)->get();
+      $bids = Auth::user()->bids()->orderBy('bid_date','desc')->get();
 
-      $bidsDetails = [];
-      foreach($bids as $bid){
-        $auction = Auction::all()->where('auction_id', $bid->auction_id)->first();
-        $bidd['auction_id'] = $auction->auction_id;
-        $bidd['name'] = $auction->title;
-        $bidd['bid_value'] = $bid->bid_value;
-        $bidd['bid_date'] = $bid->bid_date;
-        array_push($bidsDetails, $bidd);
-      }
-
-      return view('pages.bids', ['bids' => $bidsDetails]);
+      return view('pages.bids', ['bids' => $bids]);
     }
 
 

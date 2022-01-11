@@ -23,35 +23,10 @@ class AuctionController extends Controller
     public function show($id)
     {
       $auction = Auction::find($id);
-      
-      $user = User::find($auction->seller_id);
 
       $bids = $auction->bids()->orderBy('bid_value', 'desc')->get();
-      $highbid = $bids->first();
-
-      $highbidder = null;
-      if($highbid != null)
-        $highbidder = $highbid->bidder()->first();
-
-      $bidsDetails = [];
-      foreach($bids as $bid){
-        $auction = $bid->auction()->first();
-        $bidder = $bid->bidder()->first();
-        $bidd['auction_id'] = $auction->auction_id;
-        $bidd['name'] = $auction->title;
-        $bidd['bid_value'] = $bid->bid_value;
-        $bidd['bid_date'] = $bid->bid_date;
-        $bidd['bidder'] = $bidder->name;
-        array_push($bidsDetails, $bidd);
-      }
-      $winBid = null; $winner = null;
-      if($auction->win_bid != null){
-        $winBid = Bid::find($auction->win_bid);
-        if($winBid != null)
-          $winner = User::find($winBid->bidder_id);
-      }
       
-      return view('pages.auctionFull', ['auction' => $auction, 'bid' => $highbid, 'bidder' => $highbidder,'user' => $user, 'bids' => $bidsDetails, 'winner'=>$winner]);
+      return view('pages.auctionFull', ['auction' => $auction, 'bids' => $bids]);
     }
 
     /**
