@@ -19,6 +19,6 @@ class AuctionReport extends Model
 
     public function user(){return $this->hasOne('App\Models\User');}
 
-    public function auction(){return $this->hasOne('App\Models\Chat');}
+    public function auction(){return $this->hasOne('App\Models\Auction');}
 
 }
