@@ -2,6 +2,19 @@
 set -e
 
 cd /var/www; php artisan config:cache
+
+# Add cron job into cronfile
+* * * * * cd /var/www && php artisan schedule:run >> /dev/null 2>&1
+
+# Install cron job
+crontab cronfile
+
+# Remove temporary file
+rm cronfile
+
 env >> /var/www/.env
 php-fpm8.0 -D
+
+# Start cron
+cron
 nginx -g "daemon off;"

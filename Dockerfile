@@ -4,6 +4,7 @@ FROM ubuntu:21.10
 env DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends libpq-dev vim nginx php8.0-fpm php8.0-mbstring php8.0-xml php8.0-pgsql
+RUN apt-get update && apt-get install -y cron
 
 # Copy project code and install project dependencies
 COPY --chown=www-data . /var/www/
