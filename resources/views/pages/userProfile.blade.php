@@ -2,7 +2,13 @@
 @extends('layouts.app')
 @section('content')
 
-
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a href="./users">Users</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ $user->username }}</li>
+  </ol>
+</nav>
 
 <div class="card">
     <div class="card-body">
@@ -14,14 +20,17 @@
       <p class="card-text">Description</p>
       <p class="card-text">Joined date</p>
       @if ( Auth::check() and (Auth::id() == $user->user_id or Auth::user()->is_admin))
-        <a class="btn btn-primary" href = "/profile/edit">Edit Profile</a> 
-        <a class="btn btn-primary" href = "/users/{{$user->user_id}}/del">Delete Profile</a> 
-        @if(!$user->is_admin and Auth::id() == $user->user_id)
-          <a class="btn btn-primary" href = "/mybids">My Bidding History</a> 
-        @endif
+        <div class="d-grid gap-2 d-md-block">
+          <a class="btn btn-primary" href = "/profile/edit">Edit Profile</a> 
+          <a class="btn btn-primary" href = "/users/{{$user->user_id}}/del">Delete Profile</a> 
+          @if(!$user->is_admin and Auth::id() == $user->user_id)
+            <a class="btn btn-primary" href = "/mybids">My Bidding History</a> 
+          @endif
+        </div>
       @endif
     </div>
 </div>
+
  
 @if(!$user->is_admin )
 <div class="card">
