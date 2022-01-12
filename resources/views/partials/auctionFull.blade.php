@@ -1,3 +1,11 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a href="./auctions">Auctions</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ $auction->title }}</li>
+  </ol>
+</nav>
+
 <div class="card">
   <img src="..." class="card-img-top" alt="...">
   <div class="card-body">
