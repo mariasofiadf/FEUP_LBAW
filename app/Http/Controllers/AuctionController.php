@@ -11,6 +11,8 @@ use App\Models\Auction;
 use App\Models\Bid;
 use App\Models\User;
 
+use Carbon\Carbon;
+
 class AuctionController extends Controller
 {
 
@@ -48,8 +50,8 @@ class AuctionController extends Controller
         'description' => 'required|string|max:255',
         'min_opening_bid' => 'required|integer',
         'min_raise' => 'required|integer',
-        'start_date' => 'date_format:Y/m/d|after_or_equal:now',
-        'close_date' => 'date_format:Y/m/d|after:now',
+        // 'start' => 'date_format:YYYY-MM-DDThh:mm',
+        // 'close' => 'date_format:YYYY-MM-DDThh:mm|after:start',
         'predicted_end' => 'date_format:Y/m/d|after:now',
         'auction_status' => 'required',
         'auction_category' => 'required'
@@ -69,16 +71,17 @@ class AuctionController extends Controller
 
       $auction = Auction::create([
         'title' => $validator['title'],
-        'description' => $request->input('email'),
+        'description' => $request->input('description'),
         'min_opening_bid' => $request->input('min_opening_bid'),
         'min_raise' => $request->input('min_raise'),
-        'start_date' => $request->input('start_date'),
-        'close_date' => $request->input('close_date'),
-        'predicted_end' => $request->input('predicted_end'),
+        'start_date' => Carbon::createFromFormat('Y-m-d\TH:i', $request->input('start'))->format('Y-m-d H:m:00'),
+        'close_date' => Carbon::createFromFormat('Y-m-d\TH:i', $request->input('close'))->format('Y-m-d H:m:00'),
+        'predicted_end' => Carbon::createFromFormat('Y-m-d\TH:i', $request->input('close'))->format('Y-m-d H:m:00'),
         'status' => $validator['auction_status'],
         'category' => $validator['auction_category'],
         'seller_id' => Auth::user()->user_id
       ]);
+      $auction->save();
 
       return redirect('/auctions');
     }
@@ -94,9 +97,9 @@ class AuctionController extends Controller
       $auction->description = $request->input('description');
       $auction->min_opening_bid = $request->input('min_opening_bid');
       $auction->min_raise = $request->input('min_raise');
-      $auction->start_date = date("Y/m/d");
-      $auction->predicted_end = date("Y/m/d");
-      $auction->close_date = date("Y/m/d");
+      $auction->start_date = Carbon::createFromFormat('Y-m-d\TH:i', $request->input('start'))->format('Y-m-d H:m:00');
+      $auction->predicted_end = Carbon::createFromFormat('Y-m-d\TH:i', $request->input('close'))->format('Y-m-d H:m:00');
+      $auction->close_date = Carbon::createFromFormat('Y-m-d\TH:i', $request->input('close'))->format('Y-m-d H:m:00');
 
       $auction->status = $request->input('auction_status');
       $auction->category = $request->input('auction_category');
