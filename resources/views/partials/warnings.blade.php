@@ -1,7 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
-
 
 <form class="row g-3 needs-validation" method="POST" action="{{ route('register') }}" novalidate>
 
@@ -66,4 +62,3 @@
             })
         })()
 </script>
-@endsection

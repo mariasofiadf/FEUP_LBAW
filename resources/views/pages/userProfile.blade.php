@@ -7,6 +7,8 @@
 <div class="card">
     <div class="card-body">
       <h2 class="card-title ">{{ $user->name }}</h2>
+        <img width="200" height="200" src = {{ $user->profile_image }} >
+      </div>
       <p class="card-text">{{ '@' . $user->username }}</p> 
       <p class="card-text">Followers: placeholder</p> 
       <p class="card-text">Description</p>
