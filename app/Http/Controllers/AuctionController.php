@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\File;
 use App\Models\Auction;
 use App\Models\AuctionNotification;
 use App\Models\Bid;
@@ -105,7 +106,28 @@ class AuctionController extends Controller
       $auction->status = $request->input('auction_status');
       $auction->category = $request->input('auction_category');
       $auction->seller_id = Auth::user()->user_id;
+      
 
+      // $request->validate([
+      //   'file' => 'required|mimes:jpg,png,csv,txt,xlx,xls,pdf|max:2048'
+      //   ]);
+
+        $fileModel = new File;
+
+        if($request->file()) {
+            $fileName = time().'_'.$request->file->getClientOriginalName();
+            $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+
+            $fileModel->name = time().'_'.$request->file->getClientOriginalName();
+            $fileModel->file_path = '/storage/' . $filePath;
+            $fileModel->save();
+
+            return back()
+            ->with('success','File has been uploaded.')
+            ->with('file', $fileName);
+            $auction->auction_image = $fileName;
+        }
+     
       $auction->save();
       return redirect('/auctions');
       //return $auction;

@@ -4,4 +4,5 @@
 
 @section('content')
   @include('partials.auctionCreate')
+  
 @endsection

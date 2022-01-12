@@ -66,7 +66,8 @@ CREATE TABLE auction(
     status auction_status NOT NULL,
     category auction_category NOT NULL,
     seller_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
-    win_bid INTEGER REFERENCES bid(bid_id)
+    win_bid INTEGER REFERENCES bid(bid_id),
+    auction_image TEXT
 );
 
 CREATE TABLE image(

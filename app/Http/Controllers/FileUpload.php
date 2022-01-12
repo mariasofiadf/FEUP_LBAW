@@ -8,12 +8,12 @@ use App\Models\File;
 class FileUpload extends Controller
 {
   public function createForm(){
-    return view('file-upload');
+    return view('partials/file-upload');
   }
 
   public function fileUpload(Request $req){
         $req->validate([
-        'file' => 'required|mimes:png,csv,txt,xlx,xls,pdf|max:2048'
+        'file' => 'required|mimes:jpg,png,csv,txt,xlx,xls,pdf|max:2048'
         ]);
 
         $fileModel = new File;

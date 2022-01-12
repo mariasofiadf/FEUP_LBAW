@@ -1,5 +1,5 @@
 <div class="card">
-  <img src="..." class="card-img-top" alt="...">
+  <img class="card-img-top" alt="Imagem do Auction" src="{{url('/storage/uploads/test.png')}}">
   <div class="card-body">
     <h2 class="card-title"><a href="/auctions/{{ $auction->auction_id }}">{{ $auction->title }}</a> by <a href="/users/{{ $auction->seller_id }}">{{ $user->name }}</a></h2>
     <p class="card-text">Auction closes at: {{ $auction->close_date }}</p>
