@@ -2,6 +2,8 @@
 
 @section('title', $auction->name)
 
+
+
 @section('content')
   @include('partials.auctionFull', ['auction' => $auction])
 
