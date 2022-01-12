@@ -1,5 +1,6 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FileUpload;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,3 +51,7 @@ Route::get('notifications', 'UserController@showNotifications')->name('notificat
 Route::get('about', 'StaticController@showAbout');
 Route::get('contacts', 'StaticController@showContacts');
 Route::get('faq', 'StaticController@showFaq');
+
+//FileUpload
+Route::get('/upload-file', [FileUpload::class, 'createForm']);
+Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload');
