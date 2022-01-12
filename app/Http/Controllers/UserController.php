@@ -38,15 +38,12 @@ class UserController extends Controller
         if ($user == null || $user->deleted)
             return abort(404);
 
-        $auctions = Auction::all()->where('seller_id', $id);
         
-        return view('pages.userProfile', ["user" => $user, "auctions" => $auctions]);
+        return view('pages.userProfile', ["user" => $user]);
     }
 
     public function showNotifications(){
       $anotifs = AuctionNotification::all()->where('notified_id', Auth::user()->user_id); 
-      
-      //$anotifs = Auth::user()->auctionNotifs();
 
       $notifs = [];
       foreach($anotifs as $anotif){

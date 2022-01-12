@@ -26,7 +26,7 @@
     <div class="card-body">
 
       <h2 class="card-title "> {{ $user->name }}'s Auctions</h2>
-      @include('partials.auctions', ['auctions' => $auctions])
+      @include('partials.auctions', ['auctions' => $user->ownedAuctions()->get()])
     </div>
 </div>
 @endif
