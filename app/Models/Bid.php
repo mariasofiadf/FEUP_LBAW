@@ -19,8 +19,8 @@ class Bid extends Model
         'bid_value'
     ];
 
-    public function bidder(){return $this->hasOne('App\Models\User');}
+    public function bidder(){return $this->belongsTo('App\Models\User', 'bidder_id');}
 
-    public function auction(){return $this->hasOne('App\Models\Auction', 'auction_id');}
+    public function auction(){return $this->belongsTo('App\Models\Auction', 'auction_id');}
 
 }

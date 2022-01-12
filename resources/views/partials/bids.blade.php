@@ -1,7 +1,7 @@
 
 
 <div class="container " style="margin: 1rem;">
-    @each('partials.bid', $bids, 'bid')
+    @each('partials.auctionBid', $bids, 'bid')
 </div>
 
 

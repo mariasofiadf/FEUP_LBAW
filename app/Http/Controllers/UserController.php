@@ -14,18 +14,7 @@ class UserController extends Controller
 {
 
     protected $redirectTo = '/users';
-    /**
-     * Shows the user for a given id.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-      $user = User::find($id);
-      $this->authorize('show', $user);
-      return view('pages.user', ['user' => $user]);
-    }
+
 
     /**
      * Shows all Users.
@@ -34,36 +23,27 @@ class UserController extends Controller
      */
     public function list()
     {
-      //$this->authorize('list', Auction::class);
-      $users = User::all()->where('deleted', false);
-
-      $notif = null;
-      if(Auth::check())
-        $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
-      return view('pages.users', ['users' => $users,"notif"=>$notif]);
+      $users = User::all();
+      return view('pages.users', ['users' => $users]);
     }
 
     /**
-     * Shows user Profile.
+     * Shows the user for a given id.
      *
-     * @param username 
+     * @param  int  $id
      * @return Response
      */
     public function showProfile($id) {
-        $user = User::all()->where('user_id', $id)->first();
+        $user = User::find($id);
         if ($user == null || $user->deleted)
             return abort(404);
 
-        $auctions = Auction::all()->where('seller_id', $id);
-
-        $notif = null;
-        if(Auth::check())
-          $notif = AuctionNotification::all()->where('notified_id', Auth::user()->user_id)->count();
-        return view('pages.user_profile', ["user" => $user, "auctions" => $auctions, "notif"=>$notif]);
+        
+        return view('pages.userProfile', ["user" => $user]);
     }
 
     public function showNotifications(){
-      $anotifs = AuctionNotification::all()->where('notified_id', Auth::user()->user_id);
+      $anotifs = AuctionNotification::all()->where('notified_id', Auth::user()->user_id); 
 
       $notifs = [];
       foreach($anotifs as $anotif){
@@ -75,18 +55,7 @@ class UserController extends Controller
         array_push($notifs, $notif);
       }
 
-      $count = count($anotifs);
-      return view('pages.notifications', ["notif"=> $count, "notifs"=>$notifs]);
-    }
-     /**
-     * Shows own Profile.
-     * 
-     * @return Response
-     */
-    public function showMyProfile() {
-  
-        $auctions = Auction::all()->where('seller_id', Auth::user()->user_id);
-        return view('pages.user_profile', ["user" => Auth::user(), "auctions" => $auctions]);
+      return view('pages.notifications', ["notifs"=>$notifs]);
     }
 
     public function showEditForm(){
@@ -111,11 +80,9 @@ class UserController extends Controller
 
     public function delete(Request $request, $id)
     {
-
       //$this->authorize('delete', $user);
       $user = User::find($id);
       $user->delete();
-
 
       return redirect('/logout');
     }

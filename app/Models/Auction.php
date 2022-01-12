@@ -18,10 +18,12 @@ class Auction extends Model
     protected $primaryKey = 'auction_id';
 
     protected $fillable = [
-        'title', 'description', 'min_opening_bid', 'min_raise', 'start_date', 'predicted_end', 'close_date', 'status', 'category', 'auction_image'
+        'title', 'description', 'min_opening_bid', 'min_raise', 'start_date', 'predicted_end', 'close_date', 'status', 'category', 'auction_image', 'seller_id'
     ];
 
-    public function owner(){return $this->hasOne('App\Models\User');}
+    protected $guarded = [ 'seller_id'];
+
+    public function owner(){return $this->belongsTo('App\Models\User','seller_id');}
 
     public function chat(){return $this->hasOne('App\Models\Chat');}
 

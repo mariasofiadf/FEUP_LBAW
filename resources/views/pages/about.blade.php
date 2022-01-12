@@ -4,6 +4,6 @@
 
 @section('content')
 
-@include('partials.about')
+@include('partials.warnings')
 
 @endsection
