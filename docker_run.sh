@@ -4,7 +4,8 @@ set -e
 cd /var/www; php artisan config:cache
 
 # Add cron job into cronfile
-* * * * * cd /var/www && php artisan schedule:run >> /dev/null 2>&1
+#* * * * * cd /var/www && php artisan schedule:run >> /dev/null 2>&1
+echo "* * * * * cd /var/www && php artisan schedule:run >> /dev/null 2>&1" >> cronfile
 
 # Install cron job
 crontab cronfile

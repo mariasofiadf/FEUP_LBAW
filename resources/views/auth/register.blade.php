@@ -5,6 +5,7 @@
 
 <form class="row g-3 needs-validation" method="POST" action="{{ route('register') }}" novalidate>
 
+    @include('partials.errorsuccess')
     {{ csrf_field() }}
     <div class="form-floating mb-3">
         <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}" placeholder="Name" required autofocus>

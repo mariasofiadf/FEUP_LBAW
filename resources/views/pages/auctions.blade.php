@@ -11,6 +11,7 @@
   </ol>
 </nav>
 
+
 @include('partials.searchAuctions')
 
 @include('partials.auctions', ['auctions' => $auctions])

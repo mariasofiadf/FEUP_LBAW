@@ -74,9 +74,9 @@ class AuctionController extends Controller
         'description' => $request->input('description'),
         'min_opening_bid' => $request->input('min_opening_bid'),
         'min_raise' => $request->input('min_raise'),
-        'start_date' => Carbon::createFromFormat('Y-m-d\TH:i', $request->input('start'))->format('Y-m-d H:m:00'),
-        'close_date' => Carbon::createFromFormat('Y-m-d\TH:i', $request->input('close'))->format('Y-m-d H:m:00'),
-        'predicted_end' => Carbon::createFromFormat('Y-m-d\TH:i', $request->input('close'))->format('Y-m-d H:m:00'),
+        'start_date' => Carbon::createFromFormat('Y-m-d\TH:i', $request->input('start'))->format('Y-m-d H:i:00'),
+        'close_date' => Carbon::createFromFormat('Y-m-d\TH:i', $request->input('close'))->format('Y-m-d H:i:00'),
+        'predicted_end' => Carbon::createFromFormat('Y-m-d\TH:i', $request->input('close'))->format('Y-m-d H:i:00'),
         'status' => $validator['auction_status'],
         'category' => $validator['auction_category'],
         'seller_id' => Auth::user()->user_id
@@ -97,9 +97,9 @@ class AuctionController extends Controller
       $auction->description = $request->input('description');
       $auction->min_opening_bid = $request->input('min_opening_bid');
       $auction->min_raise = $request->input('min_raise');
-      $auction->start_date = Carbon::createFromFormat('Y-m-d\TH:i', $request->input('start'))->format('Y-m-d H:m:00');
-      $auction->predicted_end = Carbon::createFromFormat('Y-m-d\TH:i', $request->input('close'))->format('Y-m-d H:m:00');
-      $auction->close_date = Carbon::createFromFormat('Y-m-d\TH:i', $request->input('close'))->format('Y-m-d H:m:00');
+      $auction->start_date = Carbon::createFromFormat('Y-m-d\TH:i', $request->input('start'))->format('Y-m-d H:i:00');
+      $auction->predicted_end = Carbon::createFromFormat('Y-m-d\TH:i', $request->input('close'))->format('Y-m-d H:i:00');
+      $auction->close_date = Carbon::createFromFormat('Y-m-d\TH:i', $request->input('close'))->format('Y-m-d H:i:00');
 
       $auction->status = $request->input('auction_status');
       $auction->category = $request->input('auction_category');
