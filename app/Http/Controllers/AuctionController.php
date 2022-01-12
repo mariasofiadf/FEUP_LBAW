@@ -127,7 +127,14 @@ class AuctionController extends Controller
       if (!Auth::check()) return redirect('/login');
       $auction = Auction::find($id);
       return view('pages.auctionCreate', ['auction' => $auction]);
-    } 
+    }
+    
+    public function showReportForm($id)
+    {
+      if(!Auth::check()) return redirect('/login');
+      $auction = Auction::find($id);
+      return view('pages.reportAuction', ['auction' => $auction]);
+    }
 
 
     public function bid(Request $request, $id)

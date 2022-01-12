@@ -23,6 +23,7 @@ Route::get('auctions/{id}/edit', 'AuctionController@showEditForm');
 Route::put('auctions/{id}/edit', 'AuctionController@edit')->name('auctions/{id}/edit');
 Route::get('create', 'AuctionController@showAuctionCreationForm');
 Route::put('api/auctions', 'AuctionController@create')->name('api/auctions');
+Route::get('reportAuction/{id}', 'AuctionController@showReportForm');
 
 
 
