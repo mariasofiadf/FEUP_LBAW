@@ -14,9 +14,9 @@
 
 
 @if (is_null($auction))
-  <form method="POST" action="{{ route('api/auctions') }}">
+  <form method="POST" action="{{ route('api/auctions') }}" enctype="multipart/form-data">
 @else
-  <form method="POST" action="{{ route('auctions/{id}/edit', ['id' => $auction->auction_id]) }}">
+  <form method="POST" action="{{ route('auctions/{id}/edit', ['id' => $auction->auction_id]) }}" enctype="multipart/form-data">
 @endif
 {{ csrf_field() }}
 {{ method_field('PUT') }}
@@ -83,7 +83,7 @@
 </select>
 
 <div class="mb-3" style="margin-top:1rem;">
-<button type="submit" class="btn btn-primary form-control" >Submit</button>
+<button type="submit"  name="submit" class="btn btn-primary form-control" >Submit</button>
 </div>
 </form>
   </article>

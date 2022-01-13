@@ -114,7 +114,7 @@ class AuctionController extends Controller
 
         $fileModel = new File;
 
-        if($request->file()) {
+      if($request->file()) {
             $fileName = time().'_'.$request->file->getClientOriginalName();
             $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
 
@@ -122,11 +122,8 @@ class AuctionController extends Controller
             $fileModel->file_path = '/storage/' . $filePath;
             $fileModel->save();
 
-            return back()
-            ->with('success','File has been uploaded.')
-            ->with('file', $fileName);
             $auction->auction_image = $fileName;
-        }
+      }
      
       $auction->save();
       return redirect('/auctions');

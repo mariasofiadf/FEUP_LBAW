@@ -46,9 +46,9 @@
                 <label class="custom-file-label" for="chooseFile">Select file</label>
             </div>
 
-            <!-- <button type="submit" name="submit" class="btn btn-primary btn-block mt-4">
+            <button type="submit" name="submit" class="btn btn-primary btn-block mt-4">
                 Upload Files
-            </button> -->
+            </button> 
         </form>
     </div>
 
