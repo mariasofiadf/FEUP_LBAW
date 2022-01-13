@@ -3,6 +3,8 @@ set -e
 
 cd /var/www; php artisan config:cache
 
+php artisan storage:link
+
 # Add cron job into cronfile
 #* * * * * cd /var/www && php artisan schedule:run >> /dev/null 2>&1
 echo "* * * * * cd /var/www && php artisan schedule:run >> /dev/null 2>&1" >> cronfile
