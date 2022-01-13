@@ -59,10 +59,9 @@ CREATE TABLE auction(
 
     min_opening_bid INTEGER NOT NULL CHECK (min_opening_bid > 0),   
     min_raise INTEGER NOT NULL,
-    start_date TIMESTAMP NOT NULL DEFAULT current_timestamp, --CK predictedEnd >= startDate
-    predicted_end TIMESTAMP NOT NULL DEFAULT current_timestamp + interval '1 month',
-    close_date TIMESTAMP NOT NULL DEFAULT current_timestamp + interval '1 month', --CK close_date >= predictedEnd
-
+    start_date TIMESTAMP DEFAULT current_timestamp, --CK predictedEnd >= startDate
+    predicted_end TIMESTAMP DEFAULT current_timestamp + interval '1 month',
+    close_date TIMESTAMP DEFAULT current_timestamp + interval '1 month', --CK close_date >= predictedEnd
     status auction_status NOT NULL,
     category auction_category NOT NULL,
     seller_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,

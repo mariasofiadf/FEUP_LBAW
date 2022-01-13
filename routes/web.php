@@ -17,7 +17,7 @@ Route::redirect('cards', 'auctions');
 
 //Auctions
 Route::get('auctions', 'AuctionController@list');
-Route::get('auctions/{id}', 'AuctionController@showFull')->name('auctions/{id}');
+Route::get('auctions/{id}', 'AuctionController@show')->name('auctions/{id}');
 Route::get('auctions/{id}/delete', 'AuctionController@delete');
 Route::post('auctions/{id}/bid', 'AuctionController@bid')->name('auctions/{id}/bid');
 Route::get('auctions/{id}/edit', 'AuctionController@showEditForm');

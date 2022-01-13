@@ -1,4 +1,5 @@
 
+
 <div class="container-fluid " style="margin: 1rem; width: max">
 @foreach($auctions->chunk(5) as $chunk)
     <div class="row">

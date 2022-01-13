@@ -1,3 +1,4 @@
+
 <div class="container-fluid " style="margin: 1rem; width: max">
 @foreach($users->chunk(5) as $chunk)
     <div class="row">
@@ -5,3 +6,4 @@
     </div>
 @endforeach
 </div>
+

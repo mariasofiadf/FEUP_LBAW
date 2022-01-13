@@ -11,28 +11,22 @@ class AuctionPolicy
 {
     use HandlesAuthorization;
 
-    public function show(User $user, Auction $auction)
-    {
-      // Any user can view an auction
-      return true;
-    }
-
-    public function list(User $user)
-    {
-      // Any user can list auctions
-      return true;
-    }
-
     public function create(User $user)
     {
       // Any user can create a new auction
       return Auth::check();
     }
 
+    public function edit(User $user, Auction $auction)
+    {
+      // Any user can create a new auction
+      return $user->user_id==$auction->seller_id;
+    }
+
     public function delete(User $user, Auction $auction)
     {
       // Only a auction owner can delete it
-      return $user->id == $auction->user_id;
+      return $user->user_id == $auction->seller_id;
     }
 
     public function bid(Request $request, $id)

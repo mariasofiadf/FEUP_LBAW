@@ -20,6 +20,8 @@
 @endif
 {{ csrf_field() }}
 {{ method_field('PUT') }}
+
+@include('partials.errorsuccess')
 <div class="mb-3">
 <label for="title" class="form-label">Title</label>
 <input type="text" name="title" class="form-control" id="title" value="{{ $auction->title ?? old('title') }}" required autofocus>
@@ -35,6 +37,15 @@
 <label for="min_raise" class="form-label">Minimum Raise</label>
 <input type="text" name="min_raise" class="form-control" id="min_raise" value="{{ $auction->min_raise ?? old('min_raise') }}" required>
 </div>
+<label for="start" class="form-label">Start Date</label>
+<input type="datetime-local" name="start" class="form-control" id="start" value="{{ $auction->start_date ?? '2021-01-12T19:30' }}" required>
+</div>
+
+<label for="close" class="form-label">Close Date</label>
+<input type="datetime-local" name="close" class="form-control" id="close" value="{{ $auction->close_date ?? '2021-01-12T19:30' }}" required>
+</div>
+
+
 
 <div class="container mt-5">
         <!-- <form action="{{route('fileUpload')}}" method="post" enctype="multipart/form-data"> -->

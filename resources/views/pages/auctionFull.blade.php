@@ -2,6 +2,19 @@
 
 @section('title', $auction->name)
 
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a href="/auctions">Auctions</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ $auction->title }}</li>
+  </ol>
+</nav>
+
 @section('content')
-  @include('partials.auctionFull', ['auction' => $auction, 'bid' => $bid, 'bidder' => $bidder, 'user' => $user, 'winner' => $winner])
+  @include('partials.auctionFull', ['auction' => $auction])
+
+
+<h2>Bidding History</h2>
+@include('partials.bids', ['bids' => $bids])
 @endsection
+

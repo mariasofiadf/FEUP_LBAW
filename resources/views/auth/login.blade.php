@@ -5,7 +5,8 @@
 <div class="card-body">
 <form method="POST" action="{{ route('login') }}">
 
-    {{ csrf_field() }}
+  {{ csrf_field() }}
+  @include('partials.errorsuccess')
   <div class="mb-3">
     <label for="email" class="form-label">Email address</label>
     <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
