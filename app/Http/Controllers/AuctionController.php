@@ -128,6 +128,19 @@ class AuctionController extends Controller
       $auction->status = $request->input('auction_status');
       $auction->category = $request->input('auction_category');
 
+      $fileModel = new File;
+
+      if($request->file()) {
+            $fileName = time().'_'.$request->file->getClientOriginalName();
+            $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+
+            $fileModel->name = time().'_'.$request->file->getClientOriginalName();
+            $fileModel->file_path = '/storage/' . $filePath;
+            $fileModel->save();
+
+            $auction->auction_image = $fileName;
+      }
+
       $auction->save();
       return redirect()->route('auctions/{id}', $id);
     }
