@@ -66,7 +66,8 @@ CREATE TABLE auction(
     category auction_category NOT NULL,
     time_increment BOOLEAN,
     seller_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
-    win_bid INTEGER REFERENCES bid(bid_id)
+    win_bid INTEGER REFERENCES bid(bid_id),
+    auction_image TEXT
 );
 
 CREATE TABLE image(

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
+use App\Models\File;
 use App\Models\Auction;
 use App\Models\Bid;
 use App\Models\User;
@@ -66,6 +67,14 @@ class AuctionController extends Controller
      */
     public function create(Request $request)
     {
+      
+
+      // $request->validate([
+      //   'file' => 'required|mimes:jpg,png,csv,txt,xlx,xls,pdf|max:2048'
+      //   ]);
+
+
+
       $this->authorize('create', Auction::class);
       
       $validator = $this->validated($request);
@@ -83,6 +92,21 @@ class AuctionController extends Controller
         'seller_id' => Auth::user()->user_id,
         'time_increment' => $request->input('time_increment') ?? FALSE
       ]);
+
+      $fileModel = new File;
+
+      if($request->file()) {
+            $fileName = time().'_'.$request->file->getClientOriginalName();
+            $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+
+            $fileModel->name = time().'_'.$request->file->getClientOriginalName();
+            $fileModel->file_path = '/storage/' . $filePath;
+            $fileModel->save();
+
+            $auction->auction_image = $fileName;
+      }
+     
+
       $auction->save();
 
       return redirect('/auctions');
