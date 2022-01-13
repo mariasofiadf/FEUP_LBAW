@@ -364,7 +364,7 @@ $BODY$
 BEGIN
     UPDATE auction
     SET close_date = close_date + interval '1 hours' --mudar?
-    WHERE auction_id = NEW.auction_id AND time_increment = TRUE;
+    WHERE auction_id = NEW.auction_id AND auction.time_increment;
     RETURN NEW;
 END
 $BODY$

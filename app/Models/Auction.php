@@ -18,7 +18,7 @@ class Auction extends Model
     protected $primaryKey = 'auction_id';
 
     protected $fillable = [
-        'title', 'description', 'min_opening_bid', 'min_raise', 'start_date', 'predicted_end', 'close_date', 'status', 'category', 'auction_image', 'seller_id'
+        'title', 'description', 'min_opening_bid', 'min_raise', 'start_date', 'predicted_end', 'close_date', 'status', 'category', 'auction_image', 'seller_id', 'time_increment'
     ];
 
     protected $guarded = [ 'seller_id'];
