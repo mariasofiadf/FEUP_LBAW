@@ -38,11 +38,11 @@
 <input type="text" name="min_raise" class="form-control" id="min_raise" value="{{ $auction->min_raise ?? old('min_raise') }}" required>
 </div>
 <label for="start" class="form-label">Start Date</label>
-<input type="datetime-local" name="start" class="form-control" id="start" value="{{ $auction->start_date ?? '2021-01-12T19:30' }}" required>
+<input type="datetime-local" name="start" class="form-control" id="start" value="{{ $auction->start_date ?? date('Y-m-d\TH:i') }}" required>
 </div>
 
 <label for="close" class="form-label">Close Date</label>
-<input type="datetime-local" name="close" class="form-control" id="close" value="{{ $auction->close_date ?? '2021-01-12T19:30' }}" required>
+<input type="datetime-local" name="close" class="form-control" id="close" value="{{ $auction->close_date ??  date('Y-m-d\TH:i') }}" required>
 </div>
 
 

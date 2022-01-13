@@ -51,11 +51,12 @@ class AuctionController extends Controller
         'description' => 'required|string|max:255',
         'min_opening_bid' => 'required|integer',
         'min_raise' => 'required|integer',
-        // 'start' => 'date_format:YYYY-MM-DDThh:mm',
-        // 'close' => 'date_format:YYYY-MM-DDThh:mm|after:start',
+        'start' => 'date_format:Y-m-d\TH:i',
+        'close' => 'date_format:Y-m-d\TH:i|after:start',
         'predicted_end' => 'date_format:Y/m/d|after:now',
         'auction_status' => 'required',
-        'auction_category' => 'required'
+        'auction_category' => 'required',
+        'file' => 'required|mimes:jpg,png,csv,txt,xlx,xls,pdf|max:2048'
       ]);
       return $validator;
     }
@@ -66,13 +67,6 @@ class AuctionController extends Controller
      */
     public function create(Request $request)
     {
-      
-
-      // $request->validate([
-      //   'file' => 'required|mimes:jpg,png,csv,txt,xlx,xls,pdf|max:2048'
-      //   ]);
-
-
 
       $this->authorize('create', Auction::class);
       
