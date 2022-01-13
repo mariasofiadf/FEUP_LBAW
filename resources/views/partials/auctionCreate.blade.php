@@ -20,18 +20,27 @@
 <div class="mb-3">
 <label for="min_opening_bid" class="form-label" >Minimum Opening Bid</label>
 <input type="text" name= "min_opening_bid" class="form-control" id="min_opening_bid" value="{{ $auction->min_opening_bid ?? old('min_opening_bid') }}" required autofocus>
+</div>
 <div class="mb-3">
 <label for="min_raise" class="form-label">Minimum Raise</label>
 <input type="text" name="min_raise" class="form-control" id="min_raise" value="{{ $auction->min_raise ?? old('min_raise') }}" required>
 </div>
+
+<div class="mb-3">
 <label for="start" class="form-label">Start Date</label>
 <input type="datetime-local" name="start" class="form-control" id="start" value="{{ $auction->start_date ?? '2021-01-12T19:30' }}" required>
 </div>
 
+<div class="mb-3">
 <label for="close" class="form-label">Close Date</label>
 <input type="datetime-local" name="close" class="form-control" id="close" value="{{ $auction->close_date ?? '2021-01-12T19:30' }}" required>
 </div>
 
+
+<div class="form-check form-switch mb-3">
+  <input class="form-check-input" type="checkbox" id="time_increment" name="time_increment" checked>
+  <label class="form-check-label"  for="time_increment">Extend auction end with bids</label>
+</div>
 
 
 <label for="auction_category" class="form-label">Category</label>

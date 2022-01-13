@@ -55,6 +55,7 @@ class AuctionController extends Controller
         'predicted_end' => 'date_format:Y/m/d|after:now',
         'auction_status' => 'required',
         'auction_category' => 'required'
+
       ]);
       return $validator;
     }
@@ -79,7 +80,8 @@ class AuctionController extends Controller
         'predicted_end' => Carbon::createFromFormat('Y-m-d\TH:i', $request->input('close'))->format('Y-m-d H:i:00'),
         'status' => $validator['auction_status'],
         'category' => $validator['auction_category'],
-        'seller_id' => Auth::user()->user_id
+        'seller_id' => Auth::user()->user_id,
+        'time_increment' => $request->input('time_increment') ?? FALSE
       ]);
       $auction->save();
 
@@ -103,6 +105,7 @@ class AuctionController extends Controller
 
       $auction->status = $request->input('auction_status');
       $auction->category = $request->input('auction_category');
+      $auction->time_increment = $request->input('time_increment') ?? FALSE;
 
       $auction->save();
       return redirect()->route('auctions/{id}', $id);
