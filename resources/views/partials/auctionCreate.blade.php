@@ -28,53 +28,43 @@
 </div>
 <div class="mb-3" style>
 <label for="description" class="form-label">Description</label>
-<textarea type="text" name="description" class="form-control" id="description" value="{{ $auction->description ?? old('description') }}" required autofocus>{{ $auction->description ?? '' }}</textarea>
+<textarea type="text" name="description" class="form-control" id="description" value="{{ $auction->description ?? old('description') }}" autofocus>{{ $auction->description ?? '' }}</textarea>
 </div>
 <div class="mb-3">
 <label for="min_opening_bid" class="form-label" >Minimum Opening Bid</label>
 <input type="text" name= "min_opening_bid" class="form-control" id="min_opening_bid" value="{{ $auction->min_opening_bid ?? old('min_opening_bid') }}" required autofocus>
+</div>
 <div class="mb-3">
 <label for="min_raise" class="form-label">Minimum Raise</label>
 <input type="text" name="min_raise" class="form-control" id="min_raise" value="{{ $auction->min_raise ?? old('min_raise') }}" required>
 </div>
+
+<div class="mb-3">
 <label for="start" class="form-label">Start Date</label>
-<input type="datetime-local" name="start" class="form-control" id="start" value="{{ $auction->start_date ?? '2021-01-12T19:30' }}" required>
+<input type="datetime-local" name="start" class="form-control" id="start" value="{{ $auction->start_date ?? date('Y-m-d\TH:i') }}" required>
 </div>
 
+<div class="mb-3">
 <label for="close" class="form-label">Close Date</label>
-<input type="datetime-local" name="close" class="form-control" id="close" value="{{ $auction->close_date ?? '2021-01-12T19:30' }}" required>
+<input type="datetime-local" name="close" class="form-control" id="close" value="{{ $auction->close_date ??  date('Y-m-d\TH:i') }}" required>
 </div>
 
+
+<div class="form-check form-switch mb-3">
+  <input class="form-check-input" type="checkbox" id="time_increment" name="time_increment" checked>
+  <label class="form-check-label"  for="time_increment">Extend auction end with bids</label>
+</div>
 
 
 <div class="container mt-5">
-        <!-- <form action="{{route('fileUpload')}}" method="post" enctype="multipart/form-data"> -->
           <h3 class="text-center mb-5">Upload File</h3>
-            @csrf
-            @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <strong>{{ $message }}</strong>
-            </div>
-          @endif
-
-          @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                      <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-          @endif
 
             <div class="custom-file">
                 <input type="file" name="file" class="custom-file-input" id="chooseFile">
                 <label class="custom-file-label" for="chooseFile">Select file</label>
             </div>
 
-            <!-- <button type="submit" name="submit" class="btn btn-primary btn-block mt-4">
-                Upload Files
-            </button> -->
+
     </div>
 <label for="auction_category" class="form-label">Category</label>
 <select class="form-select" id="auction_categories" aria-label="Default select example" value="{{ $auction->auction_category ?? old('auction_category') }}" name="auction_category" required>

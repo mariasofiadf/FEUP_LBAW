@@ -64,6 +64,7 @@ CREATE TABLE auction(
     close_date TIMESTAMP DEFAULT current_timestamp + interval '1 month', --CK close_date >= predictedEnd
     status auction_status NOT NULL,
     category auction_category NOT NULL,
+    time_increment BOOLEAN,
     seller_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
     win_bid INTEGER REFERENCES bid(bid_id),
     auction_image TEXT
@@ -363,7 +364,7 @@ $BODY$
 BEGIN
     UPDATE auction
     SET close_date = close_date + interval '1 hours' --mudar?
-    WHERE auction_id = NEW.auction_id;
+    WHERE auction_id = NEW.auction_id AND auction.time_increment;
     RETURN NEW;
 END
 $BODY$

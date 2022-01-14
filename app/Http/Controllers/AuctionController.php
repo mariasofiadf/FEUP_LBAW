@@ -48,14 +48,15 @@ class AuctionController extends Controller
     public function validated(Request $request){
       $validator = $request->validate([
         'title' => 'required|string|max:255',
-        'description' => 'required|string|max:255',
+        'description' => '',
         'min_opening_bid' => 'required|integer',
         'min_raise' => 'required|integer',
-        // 'start' => 'date_format:YYYY-MM-DDThh:mm',
-        // 'close' => 'date_format:YYYY-MM-DDThh:mm|after:start',
+        'start' => 'date_format:Y-m-d\TH:i',
+        'close' => 'date_format:Y-m-d\TH:i|after:start',
         'predicted_end' => 'date_format:Y/m/d|after:now',
         'auction_status' => 'required',
-        'auction_category' => 'required'
+        'auction_category' => 'required',
+        'file' => 'required|mimes:jpg,png,csv,txt,xlx,xls,pdf|max:2048'
       ]);
       return $validator;
     }
@@ -66,17 +67,15 @@ class AuctionController extends Controller
      */
     public function create(Request $request)
     {
-      
-
-      // $request->validate([
-      //   'file' => 'required|mimes:jpg,png,csv,txt,xlx,xls,pdf|max:2048'
-      //   ]);
-
-
 
       $this->authorize('create', Auction::class);
       
       $validator = $this->validated($request);
+
+      if($request->has('time_increment'))
+        $inc = true;
+      else
+        $inc = false;
 
       $auction = Auction::create([
         'title' => $validator['title'],
@@ -88,7 +87,8 @@ class AuctionController extends Controller
         'predicted_end' => Carbon::createFromFormat('Y-m-d\TH:i', $request->input('close'))->format('Y-m-d H:i:00'),
         'status' => $validator['auction_status'],
         'category' => $validator['auction_category'],
-        'seller_id' => Auth::user()->user_id
+        'seller_id' => Auth::user()->user_id,
+        'time_increment' => $inc,
       ]);
 
       $fileModel = new File;
@@ -127,6 +127,7 @@ class AuctionController extends Controller
 
       $auction->status = $request->input('auction_status');
       $auction->category = $request->input('auction_category');
+      $auction->time_increment = $request->input('time_increment') ?? FALSE;
 
       $fileModel = new File;
 
