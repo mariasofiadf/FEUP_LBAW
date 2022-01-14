@@ -32,25 +32,6 @@ class SearchController extends Controller {
             ->orWhere('category','like','%'.$query.'%')->orWhere('description','like','%'.$query.'%')
             ->get();
         }
-        
-        
-
-        // if(isset($_POST['submit'])){
-        //     if(!empty($_POST['category'])) {
-        //         $selected = $_POST['category'];
-        //         echo 'You have chosen: ' . $selected;
-        //     } else {
-        //         echo 'Please select the value.';
-        //     }
-        // }
-
-
-        //$auctions = Auction::all()->where('title','like','E%'); 
-
-        // display 15 auctions per page
-        //$auctions = $query->paginate(15);
-
-        //$request->flash();
 
         return view('pages.auctions')->with('auctions', $auctions);
     }
