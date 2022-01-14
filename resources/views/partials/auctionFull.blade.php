@@ -1,9 +1,10 @@
 
 
 <div class="card">
-  <img class="card-img-top" alt="{{$auction->auction_image}}" src="/storage/uploads/{{ $auction->auction_image }}">
+  
   <div class="card-body">
     <h2 class="card-title"><a href="/auctions/{{ $auction->auction_id }}">{{ $auction->title }}</a> by <a href="/users/{{ $auction->seller_id }}">{{ $auction->owner()->first()->name }}</a></h2>
+    <img class="card-img-top" style="max-width:20%;" alt="{{$auction->auction_image}}" src="/storage/uploads/{{ $auction->auction_image }}">
     <p class="card-text">Auction closes at: {{ $auction->close_date }}</p>
     <p class="card-text">{{ $auction->description ?? '' }}</p>
     <p class="card-text">Category: {{ $auction->category }} {{$auction->win_bid}}</p>
