@@ -43,6 +43,8 @@
       <a href="/login" class="btn btn-primary">Login to Bid on this Auction</a> 
     @endif
   </div>
+
+
 </div>
 
 

@@ -82,51 +82,33 @@
 }
 @media (min-width: 768px){
 
-  .searchFilter .btn {
-    min-width: 172px;  
+  .searchFilter .form-select {
+    min-width: 172px;
+    max-width: 100px;
   }
-  .searchFilter .label-icon {
-    display: inline-block;  
-  }
-
 
 }
 
 </style>
-
-<form method="GET" action="{{ route('search') }}">
-
-    <div class="row justify-content-center">
-        <div class="align-items-center input-group m-4 w-50 mb-3 col-1">
-            <label for="query" class="form-label" ></label>
-            <input type="text" name="query" class="form-control rounded"  placeholder="Keyword"  id="query"aria-label="Search"
-            aria-describedby="search-addon">
-            <button type="submit" class="btn btn-primary">Search</button>
-        </div>
-    </div>
-    
-</form>
 <form  method="GET" action="{{ route('search') }}">
 {{ csrf_field() }}
 <div class="container">
   <div class="row searchFilter" >
      <div class="col-sm-12" >
       <div class="input-group" >
-      <label for="query" class="form-label" ></label>
-      <input type="text" name="query" class="form-control rounded"  placeholder="Keyword"  id="query"aria-label="Search"
+        <label for="query" class="form-label" ></label>
+        <input type="text" name="query" class="form-control rounded"  placeholder="Keyword"  id="query"aria-label="Search"
         aria-describedby="search-addon">
+        <select name = "category" class="form-select" aria-label="Default select example">
+            <option disabled selected>Select Category</option>
+            <option value="ArtPiece">ArtPiece</option>
+            <option value="Book">Book</option>
+            <option value="Jewelry">Jewelry</option>
+            <option value="Decor">Decor</option>
+            <option value="Other">Other</option>
+        </select>
        <div class="input-group-btn" >
-        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="label-icon" >Category</span> <span class="caret" >&nbsp;</span></button>
-        <div class="dropdown-menu dropdown-menu-right" >
-           <ul class="category_filters" >
-            <li >
-             <input class="cat_type category-input" data-label="All" id="all" value="" name="radios" type="radio" ><label for="all" >All</label>
-            </li>
-            <li >
-             <input type="radio" name="radios" id="Design" value="Design" ><label class="category-label" for="Design" >Design</label>
-            </li>
-           </ul>
-        </div>
+       
         <button type="submit" class="btn btn-primary">Search</button>   
        </div>
       </div>
@@ -135,4 +117,6 @@
 </div>
     
 </form>
+
+
 

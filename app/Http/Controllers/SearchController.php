@@ -16,10 +16,33 @@ class SearchController extends Controller {
         ]);*/
         
         $query = $request->input('query');
-        $auctions = DB::table('auction')->where('title','like','%'.$query.'%')
-        ->orWhere('description','like','%'.$query.'%')
-        ->orWhere('category','like','%'.$query.'%')
-        ->get();
+        $category = $request->input('category');
+        if($category && $query != ''){
+            $auctions = DB::table('auction')
+            ->where('category','like','%'.$category.'%')
+            ->orWhere('title','like','%'.$query.'%')
+            ->get();
+        }else if($category){
+            $auctions = DB::table('auction')
+            ->where('category','like','%'.$category.'%')
+            ->get();
+        }
+        else{
+            $auctions = DB::table('auction')->where('title','like','%'.$query.'%')
+            ->orWhere('category','like','%'.$query.'%')->orWhere('description','like','%'.$query.'%')
+            ->get();
+        }
+        
+        
+
+        // if(isset($_POST['submit'])){
+        //     if(!empty($_POST['category'])) {
+        //         $selected = $_POST['category'];
+        //         echo 'You have chosen: ' . $selected;
+        //     } else {
+        //         echo 'Please select the value.';
+        //     }
+        // }
 
 
         //$auctions = Auction::all()->where('title','like','E%'); 
