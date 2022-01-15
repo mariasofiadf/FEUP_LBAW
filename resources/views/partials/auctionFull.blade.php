@@ -21,10 +21,6 @@
       <a href="/auctions/{{ $auction->auction_id }}/delete" class="btn btn-secondary">Delete</a>
       <a href="/auctions/{{ $auction->auction_id }}/edit" class="btn btn-secondary">Edit</a>
       <a href="/reportAuction/{{ $auction->auction_id }}" class = "btn btn-secondary">Report</a>
-    @elseif(Auth::check() or (Auth::check() && Auth::user()->is_admin))
-      <a href="/reportAuction/{{ $auction->auction_id }}" class = "btn btn-secondary">Report</a>
-    @elseif(Auth::check() && Auth::user()->is_admin)
-      <a href="/auctionComplaints" class = "btn btn-secondary">Check Complaints</a>
     @elseif (Auth::check() && $auction->status == 'Active')
       <form  method="POST" action="{{ route('auctions/{id}/bid', $auction->auction_id) }}">
       {{ csrf_field() }}
@@ -43,6 +39,12 @@
       </form>
     @elseif ($auction->status == 'Active')
       <a href="/login" class="btn btn-primary">Login to Bid on this Auction</a> 
+    @endif
+    @if(Auth::check() or (Auth::check() && Auth::user()->is_admin))
+      <a href="/reportAuction/{{ $auction->auction_id }}" class = "btn btn-secondary">Report</a>
+    @endif
+    @if(Auth::check() && Auth::user()->is_admin)
+      <a href="/auctionComplaints" class = "btn btn-secondary">Check Complaints</a>
     @endif
   </div>
 </div>
