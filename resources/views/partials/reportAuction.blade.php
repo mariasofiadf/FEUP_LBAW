@@ -11,5 +11,8 @@
                 <textarea type="text" name="complaint" class="form-control" id="complaint"></textarea>
             </div>
         </form>
+        <div class="mb-3" style="margin-top:1rem;">
+            <button type="submit" class="btn btn-primary form-control" >Submit</button>
+        </div>
     </div>
 </div>
