@@ -136,6 +136,11 @@ class AuctionController extends Controller
       return view('pages.reportAuction', ['auction' => $auction]);
     }
 
+    public function showComplaints()
+    {
+      return view('pages.auctionComplaints');
+    }
+
     public function report($a_id, Request $request)
     {
       $report = new AuctionReport();

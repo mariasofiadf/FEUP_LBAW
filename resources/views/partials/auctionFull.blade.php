@@ -23,6 +23,8 @@
       <a href="/reportAuction/{{ $auction->auction_id }}" class = "btn btn-secondary">Report</a>
     @elseif(Auth::check() or (Auth::check() && Auth::user()->is_admin))
       <a href="/reportAuction/{{ $auction->auction_id }}" class = "btn btn-secondary">Report</a>
+    @elseif(Auth::check() && Auth::user()->is_admin)
+      <a href="" class = "btn btn-secondary">Check Complaints</a>
     @elseif (Auth::check() && $auction->status == 'Active')
       <form  method="POST" action="{{ route('auctions/{id}/bid', $auction->auction_id) }}">
       {{ csrf_field() }}

@@ -7,7 +7,7 @@
             {{ csrf_field() }}
             {{ method_field('PUT') }}
             <div class="mb-3" style>
-                <label for="complaint" class="form-label">Description</label>
+                <label for="complaint" class="form-label">Reason for complaint</label>
                 <textarea type="text" name="complaint" class="form-control" id="complaint"></textarea>
             </div>
         </form>
