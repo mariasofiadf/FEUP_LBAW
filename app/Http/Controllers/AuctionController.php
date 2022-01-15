@@ -137,15 +137,12 @@ class AuctionController extends Controller
       return view('pages.reportAuction', ['auction' => $auction]);
     }
 
-    public function showComplaints()
-    {
-      return view('pages.auctionComplaints');
-    }
-
     public function report($a_id, Request $request)
     {
       $report = new AuctionReport();
+
       $this->authorize('create', $report);
+
       $report->auction_id = $a_id;
       $report->user_id = Auth::user()->user_id;
       $report->description = $request->input('complaint');
