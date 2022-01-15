@@ -24,6 +24,7 @@ Route::put('auctions/{id}/edit', 'AuctionController@edit')->name('auctions/{id}/
 Route::get('create', 'AuctionController@showAuctionCreationForm');
 Route::put('api/auctions', 'AuctionController@create')->name('api/auctions');
 Route::get('reportAuction/{id}', 'AuctionController@showReportForm');
+Route::post('auctions/{id}/report', 'AuctionController@report')->name('auctions/{id}/report');
 
 
 
