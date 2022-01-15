@@ -43,6 +43,8 @@ Route::get('profile/edit', 'UserController@showEditForm');
 Route::post('profile/edit', 'UserController@edit')->name('profile/edit');
 Route::get('users/{id}', 'UserController@showProfile')->name('users/{id}');
 Route::get('users/{id}/del', 'UserController@delete')->name('del');
+
+Route::post('users/{id}/rate', 'UserController@rate')->name('users/{id}/rate');
 Route::get('users', 'UserController@list');
 Route::get('mybids', 'BidController@myBids');
 Route::get('notifications', 'UserController@showNotifications')->name('notifications');
