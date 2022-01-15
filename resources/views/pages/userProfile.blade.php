@@ -26,12 +26,13 @@
           @if(!$user->is_admin and Auth::id() == $user->user_id)
             <a class="btn btn-primary" href = "/mybids">My Bidding History</a> 
           @endif
+          
         </div>
       @endif
     </div>
 </div>
 
- 
+@include('partials.rating', ['user' => $user])
 @if(!$user->is_admin )
 <div class="card">
     <div class="card-body">

@@ -42,6 +42,24 @@ class UserController extends Controller
         return view('pages.userProfile', ["user" => $user]);
     }
 
+    /**
+     * Rating a user.
+     *
+     * @param  int  $id of the user being rated
+     * @return Response
+     */
+    public function rate($id, Request $request) {
+      $id_rating = Auth::id();
+      $user_rating = User::find($id_rating);
+      $user_rated = User::find($id);
+      
+      // $query = $request->input('query');
+      //return redirect()->route('auctions/{id}', $id);
+      return redirect()->route('/users/{id}', $id);
+      //return view('pages.userProfile', ['user' => $user_rated]);
+  }
+
+
     public function showNotifications(){
       $anotifs = AuctionNotification::all()->where('notified_id', Auth::user()->user_id); 
 
