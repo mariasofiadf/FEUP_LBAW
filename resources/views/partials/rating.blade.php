@@ -1,9 +1,10 @@
 
-
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 <section class="col-12 col-md-3 my-3 my-md-0">
-    <form class="container d-flex justify-content-center mt-5" method="POST" action="{{ route('users/{id}/rate', ['id' => $user->user_id]) }}">
-        <div class="card text-center mb-5">
+    <form class="container d-flex justify-content-center mt-5" method="POST" action="{{ route('users/{id}/rate', $user->user_id) }}">
+    {{ csrf_field() }}    
+            <div class="card text-center mb-5">
                 <h6 class="mb-0">Rate this seller</h6>
                 <div class="rating"> 
                     <input type="radio" name="rating" value="5" id="5">
@@ -25,43 +26,3 @@
     </form>
     
 </section>
-
-<style>
-.rating {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center
-}
-
-.rating>input {
-    display: none
-}
-
-.rating>label {
-    position: relative;
-    width: 1em;
-    font-size: 30px;
-    font-weight: 300;
-    color: #FFD600;
-    cursor: pointer
-}
-
-.rating>label::before {
-    content: "\2605";
-    position: absolute;
-    opacity: 0
-}
-
-.rating>label:hover:before,
-.rating>label:hover~label:before {
-    opacity: 1 !important
-}
-
-.rating>input:checked~label:before {
-    opacity: 1
-}
-
-.rating:hover>input:checked~label:before {
-    opacity: 0.4
-}
-</style>

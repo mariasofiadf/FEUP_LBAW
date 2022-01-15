@@ -8,13 +8,28 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
 use App\Models\Auction;
+use App\Models\Rating;
 use App\Models\AuctionNotification;
 
 class UserController extends Controller
 {
 
     protected $redirectTo = '/users';
+    
+    public function validated(Request $request){
+      $validator = $request->validate([
 
+        'rate_value' => 'required|integer',
+        'min_raise' => 'required|integer',
+        'start' => 'date_format:Y-m-d\TH:i',
+        'close' => 'date_format:Y-m-d\TH:i|after:start',
+        'predicted_end' => 'date_format:Y/m/d|after:now',
+        'auction_status' => 'required',
+        'auction_category' => 'required',
+        'file' => 'required|mimes:jpg,png,csv,txt,xlx,xls,pdf|max:2048'
+      ]);
+      return $validator;
+    }
 
     /**
      * Shows all Users.
@@ -48,15 +63,20 @@ class UserController extends Controller
      * @param  int  $id of the user being rated
      * @return Response
      */
-    public function rate($id, Request $request) {
-      $id_rating = Auth::id();
-      $user_rating = User::find($id_rating);
-      $user_rated = User::find($id);
+    public function rate( Request $request, $id) {
+
+      $rating = new Rating();
       
-      // $query = $request->input('query');
-      //return redirect()->route('auctions/{id}', $id);
-      return redirect()->route('/users/{id}', $id);
-      //return view('pages.userProfile', ['user' => $user_rated]);
+      $rating->id_rates = Auth::id();
+      $rating->id_rated = $id;
+      
+
+      $rate = $request->input('rating');
+      $rating->rate_value = $rate;
+
+      $rating->save();
+
+      return redirect()->route('users/{id}', $id);
   }
 
 
