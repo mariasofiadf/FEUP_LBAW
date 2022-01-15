@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Auction;
 use App\Models\Bid;
 use App\Models\User;
+use App\Models\AuctionReport;
 
 use Carbon\Carbon;
 
@@ -149,7 +150,7 @@ class AuctionController extends Controller
       $report->user_id = Auth::user()->user_id;
       $report->description = $request->input('complaint');
       $report->save();
-      
+
       $auction = Auction::find($a_id);
       $bids = $auction->bids()->orderBy('bid_value', 'desc')->get();
       //return redirect()->route('auctions/{id}', $a_id);
