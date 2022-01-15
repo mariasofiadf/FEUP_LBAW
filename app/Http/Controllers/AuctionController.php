@@ -152,7 +152,12 @@ class AuctionController extends Controller
       $report->description = $request->input('complaint');
 
       $report->save();
-      return redirect()->route('auctions/{id}', $a_id);
+
+      $auction = Auction::find($a_id);
+
+      $bids = $auction->bids()->orderBy('bid_value', 'desc')->get();
+      //return redirect()->route('auctions/{id}', $a_id);
+      return view('pages.auctionFull', ['auction' => $auction, 'bids' => $bids]);
     }
 
     public function bid(Request $request, $id)
