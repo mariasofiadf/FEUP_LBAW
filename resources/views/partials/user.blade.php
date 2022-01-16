@@ -20,11 +20,11 @@
           </picture>
           </div>
           <h5 class="user-name"><a href="/users/{{ $user->user_id }}">{{ $user->name }}</a></h5>
-          <h6 class="user-email">{{ $user->username }}</h6>
+          <h6 class="user-email">@ {{ $user->username }}</h6>
         </div>
         <div class="about">
           <h5>About</h5>
-          <p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p>
+          <p>I think we should had an about section.</p>
         </div>
       </div>
   </div>

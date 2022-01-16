@@ -26,6 +26,7 @@
     text-align: center;
 }
 .account-info .about h5 {
+    font-size: 1.2rem;
     color: #007ae1;
 }
 .account-info .about p {
