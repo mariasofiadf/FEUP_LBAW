@@ -220,9 +220,9 @@ class AuctionController extends Controller
     }
 
     public function unfollow($id){
-      $follow = AuctionFollow::find($id);
-      $follow->delete();
-      return redirect()->back()->with('message', 'IT WORKS!');
+    $follow = AuctionFollow::where('id_followed',$id)->where('id_follower',Auth::user()->user_id)->first();
+    $follow->delete();
+    return $follow;
     }
 
 

@@ -92,12 +92,21 @@ function sendCreateFollowRequest(event) {
 }
 
 function followAddedHandler() {
-  //if (this.status != 200) window.location = '/';
-  let new_follow = document.getElementById('follow');
+  //if (this.status != 201) window.location = '/';
+  let old_follow = document.getElementById('follow');
+  old_follow.remove();
 
+  let follow = JSON.parse(this.responseText);
+
+  let new_follow = document.createElement('a');
   new_follow.id = 'follow';
   new_follow.innerHTML = `Unfollow`;
   new_follow.className = "btn btn-primary unfollow";
+
+  let auction = document.querySelector('article.auction[data-id="' + follow.id_followed + '"]');
+  let container = auction.querySelector('div.follow');
+  container.append(new_follow);
+  addEventListeners()
   return new_follow;
 }
 
@@ -106,17 +115,28 @@ function sendDeleteFollowRequest(event) {
   let id = this.closest('article').getAttribute('data-id');
   console.log("Unfollowing");
 
-  sendAjaxRequest('delete', '/api/auctions/' + id + '/follow', {}, followDeletedHandler);
+  sendAjaxRequest('delete', '/api/auctions/' + id + '/unfollow', {}, followDeletedHandler);
 
   event.preventDefault();
 }
 
 function followDeletedHandler() {
-  //if (this.status != 200) window.location = '/';
-  let new_follow = document.getElementById('follow');
+  //if (this.status != 201) window.location = '/';
+  let old_follow = document.getElementById('follow');
+  old_follow.remove();
+
+  let follow = JSON.parse(this.responseText);
+
+  let new_follow = document.createElement('a');
+
   new_follow.id = 'follow';
   new_follow.innerHTML = `Follow`;
   new_follow.className = "btn btn-primary follow";
+
+  let auction = document.querySelector('article.auction[data-id="' + follow.id_followed + '"]');
+  let container = auction.querySelector('div.follow');
+  container.append(new_follow);
+  addEventListeners()
   return new_follow;
 }
 

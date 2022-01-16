@@ -17,12 +17,13 @@
     @else
     <div class="alert alert-info card-text" role="alert">This auction has ended. The winning bid was  {{ $bid->bid_value ?? 0}}€ by {{$winner->name ?? 'null'}}</div>
     @endif
-
+    <div class="follow">
     @if (!Auth::user()->auctionFollows()->where('id_followed',$auction->auction_id)->where('id_follower', Auth::user()->user_id)->first())
       <a class="btn btn-primary follow" id="follow">Follow</a>
     @else
       <a class="btn btn-primary unfollow" id="follow">Unfollow</a>
     @endif
+    <div>
     <!-- <a class="btn btn-primary unfollow">Unfollow</a> -->
 
     @if ( (Auth::check() && Auth::id() == $auction->seller_id ) or (Auth::check() && Auth::user()->is_admin))
