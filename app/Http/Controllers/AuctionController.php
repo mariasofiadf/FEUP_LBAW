@@ -143,9 +143,9 @@ class AuctionController extends Controller
 
       //$this->authorize('create', $report);
 
-      $report->auction_id = 0;
-      $report->user_id = Auth::user()->user_id;
       $report->description = $request->input('complaint');
+      $report->auction_id = $id;
+      $report->user_id = Auth::user()->user_id;
       $report->save();
 
       $auction = Auction::find($id);
