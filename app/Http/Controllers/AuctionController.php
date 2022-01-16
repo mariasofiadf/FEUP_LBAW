@@ -12,6 +12,7 @@ use App\Models\File;
 use App\Models\Auction;
 use App\Models\Bid;
 use App\Models\User;
+use App\Models\AuctionFollow;
 
 use Carbon\Carbon;
 
@@ -209,4 +210,20 @@ class AuctionController extends Controller
             AuctionController::setWinner($a->auction_id);
       }
     }
+
+    public function follow($id){
+      $follow = new AuctionFollow();
+      $follow->id_followed = $id;
+      $follow->id_follower = Auth::user()->user_id;
+      $follow->save();
+      return $follow;
+    }
+
+    public function unfollow($id){
+      $follow = AuctionFollow::find($id);
+      $follow->delete();
+      return redirect()->back()->with('message', 'IT WORKS!');
+    }
+
+
 }

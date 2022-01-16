@@ -22,10 +22,13 @@ Route::get('auctions/{id}/delete', 'AuctionController@delete');
 Route::post('auctions/{id}/bid', 'AuctionController@bid')->name('auctions/{id}/bid');
 Route::get('auctions/{id}/edit', 'AuctionController@showEditForm');
 Route::put('auctions/{id}/edit', 'AuctionController@edit')->name('auctions/{id}/edit');
+
 Route::get('create', 'AuctionController@showAuctionCreationForm');
 Route::put('api/auctions', 'AuctionController@create')->name('api/auctions');
 
 Route::put('api/auctions/{id}/bid', 'AuctionController@bid');
+Route::put('api/auctions/{id}/follow', 'AuctionController@follow');
+Route::delete('api/auctions/{id}/follow', 'AuctionController@unfollow')->name('api/auctions/{id}/follow');
 
 
 

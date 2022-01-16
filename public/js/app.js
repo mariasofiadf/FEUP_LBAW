@@ -5,6 +5,16 @@ function addEventListeners(){
     creator.addEventListener('submit', sendCreateBidRequest);
   });
 
+  let followCreators = document.querySelectorAll('article.auction a.follow');
+  [].forEach.call(followCreators, function(creator) {
+    creator.addEventListener('click', sendCreateFollowRequest);
+  });
+
+  let followDeleters = document.querySelectorAll('article.auction a.unfollow');
+  [].forEach.call(followDeleters, function(deleter) {
+    deleter.addEventListener('click', sendDeleteFollowRequest);
+  });
+
 }
 
 function encodeForAjax(data) {
@@ -73,6 +83,42 @@ function createBid(bid) {
 }
 
 
+function sendCreateFollowRequest(event) {
+  let id = this.closest('article').getAttribute('data-id');
+
+  sendAjaxRequest('put', '/api/auctions/' + id + '/follow', {}, followAddedHandler);
+
+  event.preventDefault();
+}
+
+function followAddedHandler() {
+  //if (this.status != 200) window.location = '/';
+  let new_follow = document.getElementById('follow');
+
+  new_follow.id = 'follow';
+  new_follow.innerHTML = `Unfollow`;
+  new_follow.className = "btn btn-primary unfollow";
+  return new_follow;
+}
+
+
+function sendDeleteFollowRequest(event) {
+  let id = this.closest('article').getAttribute('data-id');
+  console.log("Unfollowing");
+
+  sendAjaxRequest('delete', '/api/auctions/' + id + '/follow', {}, followDeletedHandler);
+
+  event.preventDefault();
+}
+
+function followDeletedHandler() {
+  //if (this.status != 200) window.location = '/';
+  let new_follow = document.getElementById('follow');
+  new_follow.id = 'follow';
+  new_follow.innerHTML = `Follow`;
+  new_follow.className = "btn btn-primary follow";
+  return new_follow;
+}
 
 
 console.log("Added event listeners");
