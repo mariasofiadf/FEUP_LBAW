@@ -137,18 +137,18 @@ class AuctionController extends Controller
       return view('pages.reportAuction', ['auction' => $auction]);
     }
 
-    public function report($a_id, Request $request)
+    public function report($id, Request $request)
     {
       $report = new AuctionReport();
 
       //$this->authorize('create', $report);
 
-      $report->auction_id = $a_id;
+      $report->auction_id = $id;
       $report->user_id = Auth::user()->user_id;
       $report->description = $request->input('complaint');
       $report->save();
 
-      $auction = Auction::find($a_id);
+      $auction = Auction::find($id);
       $bids = $auction->bids()->orderBy('bid_value', 'desc')->get();
       //return redirect()->route('auctions/{id}', $a_id);
       return view('pages.auctionFull', ['auction' => $auction, 'bids' => $bids]);
