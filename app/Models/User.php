@@ -56,5 +56,8 @@ class User extends Authenticatable
     public function auctionNotifs(){return $this->hasMany('App\Models\AuctionNotification', 'notified_id');}
 
     public function userNotifs(){return $this->hasMany('App\Models\UserNotification', 'notified_id');}
+
+
+    public function notifies(){return $this->hasMany('App\Models\UserNotification', 'notifier_id');}
     
 }

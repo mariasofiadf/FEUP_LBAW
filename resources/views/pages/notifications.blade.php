@@ -14,7 +14,9 @@
 
 <h2> My Notifications</h2>
 <div class="container-fluid " style="margin: 1rem; width: max">
-    @each('partials.notification', $notifs, 'notif')
+    @each('partials.auctionNotification', $anotifs, 'notif')
+
+    @each('partials.userNotification', $unotifs, 'notif')
 </div>
 
 

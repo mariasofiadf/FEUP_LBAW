@@ -53,7 +53,6 @@ class UserController extends Controller
         if ($user == null || $user->deleted)
             return abort(404);
 
-        
         return view('pages.userProfile', ["user" => $user]);
     }
 
@@ -81,19 +80,10 @@ class UserController extends Controller
 
 
     public function showNotifications(){
-      $anotifs = AuctionNotification::all()->where('notified_id', Auth::user()->user_id); 
-
-      $notifs = [];
-      foreach($anotifs as $anotif){
-        $auction = Auction::all()->where('auction_id', $anotif->auction_id)->first();
-        $notif['auction_id'] = $auction->auction_id;
-        $notif['name'] = $auction->title;
-        $notif['anotif_category'] = $anotif->anotif_category;
-        $notif['date'] = $anotif->anotif_time;
-        array_push($notifs, $notif);
-      }
-
-      return view('pages.notifications', ["notifs"=>$notifs]);
+      $anotifs = Auth::user()->auctionNotifs()->get();
+      $unotifs = Auth::user()->userNotifs()->get();
+      
+      return view('pages.notifications', ["anotifs"=>$anotifs, "unotifs"=>$unotifs]);
     }
 
     public function showEditForm(){

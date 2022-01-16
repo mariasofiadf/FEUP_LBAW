@@ -47,7 +47,7 @@ function bidAddedHandler() {
   let auction = document.querySelector('article.auction[data-id="' + bid.auction_id + '"]');
   let form = auction.querySelector('form.new_bid');
   let container = auction.querySelector('div.container');
-  container.append(new_bid);
+  container.prepend(new_bid);
 
   // Reset the new item form
   form.querySelector('[type=number]').value=0;

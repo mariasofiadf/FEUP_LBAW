@@ -31,6 +31,8 @@ class Auction extends Model
 
     public function images(){return $this->hasMany('App\Models\Image');}
 
+    public function notifications(){return $this->hasMany('App\Models\AuctionNotification');}
+
 }
 
 
