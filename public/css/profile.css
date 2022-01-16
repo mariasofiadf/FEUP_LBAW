@@ -7,6 +7,7 @@
     margin: 0 0 1rem 0;
 }
 .account-info .user-profile .user-avatar img {
+    border: 1px solid rgb(123, 123, 123);
     width: 90px;
     height: 90px;
     -webkit-border-radius: 100px;
@@ -49,8 +50,9 @@
     -moz-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid rgb(123, 123, 123);
-    margin: 0.4rem;
-
+    margin: 0.8rem;
+    
+    width: 15em;
 }
 
 
