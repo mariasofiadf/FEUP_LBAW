@@ -141,7 +141,7 @@ class AuctionController extends Controller
     {
       $report = new AuctionReport();
 
-      $this->authorize('create', $report);
+      //$this->authorize('create', $report);
 
       $report->auction_id = $a_id;
       $report->user_id = Auth::user()->user_id;

@@ -39,7 +39,7 @@
     @elseif ($auction->status == 'Active')
       <a href="/login" class="btn btn-primary">Login to Bid on this Auction</a> 
     @endif
-    @if(Auth::check() or (Auth::check() && Auth::user()->is_admin))
+    @if(Auth::check())
       <a href="/reportAuction/{{ $auction->auction_id }}" class = "btn btn-secondary">Report</a>
     @endif
     @if(Auth::check() && Auth::user()->is_admin)
