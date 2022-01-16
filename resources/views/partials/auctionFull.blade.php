@@ -1,5 +1,4 @@
 
-
 <div class="card">
   
   <div class="card-body">
@@ -25,20 +24,18 @@
       <a href="/auctions/{{ $auction->auction_id }}/delete" class="btn btn-secondary">Delete</a>
       <a href="/auctions/{{ $auction->auction_id }}/edit" class="btn btn-secondary">Edit</a>
     @elseif (Auth::check() && $auction->status == 'Active')
-      <form  method="POST" action="{{ route('auctions/{id}/bid', $auction->auction_id) }}">
-      {{ csrf_field() }}
-
-      <div class="row">
-      <div class="col-1">
-        <label for="bid_value" class="form-label">Bid Value</label>
-      </div>
-      <div class="col-3">
-        <input type="number" name="bid_value" class="form-control" id="bid_value" aria-describedby="emailHelp">
-      </div>
-      <div class="col-1">
-        <button type="submit" class="btn btn-primary">Bid</button>
-      </div>
-      </div>
+      <form class="new_bid">
+        <div class="row">
+          <div class="col-1">
+            <label for="bid_value" class="form-label">Bid Value</label>
+          </div>
+          <div class="col-3">
+            <input type="number" name="bid_value" class="form-control" id="bid_value" aria-describedby="emailHelp">
+          </div>
+          <!-- <div class="col-1">
+            <button class="btn btn-primary submit_bid">Bid</button>
+          </div> -->
+        </div>
       </form>
     @elseif ($auction->status == 'Active')
       <a href="/login" class="btn btn-primary">Login to Bid on this Auction</a> 

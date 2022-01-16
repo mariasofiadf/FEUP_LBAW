@@ -180,7 +180,10 @@ class AuctionController extends Controller
       $bid->bid_date = date("Y-m-d H:i:s"); 
 
       $bid->save();
-      return redirect()->route('auctions/{id}', $id);
+      //return redirect()->route('auctions/{id}', $id);
+      $bid->bidder = $bid->bidder()->first()->name;
+      return $bid;
+      //return response()->json(['success'=>'Bid request submitted successfully']);
     }
 
     public static function setWinner($auction_id){

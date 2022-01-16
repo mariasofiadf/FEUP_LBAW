@@ -25,6 +25,8 @@ Route::put('auctions/{id}/edit', 'AuctionController@edit')->name('auctions/{id}/
 Route::get('create', 'AuctionController@showAuctionCreationForm');
 Route::put('api/auctions', 'AuctionController@create')->name('api/auctions');
 
+Route::put('api/auctions/{id}/bid', 'AuctionController@bid');
+
 
 
 // Authentication
