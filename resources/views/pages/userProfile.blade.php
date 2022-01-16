@@ -2,7 +2,7 @@
 @extends('layouts.app')
 @section('content')
 
-<nav aria-label="breadcrumb">
+<!-- <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="#">Home</a></li>
     <li class="breadcrumb-item"><a href="./users">Users</a></li>
@@ -41,6 +41,14 @@
       @include('partials.auctions', ['auctions' => $user->ownedAuctions()->get()])
     </div>
 </div>
-@endif
+@endif -->
+
+<div class="container-xl px-4 mt-4">
+    <hr class="mt-0 mb-4">
+    <div class="row">   
+          @include('partials.user')
+       
+    </div>
+</div>
 
 @endsection
