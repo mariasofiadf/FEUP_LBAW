@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 use App\Models\File;
 use App\Models\Auction;
@@ -171,8 +172,13 @@ class AuctionController extends Controller
     public function bid(Request $request, $id)
     {
       $bid = new Bid();
-
+      $bid->auction_id = $id;
       $this->authorize('create', $bid);
+
+      $open = $bid->auction()->first()->min_opening_bid;
+      $min = $bid->auction()->first()->bids()->max('bid_value') + $bid->auction()->first()->min_raise;
+      if($request->input('bid_value') < $open || $request->input('bid_value') < $min)
+         throw ValidationException::withMessages(['bid_Value' => 'This bid is too low']);
 
       $bid->bid_value = $request->input('bid_value');
       $bid->auction_id = $id;

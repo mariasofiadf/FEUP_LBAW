@@ -18,8 +18,6 @@
     <div class="alert alert-info card-text" role="alert">This auction has ended. The winning bid was  {{ $bid->bid_value ?? 0}}€ by {{$winner->name ?? 'null'}}</div>
     @endif
 
-    <p class="card-text">time_increment  {{ $auction->time_increment}}</p>
-
     @if ( (Auth::check() && Auth::id() == $auction->seller_id ) or (Auth::check() && Auth::user()->is_admin))
       <a href="/auctions/{{ $auction->auction_id }}/delete" class="btn btn-secondary">Delete</a>
       <a href="/auctions/{{ $auction->auction_id }}/edit" class="btn btn-secondary">Edit</a>
@@ -30,7 +28,7 @@
             <label for="bid_value" class="form-label">Bid Value</label>
           </div>
           <div class="col-3">
-            <input type="number" name="bid_value" class="form-control" id="bid_value" aria-describedby="emailHelp">
+            <input type="number" name="bid_value" class="form-control" id="bid_value" min={{$bids->first()->bid_value + $auction->min_raise ?? $auction->min_opening_bid }} aria-describedby="emailHelp">
           </div>
           <!-- <div class="col-1">
             <button class="btn btn-primary submit_bid">Bid</button>

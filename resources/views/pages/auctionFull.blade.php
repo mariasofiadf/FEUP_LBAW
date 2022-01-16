@@ -10,6 +10,7 @@
   </ol>
 </nav>
 
+@include('partials.errorsuccess')
 <article class="auction" data-id="{{ $auction->auction_id }}">
 @section('content')
   @include('partials.auctionFull', ['auction' => $auction])
