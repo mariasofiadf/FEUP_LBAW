@@ -13,6 +13,8 @@ class AuctionReport extends Model
 
     protected $table = "auction_report";
 
+    protected $primaryKey = array('auction_id', 'user_id');
+
     protected $fillable = [
         'msg_content', 
     ];
