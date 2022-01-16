@@ -53,10 +53,8 @@
                 <p><i class="fa fa-map-marker"></i> @ {{ $user->username }}</p>
                 <h5><strong>About me</strong></h5>                
                 <p>I think we should had an about section.</p>
-                <div class="user-button">
-                    <div class="row">
-                        <div class="col-md-6">
-                        @if ( Auth::check() and (Auth::id() == $user->user_id or Auth::user()->is_admin))
+
+                    @if ( Auth::check() and (Auth::id() == $user->user_id or Auth::user()->is_admin))
                           <div class="d-grid gap-2 d-md-block">
                             <a class="btn btn-primary" href = "/profile/edit">Edit Profile</a> 
                             <a class="btn btn-primary" href = "/users/{{$user->user_id}}/del">Delete Profile</a> 
@@ -67,9 +65,6 @@
                           </div>
                         
                         @endif
-                        </div>
-                      
-                    </div>
                     @if ( Auth::check() and (Auth::id() == $user->user_id or Auth::user()->is_admin))
                     <div class="d-flex flex-column">
                         <span class=" text-center mb-5">Total rating: {{ $user->rating }}</span>
@@ -79,8 +74,7 @@
                         @include('partials.rating', ['user' => $user])
                       </div>
                     @endif
-                    
-              </div>
+
             </div><!-- /profile-content -->
         </div>
        
@@ -92,12 +86,13 @@
 
 
 </div>
+
 @if(!$user->is_admin )
-                    <div class="card">
-                        <div class="card-body">
-                          <h2 class="card-title "> {{ $user->name }}'s Auctions</h2>
-                          @include('partials.auctions', ['auctions' => $user->ownedAuctions()->get()])
-                        </div>
-                    </div>
+      <div class="card">
+          <div class="card-body">
+            <h2 class="card-title "> {{ $user->name }}'s Auctions</h2>
+            @include('partials.auctions', ['auctions' => $user->ownedAuctions()->get()])
+          </div>
+      </div>
                     @endif 
 @endsection
