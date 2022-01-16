@@ -16,7 +16,7 @@ class AuctionReport extends Model
     protected $primaryKey = array('auction_id', 'user_id');
 
     protected $fillable = [
-        'msg_content', 
+        'description', 'auction_id', 'user_id', 
     ];
 
     public function user(){return $this->hasOne('App\Models\User');}
