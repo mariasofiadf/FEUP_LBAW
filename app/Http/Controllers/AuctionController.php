@@ -137,7 +137,7 @@ class AuctionController extends Controller
       return view('pages.reportAuction', ['auction' => $auction]);
     }
 
-    public function report($id, Request $request)
+    public function report(Request $request, $id)
     {
       $report = new AuctionReport();
 
