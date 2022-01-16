@@ -608,11 +608,13 @@ DECLARE
     seller_id INTEGER;
 BEGIN
     SELECT auction.seller_id INTO seller_id FROM auction WHERE auction.auction_id = NEW.auction_id;
-    FOR rec IN SELECT bidder_id FROM bid
+    FOR rec IN SELECT DISTINCT ON (bid.bidder_id) bidder_id FROM bid
     WHERE bid.auction_id = NEW.auction_id 
     LOOP
+        IF (rec.bidder_id <> new.bidder_id) THEN
         INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
         VALUES(rec.bidder_id,NEW.auction_id,'New Bid');
+        END IF;
     END LOOP;
 
     INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
