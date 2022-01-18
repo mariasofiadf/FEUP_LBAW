@@ -20,7 +20,7 @@ class SearchController extends Controller {
         if($category && $query != ''){
             $auctions = DB::table('auction')
             ->where('category','like','%'.$category.'%')
-            ->orWhere('title','like','%'.$query.'%')
+            ->where('title','like','%'.$query.'%')
             ->get();
         }else if($category){
             $auctions = DB::table('auction')
