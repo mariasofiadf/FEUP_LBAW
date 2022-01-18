@@ -110,7 +110,7 @@ function followAddedHandler() {
 
   let auction = document.querySelector('article.auction[data-id="' + follow.id_followed + '"]');
   let container = auction.querySelector('div.follow');
-  container.append(new_follow);
+  container.prepend(new_follow);
   addEventListeners()
   return new_follow;
 }
@@ -140,7 +140,7 @@ function followDeletedHandler() {
 
   let auction = document.querySelector('article.auction[data-id="' + follow.id_followed + '"]');
   let container = auction.querySelector('div.follow');
-  container.append(new_follow);
+  container.prepend(new_follow);
   addEventListeners()
   return new_follow;
 }
