@@ -5,7 +5,7 @@
   <div class="card-body">
     <div class= "justify-content-center">
     <h2 class="card-text">{{ $bid->auction()->first()->title }}</a></h2>
-    <h4 class="card-text">{{ $bid->bid_value }}€ by {{ $bid->bidder()->first()->name ?? ''}}</a></h4>
+    <h4 class="card-text">{{ $bid->bid_value }}€</a></h4>
     <h4 class="card-text">{{ $bid->bid_date }}</a></h4>
     </div>
     <a href="/auctions/{{ $bid->auction_id }}" class="btn btn-primary">Go to auction</a>

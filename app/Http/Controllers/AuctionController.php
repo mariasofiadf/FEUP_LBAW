@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 use App\Models\File;
 use App\Models\Auction;
 use App\Models\Bid;
 use App\Models\User;
+use App\Models\AuctionFollow;
 
 use Carbon\Carbon;
 
@@ -171,8 +173,13 @@ class AuctionController extends Controller
     public function bid(Request $request, $id)
     {
       $bid = new Bid();
-
+      $bid->auction_id = $id;
       $this->authorize('create', $bid);
+
+      $open = $bid->auction()->first()->min_opening_bid;
+      $min = $bid->auction()->first()->bids()->max('bid_value') + $bid->auction()->first()->min_raise;
+      if($request->input('bid_value') < $open || $request->input('bid_value') < $min)
+         throw ValidationException::withMessages(['bid_Value' => 'This bid is too low']);
 
       $bid->bid_value = $request->input('bid_value');
       $bid->auction_id = $id;
@@ -180,7 +187,10 @@ class AuctionController extends Controller
       $bid->bid_date = date("Y-m-d H:i:s"); 
 
       $bid->save();
-      return redirect()->route('auctions/{id}', $id);
+      //return redirect()->route('auctions/{id}', $id);
+      $bid->bidder = $bid->bidder()->first()->name;
+      return $bid;
+      //return response()->json(['success'=>'Bid request submitted successfully']);
     }
 
     public static function setWinner($auction_id){
@@ -200,4 +210,20 @@ class AuctionController extends Controller
             AuctionController::setWinner($a->auction_id);
       }
     }
+
+    public function follow($id){
+      $follow = new AuctionFollow();
+      $follow->id_followed = $id;
+      $follow->id_follower = Auth::user()->user_id;
+      $follow->save();
+      return $follow;
+    }
+
+    public function unfollow($id){
+    $follow = AuctionFollow::where('id_followed',$id)->where('id_follower',Auth::user()->user_id)->first();
+    $follow->delete();
+    return $follow;
+    }
+
+
 }

@@ -7,6 +7,13 @@
 <!--
 
 
+<title>{{$user->username}}'s profile</title>
+
+
+
+
+
+<article class="user" data-id="{{ $user->user_id }}">
 <div class="card">
     <div class="card-body">
       <h2 class="card-title ">{{ $user->name }}</h2>
@@ -87,12 +94,12 @@
 
 </div>
 
-@if(!$user->is_admin )
-      <div class="card">
-          <div class="card-body">
-            <h2 class="card-title "> {{ $user->name }}'s Auctions</h2>
-            @include('partials.auctions', ['auctions' => $user->ownedAuctions()->get()])
-          </div>
-      </div>
-                    @endif 
+  @if(!$user->is_admin )
+        <div class="card">
+            <div class="card-body">
+              <h2 class="card-title "> {{ $user->name }}'s Auctions</h2>
+              @include('partials.auctions', ['auctions' => $user->ownedAuctions()->get()])
+            </div>
+        </div>
+  @endif 
 @endsection
