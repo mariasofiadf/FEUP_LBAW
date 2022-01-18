@@ -42,9 +42,9 @@
             <input type="number" name="bid_value" class="form-control" id="bid_value" min={{ $bids->first()->bid_value + $auction->min_raise }} aria-describedby="emailHelp">    
             @endif
           </div>
-          <!-- <div class="col-1">
-            <button class="btn btn-primary submit_bid">Bid</button>
-          </div> -->
+          <div class="col-1">
+            <button type="submit" class="btn btn-primary submit_bid">Bid</button>
+          </div>
         </div>
       </form>
     @elseif ($auction->status == 'Active')

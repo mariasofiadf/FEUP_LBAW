@@ -15,6 +15,11 @@ function addEventListeners(){
     deleter.addEventListener('click', sendDeleteFollowRequest);
   });
 
+  let ratingCreators = document.querySelectorAll('article.user form.rate_user');
+  [].forEach.call(ratingCreators, function(creator) {
+    creator.addEventListener('submit', sendCreateRatingRequest);
+  });
+
 }
 
 function encodeForAjax(data) {
@@ -105,7 +110,7 @@ function followAddedHandler() {
 
   let auction = document.querySelector('article.auction[data-id="' + follow.id_followed + '"]');
   let container = auction.querySelector('div.follow');
-  container.append(new_follow);
+  container.prepend(new_follow);
   addEventListeners()
   return new_follow;
 }
@@ -135,11 +140,38 @@ function followDeletedHandler() {
 
   let auction = document.querySelector('article.auction[data-id="' + follow.id_followed + '"]');
   let container = auction.querySelector('div.follow');
-  container.append(new_follow);
+  container.prepend(new_follow);
   addEventListeners()
   return new_follow;
 }
 
+function sendCreateRatingRequest(event) {
+  let id = this.closest('article').getAttribute('data-id');
+  let rating = this.querySelector('input[name=rating]:checked').value;
+  
+  if (rating != '')
+    sendAjaxRequest('put', '/api/users/' + id + '/rate', {rating: rating}, ratingAddedHandler);
+
+  event.preventDefault();
+}
+
+
+function ratingAddedHandler() {
+
+  let user = JSON.parse(this.responseText);
+
+  // // Create the new item
+  // let new_bid = createBid(bid);
+
+  // // Insert the new item
+  let userPage = document.querySelector('article.user[data-id="' + user.user_id + '"]');
+  let form = userPage.querySelector('form.rate_user');
+  let container = form.querySelector('span.totalRating');
+  // container.prepend(new_bid);
+  container.innerHTML='Total rating: ' + user.rating;
+  // // Reset the new item form
+  // form.querySelector('[type=number]').value=0;
+}
 
 console.log("Added event listeners");
 addEventListeners();

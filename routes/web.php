@@ -29,6 +29,7 @@ Route::put('api/auctions', 'AuctionController@create')->name('api/auctions');
 Route::put('api/auctions/{id}/bid', 'AuctionController@bid');
 Route::put('api/auctions/{id}/follow', 'AuctionController@follow');
 Route::delete('api/auctions/{id}/unfollow', 'AuctionController@unfollow');
+Route::put('api/users/{id}/rate', 'UserController@rate');
 
 
 

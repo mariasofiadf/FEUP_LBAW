@@ -6,12 +6,15 @@
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item"><a href="./users">Users</a></li>
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/users">Users</a></li>
     <li class="breadcrumb-item active" aria-current="page">{{ $user->username }}</li>
   </ol>
 </nav>
 
+
+
+<article class="user" data-id="{{ $user->user_id }}">
 <div class="card">
     <div class="card-body">
       <h2 class="card-title ">{{ $user->name }}</h2>
@@ -44,5 +47,6 @@
     </div>
 </div>
 @endif
+</article>
 
 @endsection
