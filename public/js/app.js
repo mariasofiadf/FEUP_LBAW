@@ -5,6 +5,16 @@ function addEventListeners(){
     creator.addEventListener('submit', sendCreateBidRequest);
   });
 
+  let followCreators = document.querySelectorAll('article.auction a.follow');
+  [].forEach.call(followCreators, function(creator) {
+    creator.addEventListener('click', sendCreateFollowRequest);
+  });
+
+  let followDeleters = document.querySelectorAll('article.auction a.unfollow');
+  [].forEach.call(followDeleters, function(deleter) {
+    deleter.addEventListener('click', sendDeleteFollowRequest);
+  });
+
 }
 
 function encodeForAjax(data) {
@@ -73,6 +83,62 @@ function createBid(bid) {
 }
 
 
+function sendCreateFollowRequest(event) {
+  let id = this.closest('article').getAttribute('data-id');
+
+  sendAjaxRequest('put', '/api/auctions/' + id + '/follow', {}, followAddedHandler);
+
+  event.preventDefault();
+}
+
+function followAddedHandler() {
+  //if (this.status != 201) window.location = '/';
+  let old_follow = document.getElementById('follow');
+  old_follow.remove();
+
+  let follow = JSON.parse(this.responseText);
+
+  let new_follow = document.createElement('a');
+  new_follow.id = 'follow';
+  new_follow.innerHTML = `Unfollow`;
+  new_follow.className = "btn btn-primary unfollow";
+
+  let auction = document.querySelector('article.auction[data-id="' + follow.id_followed + '"]');
+  let container = auction.querySelector('div.follow');
+  container.append(new_follow);
+  addEventListeners()
+  return new_follow;
+}
+
+
+function sendDeleteFollowRequest(event) {
+  let id = this.closest('article').getAttribute('data-id');
+  console.log("Unfollowing");
+
+  sendAjaxRequest('delete', '/api/auctions/' + id + '/unfollow', {}, followDeletedHandler);
+
+  event.preventDefault();
+}
+
+function followDeletedHandler() {
+  //if (this.status != 201) window.location = '/';
+  let old_follow = document.getElementById('follow');
+  old_follow.remove();
+
+  let follow = JSON.parse(this.responseText);
+
+  let new_follow = document.createElement('a');
+
+  new_follow.id = 'follow';
+  new_follow.innerHTML = `Follow`;
+  new_follow.className = "btn btn-primary follow";
+
+  let auction = document.querySelector('article.auction[data-id="' + follow.id_followed + '"]');
+  let container = auction.querySelector('div.follow');
+  container.append(new_follow);
+  addEventListeners()
+  return new_follow;
+}
 
 
 console.log("Added event listeners");

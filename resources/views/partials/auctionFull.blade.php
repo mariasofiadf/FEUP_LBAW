@@ -17,8 +17,14 @@
     @else
     <div class="alert alert-info card-text" role="alert">This auction has ended. The winning bid was  {{ $bid->bid_value ?? 0}}€ by {{$winner->name ?? 'null'}}</div>
     @endif
-
-    <p class="card-text">time_increment  {{ $auction->time_increment}}</p>
+    <div class="follow">
+    @if (Auth::check() && !Auth::user()->auctionFollows()->where('id_followed',$auction->auction_id)->where('id_follower', Auth::user()->user_id)->first())
+      <a class="btn btn-primary follow" id="follow">Follow</a>
+    @elseif (Auth::check()) 
+      <a class="btn btn-primary unfollow" id="follow">Unfollow</a>
+    @endif
+    <div>
+    <!-- <a class="btn btn-primary unfollow">Unfollow</a> -->
 
     @if ( (Auth::check() && Auth::id() == $auction->seller_id ) or (Auth::check() && Auth::user()->is_admin))
       <a href="/auctions/{{ $auction->auction_id }}/delete" class="btn btn-secondary">Delete</a>
@@ -30,7 +36,11 @@
             <label for="bid_value" class="form-label">Bid Value</label>
           </div>
           <div class="col-3">
-            <input type="number" name="bid_value" class="form-control" id="bid_value" aria-describedby="emailHelp">
+            @if (is_null($bids->first()))
+            <input type="number" name="bid_value" class="form-control" id="bid_value" min={{ $auction->min_opening_bid }} aria-describedby="emailHelp">
+            @else
+            <input type="number" name="bid_value" class="form-control" id="bid_value" min={{ $bids->first()->bid_value + $auction->min_raise }} aria-describedby="emailHelp">    
+            @endif
           </div>
           <!-- <div class="col-1">
             <button class="btn btn-primary submit_bid">Bid</button>

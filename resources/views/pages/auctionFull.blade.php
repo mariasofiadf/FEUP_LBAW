@@ -2,6 +2,8 @@
 
 @section('title', $auction->name)
 
+<title>{{$auction->title}}</title>
+
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -10,6 +12,7 @@
   </ol>
 </nav>
 
+@include('partials.errorsuccess')
 <article class="auction" data-id="{{ $auction->auction_id }}">
 @section('content')
   @include('partials.auctionFull', ['auction' => $auction])

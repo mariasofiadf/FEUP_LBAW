@@ -49,23 +49,16 @@
 <input type="datetime-local" name="close" class="form-control" id="close" value="{{ $auction->close_date ??  date('Y-m-d\TH:i') }}" required>
 </div>
 
-
 <div class="form-check form-switch mb-3">
   <input class="form-check-input" type="checkbox" id="time_increment" name="time_increment" checked>
   <label class="form-check-label"  for="time_increment">Extend auction end with bids</label>
 </div>
 
+<div class="mb-3">
+  <label class="custom-file-label form-label" for="chooseFile">Select file</label>
+  <input type="file" name="file" class="custom-file-input form-control" id="chooseFile">
+</div>
 
-<div class="container mt-5">
-          <h3 class="text-center mb-5">Upload File</h3>
-
-            <div class="custom-file">
-                <input type="file" name="file" class="custom-file-input" id="chooseFile">
-                <label class="custom-file-label" for="chooseFile">Select file</label>
-            </div>
-
-
-    </div>
 <label for="auction_category" class="form-label">Category</label>
 <select class="form-select" id="auction_categories" aria-label="Default select example" value="{{ $auction->auction_category ?? old('auction_category') }}" name="auction_category" required>
   <option value="ArtPiece">ArtPiece</option>

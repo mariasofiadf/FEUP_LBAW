@@ -4,6 +4,8 @@
 
 @section('content')
 
+  <title>Auction Creation</title>
+
   @include('partials.auctionCreate')
   
 @endsection

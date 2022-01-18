@@ -5,6 +5,8 @@
 @section('content')
 
 
+<title>My Bidding History</title>
+
 <h2> My Bidding History</h2>
 <div class="container " style="margin: 1rem;">
     @each('partials.userBid', $bids, 'bid')

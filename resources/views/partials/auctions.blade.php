@@ -1,6 +1,6 @@
 
 
-<div class="container-fluid " style="margin: 1rem; width: max">
+<div class="container-fluid" style="margin: 1rem; width: max">
 @foreach($auctions->chunk(5) as $chunk)
     <div class="row">
     @each('partials.auctionPreview', $chunk, 'auction')

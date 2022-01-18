@@ -1,6 +1,6 @@
 
 <header >
-  <div class "container">
+  <div >
     <div class="row">
       <div class="col-3">
         <ul class="nav ">
@@ -10,9 +10,6 @@
           @if (Auth::check())
           <li class="nav-item">
             <a  class="nav-link" href="{{ url('/notifications') }}">Notifications: {{Auth::user()->auctionNotifs()->count() ?? '0'}}</a>
-          </li>
-          <li class="nav-item ">
-            <i class="bi bi-bell "></i>
           </li>
           @endif
 
