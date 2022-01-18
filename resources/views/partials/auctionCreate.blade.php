@@ -28,7 +28,7 @@
 </div>
 <div class="mb-3" style>
 <label for="description" class="form-label">Description</label>
-<textarea type="text" name="description" class="form-control" id="description" value="{{ $auction->description ?? old('description') }}" autofocus>{{ $auction->description ?? '' }}</textarea>
+<textarea type="text" name="description" class="form-control" placeholder="Optional" id="description" value="{{ $auction->description ?? old('description') }}" autofocus>{{ $auction->description ?? '' }}</textarea>
 </div>
 <div class="mb-3">
 <label for="min_opening_bid" class="form-label" >Minimum Opening Bid</label>

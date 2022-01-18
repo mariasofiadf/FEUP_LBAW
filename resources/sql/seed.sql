@@ -26,8 +26,7 @@ DROP TABLE IF EXISTS image CASCADE;
 --TYPES
 CREATE TYPE auction_status AS ENUM ('Active', 'Hidden', 'Canceled', 'Closed');
 CREATE TYPE auction_category AS ENUM ('ArtPiece', 'Book', 'Jewelry', 'Decor', 'Other');
-CREATE TYPE auction_notification_type AS ENUM ('Opened', 'Closed', 'New Bid', 'New Message', 'Other', 'Auction Follow');
-CREATE TYPE user_notification_type AS ENUM ('Rating', 'Follow', 'Other');
+CREATE TYPE user_notification_type AS ENUM ('Rating', 'Follow', 'Other','Opened', 'Closed', 'New Bid', 'New Message', 'Auction Follow');
 
 CREATE TABLE users(
     user_id SERIAL PRIMARY KEY,
@@ -143,22 +142,14 @@ CREATE TABLE auction_follow(
 CREATE TABLE user_notification(
     notif_id SERIAL PRIMARY KEY,
     notified_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
-    notifier_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
+    notifier_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE,
+    auction_id INTEGER REFERENCES auction(auction_id) ON DELETE CASCADE,
     notif_read BOOLEAN DEFAULT FALSE,  
     notif_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     --notif_time TIME DEFAULT NOW, --change name
     notif_category user_notification_type NOT NULL  
 );
 
-CREATE TABLE auction_notification(
-    notif_id SERIAL PRIMARY KEY,
-    notified_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
-    auction_id INTEGER REFERENCES auction(auction_id) ON DELETE CASCADE NOT NULL,
-    anotif_read BOOLEAN DEFAULT FALSE,
-    anotif_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    --anotif_time TIME DEFAULT NOW, --change name
-    anotif_category auction_notification_type NOT NULL
-);
 
 --INDICES
 
@@ -506,8 +497,8 @@ DECLARE
 BEGIN
     SELECT auction.seller_id INTO seller_id FROM auction 
     WHERE auction.auction_id = NEW.id_followed;
-    INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
-    VALUES (seller_id, NEW.id_followed,'Auction Follow');
+    INSERT INTO user_notification(notified_id, notifier_id, auction_id, notif_category)
+    VALUES (seller_id,NEW.id_follower, NEW.id_followed,'Auction Follow');
     RETURN NEW;
 END
 $BODY$
@@ -530,8 +521,8 @@ BEGIN
     FOR rec IN SELECT id_follower FROM user_follow
     WHERE id_followed = NEW.seller_id
     LOOP
-        INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
-        VALUES(rec.id_follower,NEW.auction_id,'Opened');
+        INSERT INTO user_notification(notified_id, notifier_id, auction_id, notif_category)
+        VALUES(rec.id_follower, rec.followed,NEW.auction_id,'Opened');
     END LOOP;
     RETURN NEW;
 END
@@ -556,8 +547,8 @@ BEGIN
     WHERE id_followed = NEW.seller_id
     LOOP
         IF NEW.status = 'Closed' AND OLD.status = 'Active' THEN
-            INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
-            VALUES(rec.id_follower,NEW.auction_id,'Closed');
+            INSERT INTO user_notification(notified_id,notifier_id, auction_id, notif_category)
+            VALUES(rec.id_follower,rec.id_followed,NEW.auction_id,'Closed');
         END IF;
     END LOOP;
     RETURN NEW;
@@ -584,7 +575,7 @@ BEGIN
     FOR rec IN SELECT id_follower FROM auction_follow
     WHERE id_followed = auction_id
     LOOP
-        INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
+        INSERT INTO auction_notification(notified_id, auction_id, notif_category)
         VALUES(rec.id_follower,auction_id,'New Message');
     END LOOP;
     RETURN NEW;
@@ -612,13 +603,13 @@ BEGIN
     WHERE bid.auction_id = NEW.auction_id 
     LOOP
         IF (rec.bidder_id <> new.bidder_id) THEN
-        INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
+        INSERT INTO user_notification(notified_id, auction_id, notif_category)
         VALUES(rec.bidder_id,NEW.auction_id,'New Bid');
         END IF;
     END LOOP;
 
-    INSERT INTO auction_notification(notified_id, auction_id, anotif_category)
-    VALUES(seller_id,NEW.auction_id,'New Bid');
+    INSERT INTO user_notification(notified_id, notifier_id,auction_id, notif_category)
+    VALUES(seller_id,NEW.bidder_id,NEW.auction_id,'New Bid');
     RETURN NEW;
 END
 $BODY$
