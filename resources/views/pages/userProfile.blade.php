@@ -12,6 +12,9 @@
   </ol>
 </nav>
 
+
+
+<article class="user" data-id="{{ $user->user_id }}">
 <div class="card">
     <div class="card-body">
       <h2 class="card-title ">{{ $user->name }}</h2>
@@ -44,5 +47,6 @@
     </div>
 </div>
 @endif
+</article>
 
 @endsection

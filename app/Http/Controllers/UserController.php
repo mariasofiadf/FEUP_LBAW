@@ -62,20 +62,22 @@ class UserController extends Controller
      * @param  int  $id of the user being rated
      * @return Response
      */
-    public function rate( Request $request, $id) {
+    public function rate(Request $request, $id) {
 
-      $rating = new Rating();
-      
-      $rating->id_rates = Auth::id();
-      $rating->id_rated = $id;
-      
+      $rating = Rating::where('id_rates', Auth::id())->where('id_rated', $id)->first();
 
+      if(is_null($rating->id_rates)){
+        $rating = new Rating();
+        $rating->id_rates = Auth::id();
+        $rating->id_rated = $id;
+      }
+      
       $rate = $request->input('rating');
       $rating->rate_value = $rate;
 
       $rating->save();
 
-      return redirect()->route('users/{id}', $id);
+      return User::find($id);
   }
 
 
