@@ -36,7 +36,11 @@
             <label for="bid_value" class="form-label">Bid Value</label>
           </div>
           <div class="col-3">
-            <input type="number" name="bid_value" class="form-control" id="bid_value" min={{$bids->first()->bid_value + $auction->min_raise ?? $auction->min_opening_bid }} aria-describedby="emailHelp">
+            @if (is_null($bids->first()))
+            <input type="number" name="bid_value" class="form-control" id="bid_value" min={{ $auction->min_opening_bid }} aria-describedby="emailHelp">
+            @else
+            <input type="number" name="bid_value" class="form-control" id="bid_value" min={{ $bids->first()->bid_value + $auction->min_raise }} aria-describedby="emailHelp">    
+            @endif
           </div>
           <!-- <div class="col-1">
             <button class="btn btn-primary submit_bid">Bid</button>
