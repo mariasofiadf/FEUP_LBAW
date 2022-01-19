@@ -204,10 +204,9 @@ class AuctionController extends Controller
     }
 
     public static function checkAuctionEnd(){
-      $auctions = Auction::where('status', 'Active')->get();
+      $auctions = Auction::where('status', 'Active')->where('close_date', '<', date("Y-m-d H:i:s"))->get();
       foreach($auctions as $a){
-          if($a->close_date < date("Y-m-d H:i:s"))
-            AuctionController::setWinner($a->auction_id);
+        AuctionController::setWinner($a->auction_id);
       }
     }
 
