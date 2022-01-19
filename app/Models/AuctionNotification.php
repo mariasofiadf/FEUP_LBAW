@@ -22,7 +22,7 @@ class AuctionNotification extends Model{
 
     public function auction(){return $this->belongsTo('App\Models\Auction','auction_id');}
 
-    public function user(){return $this->belongsTo('App\Models\User','user_id');}
+    public function user(){return $this->belongsTo('App\Models\User','notified_id');}
 
 
 }

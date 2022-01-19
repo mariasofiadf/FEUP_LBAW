@@ -66,7 +66,7 @@ class UserController extends Controller
 
       $rating = Rating::where('id_rates', Auth::id())->where('id_rated', $id)->first();
 
-      if(is_null($rating->id_rates)){
+      if(is_null($rating)){
         $rating = new Rating();
         $rating->id_rates = Auth::id();
         $rating->id_rated = $id;
@@ -82,10 +82,9 @@ class UserController extends Controller
 
 
     public function showNotifications(){
-      $anotifs = Auth::user()->auctionNotifs()->get();
-      $unotifs = Auth::user()->userNotifs()->get();
+      $notifs = Auth::user()->userNotifs()->get();
       
-      return view('pages.notifications', ["anotifs"=>$anotifs, "unotifs"=>$unotifs]);
+      return view('pages.notifications', ["notifs"=>$notifs]);
     }
 
     public function showEditForm(){
