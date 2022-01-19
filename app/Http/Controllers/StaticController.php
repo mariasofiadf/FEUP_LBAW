@@ -23,7 +23,7 @@ class StaticController extends Controller
      */
     public function showAbout()
     {
-      return view('pages.about');
+        return view('pages.about');
     }
 
     public function showContacts()
