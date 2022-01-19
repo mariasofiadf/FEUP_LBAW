@@ -55,9 +55,6 @@
     @if(Auth::check())
       <a href="/reportAuction/{{ $auction->auction_id }}" class = "btn btn-secondary">Report</a>
     @endif
-    @if(Auth::check() && Auth::user()->is_admin)
-      <a href="/auctionComplaints/{{ $auction->auction_id }}" class = "btn btn-secondary">Check Complaints</a>
-    @endif
   </div>
 
 
