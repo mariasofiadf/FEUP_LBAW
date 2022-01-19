@@ -9,7 +9,7 @@
               <!-- Profile picture card-->
               
 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-  <div class="card-body">
+  <div class="card-body2">
       <div class="account-info">
         <div class="user-profile">
           <div class="user-avatar">

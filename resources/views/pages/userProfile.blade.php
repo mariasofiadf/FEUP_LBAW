@@ -4,11 +4,11 @@
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @extends('layouts.app')
 @section('content')
-<!--
 
 
 <title>{{$user->username}}'s profile</title>
 
+<!--
 
 
 
