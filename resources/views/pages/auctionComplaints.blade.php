@@ -4,6 +4,6 @@
 
 @section('content')
 
-@include('partials.auctionComplaints', ['auctionReports' => $auctionReports ?? ''])
+@include('partials.auctionComplaints', ['auctionReports' => $auctionReports])
 
 @endsection
