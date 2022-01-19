@@ -1,5 +1,6 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FileUpload;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,10 +22,16 @@ Route::get('auctions/{id}/delete', 'AuctionController@delete');
 Route::post('auctions/{id}/bid', 'AuctionController@bid')->name('auctions/{id}/bid');
 Route::get('auctions/{id}/edit', 'AuctionController@showEditForm');
 Route::put('auctions/{id}/edit', 'AuctionController@edit')->name('auctions/{id}/edit');
+
 Route::get('create', 'AuctionController@showAuctionCreationForm');
 Route::put('api/auctions', 'AuctionController@create')->name('api/auctions');
 Route::get('reportAuction/{id}', 'AuctionController@showReportForm');
 Route::post('auctions/{id}/report', 'AuctionController@report')->name('auctions/{id}/report');
+
+Route::put('api/auctions/{id}/bid', 'AuctionController@bid');
+Route::put('api/auctions/{id}/follow', 'AuctionController@follow');
+Route::delete('api/auctions/{id}/unfollow', 'AuctionController@unfollow');
+Route::put('api/users/{id}/rate', 'UserController@rate');
 
 
 
@@ -44,6 +51,8 @@ Route::get('profile/edit', 'UserController@showEditForm');
 Route::post('profile/edit', 'UserController@edit')->name('profile/edit');
 Route::get('users/{id}', 'UserController@showProfile')->name('users/{id}');
 Route::get('users/{id}/del', 'UserController@delete')->name('del');
+
+Route::post('users/{id}/rate', 'UserController@rate')->name('users/{id}/rate');
 Route::get('users', 'UserController@list');
 Route::get('mybids', 'BidController@myBids');
 Route::get('notifications', 'UserController@showNotifications')->name('notifications');
@@ -53,3 +62,7 @@ Route::get('about', 'StaticController@showAbout');
 Route::get('contacts', 'StaticController@showContacts');
 Route::get('faq', 'StaticController@showFaq');
 Route::get('auctionComplaints/{id}', 'AuctionReportController@showComplaints');
+
+//FileUpload
+Route::get('/upload-file', [FileUpload::class, 'createForm']);
+Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload');

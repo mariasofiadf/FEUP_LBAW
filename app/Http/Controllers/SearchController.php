@@ -16,18 +16,22 @@ class SearchController extends Controller {
         ]);*/
         
         $query = $request->input('query');
-        $auctions = DB::table('auction')->where('title','like','%'.$query.'%')
-        ->orWhere('description','like','%'.$query.'%')
-        ->orWhere('category','like','%'.$query.'%')
-        ->get();
-
-
-        //$auctions = Auction::all()->where('title','like','E%'); 
-
-        // display 15 auctions per page
-        //$auctions = $query->paginate(15);
-
-        //$request->flash();
+        $category = $request->input('category');
+        if($category && $query != ''){
+            $auctions = DB::table('auction')
+            ->where('category','like','%'.$category.'%')
+            ->where('title','like','%'.$query.'%')
+            ->get();
+        }else if($category){
+            $auctions = DB::table('auction')
+            ->where('category','like','%'.$category.'%')
+            ->get();
+        }
+        else{
+            $auctions = DB::table('auction')->where('title','like','%'.$query.'%')
+            ->orWhere('category','like','%'.$query.'%')->orWhere('description','like','%'.$query.'%')
+            ->get();
+        }
 
         return view('pages.auctions')->with('auctions', $auctions);
     }

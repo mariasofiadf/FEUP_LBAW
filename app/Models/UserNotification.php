@@ -23,15 +23,12 @@ class UserNotification extends Model
 
     protected $dateFormat = 'Y-m-d H:i:sO';
 
-    public function userNotified()
-    {
-        return $this -> hasOne(User::class, "notified_id", "user_id");
-    }
+    public function auction(){return $this->belongsTo('App\Models\Auction','auction_id');}
 
-    public function userNotifier()
-    {
-        return $this -> hasOne(User::class, "notifier_id", "user_id");
-    }
+    public function userNotified(){return $this->belongsTo('App\Models\User','notified_id');}
+
+    public function userNotifier(){return $this->belongsTo('App\Models\User','notifier_id');}
+    
 
     public function partial()
     {

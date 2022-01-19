@@ -8,13 +8,28 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
 use App\Models\Auction;
+use App\Models\Rating;
 use App\Models\AuctionNotification;
 
 class UserController extends Controller
 {
 
     protected $redirectTo = '/users';
+    
+    public function validated(Request $request){
+      $validator = $request->validate([
 
+        'rate_value' => 'required|integer',
+        'min_raise' => 'required|integer',
+        'start' => 'date_format:Y-m-d\TH:i',
+        'close' => 'date_format:Y-m-d\TH:i|after:start',
+        'predicted_end' => 'date_format:Y/m/d|after:now',
+        'auction_status' => 'required',
+        'auction_category' => 'required',
+        'file' => 'required|mimes:jpg,png,csv,txt,xlx,xls,pdf|max:2048'
+      ]);
+      return $validator;
+    }
 
     /**
      * Shows all Users.
@@ -38,23 +53,37 @@ class UserController extends Controller
         if ($user == null || $user->deleted)
             return abort(404);
 
-        
         return view('pages.userProfile', ["user" => $user]);
     }
 
-    public function showNotifications(){
-      $anotifs = AuctionNotification::all()->where('notified_id', Auth::user()->user_id); 
+    /**
+     * Rating a user.
+     *
+     * @param  int  $id of the user being rated
+     * @return Response
+     */
+    public function rate(Request $request, $id) {
 
-      $notifs = [];
-      foreach($anotifs as $anotif){
-        $auction = Auction::all()->where('auction_id', $anotif->auction_id)->first();
-        $notif['auction_id'] = $auction->auction_id;
-        $notif['name'] = $auction->title;
-        $notif['anotif_category'] = $anotif->anotif_category;
-        $notif['date'] = $anotif->anotif_time;
-        array_push($notifs, $notif);
+      $rating = Rating::where('id_rates', Auth::id())->where('id_rated', $id)->first();
+
+      if(is_null($rating)){
+        $rating = new Rating();
+        $rating->id_rates = Auth::id();
+        $rating->id_rated = $id;
       }
+      
+      $rate = $request->input('rating');
+      $rating->rate_value = $rate;
 
+      $rating->save();
+
+      return User::find($id);
+  }
+
+
+    public function showNotifications(){
+      $notifs = Auth::user()->userNotifs()->get();
+      
       return view('pages.notifications', ["notifs"=>$notifs]);
     }
 
