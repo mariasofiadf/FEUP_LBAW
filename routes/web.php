@@ -62,6 +62,7 @@ Route::get('about', 'StaticController@showAbout');
 Route::get('contacts', 'StaticController@showContacts');
 Route::get('faq', 'StaticController@showFaq');
 Route::get('auctionComplaints/{id}', 'AuctionReportController@showComplaints');
+Route::get('auctionComplaints', 'StaticController@showComplaints');
 
 //FileUpload
 Route::get('/upload-file', [FileUpload::class, 'createForm']);

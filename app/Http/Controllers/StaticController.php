@@ -35,4 +35,12 @@ class StaticController extends Controller
         return view('pages.faq');
     }
 
+    public function showComplaints()
+    {   
+        if(!Auth::check()) return redirect('/login');
+        //$auction = Auction::find($id);
+        $auctionReports = AuctionReport::all();//where('auction_id', $id);
+        return view('pages.auctionComplaints', ['auctionReports' => $auctionReports]);
+    }
+
 }
