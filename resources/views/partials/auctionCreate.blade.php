@@ -41,12 +41,12 @@
 
 <div class="mb-3">
 <label for="start" class="form-label">Start Date</label>
-<input type="datetime-local" name="start" class="form-control" id="start" value="{{ $auction->start_date ?? date('Y-m-d\TH:i') }}" required>
+<input type="datetime-local" name="start" class="form-control" id="start" value="{{ $auction->start_date ??  date('Y-m-d\TH:i') }}" required>
 </div>
 
 <div class="mb-3">
 <label for="close" class="form-label">Close Date</label>
-<input type="datetime-local" name="close" class="form-control" id="close" value="{{ $auction->close_date ??  date('Y-m-d\TH:i') }}" required>
+<input type="datetime-local" name="close" class="form-control" id="close" value="{{ $auction->close_date ??  date('Y-m-d\TH:i',strtotime(date('Y-m-d\TH:i') . ' +1 day'))}}" required>
 </div>
 
 <div class="form-check form-switch mb-3">
