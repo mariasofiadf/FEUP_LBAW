@@ -24,7 +24,7 @@
     </div>
 </form>-->
     <form class="container d-flex justify-content-center mt-5 rate_user" >
-            <div class="card text-center mb-5">
+            <div class="card text-center mb-5" style = "border: none">
                 <h6 class="mb-0">Rate this seller</h6>
                 <div class="rating"> 
                     <input type="radio" name="rating" value="5" id="5">

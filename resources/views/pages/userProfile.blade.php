@@ -58,12 +58,10 @@
             <div class="ibox-content profile-content">
                 <h3><strong>{{ $user->name }}</strong></h3>
                 <p><i class="fa fa-map-marker"></i> @ {{ $user->username }}</p>
-                <h5><strong>About me</strong></h5>                
-                <p>I think we should had an about section.</p>
 
                     @if ( Auth::check() and (Auth::id() == $user->user_id or Auth::user()->is_admin))
                           <div class="d-grid gap-2 d-md-block">
-                            <a class="btn btn-primary" href = "/profile/edit">Edit Profile</a> 
+                          img <a class="btn btn-primary" href = "/profile/edit">Edit Profile</a> 
                             <a class="btn btn-primary" href = "/users/{{$user->user_id}}/del">Delete Profile</a> 
                             @if(!$user->is_admin and Auth::id() == $user->user_id)
                               <a class="btn btn-primary" href = "/mybids">My Bidding History</a> 
@@ -76,7 +74,7 @@
                     <div class="d-flex flex-column">
                         <span class=" text-center mb-5">Total rating: {{ $user->rating }}</span>
                     </div>
-                    @else
+                    @elseif(Auth::check() )
                     <div class="row">
                         @include('partials.rating', ['user' => $user])
                       </div>
