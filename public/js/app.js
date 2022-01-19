@@ -146,6 +146,7 @@ function followDeletedHandler() {
 }
 
 function sendCreateRatingRequest(event) {
+  console.log("Rating");
   let id = this.closest('article').getAttribute('data-id');
   let rating = this.querySelector('input[name=rating]:checked').value;
   
