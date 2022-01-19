@@ -1,6 +1,3 @@
-
-
-
 .rating {
   display: flex;
   flex-direction: row-reverse;
@@ -38,3 +35,18 @@
 .rating:hover>input:checked~label:before {
   opacity: 0.4
 }
+
+/*panel heading*/
+.panel-heading {
+  padding: 15px 10px 15px 10px;
+  border-bottom: 0px solid transparent;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.panel-default > .panel-heading {
+  color: #333;
+  background-color: #f5f6f8;
+  border-color: none!important;
+}
+
