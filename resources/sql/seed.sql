@@ -668,14 +668,14 @@ INSERT INTO users (user_id,name,username,password,email,phone_number,credit,prof
 SELECT setval(pg_get_serial_sequence('users', 'user_id'), coalesce(max(user_id)+1, 1), false) FROM users;
 
 -- auction
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (100,'Victorian Chair', '19th century velvet red chair, with wooden details',1000,100,'Active','Decor', 3);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (101,'18th Century Coffee Table', 'Coffee table from the 18th Century in wood with top made of stone',850,150,'Active','Decor', 5);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (102,'Egyptian Necklace', 'Old Kingdom (circa 2670–2195 B.C.) necklace made of gold',11000,500,'Active','Jewelry', 3);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (103,'Sherlock Holmes Original 1976 Collection', '15 books with hard cover and golden incrusted letters',550,50,'Active','Book', 4);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (104,'Agatha Christie Collections 1960-1969 and 1970-1979', 'Agatha Christie Best Sellers from the 60s and 70s',1000,100,'Active','Book', 4);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (105,'Impressionist Lake Painting by Vlaminck', 'Small unknown painting by Maurice Vlaminck from 1896',540000,1000,'Active','ArtPiece', 3);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (106,'Real Degas', 'From 1999',770000,10000,'Canceled','ArtPiece', 1);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (107,'LBAW Secrets', 'From 2021',500,100,'Active','Book', 6);
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id, auction_image) VALUES (100,'Victorian Chair', '19th century velvet red chair, with wooden details',1000,100,'Active','Decor', 3, 'chair.jpg');
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id, auction_image) VALUES (101,'18th Century Coffee Table', 'Coffee table from the 18th Century in wood with top made of stone',850,150,'Active','Decor', 5, 'cofeetable.jpg');
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id, auction_image) VALUES (102,'Egyptian Necklace', 'Old Kingdom (circa 2670–2195 B.C.) necklace made of gold',11000,500,'Active','Jewelry', 3, '1642101897_egyptian_neck.jpg');
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id, auction_image) VALUES (103,'Sherlock Holmes Original 1976 Collection', '15 books with hard cover and golden incrusted letters',550,50,'Active','Book', 4, 'SherlockHolmes.jpg');
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id, auction_image) VALUES (104,'Agatha Christie Collections 1960-1969 and 1970-1979', 'Agatha Christie Best Sellers from the 60s and 70s',1000,100,'Active','Book', 4, 'AgathaChristie.jpg');
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id, auction_image) VALUES (105,'Impressionist Lake Painting by Vlaminck', 'Small unknown painting by Maurice Vlaminck from 1896',540000,1000,'Active','ArtPiece', 3, 'PaintingVlaminck.jpg');
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id, auction_image) VALUES (106,'Real Degas', 'From 1999',770000,10000,'Canceled','ArtPiece', 1, 'degas.jpg');
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id, auction_image) VALUES (107,'LBAW Secrets', 'From 2021',500,100,'Active','Book', 6, '');
 SELECT setval(pg_get_serial_sequence('auction', 'auction_id'), coalesce(max(auction_id)+1, 1), false) FROM auction;
 
 -- bid
