@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Auction;
 use App\Models\Bid;
+use App\Models\AuctionReport;
 
 class StaticController extends Controller
 {
