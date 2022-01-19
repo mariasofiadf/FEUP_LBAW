@@ -36,6 +36,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/auctionComplaints">Complaints</a>
           </li>
+          @endif
         </ul>
       </div>
       <div class="col-3">
