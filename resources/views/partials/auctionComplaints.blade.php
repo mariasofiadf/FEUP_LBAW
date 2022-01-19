@@ -4,9 +4,9 @@
     <dl class = "row">
     @foreach($auctionReports->chunk(8) as $chunk)
         @foreach($report in $chunk)
-            <dt class = "col-sm-6 text-truncate">{{$chunk->user_id}} said:</dt>
+            <dt class = "col-sm-6 text-truncate">{{$report->user_id}} said:</dt>
             <dd class = "col-sm-9">
-                <p>{{$chunk->description}}</p>
+                <p>{{$report->description}}</p>
             </dd>
     </dl>
 </div>
