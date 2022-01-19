@@ -16,7 +16,7 @@ class AuctionReportController extends Controller
     {   
         if(!Auth::check()) return redirect('/login');
         //$auction = Auction::find($id);
-        $auctionReports = AuctionReport::where('auction_id', $id);
+        $auctionReports = AuctionReport::all();//where('auction_id', $id);
         return view('pages.auctionComplaints', ['auctionReports' => $auctionReports]);
     }
 
