@@ -23,7 +23,6 @@
             </div>
     </div>
 </form>-->
-<section class="col-12 col-md-3 my-3 my-md-0">
     <form class="container d-flex justify-content-center mt-5 rate_user" >
             <div class="card text-center mb-5">
                 <h6 class="mb-0">Rate this seller</h6>
@@ -46,4 +45,3 @@
         </div>
     </form>
     
-</section>
