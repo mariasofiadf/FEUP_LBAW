@@ -14,8 +14,10 @@
     @elseif ($auction->status == 'Active')
       <p class="card-text">This auction has no bids</p>
       <p class="card-text">Minimum opening bid is  {{ $auction->min_opening_bid ?? 0}}€ </p>
+    @elseif (is_null($bids->first()))
+    <div class="alert alert-info card-text" role="alert">This auction has ended with no bids</div>
     @else
-    <div class="alert alert-info card-text" role="alert">This auction has ended. The winning bid was  {{ $bid->bid_value ?? 0}}€ by {{$winner->name ?? 'null'}}</div>
+    <div class="alert alert-info card-text" role="alert">This auction has ended. The winning bid was  {{ $bids->first()->bid_value ?? 0}}€ by {{$winner->name ?? 'null'}}</div>
     @endif
     <div class="follow">
     @if (Auth::check() && !Auth::user()->auctionFollows()->where('id_followed',$auction->auction_id)->where('id_follower', Auth::user()->user_id)->first())
