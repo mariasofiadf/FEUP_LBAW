@@ -180,11 +180,6 @@ class AuctionController extends Controller
     public function report(Request $request, $id)
     {
       $auction = Auction::find($id);
-
-      $report = AuctionReport::where('auction_id', $id);
-
-      if($report != null)
-        throw ValidationException::withMessages([$auction->title => 'You already made a report for this auction!']);
       
       $report = new AuctionReport();
 
