@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-
+<div class="card sm align-middle" style="width: auto; margin-right: 1rem;">
+<div class="card-body">
 
 <form class="row g-3 needs-validation" method="POST" action="{{ route('register') }}" novalidate>
 
@@ -45,7 +46,7 @@
     </div>
    
 </form>
-
+</div>  </div>
 <script>
     (function () {
         'use strict'

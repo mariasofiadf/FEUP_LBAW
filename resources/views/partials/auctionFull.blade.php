@@ -2,7 +2,7 @@
 
 
 <div class="container mt-5 mb-5">
-    <div class="row d-flex justify-content-center">
+  <div class="row d-flex justify-content-center">
         <div class="col-md-10">
             <div class="card">
                 <div class="row">
@@ -78,8 +78,11 @@
         </div>
         <div class="row d-flex justify-content-center">
           <div class="col-md-10">
-                    @include('partials.bids', ['bids' => $bids])
-        </div>        
-    </div>
+            @include('partials.bids', ['bids' => $bids])
+          </div>
+        </div>
+
+  </div>        
+</div>
 
 
