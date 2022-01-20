@@ -3,7 +3,7 @@
 @section('title', "Auction Creation")
 
 @section('content')
-
+<div class = "container">
   <title>Auction Creation</title>
 
   <nav aria-label="breadcrumb">
@@ -15,5 +15,7 @@
   </nav>
 
   @include('partials.auctionCreate')
+</div>
+ 
   
 @endsection

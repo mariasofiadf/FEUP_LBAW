@@ -44,11 +44,13 @@
     <li class="breadcrumb-item active" aria-current="page">{{ $user->username }}</li>
   </ol>
 </nav>
-<div class="container-xl px-4 mt-4">
-    <hr class="mt-0 mb-4">
-    <div class="row">   
+
+<div class = "text-center">
+<div class="container text-center"  style ="border-top: 1 rem">
+  <hr class="mt-0 mb-4">
+  <div class="row">   
     <div id="pad-wrapper">
-        <div class="col-md-4"  style=" border: 1px solid #d8d8d8; ">
+      <div class="col-md-4"  style=" border: 1px solid #d8d8d8; ">
         <div class="panel panel-default">
         <div class="panel-heading"><strong>Details</strong></div>
         <div class="user-profile">
@@ -61,7 +63,7 @@
 
                     @if ( Auth::check() and (Auth::id() == $user->user_id or Auth::user()->is_admin))
                           <div class="d-grid gap-2 d-md-block">
-                          img <a class="btn btn-primary" href = "/profile/edit">Edit Profile</a> 
+                          <a class="btn btn-primary" href = "/profile/edit">Edit Profile</a> 
                             <a class="btn btn-primary" href = "/users/{{$user->user_id}}/del">Delete Profile</a> 
                             @if(!$user->is_admin and Auth::id() == $user->user_id)
                               <a class="btn btn-primary" href = "/mybids">My Bidding History</a> 
@@ -83,21 +85,18 @@
             </div><!-- /profile-content -->
         </div>
        
-        </div>
-        
-        </div>
-  
+      </div>
+    </div>
   </div>
-
-
+</div>
+</div>
+</div>
+<div class = "container text-center m-5 pb-5">
+@if(!$user->is_admin )
+  <h2 class="card-title "> {{ $user->name }}'s Auctions</h2>
+  @include('partials.usersAuctions', ['auctions' => $user->ownedAuctions()->get()])
+@endif
 </div>
 
-  @if(!$user->is_admin )
-        <div class="card">
-            <div class="card-body">
-              <h2 class="card-title "> {{ $user->name }}'s Auctions</h2>
-              @include('partials.auctions', ['auctions' => $user->ownedAuctions()->get()])
-            </div>
-        </div>
-  @endif 
+
 @endsection

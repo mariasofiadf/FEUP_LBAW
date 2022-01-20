@@ -16,6 +16,14 @@
 
 @include('partials.searchAuctions')
 
+@if (Auth::check() and !Auth::user()->is_admin)
+<div class = "text-center">
+<a href="/create" class="btn btn-primary">Create Auction</a>
+</div>
+
+@endif
+
+
 @include('partials.auctions', ['auctions' => $auctions])
 
 
