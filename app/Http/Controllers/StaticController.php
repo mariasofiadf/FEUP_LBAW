@@ -44,7 +44,7 @@ class StaticController extends Controller
         $auctionReports = AuctionReport::all();//where('auction_id', $id);
         $users = User::all();
         $auctions = Auction::all();
-        return view('pages.auctionComplaints', ['auctionReports' => $auctionReports]);
+        return view('pages.auctionComplaints', ['auctionReports' => $auctionReports, 'users' => $users, 'auctions' => $auctions]);
     }
 
 }
