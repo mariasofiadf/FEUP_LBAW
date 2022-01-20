@@ -7,5 +7,6 @@
             <dd class = "col-sm-9">
                 <p>{{$report->description}}</p>
             </dd>
+        @endforeach
     </dl>
 </div>
