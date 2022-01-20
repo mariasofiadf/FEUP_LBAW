@@ -179,6 +179,13 @@ class AuctionController extends Controller
 
     public function report(Request $request, $id)
     {
+      $auction = Auction::find($id);
+
+      $report = AuctionReport::where('auction_id', $id);
+
+      if($report != null)
+        throw ValidationException::withMessages([$auction->title => 'You already made a report for this auction!']);
+      
       $report = new AuctionReport();
 
       //$this->authorize('create', $report);
@@ -188,7 +195,6 @@ class AuctionController extends Controller
       $report->user_id = Auth::user()->user_id;
       $report->save();
 
-      $auction = Auction::find($id);
       $bids = $auction->bids()->orderBy('bid_value', 'desc')->get();
       //return redirect()->route('auctions/{id}', $a_id);
       return view('pages.auctionFull', ['auction' => $auction, 'bids' => $bids]);
