@@ -42,9 +42,7 @@ class StaticController extends Controller
         if(!Auth::check()) return redirect('/login');
         //$auction = Auction::find($id);
         $auctionReports = AuctionReport::all();//where('auction_id', $id);
-        $users = User::all();
-        $auctions = Auction::all();
-        return view('pages.auctionComplaints', ['auctionReports' => $auctionReports, 'users' => $users, 'auctions' => $auctions]);
+        return view('pages.auctionComplaints', ['auctionReports' => $auctionReports]);
     }
 
 }
