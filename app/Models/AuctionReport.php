@@ -23,9 +23,9 @@ class AuctionReport extends Model
         'description', 'auction_id', 'user_id', 
     ];
 
-    public function user(){return $this->hasOne('App\Models\User');}
+    public function user(){return $this->belongsTo('App\Models\User', 'user_id');}
 
-    public function auction(){return $this->hasOne('App\Models\Auction');}
+    public function auction(){return $this->belongsTo('App\Models\Auction', 'auction_id');}
 
     /**
      * Set the keys for a save update query.
