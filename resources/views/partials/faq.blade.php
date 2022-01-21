@@ -1,7 +1,5 @@
 <p class="display-3 text-center"> FAQ by our users </p>
 
-
-
 <div class="container-fluid content-row mb-4">
 <div class="row mb-4">
   <div class="col-sm-12 col-lg-6 mb-4">
