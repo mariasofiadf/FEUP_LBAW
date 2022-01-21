@@ -84,7 +84,7 @@
                               @elseif (is_null($bids->first()))
                               <div class="alert alert-info card-text" role="alert"> <strong>Closed</strong> This auction ended with no bids</div>
                               @else
-                              <div class="alert alert-info card-text" role="alert"> <strong>This auction ended</strong> The winning bid was  {{ $bids->first()->bid_value ?? 0}}€ by {{$winner->name ?? 'null'}}</div>
+                              <div class="alert alert-info card-text" role="alert"> <strong>This auction ended</strong> The winning bid was  {{ $bids->first()->bid_value ?? 0}}€ by {{$bids->first()->bidder()->first()->name ?? 'null'}}</div>
                               @endif
                               <p></p>
                               
