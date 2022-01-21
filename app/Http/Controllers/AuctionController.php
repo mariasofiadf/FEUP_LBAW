@@ -180,6 +180,10 @@ class AuctionController extends Controller
     public function report(Request $request, $id)
     {
       $auction = Auction::find($id);
+
+      $report = AuctionReport::where('auction_id', $id)->where('user_id', Auth::id())->first();
+      if(!is_null($report))
+        return redirect()->route('auctions/{id}', $id);
       
       $report = new AuctionReport();
 
