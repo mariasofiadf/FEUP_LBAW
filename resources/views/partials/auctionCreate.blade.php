@@ -20,10 +20,10 @@
 @endif
 {{ csrf_field() }}
 {{ method_field('PUT') }}
-
+        
 @include('partials.errorsuccess')
 <div class="mb-3">
-<label for="title" class="form-label">Title</label>
+<label for="title" class="form-label" >Title</label>
 <input type="text" name="title" class="form-control" id="title" value="{{ $auction->title ?? old('title') }}" required autofocus>
 </div>
 <div class="mb-3" style>

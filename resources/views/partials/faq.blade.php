@@ -13,7 +13,7 @@
 <div class="col-sm-12 col-lg-6 mb-4">
     <div class="card h-100">
       <div class="card-body">
-        <h5 class="card-title">Is it possible to bid in any auction?</h5>
+        <h5 class="card-title">Is it possible to bid for any auction?</h5>
         <p class="card-text">Any user can bid on a ACTIVE auction. Otherwise, the bidding is off-limits or the auction does not even appear.</p>
       </div>
     </div>

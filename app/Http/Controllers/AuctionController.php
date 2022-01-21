@@ -12,6 +12,7 @@ use App\Models\File;
 use App\Models\Auction;
 use App\Models\Bid;
 use App\Models\User;
+use App\Models\AuctionReport;
 use App\Models\AuctionFollow;
 
 use Carbon\Carbon;
@@ -57,8 +58,7 @@ class AuctionController extends Controller
         'close' => 'date_format:Y-m-d\TH:i|after:start',
         'predicted_end' => 'date_format:Y/m/d|after:now',
         'auction_status' => 'required',
-        'auction_category' => 'required',
-        'file' => 'required|mimes:jpg,png,csv,txt,xlx,xls,pdf|max:2048'
+        'auction_category' => 'required'
       ]);
       return $validator;
     }
@@ -73,6 +73,9 @@ class AuctionController extends Controller
       $this->authorize('create', Auction::class);
       
       $validator = $this->validated($request);
+
+      $request->validate([
+        'file' => 'required|mimes:jpg,png|max:2048']);
 
       if($request->has('time_increment'))
         $inc = true;
@@ -167,8 +170,36 @@ class AuctionController extends Controller
       if (!Auth::check()) return redirect('/login');
       $auction = Auction::find($id);
       return view('pages.auctionCreate', ['auction' => $auction]);
-    } 
+    }
+    
+    public function showReportForm($id)
+    {
+      if(!Auth::check()) return redirect('/login');
+      $auction = Auction::find($id);
+      return view('pages.reportAuction', ['auction' => $auction]);
+    }
 
+    public function report(Request $request, $id)
+    {
+      $auction = Auction::find($id);
+
+      $report = AuctionReport::where('auction_id', $id)->where('user_id', Auth::id())->first();
+      if(!is_null($report))
+        return redirect()->route('auctions/{id}', $id);
+      
+      $report = new AuctionReport();
+
+      //$this->authorize('create', $report);
+
+      $report->description = $request->input('complaint');
+      $report->auction_id = $id;
+      $report->user_id = Auth::user()->user_id;
+      $report->save();
+
+      $bids = $auction->bids()->orderBy('bid_value', 'desc')->get();
+      //return redirect()->route('auctions/{id}', $a_id);
+      return view('pages.auctionFull', ['auction' => $auction, 'bids' => $bids]);
+    }
 
     public function bid(Request $request, $id)
     {
