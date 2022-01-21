@@ -8,6 +8,20 @@ For any questions regarding the "company" and the website, please refer to the f
 <table class="table table-bordered table-sm" style="width: 50%">
   <tbody>
     <tr>
+        <td style="width: 16.66%">
+            <img class="img-thumbnail" src="/storage/uploads/afonso.png">
+        </td>
+        <td style="width: 16.66%">
+            <img class="img-thumbnail" src="/storage/uploads/rita.jpg">
+        </td>
+        <td style="width: 16.66%">
+            <img class="img-thumbnail" src="/storage/uploads/deb.jpg">
+        </td>
+        <td style="width: 16.66%">
+            <img class="img-thumbnail" src="/storage/uploads/maria.png">
+        </td>
+    </tr>
+    <tr>
         <td style="width: 16.66%">Afonso Duarte de Carvalho Monteiro</td>
         <td style="width: 16.66%">Ana Rita Antunes Ramada</td>
         <td style="width: 16.66%">Deborah Marques Lago</td>
