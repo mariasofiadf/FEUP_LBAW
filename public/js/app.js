@@ -70,18 +70,19 @@ function bidAddedHandler() {
 
 function createBid(bid) {
   let new_bid = document.createElement('div');
-  new_bid.classList.add('row');
-  new_bid.classList.add('justify-content-left');
+  new_bid.classList.add('container');
   new_bid.setAttribute('data-id', bid.bid_id);
   new_bid.innerHTML = `
-    <div class="card sm" style="width: auto; margin-right: 1rem;">
+
+    <div class="row">
+    <div class="card sm m-1" style="margin-right: 1rem;">
       <div class="card-body">
-        <div class= "justify-content-center">
-        <h4 class="card-text">${ bid.bid_value }€ by ${ bid.bidder ?? ''}</a></h4>
-        <p class="card-text"> ${ bid.bid_date }</a></p>
-        </div>
+            <h3 class="text">${ bid.bid_value }€ by ${ bid.bidder ?? ''}</h3>
+            <span class="text-uppercase text-muted brand">${ bid.bid_date }</span>
       </div>
     </div>
+    </div>
+
   `;
 
   return new_bid;

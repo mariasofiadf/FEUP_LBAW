@@ -42,7 +42,7 @@
                                 <h3 class="text-uppercase pb-4">{{ $auction->title }}</h3>
                             </div>
                             <p class="about">{{ $auction->description ?? '' }}</p>
-                             @if ($bids->first() != null && $auction->status == 'Active')
+                              @if ($bids->first() != null && $auction->status == 'Active')
                                 <p class="card-text">Current highest bid is {{ $bids->first()->bid_value ?? 0}}€ by {{ $bids->first()->bidder()->first()->name ?? ''}}</p>
                                 <p class="card-text">Minimum raise is  {{ $auction->min_raise ?? 0}}€ </p>
                               @elseif ($auction->status == 'Active')
@@ -51,7 +51,7 @@
                               @endif
                               @if ( (Auth::check() && Auth::id() == $auction->seller_id ) or (Auth::check() && Auth::user()->is_admin))
                                 
-                              @elseif (Auth::check() && $auction->status == 'Active')
+                              @elseif (Auth::check() && $auction->status == 'Active' && $bids->first()->bidder()->first()->user_id != Auth::id())
                                 <form class="new_bid  pt-5">
                                   <div class="row">
                                     <div class="col-5">
@@ -67,7 +67,7 @@
                                     
                                   </div>
                                 </form>
-                              @elseif ($auction->status == 'Active')
+                              @elseif ($auction->status == 'Active' && !Auth::check())
                                 <a href="/login" class="btn btn-primary">Login to Bid on this Auction</a> 
                               @endif
                               @if(!is_null($bids->first()))
