@@ -58,8 +58,7 @@ class AuctionController extends Controller
         'close' => 'date_format:Y-m-d\TH:i|after:start',
         'predicted_end' => 'date_format:Y/m/d|after:now',
         'auction_status' => 'required',
-        'auction_category' => 'required',
-        'file' => 'required|mimes:jpg,png|max:2048'
+        'auction_category' => 'required'
       ]);
       return $validator;
     }
@@ -74,6 +73,9 @@ class AuctionController extends Controller
       $this->authorize('create', Auction::class);
       
       $validator = $this->validated($request);
+
+      $request->validate([
+        'file' => 'required|mimes:jpg,png|max:2048']);
 
       if($request->has('time_increment'))
         $inc = true;
