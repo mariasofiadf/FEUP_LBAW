@@ -21,7 +21,7 @@
 <div class="container-fluid w-75 mt-1 border" style= "height: auto">
   <div class="row">
     <div class="col-auto d-flex flex-row p-3">
-      <img src="/storage/uploads/{{ $user->profile_image }}" alt="" class="" style="object-fit: cover; width: auto; height: 300px;">
+      <img src="/storage/uploads/{{ $user->profile_image }}" alt="{{ $user->profile_image }}" class="" style="object-fit: cover; width: auto; height: 300px;">
       <div class="info w-100 px-3">
           <span class="d-inline-flex align-items-center justify-content-between w-100">
               <div class="d-flex flex-column align-items-left">
@@ -30,7 +30,7 @@
               </div>
           </span><p></p>
           <p> <a href="#scrollspyHeading1">See Auctions</a></p>
-          <div class="d-flex flex-column"><h5>Rating:  {{ $user->rating }}</h5>
+          <div class="d-flex flex-column rate-display"><h5>Rating:  {{ $user->rating }}</h5>
           </div>
           @if ( Auth::check() and (Auth::id() == $user->user_id or Auth::user()->is_admin))
                 <div class="d-grid d-md-block">

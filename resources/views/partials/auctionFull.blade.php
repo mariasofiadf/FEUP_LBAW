@@ -13,7 +13,7 @@
                     <div class="col-md-6 ">
                         <div class="pull-right text-end p-3">
                         @if (Auth::check() && !Auth::user()->auctionFollows()->where('id_followed',$auction->auction_id)->where('id_follower', Auth::user()->user_id)->first())
-                            <div class="align-items-center"> 
+                            <div class="align-items-center follow"> 
                               <a class="btn  btn-outline-primary follow" id="follow">Follow</a>
                             </div>
                             @elseif (Auth::check()) 

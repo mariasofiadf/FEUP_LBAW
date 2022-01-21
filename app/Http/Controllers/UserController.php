@@ -105,6 +105,13 @@ class UserController extends Controller
 
       $fileModel = new File;
 
+      $request->validate([
+        'file' => 'mimes:jpg,png|max:2048'
+        ]);
+
+      
+      //echo $request->file();
+
       if($request->file()) {
             $fileName = time().'_'.$request->file->getClientOriginalName();
             $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
@@ -112,7 +119,7 @@ class UserController extends Controller
             $fileModel->name = time().'_'.$request->file->getClientOriginalName();
             $fileModel->file_path = '/storage/' . $filePath;
             $fileModel->save();
-
+            
             $user->profile_image = $fileName;
       }
 

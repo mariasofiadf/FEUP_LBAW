@@ -58,7 +58,7 @@ class AuctionController extends Controller
         'predicted_end' => 'date_format:Y/m/d|after:now',
         'auction_status' => 'required',
         'auction_category' => 'required',
-        'file' => 'required|mimes:jpg,png,csv,txt,xlx,xls,pdf|max:2048'
+        'file' => 'required|mimes:jpg,png|max:2048'
       ]);
       return $validator;
     }
