@@ -11,20 +11,24 @@
                       
                     </div>
                     <div class="col-md-6 ">
-                        <div class="pull-right text-end p-3">
+                       <div class="pull-right text-end p-3">
                         @if(Auth::check())
-                          <a href="/reportAuction/{{ $auction->auction_id }}" class = "btn btn-secondary">Report</a>
+                          
                         @endif
                         @if (Auth::check() && !Auth::user()->auctionFollows()->where('id_followed',$auction->auction_id)->where('id_follower', Auth::user()->user_id)->first())
                             <div class="align-items-center follow"> 
+                            <a href="/reportAuction/{{ $auction->auction_id }}" class = "btn btn-outline-danger">Report</a>
                               <a class="btn  btn-outline-primary follow" id="follow">Follow</a>
                             </div>
                         @elseif (Auth::check()) 
+
                             <div class="align-items-center"> 
+                              <a href="/reportAuction/{{ $auction->auction_id }}" class = "btn btn-outline-danger">Report</a>
                               <a class="btn  btn-outline-primary unfollow" id="follow">Unfollow</a>
                             </div> 
                         @endif
-                        </div>
+                        </div>  
+                        
                         <div class="product p-4">
                           
                             <div class="d-flex justify-content-between align-items-center">
