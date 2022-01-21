@@ -49,10 +49,11 @@
                                 <p class="card-text">This auction has no bids</p>
                                 <p class="card-text">Minimum opening bid is  {{ $auction->min_opening_bid ?? 0}}€ </p>
                               @endif
+
                               @if ( (Auth::check() && Auth::id() == $auction->seller_id ) or (Auth::check() && Auth::user()->is_admin))
-                                
-                              @elseif (Auth::check() && $auction->status == 'Active' && $bids->first()->bidder()->first()->user_id != Auth::id())
-                                <form class="new_bid  pt-5">
+
+                              @elseif (Auth::check() && $auction->status == 'Active' )
+                              <form class="new_bid  pt-5">
                                   <div class="row">
                                     <div class="col-5">
                                       @if (is_null($bids->first()))
@@ -94,18 +95,21 @@
 
         </div>
         <p></p><p></p>
-        @if(!is_null($bids->first()))
+
+        
           <div class = "mt-4"data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example " tabindex="0">
             <h4 id="scrollspyHeading1">
             <div class="row d-flex justify-content-center pt-4 ">
+            @if(!is_null($bids->first()))
             <h2 class="card-title text-center text-uppercase">All Bids</h2>   
+            @endif
               <div class="col-md-10">
                 @include('partials.bids', ['bids' => $bids])
               </div>
             </div>
             </h4> 
           </div>
-        @endif
+        
   </div>
 
 
