@@ -39,7 +39,7 @@
                             </div>
                             
                             <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand">{{ $auction->category }} {{$auction->win_bid}}</span>
-                                <h3 class="text-uppercase pb-4 text-truncate" style="max-width: 320px;">{{ $auction->title }}</h3>
+                                <h3 class="text-uppercase pb-4">{{ $auction->title }}</h3>
                             </div>
                             <p class="about">{{ $auction->description ?? '' }}</p>
                             @if ($bids->first() != null && $auction->status == 'Active')
