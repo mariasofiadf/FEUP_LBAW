@@ -33,9 +33,9 @@
           <div class="d-flex flex-column rate-display"><h5>Rating:  {{ $user->rating }}</h5>
           </div>
           @if ( Auth::check() and (Auth::id() == $user->user_id or Auth::user()->is_admin))
-                <div class="d-grid d-md-block">
-                <a class="btn btn-primary" href = "/profile/edit">Edit Profile</a> 
-                  <a class="btn btn-primary" href = "/users/{{$user->user_id}}/del">Delete Profile</a> 
+                <div class="d-grid d-md-block mt-5">
+                  <a class="btn btn-outline-primary" href = "/profile/edit">Edit Profile</a> 
+                  <a class="btn  btn-outline-danger" href = "/users/{{$user->user_id}}/del">Delete Profile</a> 
                   @if(!$user->is_admin and Auth::id() == $user->user_id)
                     <a class="btn btn-primary" href = "/mybids">My Bidding History</a> 
                   @endif
@@ -54,11 +54,11 @@
 
 <div class = "mt-4"data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example " tabindex="0">
   <h4 id="scrollspyHeading1">
-      <div class = "container text-center">
-    @if(!$user->is_admin )
-      <h2 class="card-title "> {{ $user->name }}'s Auctions</h2>
-      @include('partials.usersAuctions', ['auctions' => $user->ownedAuctions()->get()])
-    @endif
+      <div class = "profile-bids container text-center">
+        @if(!$user->is_admin )
+          <h2 class="card-title "> {{ $user->name }}'s Auctions</h2>
+          @include('partials.usersAuctions', ['auctions' => $user->ownedAuctions()->get()])
+        @endif
     </div>
   </h4>
 </div>

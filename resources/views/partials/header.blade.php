@@ -1,6 +1,5 @@
 
-<header >
-  <div >
+<header class = "border-bottom shadow-sm p-2" >
     <div class="row">
       <div class="col-3">
         <ul class="nav ">
@@ -59,9 +58,4 @@
       </ul>
       </div>
     </div>
-
-
-
-
-  <div>
   </header>   

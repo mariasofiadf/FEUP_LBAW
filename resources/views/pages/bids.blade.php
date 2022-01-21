@@ -19,8 +19,8 @@
   </nav>
 
 
-<h2> My Bidding History</h2>
-<div class="container " style="margin: 1rem;">
+<div class="container text-center">
+  <h2 class ="mb-5"> My Bidding History</h2>
     @each('partials.userBid', $bids, 'bid')
 </div>
 

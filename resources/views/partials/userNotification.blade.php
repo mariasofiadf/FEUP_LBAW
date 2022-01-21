@@ -1,21 +1,24 @@
 
 
-<div class="row">
-<div class="col md card" style="width: 14rem; margin: 0.5rem;">
-  <div class="card-body">
 
-    @if(!is_null($notif->auction()->first()))
+
+<div class="container border p-1 mb-2 w-75">
+  <div class="row text-center align-middle">
+    <div class="col-sm align-self-center">
+      @if(!is_null($notif->auction()->first()))
 
       <h3 class="card-title">{{ $notif->notif_category }} by 
         <a href="/users/{{ $notif->userNotifier()->first()->user_id }}">{{ $notif->userNotifier()->first()->name }}</a>
         on <a href="/auctions/{{ $notif->auction_id }}">{{ $notif->auction()->first()->title }}</a>
       </h5>
-    @else
+      @else
       <h3 class="card-title">{{ $notif->notif_category }} by 
         <a href="/users/{{ $notif->userNotifier()->first()->user_id }}">{{ $notif->userNotifier()->first()->name }}</a>
       </h5>
-    @endif
-    <p class="card-title">{{ $notif->notif_time }}</p>
+      @endif
+    </div> 
+    <div class="col-sm align-self-center">
+      <span class="text-uppercase text-muted brand">{{ $notif->notif_time }}</span>
+    </div>
   </div>
-</div>
 </div>

@@ -1,15 +1,19 @@
 
 
-<div class="row justify-content-left">
-<div class="card sm" style="width: auto; margin-right: 1rem;">
-  <div class="card-body">
-    <div class= "justify-content-center">
-    <h2 class="card-text">{{ $bid->auction()->first()->title }}</a></h2>
-    <h4 class="card-text">{{ $bid->bid_value }}€</a></h4>
-    <h4 class="card-text">{{ $bid->bid_date }}</a></h4>
-    </div>
-    <a href="/auctions/{{ $bid->auction_id }}" class="btn btn-primary">Go to auction</a>
 
+<div class="container border p-1 mb-2 w-75">
+  <div class="row text-center align-middle">
+    <div class="col-sm align-self-center">
+      <h5 class="card-text">{{ $bid->auction()->first()->title }}</a></h5>
+    </div>
+    <div class="col-sm align-self-center">
+    <span class="text-uppercase text-muted brand">{{ $bid->bid_value }}€</span>
+    </div>
+    <div class="col-sm align-self-center">
+    <span class="text-uppercase text-muted brand">{{ $bid->bid_date }}</span>
+    </div>
+    <div class="col-sm text-end align-self-center">
+    <a href="/auctions/{{ $bid->auction_id }}" class="btn btn-outline-primary">Go to auction</a>
+    </div>
   </div>
-</div>
 </div>

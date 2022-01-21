@@ -18,9 +18,9 @@
   </nav>
 
 
-<h2> My Notifications</h2>
-<div class="container-fluid " style="margin: 1rem; width: max">
-    @each('partials.userNotification', $notifs, 'notif')
+ <div class="container text-center">
+  <h2 class ="mb-5"> My Notifications</h2>
+  @each('partials.userNotification', $notifs, 'notif')
 </div>
 
 
