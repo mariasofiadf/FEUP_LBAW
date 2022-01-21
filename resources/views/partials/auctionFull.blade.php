@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="row">
                     <div class="col-md-6">                    
-                      <img class="main-image p-3" style="width: 100%; height:100%; object-fit: cover;" alt="{{$auction->auction_image}}" src="/storage/uploads/{{ $auction->auction_image }}">
+                      <img class="main-image p-3" style="width: 100%; height:100%; object-fit: cover;" alt="" src="/storage/uploads/{{ $auction->auction_image }}">
                       
                     </div>
                     <div class="col-md-6 ">
