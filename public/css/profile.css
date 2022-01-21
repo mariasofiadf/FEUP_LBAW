@@ -53,6 +53,9 @@
     background: #ffffff;
     color: #2e323c;
 }
+.card{
+    border: none;
+}
 
 .card-body2 {
     
@@ -69,6 +72,8 @@
 
 
 
-
+.totalRating{
+    margin: 1rem;
+}
 
 

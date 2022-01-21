@@ -59,7 +59,7 @@ class AuctionController extends Controller
         'predicted_end' => 'date_format:Y/m/d|after:now',
         'auction_status' => 'required',
         'auction_category' => 'required',
-        'file' => 'required|mimes:jpg,png,csv,txt,xlx,xls,pdf|max:2048'
+        'file' => 'required|mimes:jpg,png|max:2048'
       ]);
       return $validator;
     }
@@ -233,10 +233,9 @@ class AuctionController extends Controller
     }
 
     public static function checkAuctionEnd(){
-      $auctions = Auction::where('status', 'Active')->get();
+      $auctions = Auction::where('status', 'Active')->where('close_date', '<', date("Y-m-d H:i:s"))->get();
       foreach($auctions as $a){
-          if($a->close_date < date("Y-m-d H:i:s"))
-            AuctionController::setWinner($a->auction_id);
+        AuctionController::setWinner($a->auction_id);
       }
     }
 

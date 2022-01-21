@@ -29,19 +29,4 @@ class UserNotification extends Model
 
     public function userNotifier(){return $this->belongsTo('App\Models\User','notifier_id');}
     
-
-    public function partial()
-    {
-        switch($this -> notif_category)
-        {
-            case "Rating":
-                $partial_name = "rating";
-                break;
-            case "Follow":
-                $partial_name = "follow";
-                break;
-        }
-
-        return view("partial.notifications." . $partial_name, ["user" => $this->user]);
-    }
 }

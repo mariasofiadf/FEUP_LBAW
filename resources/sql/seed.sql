@@ -36,7 +36,7 @@ CREATE TABLE users(
     email TEXT UNIQUE,
     phone_number INTEGER UNIQUE,
     credit MONEY DEFAULT 0 NOT NULL CONSTRAINT credit_ck CHECK (credit >= 0::MONEY),
-    profile_image TEXT, 
+    profile_image TEXT DEFAULT 'default-avatar.jpg', 
     rating INTEGER DEFAULT 0 NOT NULL,
     blocked BOOLEAN DEFAULT FALSE NOT NULL,
     auction_notif BOOLEAN DEFAULT TRUE NOT NULL,
@@ -653,29 +653,29 @@ CREATE TRIGGER delete_user
 
 -- images
 
-INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (0,'Deleted User','deleted','$2y$10$mp6HMsGu4VcblGpki0HdR.4LwB2qHR8c9oOpU6Jlbt4RTdIQpkG1W','deleted',0,0,'',0,False,FALSE,FALSE);
-INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (1,'Bruno Silva','bsilvaa','$2y$10$mp6HMsGu4VcblGpki0HdR.4LwB2qHR8c9oOpU6Jlbt4RTdIQpkG1W','bsilva@hotmail.com',169335936,10000,'https://drive.google.com/uc?export=view&id=1gjhCImnWj--hCTLJHcPuKsmxWwIUZdHO',0,False,TRUE,TRUE);
-INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (2,'Laura Rocha','lrocha','$2y$10$LnAa8f4AB0f5Ttrrf3yC0eEjpIJkQoek9thQ033t79IZD3GX7cx8S','lrocha@hotmail.com',934004312,2000,'https://drive.google.com/uc?export=view&id=1pLDs_PDi4-xdzlrM58YuIUzlPdX6kzfq',0,False,TRUE,TRUE);
-INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (3,'Carlos Lima','clima','$2y$10$bdRPzv0rSN3HwH/3Gus8y.7MkV1aPDgRgI.S.2Jly037qRoN7orM6','clima@gmail.com',639376003,32000,'https://drive.google.com/uc?export=view&id=1ll83GGErbtUSSgoKmiiqpzJHmpCrsbVt',0,False,TRUE,TRUE);
-INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (4,'Diana Sagres','dsagres','$2y$10$Rr3Y4V44M5WT7uVwmjYAdulX2ON5wrUM2pDN6AqafKYKYfYcipaLK','dsagres@yahoo.com.br',948003605,1000,'https://drive.google.com/uc?export=view&id=1ltmollBWej2yTztC9G3qbv3Ybi3_ILqf',0,False,TRUE,TRUE);
-INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (5,'Miguel Ferreira','mferreira','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','miguel@gmail.com',639230752,200,'https://drive.google.com/uc?export=view&id=1gvVcSuZc-RsiyLgIiURnI5dR3eurNBEn',0,False,TRUE,TRUE);
-INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (6,'Prof','prof','$2y$10$TfOaUPoQ6PiB4lqVOEQbJuhKvALYIpg.dpF3j12JtnfllI4vJk/u2','prof@gmail.com',222333444,200,'prof.jpg',0,False,TRUE,TRUE);
-INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif, is_admin) VALUES (7,'Admin','admin','$2y$10$TfOaUPoQ6PiB4lqVOEQbJuhKvALYIpg.dpF3j12JtnfllI4vJk/u2','admin@gmail.com',111222333,200,'admin.jpg',0,False,TRUE,TRUE, TRUE);
-INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif, is_admin) VALUES (8,'Maria Figueiredo','mariasofia','$2y$10$Yrf1rchGJSdFdfqk9988Xuqy9ycie/audwgA.RmElpE/0sysnEQwm','mary@gmail.com',1,200,'maria.jpg',0,False,TRUE,TRUE, FALSE);
+INSERT INTO users (user_id,name,username,password,email,phone_number,credit,rating,blocked,auction_notif,user_notif) VALUES (0,'Deleted User','deleted','$2y$10$mp6HMsGu4VcblGpki0HdR.4LwB2qHR8c9oOpU6Jlbt4RTdIQpkG1W','deleted',0,0,0,False,FALSE,FALSE);
+INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (1,'Bruno Silva','bsilvaa','$2y$10$mp6HMsGu4VcblGpki0HdR.4LwB2qHR8c9oOpU6Jlbt4RTdIQpkG1W','bsilva@hotmail.com',169335936,10000,'avatar-g0f1de5122_640.png',0,False,TRUE,TRUE);
+INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (2,'Laura Rocha','lrocha','$2y$10$LnAa8f4AB0f5Ttrrf3yC0eEjpIJkQoek9thQ033t79IZD3GX7cx8S','lrocha@hotmail.com',934004312,2000,'user-g3d076eb8f_640.png',0,False,TRUE,TRUE);
+INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (3,'Carlos Lima','clima','$2y$10$bdRPzv0rSN3HwH/3Gus8y.7MkV1aPDgRgI.S.2Jly037qRoN7orM6','clima@gmail.com',639376003,32000,'avatar-g0f1de5122_640.png',0,False,TRUE,TRUE);
+INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (4,'Diana Sagres','dsagres','$2y$10$Rr3Y4V44M5WT7uVwmjYAdulX2ON5wrUM2pDN6AqafKYKYfYcipaLK','dsagres@yahoo.com.br',948003605,1000,'woman-g16944ff57_640.png',0,False,TRUE,TRUE);
+INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (5,'Miguel Ferreira','mferreira','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','miguel@gmail.com',639230752,200,'avatar-gd08effb09_640.png',0,False,TRUE,TRUE);
+INSERT INTO users (user_id,name,username,password,email,phone_number,credit,rating,blocked,auction_notif,user_notif) VALUES (6,'Prof','prof','$2y$10$TfOaUPoQ6PiB4lqVOEQbJuhKvALYIpg.dpF3j12JtnfllI4vJk/u2','prof@gmail.com',222333444,200,0,False,TRUE,TRUE);
+INSERT INTO users (user_id,name,username,password,email,phone_number,credit,rating,blocked,auction_notif,user_notif, is_admin) VALUES (7,'Admin','admin','$2y$10$TfOaUPoQ6PiB4lqVOEQbJuhKvALYIpg.dpF3j12JtnfllI4vJk/u2','admin@gmail.com',111222333,200,0,False,TRUE,TRUE, TRUE);
+INSERT INTO users (user_id,name,username,password,email,phone_number,credit,rating,blocked,auction_notif,user_notif, is_admin) VALUES (8,'Maria Figueiredo','mariasofia','$2y$10$Yrf1rchGJSdFdfqk9988Xuqy9ycie/audwgA.RmElpE/0sysnEQwm','mary@gmail.com',1,200,0,False,TRUE,TRUE, FALSE);
 
 
 
 SELECT setval(pg_get_serial_sequence('users', 'user_id'), coalesce(max(user_id)+1, 1), false) FROM users;
 
 -- auction
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (100,'Victorian Chair', '19th century velvet red chair, with wooden details',1000,100,'Active','Decor', 3);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (101,'18th Century Coffee Table', 'Coffee table from the 18th Century in wood with top made of stone',850,150,'Active','Decor', 5);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (102,'Egyptian Necklace', 'Old Kingdom (circa 2670–2195 B.C.) necklace made of gold',11000,500,'Active','Jewelry', 3);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (103,'Sherlock Holmes Original 1976 Collection', '15 books with hard cover and golden incrusted letters',550,50,'Active','Book', 4);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (104,'Agatha Christie Collections 1960-1969 and 1970-1979', 'Agatha Christie Best Sellers from the 60s and 70s',1000,100,'Active','Book', 4);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (105,'Impressionist Lake Painting by Vlaminck', 'Small unknown painting by Maurice Vlaminck from 1896',540000,1000,'Active','ArtPiece', 3);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (106,'Real Degas', 'From 1999',770000,10000,'Canceled','ArtPiece', 1);
-INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id) VALUES (107,'LBAW Secrets', 'From 2021',500,100,'Active','Book', 6);
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id, auction_image) VALUES (100,'Victorian Chair', '19th century velvet red chair, with wooden details',1000,100,'Active','Decor', 3, 'chair.jpg');
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id, auction_image) VALUES (101,'18th Century Coffee Table', 'Coffee table from the 18th Century in wood with top made of stone',850,150,'Active','Decor', 5, 'cofeetable.jpg');
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id, auction_image) VALUES (102,'Egyptian Necklace', 'Old Kingdom (circa 2670–2195 B.C.) necklace made of gold',11000,500,'Active','Jewelry', 3, '1642101897_egyptian_neck.jpg');
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id, auction_image) VALUES (103,'Sherlock Holmes Original 1976 Collection', '15 books with hard cover and golden incrusted letters',550,50,'Active','Book', 4, 'SherlockHolmes.jpg');
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id, auction_image) VALUES (104,'Agatha Christie Collections 1960-1969 and 1970-1979', 'Agatha Christie Best Sellers from the 60s and 70s',1000,100,'Active','Book', 4, 'AgathaChristie.jpg');
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id, auction_image) VALUES (105,'Impressionist Lake Painting by Vlaminck', 'Small unknown painting by Maurice Vlaminck from 1896',540000,1000,'Active','ArtPiece', 3, 'PaintingVlaminck.jpg');
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id, auction_image) VALUES (106,'Real Degas', 'From 1999',770000,10000,'Canceled','ArtPiece', 1, 'degas.jpg');
+INSERT INTO auction (auction_id,title,description,min_opening_bid,min_raise,status,category,seller_id, auction_image) VALUES (107,'LBAW Secrets', 'From 2021',500,100,'Active','Book', 6, '');
 SELECT setval(pg_get_serial_sequence('auction', 'auction_id'), coalesce(max(auction_id)+1, 1), false) FROM auction;
 
 -- bid
