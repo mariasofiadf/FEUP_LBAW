@@ -1,27 +1,17 @@
 
 <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
 
-  <!-- <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h4 class="card-title"><a href="/users/{{ $user->user_id }}">{{ $user->name }}</a></h5>
 
-  </div> -->
-              <!-- Profile picture card-->
-              
-<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-  <div class="card-body2">
-      <div class="account-info">
-        <div class="user-profile">
-          <div class="user-avatar">
-            <picture>
-              <source id="s1" srcset="/storage/uploads/{{ $user->profile_image }}" type="image/webp">
-              <source id="s2" srcset="https://bootdey.com/img/Content/avatar/avatar7.png" type="image/png">
-              <img src="{{ $user->profile_image }}" alt="" onerror="this.onerror=null;document.getElementById('s1').srcset=document.getElementById('s2').srcset=this.src;">
-          </picture>
-          </div>
-          <h5 class="user-name"><a href="/users/{{ $user->user_id }}">{{ $user->name }}</a></h5>
-          <h6 class="user-email">@ {{ $user->username }}</h6>
-        </div>
+
+<div class="card flex-md-row shadow-sm h-md-250 border mt-5 me-2" style = "width: 30%;">
+  <div class="card-body d-flex flex-column align-items-start">
+      <strong class="d-inline-block mb-2 text-primary">{{ $user->name }}</strong>
+      <div class="mb-1 text-muted small">@ {{ $user->username }}</div>
+      <p></p><p></p><p></p>
+      <div class = "col">
+      
+        <a class="btn btn-outline-primary btn-sm" role="button" href="/users/{{ $user->user_id }}">See profile</a>
       </div>
   </div>
-  </div>
+  <img class="card-img-right flex-auto d-none d-lg-block" style="width: 200px; height: 195px;object-fit: cover;" alt="" src="/storage/uploads/{{ $user->profile_image }}">
+</div>

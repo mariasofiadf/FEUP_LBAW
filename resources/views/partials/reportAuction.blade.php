@@ -1,6 +1,7 @@
-<p class="display-3 text-center"> Report form </p>
+<p class="display-3 text-center pt-5"> Report form </p>
 
-<div class="card sm align-middle" style="width: auto; margin-right: 1rem;">
+<div class ="container ">
+    <div class="card sm align-middle" style="width: auto; margin-right: 1rem;">
     <div class="card-body">
         <form method="POST" action="{{ route('auctions/{id}/report', ['id' => $auction->auction_id]) }}">
 
@@ -14,4 +15,5 @@
             </div>
         </form>
     </div>
+</div>
 </div>
