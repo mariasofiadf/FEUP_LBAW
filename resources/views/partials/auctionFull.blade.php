@@ -12,9 +12,7 @@
                     </div>
                     <div class="col-md-6 ">
                        <div class="pull-right text-end p-3">
-                        @if(Auth::check())
-                          
-                        @endif
+                        
                         @if (Auth::check() && !Auth::user()->auctionFollows()->where('id_followed',$auction->auction_id)->where('id_follower', Auth::user()->user_id)->first())
                             <div class="align-items-center follow"> 
                             <a href="/reportAuction/{{ $auction->auction_id }}" class = "btn btn-outline-danger">Report</a>
@@ -36,6 +34,7 @@
                                    {{ $auction->owner()->first()->name }}
                                    </div>
                             </div>
+                            
                             <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand">{{ $auction->category }} {{$auction->win_bid}}</span>
                                 <h3 class="text-uppercase pb-4">{{ $auction->title }}</h3>
                             </div>
@@ -68,25 +67,35 @@
                                     <div class="col-4">
                                       <button type="submit" class="btn btn-primary submit_bid">Bid</button>
                                     </div>
+                                    
                                   </div>
                                 </form>
                               @elseif ($auction->status == 'Active')
                                 <a href="/login" class="btn btn-primary">Login to Bid on this Auction</a> 
                               @endif
+
+                              <p class = " mt-5 text-center"> <a href="#scrollspyHeading1" class = "">See Bids</a></p>    
                               <div class="alert alert-info alert-dismissible fade show" style="margin-top: 1.5em;">
                                   <strong>Closing Date</strong> {{ $auction->close_date }}
                                   <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                               </div>
+                              
                             </div>
                     </div>
                 </div>
             </div>
 
         </div>
-        <div class="row d-flex justify-content-center">
-          <div class="col-md-10">
-            @include('partials.bids', ['bids' => $bids])
+        <p></p><p></p>
+        <div class = "mt-4"data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example " tabindex="0">
+          <h4 id="scrollspyHeading1">
+          <div class="row d-flex justify-content-center pt-4 ">
+          <h2 class="card-title text-center text-uppercase">All Bids</h2>   
+            <div class="col-md-10">
+              @include('partials.bids', ['bids' => $bids])
+            </div>
           </div>
+          </h4> 
         </div>
       </form>
   </div>
