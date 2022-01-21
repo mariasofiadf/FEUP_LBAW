@@ -36,7 +36,7 @@ CREATE TABLE users(
     email TEXT UNIQUE,
     phone_number INTEGER UNIQUE,
     credit MONEY DEFAULT 0 NOT NULL CONSTRAINT credit_ck CHECK (credit >= 0::MONEY),
-    profile_image TEXT, 
+    profile_image TEXT DEFAULT 'default-avatar.jpg', 
     rating INTEGER DEFAULT 0 NOT NULL,
     blocked BOOLEAN DEFAULT FALSE NOT NULL,
     auction_notif BOOLEAN DEFAULT TRUE NOT NULL,
@@ -653,15 +653,15 @@ CREATE TRIGGER delete_user
 
 -- images
 
-INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (0,'Deleted User','deleted','$2y$10$mp6HMsGu4VcblGpki0HdR.4LwB2qHR8c9oOpU6Jlbt4RTdIQpkG1W','deleted',0,0,'',0,False,FALSE,FALSE);
+INSERT INTO users (user_id,name,username,password,email,phone_number,credit,rating,blocked,auction_notif,user_notif) VALUES (0,'Deleted User','deleted','$2y$10$mp6HMsGu4VcblGpki0HdR.4LwB2qHR8c9oOpU6Jlbt4RTdIQpkG1W','deleted',0,0,0,False,FALSE,FALSE);
 INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (1,'Bruno Silva','bsilvaa','$2y$10$mp6HMsGu4VcblGpki0HdR.4LwB2qHR8c9oOpU6Jlbt4RTdIQpkG1W','bsilva@hotmail.com',169335936,10000,'avatar-g0f1de5122_640.png',0,False,TRUE,TRUE);
 INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (2,'Laura Rocha','lrocha','$2y$10$LnAa8f4AB0f5Ttrrf3yC0eEjpIJkQoek9thQ033t79IZD3GX7cx8S','lrocha@hotmail.com',934004312,2000,'user-g3d076eb8f_640.png',0,False,TRUE,TRUE);
 INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (3,'Carlos Lima','clima','$2y$10$bdRPzv0rSN3HwH/3Gus8y.7MkV1aPDgRgI.S.2Jly037qRoN7orM6','clima@gmail.com',639376003,32000,'avatar-g0f1de5122_640.png',0,False,TRUE,TRUE);
 INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (4,'Diana Sagres','dsagres','$2y$10$Rr3Y4V44M5WT7uVwmjYAdulX2ON5wrUM2pDN6AqafKYKYfYcipaLK','dsagres@yahoo.com.br',948003605,1000,'woman-g16944ff57_640.png',0,False,TRUE,TRUE);
 INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (5,'Miguel Ferreira','mferreira','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','miguel@gmail.com',639230752,200,'avatar-gd08effb09_640.png',0,False,TRUE,TRUE);
-INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif) VALUES (6,'Prof','prof','$2y$10$TfOaUPoQ6PiB4lqVOEQbJuhKvALYIpg.dpF3j12JtnfllI4vJk/u2','prof@gmail.com',222333444,200,'prof.jpg',0,False,TRUE,TRUE);
-INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif, is_admin) VALUES (7,'Admin','admin','$2y$10$TfOaUPoQ6PiB4lqVOEQbJuhKvALYIpg.dpF3j12JtnfllI4vJk/u2','admin@gmail.com',111222333,200,'admin.jpg',0,False,TRUE,TRUE, TRUE);
-INSERT INTO users (user_id,name,username,password,email,phone_number,credit,profile_image,rating,blocked,auction_notif,user_notif, is_admin) VALUES (8,'Maria Figueiredo','mariasofia','$2y$10$Yrf1rchGJSdFdfqk9988Xuqy9ycie/audwgA.RmElpE/0sysnEQwm','mary@gmail.com',1,200,'maria.jpg',0,False,TRUE,TRUE, FALSE);
+INSERT INTO users (user_id,name,username,password,email,phone_number,credit,rating,blocked,auction_notif,user_notif) VALUES (6,'Prof','prof','$2y$10$TfOaUPoQ6PiB4lqVOEQbJuhKvALYIpg.dpF3j12JtnfllI4vJk/u2','prof@gmail.com',222333444,200,0,False,TRUE,TRUE);
+INSERT INTO users (user_id,name,username,password,email,phone_number,credit,rating,blocked,auction_notif,user_notif, is_admin) VALUES (7,'Admin','admin','$2y$10$TfOaUPoQ6PiB4lqVOEQbJuhKvALYIpg.dpF3j12JtnfllI4vJk/u2','admin@gmail.com',111222333,200,0,False,TRUE,TRUE, TRUE);
+INSERT INTO users (user_id,name,username,password,email,phone_number,credit,rating,blocked,auction_notif,user_notif, is_admin) VALUES (8,'Maria Figueiredo','mariasofia','$2y$10$Yrf1rchGJSdFdfqk9988Xuqy9ycie/audwgA.RmElpE/0sysnEQwm','mary@gmail.com',1,200,0,False,TRUE,TRUE, FALSE);
 
 
 
