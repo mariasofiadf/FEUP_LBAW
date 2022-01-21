@@ -20,7 +20,7 @@
 @endif
 {{ csrf_field() }}
 {{ method_field('PUT') }}
-
+        
 @include('partials.errorsuccess')
 <div class="mb-3">
 <label for="title" class="form-label">Title</label>
