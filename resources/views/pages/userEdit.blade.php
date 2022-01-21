@@ -17,4 +17,5 @@
   </nav>
 
   @include('partials.userEdit',  ['user' => $user])
+
 @endsection
