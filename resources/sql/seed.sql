@@ -628,7 +628,7 @@ DECLARE
     rate_count INTEGER;
 BEGIN
     update auction
-    set seller_id = 0
+    set seller_id = 0, status = 'Canceled'
     where auction.seller_id = OLD.user_id;
 
     update bid
