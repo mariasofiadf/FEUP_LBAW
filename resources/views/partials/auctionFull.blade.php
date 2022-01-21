@@ -39,12 +39,12 @@
                             </div>
                             
                             <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand">{{ $auction->category }} {{$auction->win_bid}}</span>
-                                <h3 class="text-uppercase pb-4 text-truncate" style="max-width: 320px;">{{ $auction->title }}</h3>
+                                <h3 class="text-uppercase pb-4">{{ $auction->title }}</h3>
                             </div>
                             <p class="about">{{ $auction->description ?? '' }}</p>
-                            @if ($bids->first() != null && $auction->status == 'Active')
-                              <p class="card-text">Current highest bid is {{ $bids->first()->bid_value ?? 0}}€ by {{ $bids->first()->bidder()->first()->name ?? ''}}</p>
-                              <p class="card-text">Minimum raise is  {{ $auction->min_raise ?? 0}}€ </p>
+                             @if ($bids->first() != null && $auction->status == 'Active')
+                                <p class="card-text">Current highest bid is {{ $bids->first()->bid_value ?? 0}}€ by {{ $bids->first()->bidder()->first()->name ?? ''}}</p>
+                                <p class="card-text">Minimum raise is  {{ $auction->min_raise ?? 0}}€ </p>
                               @elseif ($auction->status == 'Active')
                                 <p class="card-text">This auction has no bids</p>
                                 <p class="card-text">Minimum opening bid is  {{ $auction->min_opening_bid ?? 0}}€ </p>
@@ -70,9 +70,9 @@
                               @elseif ($auction->status == 'Active')
                                 <a href="/login" class="btn btn-primary">Login to Bid on this Auction</a> 
                               @endif
-
+                              @if(!is_null($bids->first()))
                               <p class = " mt-5 text-center"> <a href="#scrollspyHeading1" class = "">See Bids</a></p>
-
+                              @endif
                               
 
                               @if ($auction->status == 'Active')
@@ -94,16 +94,18 @@
 
         </div>
         <p></p><p></p>
-        <div class = "mt-4"data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example " tabindex="0">
-          <h4 id="scrollspyHeading1">
-          <div class="row d-flex justify-content-center pt-4 ">
-          <h2 class="card-title text-center text-uppercase">All Bids</h2>   
-            <div class="col-md-10">
-              @include('partials.bids', ['bids' => $bids])
+        @if(!is_null($bids->first()))
+          <div class = "mt-4"data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example " tabindex="0">
+            <h4 id="scrollspyHeading1">
+            <div class="row d-flex justify-content-center pt-4 ">
+            <h2 class="card-title text-center text-uppercase">All Bids</h2>   
+              <div class="col-md-10">
+                @include('partials.bids', ['bids' => $bids])
+              </div>
             </div>
+            </h4> 
           </div>
-          </h4> 
-        </div>
+        @endif
   </div>
 
 
