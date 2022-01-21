@@ -1,7 +1,7 @@
 
 
 
-<div class="container mt-5 mb-5">
+<div class="container mb-5">
   <div class="row d-flex justify-content-center">
         <div class="col-md-10">
             <div class="card">

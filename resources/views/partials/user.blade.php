@@ -14,7 +14,7 @@
         <div class="user-profile">
           <div class="user-avatar">
             <picture>
-              <source id="s1" srcset="{{ $user->profile_image }}" type="image/webp">
+              <source id="s1" srcset="/storage/uploads/{{ $user->profile_image }}" type="image/webp">
               <source id="s2" srcset="https://bootdey.com/img/Content/avatar/avatar7.png" type="image/png">
               <img src="{{ $user->profile_image }}" alt="" onerror="this.onerror=null;document.getElementById('s1').srcset=document.getElementById('s2').srcset=this.src;">
           </picture>
