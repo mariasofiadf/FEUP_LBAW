@@ -32,6 +32,11 @@
           <li class="nav-item">
             <a class="nav-link" href="/contacts">Contact</a>
           </li>
+          @if(Auth::check() && Auth::user()->is_admin)
+          <li class="nav-item">
+            <a class="nav-link" href="/auctionComplaints">Complaints</a>
+          </li>
+          @endif
         </ul>
       </div>
       <div class="col-3">
