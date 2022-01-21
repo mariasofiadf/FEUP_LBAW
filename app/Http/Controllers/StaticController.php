@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Auction;
 use App\Models\Bid;
+use App\Models\AuctionReport;
+use App\Models\User;
 
 class StaticController extends Controller
 {
@@ -22,7 +24,7 @@ class StaticController extends Controller
      */
     public function showAbout()
     {
-      return view('pages.about');
+        return view('pages.about');
     }
 
     public function showContacts()
@@ -33,6 +35,14 @@ class StaticController extends Controller
     public function showFaq()
     {
         return view('pages.faq');
+    }
+
+    public function showComplaints()
+    {   
+        if(!Auth::check()) return redirect('/login');
+        //$auction = Auction::find($id);
+        $auctionReports = AuctionReport::all();//where('auction_id', $id);
+        return view('pages.auctionComplaints', ['auctionReports' => $auctionReports]);
     }
 
 }

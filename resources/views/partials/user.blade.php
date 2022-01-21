@@ -14,17 +14,13 @@
         <div class="user-profile">
           <div class="user-avatar">
             <picture>
-              <source id="s1" srcset="{{ $user->profile_image }}" type="image/webp">
+              <source id="s1" srcset="/storage/uploads/{{ $user->profile_image }}" type="image/webp">
               <source id="s2" srcset="https://bootdey.com/img/Content/avatar/avatar7.png" type="image/png">
               <img src="{{ $user->profile_image }}" alt="" onerror="this.onerror=null;document.getElementById('s1').srcset=document.getElementById('s2').srcset=this.src;">
           </picture>
           </div>
           <h5 class="user-name"><a href="/users/{{ $user->user_id }}">{{ $user->name }}</a></h5>
           <h6 class="user-email">@ {{ $user->username }}</h6>
-        </div>
-        <div class="about">
-          <h5>About</h5>
-          <p>I think we should had an about section.</p>
         </div>
       </div>
   </div>

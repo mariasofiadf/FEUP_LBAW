@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Auction;
 use App\Models\Rating;
 use App\Models\AuctionNotification;
+use App\Models\File;
 
 class UserController extends Controller
 {
@@ -101,6 +102,26 @@ class UserController extends Controller
       $user->name = $request->input('name');
       $user->username = $request->input('username');
       $user->email = $request->input('email');
+
+      $fileModel = new File;
+
+      $request->validate([
+        'file' => 'mimes:jpg,png|max:2048'
+        ]);
+
+      
+      //echo $request->file();
+
+      if($request->file()) {
+            $fileName = time().'_'.$request->file->getClientOriginalName();
+            $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+
+            $fileModel->name = time().'_'.$request->file->getClientOriginalName();
+            $fileModel->file_path = '/storage/' . $filePath;
+            $fileModel->save();
+            
+            $user->profile_image = $fileName;
+      }
 
       $user->save();
       return redirect()->route('users/{id}', $id);

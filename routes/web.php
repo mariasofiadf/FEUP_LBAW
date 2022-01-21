@@ -25,6 +25,8 @@ Route::put('auctions/{id}/edit', 'AuctionController@edit')->name('auctions/{id}/
 
 Route::get('create', 'AuctionController@showAuctionCreationForm');
 Route::put('api/auctions', 'AuctionController@create')->name('api/auctions');
+Route::get('reportAuction/{id}', 'AuctionController@showReportForm');
+Route::post('auctions/{id}/report', 'AuctionController@report')->name('auctions/{id}/report');
 
 Route::put('api/auctions/{id}/bid', 'AuctionController@bid');
 Route::put('api/auctions/{id}/follow', 'AuctionController@follow');
@@ -59,6 +61,8 @@ Route::get('notifications', 'UserController@showNotifications')->name('notificat
 Route::get('about', 'StaticController@showAbout');
 Route::get('contacts', 'StaticController@showContacts');
 Route::get('faq', 'StaticController@showFaq');
+//Route::get('auctionComplaints/{id}', 'AuctionReportController@showComplaints');
+Route::get('auctionComplaints', 'StaticController@showComplaints');
 
 //FileUpload
 Route::get('/upload-file', [FileUpload::class, 'createForm']);

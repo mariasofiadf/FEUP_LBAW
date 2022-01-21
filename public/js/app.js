@@ -61,10 +61,10 @@ function bidAddedHandler() {
   // Insert the new item
   let auction = document.querySelector('article.auction[data-id="' + bid.auction_id + '"]');
   let form = auction.querySelector('form.new_bid');
-  let container = auction.querySelector('div.container');
+  let container = auction.querySelector('div.profile-bids');
   container.prepend(new_bid);
 
-  // Reset the new item form
+  // Reset the new item form  
   form.querySelector('[type=number]').value=0;
 }
 
@@ -106,7 +106,7 @@ function followAddedHandler() {
   let new_follow = document.createElement('a');
   new_follow.id = 'follow';
   new_follow.innerHTML = `Unfollow`;
-  new_follow.className = "btn btn-primary unfollow";
+  new_follow.className = "btn btn-outline-primary unfollow";
 
   let auction = document.querySelector('article.auction[data-id="' + follow.id_followed + '"]');
   let container = auction.querySelector('div.follow');
@@ -136,7 +136,7 @@ function followDeletedHandler() {
 
   new_follow.id = 'follow';
   new_follow.innerHTML = `Follow`;
-  new_follow.className = "btn btn-primary follow";
+  new_follow.className = "btn btn-outline-primary follow";
 
   let auction = document.querySelector('article.auction[data-id="' + follow.id_followed + '"]');
   let container = auction.querySelector('div.follow');
@@ -166,10 +166,10 @@ function ratingAddedHandler() {
 
   // // Insert the new item
   let userPage = document.querySelector('article.user[data-id="' + user.user_id + '"]');
-  let form = userPage.querySelector('form.rate_user');
-  let container = form.querySelector('span.totalRating');
+  let div = userPage.querySelector('div.rate-display');
+  let h5 = div.querySelector('h5');
   // container.prepend(new_bid);
-  container.innerHTML='Total rating: ' + user.rating;
+  h5.innerHTML='Rating: ' + user.rating;
   // // Reset the new item form
   // form.querySelector('[type=number]').value=0;
 }
