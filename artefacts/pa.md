@@ -18,11 +18,9 @@ Link to the source code's final version: https://git.fe.up.pt/lbaw/lbaw2122/lbaw
 
 ### 2. Usage
 
-> URL to the product: http://lbaw2123.lbaw.fe.up.pt  
+URL to the product: http://lbaw2123.lbaw.fe.up.pt  
 
-#### 2.1. Administration Credentials
-
-> Administration URL: URL  
+#### 2.1. Administration Credentials 
 
 | Username | Password |
 | -------- | -------- |
