@@ -1,19 +1,24 @@
 # PA: Product and Presentation
 
-> Project vision.
+> Este projeto consiste num *site* de leilões online de antiguidades, sejam elas arte, livros, móveis ou outro tipo de peças. 
 
 ## A9: Product
 
-> Brief presentation of the product developed.  
+> A maior parte dos leilões presenciais causa um número elevado de inconveniências, tais como o peso dos objetos a transportar ou o seu tratamento minunciosamente cuidadoso. Deste modo, a logística para esse transporte e também para a deslocação aos locais de eventos acarreta custos extra e se calhar evitáveis.
+
+> Esta é a premissa por detrás deste projeto. A nossa plataforma apresenta uma maneira fácil e conveniente de poder licitar ou leiloar artigos de elevado valor em absoluto conforto.
+
+> O *design* da nossa plataforma é bastante intuitivo, pelo que o utilizador não terá dificuldade nenhuma na sua utilização, tornando a sua experiência mais agradável. 
+
 
 ### 1. Installation
 
-> Link to the release with the final version of the source code in the group's git repository.  
+> *Link* para a versão final do código fonte: https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123  
 > Full Docker command to test the group's Docker Hub image using the DBM database.  
 
 ### 2. Usage
 
-> URL to the product: http://lbaw21gg.lbaw.fe.up.pt  
+> URL to the product: http://lbaw2123.lbaw.fe.up.pt  
 
 #### 2.1. Administration Credentials
 
@@ -21,14 +26,13 @@
 
 | Username | Password |
 | -------- | -------- |
-| admin    | password |
+| admin@gmail.com    | JdNtVVVe |
 
 #### 2.2. User Credentials
 
 | Type          | Username  | Password |
 | ------------- | --------- | -------- |
-| basic account | user 1    | password |
-| news editor   | user 1    | password |
+| bidder/auction owner |  prof@gmail.com    | JdNtVVVe |
 
 ### 3. Application Help
 
