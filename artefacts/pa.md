@@ -13,7 +13,7 @@ Our platforms design is rather intuitive, whereby the average user will see no p
 
 ### 1. Installation
 
-> *Link* to the source code's final version: https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123  
+Link to the source code's final version: https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123  
 > Full Docker command to test the group's Docker Hub image using the DBM database.  
 
 ### 2. Usage
