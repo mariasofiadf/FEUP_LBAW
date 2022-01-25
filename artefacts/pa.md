@@ -1,19 +1,19 @@
 # PA: Product and Presentation
 
-> Este projeto consiste num *site* de leilões online de antiguidades, sejam elas arte, livros, móveis ou outro tipo de peças. 
+This project consists in an auction website for antiques, that being works of art, books, furniture, jewelry and more.
 
 ## A9: Product
 
-> A maior parte dos leilões presenciais causa um número elevado de inconveniências, tais como o peso dos objetos a transportar ou o seu tratamento minunciosamente cuidadoso. Deste modo, a logística para esse transporte e também para a deslocação aos locais de eventos acarreta custos extra e se calhar evitáveis.
+The majority of auctions, taken in person, causes a huge number of inconviniences, such as the weight of the objects to carry or its carefull manouvre, such as to not accidentally make it loose its value. As such, just being present carries a number of extra costs that could be absolutely avoidable or mitigated
 
-> Esta é a premissa por detrás deste projeto. A nossa plataforma apresenta uma maneira fácil e conveniente de poder licitar ou leiloar artigos de elevado valor em absoluto conforto.
+That is the focus behind our product. Our platform presents an easy and conveninet way of bidding or auctioning off valuable articles, in absolute confort.
 
-> O *design* da nossa plataforma é bastante intuitivo, pelo que o utilizador não terá dificuldade nenhuma na sua utilização, tornando a sua experiência mais agradável. 
+Our platforms design is rather intuitive, whereby the average user will see no problem utilising it, making his experience that much more enjoyable.
 
 
 ### 1. Installation
 
-> *Link* para a versão final do código fonte: https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123  
+> *Link* to the source code's final version: https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123  
 > Full Docker command to test the group's Docker Hub image using the DBM database.  
 
 ### 2. Usage
