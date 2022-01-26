@@ -22,13 +22,13 @@ URL to the product: http://lbaw2123.lbaw.fe.up.pt
 
 #### 2.1. Administration Credentials 
 
-| Username | Password |
+| Email | Password |
 | -------- | -------- |
 | admin@gmail.com    | JdNtVVVe |
 
 #### 2.2. User Credentials
 
-| Type          | Username  | Password |
+| Type          | Email  | Password |
 | ------------- | --------- | -------- |
 | bidder/auction owner |  prof@gmail.com    | JdNtVVVe |
 
@@ -38,7 +38,7 @@ URL to the product: http://lbaw2123.lbaw.fe.up.pt
 
 Help and error messages are displayed upon form submission in various areas of the website. These messages clarify to the user what was wrong or missing with their input.
 
-Some examples of this are the Login form, the Registration Form and Auction Creation
+Some examples of this are the Login form, the Registration Form and Auction Creation.
 
 ![RegisterError](images/register_validate_server.png){ height=150px }
 
@@ -60,6 +60,8 @@ Image 2. Example of a bid that is too low.
 
 Image 3. Example of invalid email
 
+\pagebreak
+
 And here's an example of Server-Side validation messages:
 
 ![RegisterVal1](images/register_validate_server.png){ height=150px }<br>
@@ -71,6 +73,7 @@ Image 4. Example of invalid register
 
 
 Accessibility: https://ux.sapo.pt/checklists/acessibilidade/  TODO
+
 Usability: https://ux.sapo.pt/checklists/usabilidade/  TODO
 
 ### 6. HTML & CSS Validation
