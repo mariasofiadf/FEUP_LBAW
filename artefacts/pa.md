@@ -72,9 +72,9 @@ Image 4. Example of invalid register
 ### 5. Check Accessibility and Usability
 
 
-Accessibility: https://ux.sapo.pt/checklists/acessibilidade/  TODO
+Accessibility: https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123/-/blob/main/artefacts/docs/Checklist%20de%20Acessibilidade%20-%20SAPO%20UX.pdf
 
-Usability: https://ux.sapo.pt/checklists/usabilidade/  TODO
+Usability: https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123/-/blob/main/artefacts/docs/Checklist%20de%20Usabilidade%20-%20SAPO%20UX.pdf
 
 ### 6. HTML & CSS Validation
 
@@ -154,9 +154,10 @@ Our initial sql schema was changed as we developed the project. Some things that
 ### 1. Product presentation
 
 > Brief presentation of the product and its main features (2 paragraphs max).  
->
-> URL to the product: http://lbaw21gg.lbaw.fe.up.pt  
->
+
+http://lbaw2123.lbaw.fe.up.pt  
+
+
 > Slides used during the presentation should be added, as a PDF file, to the group's repository and linked to here.
 
 
