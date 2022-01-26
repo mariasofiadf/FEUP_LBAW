@@ -1,49 +1,77 @@
 # PA: Product and Presentation
 
-> Project vision.
+This project consists in an auction website for antiques, that being works of art, books, furniture, jewelry and more.
 
 ## A9: Product
 
-> Brief presentation of the product developed.  
+The majority of auctions, taken in person, causes a huge number of inconviniences, such as the weight of the objects to carry or its carefull manouvre, such as to not accidentally make it loose its value. As such, just being present carries a number of extra costs that could be absolutely avoidable or mitigated
+
+That is the focus behind our product. Our platform presents an easy and conveninet way of bidding or auctioning off valuable articles, in absolute confort.
+
+Our platforms design is rather intuitive, whereby the average user will see no problem utilising it, making their experience that much more enjoyable.
+
 
 ### 1. Installation
 
-> Link to the release with the final version of the source code in the group's git repository.  
+Link to the source code's final version: https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123  
 > Full Docker command to test the group's Docker Hub image using the DBM database.  
 
 ### 2. Usage
 
-> URL to the product: http://lbaw21gg.lbaw.fe.up.pt  
+URL to the product: http://lbaw2123.lbaw.fe.up.pt  
 
-#### 2.1. Administration Credentials
-
-> Administration URL: URL  
+#### 2.1. Administration Credentials 
 
 | Username | Password |
 | -------- | -------- |
-| admin    | password |
+| admin@gmail.com    | JdNtVVVe |
 
 #### 2.2. User Credentials
 
 | Type          | Username  | Password |
 | ------------- | --------- | -------- |
-| basic account | user 1    | password |
-| news editor   | user 1    | password |
+| bidder/auction owner |  prof@gmail.com    | JdNtVVVe |
 
+
+\pagebreak
 ### 3. Application Help
 
-> Describe where help has been implemented, pointing to working examples.  
+Help and error messages are displayed upon form submission in various areas of the website. These messages clarify to the user what was wrong or missing with their input.
+
+Some examples of this are the Login form, the Registration Form and Auction Creation
+
+![RegisterError](images/register_validate_server.png){ height=150px }
+
+Image 1. Example of a message from register error.
 
 ### 4. Input Validation
 
-> Describe how input data was validated, and provide examples to scenarios using both client-side and server-side validation.  
+Input data is always validated both client-side and server-side. This acts as double safety for user input.
+Some examples of where this validation occurs are login, register, auction creation, bid on action.
+Client side validation usually checks for required fields and correct data types (number, text, file extension, etc) while server side validation checks those same conditions and also checks for contextual validity.
+
+Here are some examples of Client-Side validation messages:
+
+![BidError](images/bid_error.png){ height=150px }<br>
+
+Image 2. Example of a bid that is too low.
+
+![RegisterVal1](images/register_client_val.png){ height=150px }<br>
+
+Image 3. Example of invalid email
+
+And here's an example of Server-Side validation messages:
+
+![RegisterVal1](images/register_validate_server.png){ height=150px }<br>
+
+Image 4. Example of invalid register
+
 
 ### 5. Check Accessibility and Usability
 
-> Provide the results of accessibility and usability tests using the following checklists. Include the results as PDF files in the group's repository. Add individual links to those files here.
->
-> Accessibility: https://ux.sapo.pt/checklists/acessibilidade/  
-> Usability: https://ux.sapo.pt/checklists/usabilidade/  
+
+Accessibility: https://ux.sapo.pt/checklists/acessibilidade/  TODO
+Usability: https://ux.sapo.pt/checklists/usabilidade/  TODO
 
 ### 6. HTML & CSS Validation
 
@@ -54,7 +82,13 @@
 
 ### 7. Revisions to the Project
 
-> Describe the revisions made to the project since the requirements specification stage.  
+Some of the routes from the openAPI (A7) were changed.<br>
+
+Our initial sql schema was changed as we developed the project. Some things that were changed are:
+
+    - Notification tables
+    - Some triggers
+    - Added attribute 'is_admin' to User table to check if a certain user is an Admin
 
 ### 8. Implementation Details
 
@@ -63,21 +97,49 @@
 > Include reference to all the libraries and frameworks used in the product.  
 > Include library name and reference, description of the use, and link to the example where it's used in the product.  
 
+
+
+\pagebreak
+
 #### 8.2 User Stories
 
-> This subsection should include all high and medium priority user stories, sorted by order of implementation. Implementation should be sequential according to the order identified below. 
->
-> If there are new user stories, also include them in this table. 
-> The owner of the user story should have the name in **bold**.
-> This table should be updated when a user story is completed and another one started. 
-
 | US Identifier | Name    | Module | Priority                       | Team Members               | State  |
-| ------------- | ------- | ------ | ------------------------------ | -------------------------- | ------ |
-|  US01          | US Name 1 | Module A | High/Mandatory | **John Silva**, Ana Alice   |  100%  |
-|  US02          | US Name 2 | Module A | Medium/Important | **Ana Alice**, John Silva                 |   75%  | 
-|  US03          | US Name 3 | Module B | Low/Optional | **Francisco Alves**                 |   5%  | 
-|  US04          | US Name 4 | Module A | Low/Optional | -                 |   0%  | 
-
+| --             | ---------                   | ---      | --             | -------- | --- |
+|  US01          | View active auctions        | Module 2 | High           | **Maria Figueiredo**, Rita Ramada  |   100%  | 
+|  US02          | Browse auctions by category | Module 2 | High           | **Rita Ramada**  |   100%  | 
+|  US03          | Search Auctions             | Module 2 | High           | **Rita Ramada**  |   50%  | 
+|  US04          | See Home                    | Module 5 | High           |                  |   0%  | 
+|  US05          | See About                   | Module 5 | High           | **Deborah Lago**, Afonso Monteiro  |   100%  | 
+|  US06          | Consult Services            | Module 5 | High           | **Deborah Lago**, Afonso Monteiro  |   100%  | 
+|  US07          | Consult FAQ                 | Module 5 | High           | **Deborah Lago**, Afonso Monteiro  |   100%  | 
+|  US08          | Consult Contacts            | Module 5 | High           | **Deborah Lago**, Afonso Monteiro  |   100%  | 
+|  US09          | View/Search user profiles   | Module 3 | Medium         | **Rita Ramada**  |   75%  | 
+|  US11          | Login                       | Module 1 | High           | **Maria Figueiredo**  |   100%  | 
+|  US12          | Register                    | Module 1 | High           | **Maria Figueiredo**, Rita Ramada  |   100%  | 
+|  US13          | Recover password            | Module 1 | High           |   |   0%  | 
+|  US21          | Administer user accounts    | Module 4 | High           | **Maria Figueiredo**, Afonso Monteiro |   100%  | 
+|  US22          | Block and unblock user accounts | Module 4 | High       |  |   0%  | 
+|  US23          | Manage Auction              | Module 4 | High           | **Maria Figueiredo** |   50%  | 
+|  US24          | Cancel Auction              | Module 4 | High           | **Maria Figueiredo** |   100%  | 
+|  US25          | Delete user account         | Module 4 | High           | **Maria Figueiredo**  |   100%  | 
+|  US26          | Notifications               | Module 4 | Medium         | **Maria Figueiredo**  |   100%  | 
+|  US31          | View/Edit Profile           | Module 3 | High           | **Rita Ramada**, Maria Figueiredo  |   100%  | 
+|  US32          | Create Auction              | Module 2 | High           | **Maria Figueiredo**, Rita Ramada  |   100%  | 
+|  US33          | Edit/Delete Auction         | Module 2 | High           | **Maria Figueiredo**, Rita Ramada  |   100%  | 
+|  US34          | Edit/Delete Comment         | Module 2 | High           |   |   0%  | 
+|  US35          | View My Auctions            | Module 2 | High           | **Maria Figueiredo**, Rita Ramada  |   100%  | 
+|  US36          | Bid on Auction              | Module 2 | High           | **Maria Figueiredo**  |   100%  | 
+|  US37          | Logout                      | Module 1 | High           | **Maria Figueiredo**  |   100%  | 
+|  US38          | Follow Auction              | Module 1 | Medium         | **Deborah Lago**, Maria Figueiredo  |   100%  | 
+|  US39          | View Followed Auctions      | Module 1 | Medium         |   |   0%  | 
+|  US310         | View My Bidding History     | Module 3 | Medium           | **Maria Figueiredo**, Rita Ramada |   100%  | 
+|  US311         | Add Credit to Account       | Module 3 | Medium           |   |   0%  | 
+|  US310         | Report Auction              | Module 2 | Low           | **Afonso Monteiro**, Maria Figueiredo  |   80%  | 
+|  US41          | View Auction Bidding History| Module 2 | High           | **Maria Figueiredo**, Rita Ramada  |   100%  | 
+|  US42          | Rate Seller                 | Module 3 | Medium         | **Rita Ramada**, Maria Figueiredo  |   100%  | 
+|  US51          | Edit Auction                | Module 2 | High           | **Maria Figueiredo**, Rita Ramada  |   100%  | 
+|  US52          | Cancel Auction              | Module 2 | High           | **Maria Figueiredo**  |   100%  | 
+|  US53          | Manage Auction Status       | Module 2 | Medium         | **Maria Figueiredo**  |   100%  | 
 
 ---
 
