@@ -1,7 +1,24 @@
 # lbaw2123
 
-php artisan schedule:work
+## Docker command to start the image from GitLab Container Registry
 
-docker run -it -p 8000:80 git.fe.up.pt:5050/lbaw/lbaw2122/lbaw2123
+```sh
+docker run -it -p 8000:80 -e DB_DATABASE="lbaw2123" -e DB_SCHEMA="lbaw2123" -e DB_USERNAME="lbaw2123" -e DB_PASSWORD="JdNtVVVe" git.fe.up.pt:5050/lbaw/lbaw2122/lbaw2123
+```
+## Link to the source code's final version
 
-docker run -it -p 8000:80 -e DB_DATABASE="lbaw2123" -e DB_SCHEMA="lbaw2123" -e DB_USERNAME="lbaw2123" -e DB_PASSWORD="JdNtVVVe" git.fe.up.pt:5050/lbaw/lbaw2122/lbaw2123 # Replace with your group's image name
+lbaw2123.lbaw.fe.up.pt/
+
+## Credential 
+
+### Administration Credentials 
+
+| Email | Password |
+| -------- | -------- |
+| admin@gmail.com    | JdNtVVVe |
+
+### User Credentials
+
+| Type          | Email  | Password |
+| ------------- | --------- | -------- |
+| bidder/auction owner |  prof@gmail.com    | JdNtVVVe |
