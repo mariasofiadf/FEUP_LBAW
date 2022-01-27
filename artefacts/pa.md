@@ -81,28 +81,60 @@ Usability: https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123/-/blob/main/artefacts/doc
 
 ### 6. HTML & CSS Validation
 
-> Provide the results of the validation of the HTML and CSS code using the following tools. Include the results as PDF files in the group's repository. Add individual links to those files here.
->   
-> HTML: https://validator.w3.org/nu/  
-> CSS: https://jigsaw.w3.org/css-validator/  
+Results for HTML and CSS validation.
+
+#### HTML Validation
+[About](/Validator/aboutValHTML.pdf)<br>
+[Auction Bid](/Validator/auctionbidValHTML.pdf)<br>
+[Auction Complaint](/Validator/actionCompValHTML.pdf)<br>
+[Create Auction](/Validator/createActValHTML.pdf)<br>
+[Auction Page](/Validator/auctionFullValHTML.pdf)<br>
+[Auction Notification](/Validator/auctionNotification.blade.phpVal.pdf)<br>
+[Auction Preview](/Validator/auctionPreview.blade.phpVal.pdf)<br>
+[Auctions](/Validator/auctions.blade.phpVal.pdf)<br>
+[Bids](/Validator/bids.blade.phpVal.pdf)<br>
+[Contacts](/Validator/contacts.blade.phpVal.pdf)<br>
+[Error or Successs](/Validator/errorsuccess.blade.phpVal.pdf)<br>
+[FAQ](/Validator/faq.blade.phpVal.pdf)<br>
+[File Upload](/Validator/file-upload.blade.phpVal.pdf)<br>
+[Header](/Validator/header.blade.phpVal.pdf)<br>
+[Rating](/Validator/rating.blade.phpVal.pdf)<br>
+[reportAuction](/Validator/reportAuction.blade.phpVal.pdf)<br>
+[Auctions Search](/Validator/searchAuctions.blade.phpVal.pdf)<br>
+[Users Search](/Validator/searchUsers.blade.phpVal.pdf)<br>
+[User Profile](/Validator/user.blade.phpVal.pdf)<br>
+[User Bid](/Validator/userBid.blade.phpVal.pdf)<br>
+[Edit User](/Validator/userEdit.blade.phpVal.pdf)<br>
+[User Notification](/Validator/userNotification.blade.phpVal.pdf)<br>
+[All Users](/Validator/users.blade.phpVal.pdf)<br>
+[Users Auctions](/Validator/usersAuctions.blade.phpVal.pdf)<br>
+[Warnings](/Validator/warnings.blade.phpVal.pdf)
+
+#### CSS Validation
+
+[General Style](/Validator/appCSSValidator.pdf)<br>
+[Profile](/Validator/profileCSSValidator.pdf)
 
 ### 7. Revisions to the Project
 
-Some of the routes from the openAPI (A7) were changed.<br>
 
-Our initial sql schema (A5) was changed as we developed the project. Some things that were changed are:
+Added new routes that were not on the openAPI (A7).<br>
 
-    - Notification tables
-    - Some triggers
-    - Added attribute 'is_admin' to User table to check if a certain user is an Admin
+Some changes were made to the initial sql schema:
+
+- Added Boolean `deleted` to User table
+- Default image for User
+- Boolean `time_increment` added to Auction table
+- Notification tables
+- Some triggers
+- Added attribute 'is_admin' to User table to check if a certain user is an Admin
+
 
 ### 8. Implementation Details
 
 #### 8.1. Libraries Used
 
-> Include reference to all the libraries and frameworks used in the product.  
-> Include library name and reference, description of the use, and link to the example where it's used in the product.  
-
+No libraries were used.
 
 
 \pagebreak
