@@ -14,7 +14,10 @@ Our platforms design is rather intuitive, whereby the average user will see no p
 ### 1. Installation
 
 Link to the source code's final version: https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123  
-> Full Docker command to test the group's Docker Hub image using the DBM database.  
+
+```sh
+docker run -it -p 8000:80 -e DB_DATABASE="lbaw2123" -e DB_SCHEMA="lbaw2123" -e DB_USERNAME="lbaw2123" -e DB_PASSWORD="JdNtVVVe" git.fe.up.pt:5050/lbaw/lbaw2122/lbaw2123
+```
 
 ### 2. Usage
 
@@ -87,7 +90,7 @@ Usability: https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123/-/blob/main/artefacts/doc
 
 Some of the routes from the openAPI (A7) were changed.<br>
 
-Our initial sql schema was changed as we developed the project. Some things that were changed are:
+Our initial sql schema (A5) was changed as we developed the project. Some things that were changed are:
 
     - Notification tables
     - Some triggers
@@ -175,13 +178,11 @@ http://lbaw2123.lbaw.fe.up.pt
 
 ## Revision history
 
-Changes made to the first submission:
-1. Item 1
-1. ..
+Changes made to the first submission in 7. Revisions to the Project
 
 ***
-GROUP21gg, DD/MM/2021
-
-* Group member 1 name, email (Editor)
-* Group member 2 name, email
-* ...
+1. GROUP2123, 02/11/2021:
+* Afonso Duarte de Carvalho Monteiro up201907284
+* Ana Rita Antunes Ramada up201904565
+* Deborah Marques Lago up201806102
+* Maria Sofia Diogo Figueiredo up201904675 (Editor)
