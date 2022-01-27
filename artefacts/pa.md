@@ -81,30 +81,30 @@ Usability: https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123/-/blob/main/artefacts/doc
 Results for HTML and CSS validation.
 
 #### HTML Validation
-[About](/Validator/aboutValHTML.pdf)
-[Auction Bid](/Validator/auctionbidValHTML.pdf)
-[Auction Complaint](/Validator/actionCompValHTML.pdf)
-[Create Auction](/Validator/createActValHTML.pdf)
-[Auction Page](/Validator/auctionFullValHTML.pdf)
-[Auction Notification](/Validator/auctionNotification.blade.phpVal.pdf)
-[Auction Preview](/Validator/auctionPreview.blade.phpVal.pdf)
-[Auctions](/Validator/auctions.blade.phpVal.pdf)
-[Bids](/Validator/bids.blade.phpVal.pdf)
-[Contacts](/Validator/contacts.blade.phpVal.pdf)
-[Error or Successs](/Validator/errorsuccess.blade.phpVal.pdf)
-[FAQ](/Validator/faq.blade.phpVal.pdf)
-[File Upload](/Validator/file-upload.blade.phpVal.pdf)
-[Header](/Validator/header.blade.phpVal.pdf)
-[Rating](/Validator/rating.blade.phpVal.pdf)
-[reportAuction](/Validator/reportAuction.blade.phpVal.pdf)
-[Auctions Search](/Validator/searchAuctions.blade.phpVal.pdf)
-[Users Search](/Validator/searchUsers.blade.phpVal.pdf)
-[User Profile](/Validator/user.blade.phpVal.pdf)
-[User Bid](/Validator/userBid.blade.phpVal.pdf)
-[Edit User](/Validator/userEdit.blade.phpVal.pdf)
-[User Notification](/Validator/userNotification.blade.phpVal.pdf)
-[All Users](/Validator/users.blade.phpVal.pdf)
-[Users Auctions](/Validator/usersAuctions.blade.phpVal.pdf)
+[About](/Validator/aboutValHTML.pdf)<br>
+[Auction Bid](/Validator/auctionbidValHTML.pdf)<br>
+[Auction Complaint](/Validator/actionCompValHTML.pdf)<br>
+[Create Auction](/Validator/createActValHTML.pdf)<br>
+[Auction Page](/Validator/auctionFullValHTML.pdf)<br>
+[Auction Notification](/Validator/auctionNotification.blade.phpVal.pdf)<br>
+[Auction Preview](/Validator/auctionPreview.blade.phpVal.pdf)<br>
+[Auctions](/Validator/auctions.blade.phpVal.pdf)<br>
+[Bids](/Validator/bids.blade.phpVal.pdf)<br>
+[Contacts](/Validator/contacts.blade.phpVal.pdf)<br>
+[Error or Successs](/Validator/errorsuccess.blade.phpVal.pdf)<br>
+[FAQ](/Validator/faq.blade.phpVal.pdf)<br>
+[File Upload](/Validator/file-upload.blade.phpVal.pdf)<br>
+[Header](/Validator/header.blade.phpVal.pdf)<br>
+[Rating](/Validator/rating.blade.phpVal.pdf)<br>
+[reportAuction](/Validator/reportAuction.blade.phpVal.pdf)<br>
+[Auctions Search](/Validator/searchAuctions.blade.phpVal.pdf)<br>
+[Users Search](/Validator/searchUsers.blade.phpVal.pdf)<br>
+[User Profile](/Validator/user.blade.phpVal.pdf)<br>
+[User Bid](/Validator/userBid.blade.phpVal.pdf)<br>
+[Edit User](/Validator/userEdit.blade.phpVal.pdf)<br>
+[User Notification](/Validator/userNotification.blade.phpVal.pdf)<br>
+[All Users](/Validator/users.blade.phpVal.pdf)<br>
+[Users Auctions](/Validator/usersAuctions.blade.phpVal.pdf)<br>
 [Warnings](/Validator/warnings.blade.phpVal.pdf)
 
 #### CSS Validation
