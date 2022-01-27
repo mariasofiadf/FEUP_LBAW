@@ -1,7 +1,5 @@
 
 
-
-
 <div class="container border p-1 mb-2 w-75">
   <div class="row text-center align-middle">
     <div class="col-sm align-self-center">
