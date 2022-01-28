@@ -211,7 +211,8 @@ http://lbaw2123.lbaw.fe.up.pt
 Changes made to the first submission in 7. Revisions to the Project
 
 ***
-1. GROUP2123, 02/11/2021:
+GROUP2123, 28/01/2022:
+
 * Afonso Duarte de Carvalho Monteiro up201907284
 * Ana Rita Antunes Ramada up201904565
 * Deborah Marques Lago up201806102
