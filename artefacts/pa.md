@@ -47,9 +47,7 @@ Some examples of this are the Login form, the Registration Form and Auction Crea
 
 Image 1. Example of a message from register error.
 
-### 4. Input Validation
-
-Input data is always validated both client-side and server-side. This acts as double safety for user input.
+### 4. Input Validationdocsta is always validated both client-side and server-side. This acts as double safety for user input.
 Some examples of where this validation occurs are login, register, auction creation, bid on action.
 Client side validation usually checks for required fields and correct data types (number, text, file extension, etc) while server side validation checks those same conditions and also checks for contextual validity.
 
@@ -84,36 +82,36 @@ Usability: https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123/-/blob/main/artefacts/doc
 Results for HTML and CSS validation.
 
 #### HTML Validation
-[About](/Validator/aboutValHTML.pdf)<br>
-[Auction Bid](/Validator/auctionbidValHTML.pdf)<br>
-[Auction Complaint](/Validator/actionCompValHTML.pdf)<br>
-[Create Auction](/Validator/createActValHTML.pdf)<br>
-[Auction Page](/Validator/auctionFullValHTML.pdf)<br>
-[Auction Notification](/Validator/auctionNotification.blade.phpVal.pdf)<br>
-[Auction Preview](/Validator/auctionPreview.blade.phpVal.pdf)<br>
-[Auctions](/Validator/auctions.blade.phpVal.pdf)<br>
-[Bids](/Validator/bids.blade.phpVal.pdf)<br>
-[Contacts](/Validator/contacts.blade.phpVal.pdf)<br>
-[Error or Successs](/Validator/errorsuccess.blade.phpVal.pdf)<br>
-[FAQ](/Validator/faq.blade.phpVal.pdf)<br>
-[File Upload](/Validator/file-upload.blade.phpVal.pdf)<br>
-[Header](/Validator/header.blade.phpVal.pdf)<br>
-[Rating](/Validator/rating.blade.phpVal.pdf)<br>
-[reportAuction](/Validator/reportAuction.blade.phpVal.pdf)<br>
-[Auctions Search](/Validator/searchAuctions.blade.phpVal.pdf)<br>
-[Users Search](/Validator/searchUsers.blade.phpVal.pdf)<br>
-[User Profile](/Validator/user.blade.phpVal.pdf)<br>
-[User Bid](/Validator/userBid.blade.phpVal.pdf)<br>
-[Edit User](/Validator/userEdit.blade.phpVal.pdf)<br>
-[User Notification](/Validator/userNotification.blade.phpVal.pdf)<br>
-[All Users](/Validator/users.blade.phpVal.pdf)<br>
-[Users Auctions](/Validator/usersAuctions.blade.phpVal.pdf)<br>
-[Warnings](/Validator/warnings.blade.phpVal.pdf)
+[About](docs/aboutValHTML.pdf)<br>
+[Auction Bid](docs/auctionbidValHTML.pdf)<br>
+[Auction Complaint](docs/actionCompValHTML.pdf)<br>
+[Create Auction](docs/createActValHTML.pdf)<br>
+[Auction Page](docs/auctionFullValHTML.pdf)<br>
+[Auction Notification](docs/auctionNotification.blade.phpVal.pdf)<br>
+[Auction Preview](docs/auctionPreview.blade.phpVal.pdf)<br>
+[Auctions](docs/auctions.blade.phpVal.pdf)<br>
+[Bids](docs/bids.blade.phpVal.pdf)<br>
+[Contacts](docs/contacts.blade.phpVal.pdf)<br>
+[Error or Successs](docs/errorsuccess.blade.phpVal.pdf)<br>
+[FAQ](docs/faq.blade.phpVal.pdf)<br>
+[File Upload](docs/file-upload.blade.phpVal.pdf)<br>
+[Header](docs/header.blade.phpVal.pdf)<br>
+[Rating](docs/rating.blade.phpVal.pdf)<br>
+[reportAuction](docs/reportAuction.blade.phpVal.pdf)<br>
+[Auctions Search](docs/searchAuctions.blade.phpVal.pdf)<br>
+[Users Search](docs/searchUsers.blade.phpVal.pdf)<br>
+[User Profile](docs/user.blade.phpVal.pdf)<br>
+[User Bid](docs/userBid.blade.phpVal.pdf)<br>
+[Edit User](docs/userEdit.blade.phpVal.pdf)<br>
+[User Notification](docs/userNotification.blade.phpVal.pdf)<br>
+[All Users](docs/users.blade.phpVal.pdf)<br>
+[Users Auctions](docs/usersAuctions.blade.phpVal.pdf)<br>
+[Warnings](docs/warnings.blade.phpVal.pdf)
 
 #### CSS Validation
 
-[General Style](/Validator/appCSSValidator.pdf)<br>
-[Profile](/Validator/profileCSSValidator.pdf)
+[General Style](docs/appCSSValidator.pdf)<br>
+[Profile](docs/profileCSSValidator.pdf)
 
 ### 7. Revisions to the Project
 
