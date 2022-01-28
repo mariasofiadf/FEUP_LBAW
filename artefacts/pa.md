@@ -16,7 +16,8 @@ Our platforms design is rather intuitive, whereby the average user will see no p
 Link to the source code's final version: https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123/-/tree/PA
 
 ```sh
-docker run -it -p 8000:80 -e DB_DATABASE="lbaw2123" -e DB_SCHEMA="lbaw2123" -e DB_USERNAME="lbaw2123" -e DB_PASSWORD="JdNtVVVe" git.fe.up.pt:5050/lbaw/lbaw2122/lbaw2123
+docker run -it -p 8000:80 -e DB_DATABASE="lbaw2123" -e DB_SCHEMA="lbaw2123" -e 
+DB_USERNAME="lbaw2123" -e DB_PASSWORD="JdNtVVVe" git.fe.up.pt:5050/lbaw/lbaw2122/lbaw2123
 ```
 
 ### 2. Usage
@@ -211,6 +212,7 @@ http://lbaw2123.lbaw.fe.up.pt
 Changes made to the first submission in 7. Revisions to the Project
 
 ***
+
 GROUP2123, 28/01/2022:
 
 * Afonso Duarte de Carvalho Monteiro up201907284
