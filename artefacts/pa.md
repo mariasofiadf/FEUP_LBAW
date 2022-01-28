@@ -13,8 +13,12 @@ Our platforms design is rather intuitive, whereby the average user will see no p
 
 ### 1. Installation
 
-Link to the source code's final version: https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123  
-> Full Docker command to test the group's Docker Hub image using the DBM database.  
+Link to the source code's final version: https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123/-/tree/PA
+
+```sh
+docker run -it -p 8000:80 -e DB_DATABASE="lbaw2123" -e DB_SCHEMA="lbaw2123" -e 
+DB_USERNAME="lbaw2123" -e DB_PASSWORD="JdNtVVVe" git.fe.up.pt:5050/lbaw/lbaw2122/lbaw2123
+```
 
 ### 2. Usage
 
@@ -44,9 +48,7 @@ Some examples of this are the Login form, the Registration Form and Auction Crea
 
 Image 1. Example of a message from register error.
 
-### 4. Input Validation
-
-Input data is always validated both client-side and server-side. This acts as double safety for user input.
+### 4. Input Validationdocsta is always validated both client-side and server-side. This acts as double safety for user input.
 Some examples of where this validation occurs are login, register, auction creation, bid on action.
 Client side validation usually checks for required fields and correct data types (number, text, file extension, etc) while server side validation checks those same conditions and also checks for contextual validity.
 
@@ -78,28 +80,60 @@ Usability: https://git.fe.up.pt/lbaw/lbaw2122/lbaw2123/-/blob/main/artefacts/doc
 
 ### 6. HTML & CSS Validation
 
-> Provide the results of the validation of the HTML and CSS code using the following tools. Include the results as PDF files in the group's repository. Add individual links to those files here.
->   
-> HTML: https://validator.w3.org/nu/  
-> CSS: https://jigsaw.w3.org/css-validator/  
+Results for HTML and CSS validation.
+
+#### HTML Validation
+[About](docs/aboutValHTML.pdf)<br>
+[Auction Bid](docs/auctionbidValHTML.pdf)<br>
+[Auction Complaint](docs/actionCompValHTML.pdf)<br>
+[Create Auction](docs/createActValHTML.pdf)<br>
+[Auction Page](docs/auctionFullValHTML.pdf)<br>
+[Auction Notification](docs/auctionNotification.blade.phpVal.pdf)<br>
+[Auction Preview](docs/auctionPreview.blade.phpVal.pdf)<br>
+[Auctions](docs/auctions.blade.phpVal.pdf)<br>
+[Bids](docs/bids.blade.phpVal.pdf)<br>
+[Contacts](docs/contacts.blade.phpVal.pdf)<br>
+[Error or Successs](docs/errorsuccess.blade.phpVal.pdf)<br>
+[FAQ](docs/faq.blade.phpVal.pdf)<br>
+[File Upload](docs/file-upload.blade.phpVal.pdf)<br>
+[Header](docs/header.blade.phpVal.pdf)<br>
+[Rating](docs/rating.blade.phpVal.pdf)<br>
+[reportAuction](docs/reportAuction.blade.phpVal.pdf)<br>
+[Auctions Search](docs/searchAuctions.blade.phpVal.pdf)<br>
+[Users Search](docs/searchUsers.blade.phpVal.pdf)<br>
+[User Profile](docs/user.blade.phpVal.pdf)<br>
+[User Bid](docs/userBid.blade.phpVal.pdf)<br>
+[Edit User](docs/userEdit.blade.phpVal.pdf)<br>
+[User Notification](docs/userNotification.blade.phpVal.pdf)<br>
+[All Users](docs/users.blade.phpVal.pdf)<br>
+[Users Auctions](docs/usersAuctions.blade.phpVal.pdf)<br>
+[Warnings](docs/warnings.blade.phpVal.pdf)
+
+#### CSS Validation
+
+[General Style](docs/appCSSValidator.pdf)<br>
+[Profile](docs/profileCSSValidator.pdf)
 
 ### 7. Revisions to the Project
 
-Some of the routes from the openAPI (A7) were changed.<br>
 
-Our initial sql schema was changed as we developed the project. Some things that were changed are:
+Added new routes that were not on the openAPI (A7).<br>
 
-    - Notification tables
-    - Some triggers
-    - Added attribute 'is_admin' to User table to check if a certain user is an Admin
+Some changes were made to the initial sql schema:
+
+- Added Boolean `deleted` to User table
+- Default image for User
+- Boolean `time_increment` added to Auction table
+- Notification tables
+- Some triggers
+- Added attribute 'is_admin' to User table to check if a certain user is an Admin
+
 
 ### 8. Implementation Details
 
 #### 8.1. Libraries Used
 
-> Include reference to all the libraries and frameworks used in the product.  
-> Include library name and reference, description of the use, and link to the example where it's used in the product.  
-
+No libraries were used.
 
 
 \pagebreak
@@ -170,13 +204,13 @@ https://drive.google.com/file/d/1--0llLzJbbfIQO6PEMLen4VM0mcQ4wva/view?usp=shari
 
 ## Revision history
 
-Changes made to the first submission:
-1. Item 1
-1. ..
+Changes made to the first submission in 7. Revisions to the Project
 
 ***
-GROUP21gg, DD/MM/2021
 
-* Group member 1 name, email (Editor)
-* Group member 2 name, email
-* ...
+GROUP2123, 28/01/2022:
+
+* Afonso Duarte de Carvalho Monteiro up201907284
+* Ana Rita Antunes Ramada up201904565
+* Deborah Marques Lago up201806102
+* Maria Sofia Diogo Figueiredo up201904675 (Editor)
