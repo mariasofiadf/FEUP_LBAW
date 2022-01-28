@@ -182,26 +182,21 @@ No libraries were used.
 
 
 ## A10: Presentation
- 
-> This artefact corresponds to the presentation of the product.
 
 ### 1. Product presentation
 
-> Brief presentation of the product and its main features (2 paragraphs max).  
+Hand of Midas is a web based service, where you can easily host an online auction and also bid on and buy a variety of items of rare characteristics, namely art pieces, decór items, books and jewelry. It seeks to create a more democratic process for interested parties, allowing them to bid on and sell in online auctions for exclusive artifacts in an easy and simple way. The main page is where you can see all the auctions that were created by the users. If you click in any of them, it will redirect you to the auction details, that include the minimum raise you need respect when making a bid and also which bid has been the highest made so far and by whom. To make your own bid, you will need to be authenticated.
+Similar to the auctions page, if you click in any of the users, you will be redirected to that user's profile. There you can find the user's informations including all the auctions created by him/her. Also, if authenticated, you can rate him/her with 1 to 5 stars. In both of those pages you can find a search bar in which you can write reference words to nail down the results. When searching for auctions, you can also combine the keywords with one of the auction categories or even search just by a category. As the name states, this website encourages the community to increase the added value of rare items, but in a much more dynamic and simple way than in an onsite auction session. 
 
 http://lbaw2123.lbaw.fe.up.pt  
 
-
-> Slides used during the presentation should be added, as a PDF file, to the group's repository and linked to here.
-
-
 ### 2. Video presentation
 
-> Screenshot of the video plus the link to the lbaw21gg.mp4 file  
+![ScreenshotVideo](images/video.png){ height=150px }<br>
 
-> - Upload the lbaw21gg.mp4 file to the video uploads' [Google folder](https://drive.google.com/drive/folders/1HDNOZ4y834m7pXgJ0XjNa_ZC26e9-Xge?usp=sharing "Videos folder"). You need to use a Google U.Porto account to upload the video.   
-> - The video must not exceed 2 minutes.
-> - Include a link to the video on the Google Drive folder.
+Here you can find our video:
+https://drive.google.com/file/d/1--0llLzJbbfIQO6PEMLen4VM0mcQ4wva/view?usp=sharing
+
 
 
 ---
